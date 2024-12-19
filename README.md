@@ -1,2 +1,2 @@
 # OKD-Document-Management
-Onderwijk Koppeling Document Management
+Onderwijs Koppeling voor Document Management
