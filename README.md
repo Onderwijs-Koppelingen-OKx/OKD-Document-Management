@@ -6,11 +6,11 @@ NOTE: Onderstaande informatie is niet definitief. Er kunnen geen rechten aan ont
 ```
 Voor het vullen van de dossiers in het DMS voor een leerling zijn verschillende applicaties en componenten betrokken
 
-- vanuit de module **"inschrijving"** (KRS): 
+- vanuit de module **"Inschrijven"** (KRS): 
   - ondersteunende documenten voor de inschrijving van de student
   - bewijs van eerder behaalde competenties en vrijstellingen vrijstellingen
-- vanuit **"Examinerings"** (SVS,KRS,OKE,VOLG):
-  -  bewijslast van behaalde examens (beoordelings docmuenten, soms gemaakt werk)
+- vanuit **"Examineren"** (SVS,KRS,OKE,VOLG):
+  - bewijslast van behaalde examens (beoordelings docmuenten, soms gemaakt werk)
   - zittingsverslagen van bijgewoonde examens
 - vanuit **"BPV"** module
   - Matchen en plaatsen: BPV overeenkomst en andere documenten
@@ -18,7 +18,7 @@ Voor het vullen van de dossiers in het DMS voor een leerling zijn verschillende 
 - vanuit module **"Diplomeren en Certificeren"**: (KRS): 
   - behaalde certificaten
   - behaalde diploma's
-- vanuit de module **"uitschrijving"** (KRS): 
+- vanuit de module **"Uitschrijven"** (KRS): 
   - signaal dat student uitgeschreven is voor een studie en de bewaartermijn van alle documenten start
 
 
