@@ -38,7 +38,7 @@ columns 1
     Uitschrijven
   end
   space
-  D ("Document Managament")
+  D ("Document Management")
   Inschrijven --> D
   Examineren --> D
   BPV --> D
