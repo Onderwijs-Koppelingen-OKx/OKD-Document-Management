@@ -88,4 +88,4 @@ De flows worden in detail verder uitgewerkt, beschreven in de OOAPI structuur.
 - flow-4: Examinering dossier
 - flow-5: Uitschrijven
 
-Nog te onderzoeken: zijn er flows vanuit dhet DMS naar deze modules ?
+Nog te onderzoeken: zijn er flows vanuit het DMS naar deze modules ?
