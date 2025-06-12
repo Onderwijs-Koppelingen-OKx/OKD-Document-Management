@@ -4,6 +4,16 @@ Onderwijs Koppeling voor Document Management
 ```
 NOTE: Onderstaande informatie is niet definitief. Er kunnen geen rechten aan ontleend worden.
 ```
+Deze API definitie is in het kader van de OKx koppelingen in het MBO onderwijs in nederland. Het is een uitwerking van de door Npuls voorgestelde "OKx Best practise" om voor het MBO standaard koppelvlakkken te maken op basis van de OOAPI.
+
+Deze koppeling definieerd de interactie tussen de diverse systeemen/modules op het gebied van document management. Dzez word momenteel ontworpen door scholene en leveranciers in het MBO.
+
+
+https://mora.mbodigitaal.nl/index.php/Id-31e23eae-6bea-63fd-b4e9-79bc4f4981ae
+<img width="997" alt="image" src="https://github.com/user-attachments/assets/e038dade-fc30-4186-8e9b-06b3a26f9cfb" />
+
+
+
 Voor het vullen van de dossiers in het DMS voor een leerling zijn verschillende applicaties en componenten betrokken
 
 - vanuit de module **"Inschrijven"** (KRS): 
@@ -21,7 +31,8 @@ Voor het vullen van de dossiers in het DMS voor een leerling zijn verschillende 
 - vanuit de module **"Uitschrijven"** (KRS): 
   - signaal dat student uitgeschreven is voor een studie en de bewaartermijn van alle documenten start
 
-
+Vanuit het DMS worden signalen gegeven als de documenten werkelijk vernietigd zijn.
+  - signaal dat document vernietigd is en niet meer in het DMS opgevraagd kan worden.
 
 
 ### Betrokken Applicaties en Mora componenten
@@ -76,6 +87,10 @@ sequenceDiagram
     Diplomeren_en_Certificeren -->> DMS: Behaald certificaat
     Diplomeren_en_Certificeren -->> DMS: Behaald diploma
     Uitschrijven ->> DMS: Student uitgeschreven, start bewaartermijn
+    DMS ->> Inschrijven: Document vernietigt
+    DMS ->> Examineren: Document vernietigt
+    DMS ->> BPV: Document vernietigt
+    DMS ->> Diplomeren_en_Certificeren: Document vernietigt
 
 
 ```
@@ -87,5 +102,7 @@ De flows worden in detail verder uitgewerkt, beschreven in de OOAPI structuur.
 - flow-3: BPV dossier
 - flow-4: Examinering dossier
 - flow-5: Uitschrijven
+- flow-6: document vernietigt notificatie
 
-Nog te onderzoeken: zijn er flows vanuit het DMS naar deze modules ?
+
+Nog te onderzoeken: zijn er flows vanuit het DMS naar deze modules voor het aanbieden van nieuwe documenten ?
