@@ -30,21 +30,6 @@ sequenceDiagram
 
 ```
 
-Optie 2:  DMS haalt de inhoud later als het tijd/zin heeft.
-
-```mermaid
-sequenceDiagram
-    Participant Inschrijven
-    Participant DMS
-
-    Inschrijven->>DMS: document meta informatie
-    DMS->>+Inschrijven: Geef inhoud document
-    Inschrijven->>-DMS: inhoud document
-    DMS->>Inschrijven: nieuwe link in DMS
-
-
-```
-
 ### domain model
 - document id
 - persoon id, naam
