@@ -15,8 +15,6 @@ het DMS reageerd met een de link waar het document te bekijken is in het DMS.
 
 Het student inschrijvings dossier wordt aangemaakt bij het sturen van het eerste document als het nog niet bestaat.
 
-
-optie 1:
 DMS krijgt de inhoud van het document indezelfde call als meta informatie
 
 ```mermaid
