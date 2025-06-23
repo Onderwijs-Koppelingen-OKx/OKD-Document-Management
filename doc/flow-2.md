@@ -9,25 +9,32 @@ sequenceDiagram
     Participant DMS
 
     Examineren->>+DMS: Overdragen document bij toetsresultaat (meta-data & inhoud)
+    Note right of Examineren: endpoint /ooapi/documents POST (v6 heeft alleen GET!)
     DMS->>-Examineren: 200 - OK! (inclusief referentie)
 ```
 
 Remark:
-De volgende informatie wordt aangeboden richting  DMS
-- student
-- opleiding (of verbintenis)
-- soort document (bijvoorbeeld toetsresultaat, bijlage bij toetsresultaat, etc.)
-- toetsmoment
-- toets
-- meta info over een document (id, size en location)
+De volgende informatie wordt aangeboden richting DMS
 - inhoud van het document
+- document.bronorganisatie
+- document.creatiedatum
+- document.titel
+- document.auteur
+- document.taal
+- document.type
+- student
+- afnamemoment toets
+- toetsgegevens
+- opleiding/verbintenis
+
+
 
 ### Class diagram van document bij toetsresultaat overdragen naar DMS
 todo
 
 ### Example of request
 ```json
-PUT /documents/{associationId}
+POST /documents
 ```
 todo
 
@@ -40,6 +47,8 @@ Remarks:
 Todo! Identiek aan toetsresultaat bijlagen, maar excl. student.
 
 
+## Flow 2.3 Document bij toetsmoment overdragen naar DMS
+
 
 
 
@@ -47,16 +56,6 @@ Todo! Identiek aan toetsresultaat bijlagen, maar excl. student.
 
 
 
-
-
-
-info naar het DMS
-- student
-- inschrijving en opleiding
-- soort document
-- meta info over een document (id, size en location)
-- voorgestelde bewaar termijn
-- inhoud van het document
 
 het DMS reageerd met een de link waar het document te bekijken is in het DMS.
 
