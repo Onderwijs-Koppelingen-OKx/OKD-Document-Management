@@ -1,7 +1,7 @@
 # OKD - Flow 2 - Document overdragen naar DMS
 Aanbieden van examenresultaat en examenmoment gerelateerde documenten naar het DMS. Deze documenten worden opgeslagen in DMS als onderdeel van examendossier. 
 
-## Flow 2.1 Document bij toetsresultaat overdragen naar DMS
+## Flow 2.1 Document bij toetsresultaat opslaan in DMS
 ### Sequence diagram
 ```mermaid
 sequenceDiagram
@@ -9,11 +9,17 @@ sequenceDiagram
     Participant DMS
 
     Examineren->>+DMS: Overdragen document bij toetsresultaat (meta-data & inhoud)
-    Note right of Examineren: endpoint /ooapi/documents POST (v6 heeft alleen GET!)
-    DMS->>-Examineren: 200 - OK! (inclusief referentie)
+    Note right of Examineren: endpoint /ooapi/documents POST
+    DMS->>-Examineren: 201 Created (inclusief referentie)
 
 
 ```
+
+Te bespreken
+* V6 beschikt alleen over een GET documents, OKD zal minimaal een POST nodig hebben.
+* Waarom wordt in OKE soms "OOAPI" als prefix in endpoint gezet?
+* 
+
 
 Remark:
 De volgende informatie wordt aangeboden richting DMS
@@ -33,7 +39,7 @@ De volgende informatie wordt aangeboden richting DMS
 
 
 
-### Class diagram van document bij toetsresultaat overdragen naar DMS
+### Class diagram van document bij toetsresultaat  opslaan in DMS
 todo
 
 ### Example of request
