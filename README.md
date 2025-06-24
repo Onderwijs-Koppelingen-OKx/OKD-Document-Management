@@ -58,7 +58,7 @@ columns 1
 
 ```
 
-### Flow gedurende de inschrijving van de student
+### Flows gedurende onderwijsperiode van de student
 
 
 
@@ -87,15 +87,20 @@ sequenceDiagram
     Diplomeren_en_Certificeren -->> DMS: Behaald certificaat
     Diplomeren_en_Certificeren -->> DMS: Behaald diploma
     Uitschrijven ->> DMS: Student uitgeschreven, start bewaartermijn
-    DMS ->> Inschrijven: Document vernietigt
-    DMS ->> Examineren: Document vernietigt
-    DMS ->> BPV: Document vernietigt
-    DMS ->> Diplomeren_en_Certificeren: Document vernietigt
     Inschrijven->>DMS: Opvragen document
     Examineren->>DMS: Opvragen document
     BPV->>DMS: Opvragen document
     Diplomeren_en_Certificeren->>DMS: Opvragen document
     Uitschrijven->>DMS: Opvragen document
+    Inschrijven->>DMS: Wijzigen document
+    Examineren->>DMS: Wijzigen document
+    BPV->>DMS: Wijzigen document
+    Diplomeren_en_Certificeren->>DMS: Wijzigen document
+    Uitschrijven->>DMS: Wijzigen document
+    DMS ->> Inschrijven: Document vernietigt
+    DMS ->> Examineren: Document vernietigt
+    DMS ->> BPV: Document vernietigt
+    DMS ->> Diplomeren_en_Certificeren: Document vernietigt
     
 
 
@@ -104,12 +109,13 @@ natuurlijk kan een student meerdere inschrijvingen doorlopen
 
 De flows worden in detail verder uitgewerkt, beschreven in de OOAPI structuur.
 - [flow-1: Inschrijvings dossier](./doc/flow-1.md)
-- flow-2: Examen dossier
+- [flow-2: Examen dossier](./doc/flow-2.md)
 - flow-3: BPV dossier
 - flow-4: Diplomeren en Certificeren dossier
 - flow-5: Uitschrijven
 - flow-6: document vernietigt notificatie
-- flow-x: Opvragen document (vanuit alle componenten naar DMS)
+- [flow-x: Opvragen document (vanuit alle componenten naar DMS)](./doc/flow-x.md)
+- [flow-y: Wijzigen document (vanuit alle componenten naar DMS)](./doc/flow-y.md)
 
 
 Nog te onderzoeken: zijn er flows vanuit het DMS naar deze modules voor het aanbieden van nieuwe documenten ?
