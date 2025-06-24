@@ -45,7 +45,7 @@ columns 1
     Inschrijven
     Examineren
     BPV
-    Diplomeren en Certificeren
+    Diplomeren_en_Certificeren
     Uitschrijven
   end
   space
