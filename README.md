@@ -100,7 +100,7 @@ De flows worden in detail verder uitgewerkt, beschreven in de OOAPI structuur.
 - [flow-1: Inschrijvings dossier](./doc/flow-1.md)
 - flow-2: Examen dossier
 - flow-3: BPV dossier
-- flow-4: Examinering dossier
+- flow-4: Diplomeren en Certificeren dossier
 - flow-5: Uitschrijven
 - flow-6: document vernietigt notificatie
 
