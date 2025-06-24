@@ -101,7 +101,8 @@ sequenceDiagram
     DMS ->> Examineren: Document vernietigt
     DMS ->> BPV: Document vernietigt
     DMS ->> Diplomeren_en_Certificeren: Document vernietigt
-    
+    DMS ->> Uitschrijven: Document vernietigt
+ 
 
 
 ```
