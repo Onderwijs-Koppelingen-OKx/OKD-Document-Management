@@ -103,6 +103,7 @@ De flows worden in detail verder uitgewerkt, beschreven in de OOAPI structuur.
 - flow-4: Diplomeren en Certificeren dossier
 - flow-5: Uitschrijven
 - flow-6: document vernietigt notificatie
+- flow-x: Opvragen document (vanuit alle componenten naar DMS)
 
 
 Nog te onderzoeken: zijn er flows vanuit het DMS naar deze modules voor het aanbieden van nieuwe documenten ?
