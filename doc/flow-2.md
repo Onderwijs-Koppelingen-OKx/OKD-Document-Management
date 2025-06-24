@@ -11,6 +11,8 @@ sequenceDiagram
     Examineren->>+DMS: Overdragen document bij toetsresultaat (meta-data & inhoud)
     Note right of Examineren: endpoint /ooapi/documents POST (v6 heeft alleen GET!)
     DMS->>-Examineren: 200 - OK! (inclusief referentie)
+
+
 ```
 
 Remark:
