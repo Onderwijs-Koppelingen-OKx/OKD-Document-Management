@@ -18,7 +18,9 @@ sequenceDiagram
 Te bespreken
 * V6 beschikt alleen over een GET documents, OKD zal minimaal een POST nodig hebben.
 * Waarom wordt in OKE soms "OOAPI" als prefix in endpoint gezet?
-* 
+* Update van document is generiek en beschreven in flow-y
+
+
 
 
 Remark:
