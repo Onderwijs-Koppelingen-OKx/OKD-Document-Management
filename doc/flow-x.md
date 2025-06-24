@@ -4,24 +4,32 @@ todo
 ### Endpoint
 
 - **`GET /documents/{documentId}`**
-  - **Description**: Fetches the specified document's details and binary content from the DMS, identified by its `documentId`.
+  - **Description**: Fetches the specified document's  binary content from the DMS, identified by its `documentId`.
   - **Parameters**: 
     - `documentId` (required): A unique identifier (UUID) for the document to be retrieved.
   - **Response**:
-    - **Success 200 (OK)**: Returns the complete document, including metadata and binary data.
-    - **Authorization**: While the current version operates without explicit authorization, future updates may include secure access protocols to align with broader OOAPI and OKE security practices.
+    - **Success 200 (OK)**: Returns the complete document binary data.
 
 ### Sequence Diagram
 
 ```mermaid
 sequenceDiagram
-    participant Examineren
+    participant Consumer app
     participant DMS
-    Examineren->>DMS: GET /documents/{documentId}
+    Consumer app->>DMS: GET /documents/{documentId}
     activate DMS
-    DMS-->>Examineren: 200 OK, Document Details & Binary Data
+    DMS-->>Consumer app: 200 OK, Binary Data
     deactivate DMS
 ```
 
-Remarks
-- todo
+Bespreekpunten
+- Openen van document eigenschappen scherm is niet mogelijk, kan alleen via een URL naar de zaak. Echter, dat kan uitsluitend vanuit zaak API, oftewel consumer app zou kennis van zaken moeten hebben. Nut- noodzaak van deze behoefte heroverwegen i.r.t. V1
+
+
+
+
+
+
+
+
+
