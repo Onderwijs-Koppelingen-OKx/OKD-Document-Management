@@ -6,7 +6,7 @@ NOTE: Onderstaande informatie is niet definitief. Er kunnen geen rechten aan ont
 ```
 Deze API definitie is in het kader van de OKx koppelingen in het MBO onderwijs in nederland. Het is een uitwerking van de door Npuls voorgestelde "OKx Best practise" om voor het MBO standaard koppelvlakkken te maken op basis van de OOAPI.
 
-Deze koppeling definieerd de interactie tussen de diverse systeemen/modules op het gebied van document management. Dzez word momenteel ontworpen door scholene en leveranciers in het MBO.
+Deze koppeling definieerd de interactie tussen de diverse systeemen/modules op het gebied van document management. Deze wordt momenteel ontworpen door scholen en leveranciers in het MBO.
 
 
 https://mora.mbodigitaal.nl/index.php/Id-31e23eae-6bea-63fd-b4e9-79bc4f4981ae
@@ -106,7 +106,7 @@ sequenceDiagram
 
 
 ```
-natuurlijk kan een student meerdere inschrijvingen doorlopen
+Natuurlijk kan een student meerdere inschrijvingen doorlopen
 
 De flows worden in detail verder uitgewerkt, beschreven in de OOAPI structuur.
 - [flow-1: Inschrijvings dossier](./doc/flow-1.md)
