@@ -117,6 +117,7 @@ De flows worden in detail verder uitgewerkt, beschreven in de OOAPI structuur.
 - flow-6: document vernietigt notificatie
 - [flow-x: Opvragen document (vanuit alle componenten naar DMS)](./doc/flow-x.md)
 - [flow-y: Wijzigen document (vanuit alle componenten naar DMS)](./doc/flow-y.md)
+- [flow-z: Verwijderen document (vanuit alle componenten naar DMS)](./doc/flow-z.md)
 
 
 Nog te onderzoeken: zijn er flows vanuit het DMS naar deze modules voor het aanbieden van nieuwe documenten ?
