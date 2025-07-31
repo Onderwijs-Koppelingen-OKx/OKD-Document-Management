@@ -1,0 +1,16 @@
+type: object
+description: The additional consumer elements that can be provided, see the [documentation on support for specific consumers](https://open-education-api.github.io/specification/#/consumers) for more information about this mechanism.
+properties:
+  name: consumers
+  type: array
+  items:
+    anyOf:
+      - $ref: '../schemas/Consumer.yaml'
+      - $ref: '../consumers/NL-OKD/V1/nl-okd-Document.yaml'
+  example:
+    - consumerKey: nl-okd
+      consumerVersion: v1
+      consumerData:
+        documentId: e68ee6c0-d503-4e56-8dce-d7fbf3e5b52d
+        documentUrl: https://api.djuma.nl/documents/meta/e68ee6c0-d503-4e56-8dce-d7fbf3e5b52d
+        message: This is a sample message for the document.
