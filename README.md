@@ -97,11 +97,11 @@ sequenceDiagram
     BPV->>DMS: Wijzigen document
     Diplomeren_en_Certificeren->>DMS: Wijzigen document
     Uitschrijven->>DMS: Wijzigen document
-    DMS ->> Inschrijven: Document vernietigt
-    DMS ->> Examineren: Document vernietigt
-    DMS ->> BPV: Document vernietigt
-    DMS ->> Diplomeren_en_Certificeren: Document vernietigt
-    DMS ->> Uitschrijven: Document vernietigt
+    DMS ->> Inschrijven: Verwijderen document
+    DMS ->> Examineren: Verwijderen document
+    DMS ->> BPV: Verwijderen document
+    DMS ->> Diplomeren_en_Certificeren: Verwijderen document
+    DMS ->> Uitschrijven: Verwijderen document
  
 
 
