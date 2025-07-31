@@ -11,7 +11,7 @@ sequenceDiagram
     Participant DMS
 
     Inschrijven->>+DMS: document (meta informatie & inhoud)
-    DMS->>-Inschrijven: nieuwe link in DMS
+    DMS->>-Inschrijven: nieuwe referentie (UUID)
 
 ```
 
