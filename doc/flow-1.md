@@ -1,8 +1,354 @@
-# OKD - Flow 1
+# OKD - Flow 1 Opslaan ondersteunende documenten bij de inschrijving in DMS
 Aanbieden van documenten rondom de inschrijving van een student.
-
-## Flow 1.1 Opslaan ondersteunende documenten bij de inschrijving in DMS
 Vanuit model Inschrijven naar het DMS: ondersteunende documenten bij de inschrijving die in het student/inschrijvings dossier horen.
+
+## 1.1 nieuw document : Optie A, DMS ontvangt meta data en binary)
+### Sequence diagram 
+```mermaid
+sequenceDiagram
+    Participant Inschrijven
+    Participant DMS
+
+    Inschrijven->>+DMS: PUT /okd/v1_0/document/{documentid} (meta informatie & inhoud)
+    DMS->>-Inschrijven: nieuwe DMS referentie (UUID)
+
+```
+#### endpoints voor deze flow bij DMS
+- `PUT /okd/v1_0/documents/{documentId}`
+
+voorbeeld :
+```
+PUT /documents/dbd3e12a-ed8b-4488-ac34-26fd4f64f40b
+Host: api.yourdomain.com
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Length: 2847
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+Accept: application/json
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="metadata"
+Content-Type: application/json
+
+{
+    "consumers": [
+        "consumerKey": "nl-okd",
+        "documentType": "inschrijving",
+        "association": {
+            "associationId: "123e4567-e89b-12d3-a456-426614174000",
+            "associationType": "programOfferingAssociation",
+            "role": "student",
+            "state": "associated",
+            "primaryCode": {
+                "codeType": "opleidingsblad",
+                "code": "1.1"
+            },
+            "otherCodes": [
+                {
+                    "codeType": "opleidingscode",
+                    "code": "23089"
+                }
+            ],            
+            "consumers": [
+                {
+                    "consumerKey": "nl-okd",
+                    "startDate": "2021-09-01", 
+                    "expectedEndDate": "2025-07-31",
+                    "finalEndDate": null
+                    "sequenceCode": "1.1"
+                }
+            ]
+            "person": {
+                "personId": "111-2222-33-4444-222",
+                "primaryCode": 
+                {
+                    "codeType": "studentNumber",
+                    "code": "1234567"
+                },
+                "givenName": "Maartje",
+                "surnamePrefix": "van",
+                "surname": "Damme",
+                "displayName": "Maartje van Damme",
+                "activeEnrollment": true,
+                "affiliations": 
+                [
+                    "student"
+                ],
+                "mail": "vandamme.mcw@student.roc.nl",
+                "languageOfChoice":	[
+                    "nl-NL"
+                ],
+                "otherCodes": [
+                    {
+                        "codeType": "eckid",
+                        "code": "00000"
+                    }
+                ]
+            },
+            "offering": {
+                "offeringId": "5ffc6127-debe-48ce-90ae-75ea80756475",
+                "primaryCode": {
+                "codeType": "identifier",
+                "code": "25190BOL"
+                },
+                "offeringType": "program",
+                "name": "Netwerk- en mediabeheerder BOL (25190)",
+                "program": {
+                    "programId": "123e4567-e89b-12d3-a456-426614174000",
+                    "primaryCode": {
+                        "codeType": "identifier",
+                        "code": "C12063128"
+                    },
+                    "programType": "program",
+                    "name": [
+                        {
+                        "language": "nl-NL",
+                        "value": "Netwerk- en mediabeheerder"
+                        }
+                    ],
+                    "abbreviation": "N&M",
+                    "description": [
+                        {
+                        "language": "nl-NL",
+                        "value": "In deze MBO-opleiding word je opgeleid voor het officieel erkende diploma 'MBO Netwerkbeheerder, niveau 4'. Met dit diploma ben je breed opgeleid en kun je het netwerk van een organisatie beheren. Dit is hét diploma voor de professionele netwerkbeheerder op het hoogste MBO-niveau. Je legt een uitstekende basis voor een mooie carrière als netwerkbeheerder. Bovendien is dit een diploma waarmee je eventueel probleemloos kunt doorstuderen naar een HBO-opleiding"
+                        }
+                    ],
+                    "teachingLanguage": "nld",
+                    "modeOfStudy": "full-time",
+                    "levelOfQualification": "4"
+                },
+                "organization": {
+                    "organizationID": "38bdbeb1-12b2-48fd-84f8-653e7adfaf99",
+                    "primaryCode": {
+                        "codeType": "identifier",
+                        "code": "ICTE"
+                    },
+                    "organizationType": "department",
+                    "name": [
+                        {
+                        "language": "nl-NL",
+                        "value": "ICT-academie"
+                        }
+                    ],
+                    "shortname": "ICTA",
+                    "parent": {
+                        "organizationID": "650e1627-9f3d-4176-ab5a-e82eef0d219d",
+                        "primaryCode": {
+                        "codeType": "identifier",
+                        "code": "CICT"
+                        },
+                        "name": [
+                        {
+                            "language": "nl-NL",
+                            "value": "Cluster ICT en EIS"
+                        }
+                        ]
+                    }
+                }
+            },
+ 
+        }
+    }
+}
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="file"; filename="inschrijving-100245.pdf"
+Content-Type: application/pdf
+
+%PDF-1.4
+1 0 obj
+<<
+/Type /Catalog
+/Pages 2 0 R
+>>
+endobj
+2 0 obj
+<<
+/Type /Pages
+/Kids [3 0 R]
+/Count 1
+>>
+endobj
+...
+[Binary PDF content continues]
+...
+%%EOF
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+```
+
+## optie B, endpoint is metadata
+### Sequence diagram 
+```mermaid
+sequenceDiagram
+    Participant Inschrijven
+    Participant DMS
+
+    Inschrijven->>+DMS: PUT /okd/v1_0/associations/{associationId} (meta informatie & inhoud)
+    DMS->>-Inschrijven: nieuwe DMS referentie (UUID)
+
+```
+#### endpoints voor deze flow bij DMS
+- `PUT /okd/v1_0/associations/{associationId}`
+
+voorbeeld :
+```
+PUT /okd/v1_0/associations/123e4567-e89b-12d3-a456-426614174000
+Host: api.yourdomain.com
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Length: 2847
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+Accept: application/json
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="metadata"
+Content-Type: application/json
+
+{
+    "association": {
+        "associationId: "123e4567-e89b-12d3-a456-426614174000",
+        "associationType": "programOfferingAssociation",
+        "role": "student",
+        "state": "associated",
+        "primaryCode": {
+            "codeType": "opleidingsblad",
+            "code": "1.1"
+        },
+        "otherCodes": [
+            {
+                "codeType": "opleidingscode",
+                "code": "23089"
+            }
+        ],            
+        "consumers": [
+            {
+                "consumerKey": "nl-okd",
+                "documentType": "inschrijving",
+                "documentid: "dbd3e12a-ed8b-4488-ac34-26fd4f64f40b",
+                "documentName": "inschrijving-100245.pdf",
+                "startDate": "2021-09-01", 
+                "expectedEndDate": "2025-07-31",
+                "finalEndDate": null
+                "sequenceCode": "1.1"
+            }
+        ]
+        "person": {
+            "personId": "111-2222-33-4444-222",
+            "primaryCode": 
+            {
+                "codeType": "studentNumber",
+                "code": "1234567"
+            },
+            "givenName": "Maartje",
+            "surnamePrefix": "van",
+            "surname": "Damme",
+            "displayName": "Maartje van Damme",
+            "activeEnrollment": true,
+            "affiliations": 
+            [
+                "student"
+            ],
+            "mail": "vandamme.mcw@student.roc.nl",
+            "languageOfChoice":	[
+                "nl-NL"
+            ],
+            "otherCodes": [
+                {
+                    "codeType": "eckid",
+                    "code": "00000"
+                }
+            ]
+        },
+        "offering": {
+            "offeringId": "5ffc6127-debe-48ce-90ae-75ea80756475",
+            "primaryCode": {
+            "codeType": "identifier",
+            "code": "25190BOL"
+            },
+            "offeringType": "program",
+            "name": "Netwerk- en mediabeheerder BOL (25190)",
+            "program": {
+                "programId": "123e4567-e89b-12d3-a456-426614174000",
+                "primaryCode": {
+                    "codeType": "identifier",
+                    "code": "C12063128"
+                },
+                "programType": "program",
+                "name": [
+                    {
+                    "language": "nl-NL",
+                    "value": "Netwerk- en mediabeheerder"
+                    }
+                ],
+                "abbreviation": "N&M",
+                "description": [
+                    {
+                    "language": "nl-NL",
+                    "value": "In deze MBO-opleiding word je opgeleid voor het officieel erkende diploma 'MBO Netwerkbeheerder, niveau 4'. Met dit diploma ben je breed opgeleid en kun je het netwerk van een organisatie beheren. Dit is hét diploma voor de professionele netwerkbeheerder op het hoogste MBO-niveau. Je legt een uitstekende basis voor een mooie carrière als netwerkbeheerder. Bovendien is dit een diploma waarmee je eventueel probleemloos kunt doorstuderen naar een HBO-opleiding"
+                    }
+                ],
+                "teachingLanguage": "nld",
+                "modeOfStudy": "full-time",
+                "levelOfQualification": "4"
+            },
+            "organization": {
+                "organizationID": "38bdbeb1-12b2-48fd-84f8-653e7adfaf99",
+                "primaryCode": {
+                    "codeType": "identifier",
+                    "code": "ICTE"
+                },
+                "organizationType": "department",
+                "name": [
+                    {
+                    "language": "nl-NL",
+                    "value": "ICT-academie"
+                    }
+                ],
+                "shortname": "ICTA",
+                "parent": {
+                    "organizationID": "650e1627-9f3d-4176-ab5a-e82eef0d219d",
+                    "primaryCode": {
+                    "codeType": "identifier",
+                    "code": "CICT"
+                    },
+                    "name": [
+                    {
+                        "language": "nl-NL",
+                        "value": "Cluster ICT en EIS"
+                    }
+                    ]
+                }
+            }
+        },
+    }
+
+}
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="file"; filename="inschrijving-100245.pdf"
+Content-Type: application/pdf
+
+%PDF-1.4
+1 0 obj
+<<
+/Type /Catalog
+/Pages 2 0 R
+>>
+endobj
+2 0 obj
+<<
+/Type /Pages
+/Kids [3 0 R]
+/Count 1
+>>
+endobj
+...
+[Binary PDF content continues]
+...
+%%EOF
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+```
+
+## Optie C
+## 1.1 nieuw document : Optie B, DMS ontvangt meta data en DMS haalt binary op)
 
 ### Sequence diagram
 ```mermaid
@@ -10,16 +356,28 @@ sequenceDiagram
     Participant Inschrijven
     Participant DMS
 
-    Inschrijven->>+DMS: document (meta informatie & inhoud)
+    Inschrijven->>+DMS:  PUT /okd/v1_0/documents/{documentid} (alleen meta informatie)
     DMS->>-Inschrijven: nieuwe referentie (UUID)
+    DMS->>+Inschrijven:  GET /okd/v1_0/documents/{documentid}
+    Inschrijven->>-DMS: (binary content)
+
+
 
 ```
+#### endpoints voor deze flow bij DMS
+- `PUT /okd/v1_0/documents/{documentId}` 
+#### endpoints voor deze flow bij andere 
+- `GET /okd/v1_0/documents/{documentId}` 
+
+
+
 
 ### Class diagram 
 Todo!!
 
 ### Example of request
 Todo!!
+
 
 Info naar het DMS:
 - student
