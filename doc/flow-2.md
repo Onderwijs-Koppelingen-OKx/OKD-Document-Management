@@ -1,63 +1,22 @@
-# OKD - Flow 2 - Document overdragen naar DMS
-Aanbieden van examenresultaat en examenmoment gerelateerde documenten naar het DMS. Deze documenten worden opgeslagen in DMS als onderdeel van examendossier. 
+# OKD - Flow 2 - examen Document overdragen naar DMS
+Aanbieden van examenresultaat en examenmoment gerelateerde documenten naar het DMS. Deze documenten worden opgeslagen in DMS als onderdeel van examendossier en gelinkt aan de students inschrijving.
 
-## Flow 2.1 Document bij toetsresultaat opslaan in DMS
-### Sequence diagram
-```mermaid
-sequenceDiagram
-    Participant Examineren
-    Participant DMS
+er zijn 2 hoofd documenttypes:
+* examenzittingverslag document
+* examen resultaat document
 
-    Examineren->>+DMS: Overdragen document bij toetsresultaat (meta-data & inhoud)
-    Note right of Examineren: endpoint .../okd/v1_0/documents POST
-    DMS->>-Examineren: 201 Created (inclusief referentie)
+## NOG TE DOEN:
+ ZIE ook details van flow 1
+Deze flows lijkt erg op flow 1, met het verschil dat de metainformatie in deze flow 
 
+* een examen zitting
+* (optioneel) een inschrijving van student
 
-```
+Dit word nog uitgewerkt zodra we de details van flow 1 100% uitgewerkt hebben om consistent te blijven
 
-
-
-
-Remark:
-De volgende informatie wordt aangeboden richting DMS
-- inhoud van het document
-- document.bronorganisatie
-- document.creatiedatum
-- document.titel
-- document.auteur
-- document.taal
-- document.type
-- student
-- afnamemoment toets
-- toetsgegevens
-- opleiding/verbintenis
-
-
-
-
-
-### Class diagram van document bij toetsresultaat  opslaan in DMS
-todo
-
-### Example of request
-```json
-POST /documents
-```
-todo
-
-Remarks:
-- todo
-
-
-
-## Flow 2.2 Document bij toetsmoment overdragen naar DMS
-Todo! Identiek aan toetsresultaat bijlagen, maar excl. student.
-
-
-
-## Flow 2.4 Update a document in the DMS
-Todo: zie flow y?
-
+## verwerking in CMS
+Het DMS kan zelf bepalen hoe de documenten opgelagen en verwerkt worden: of een apart examen dossier of alles onder de student inschrijving dossier
 
 ## Authenticatie:
-scope die ook gebruikt is voor toevoegen (nader invullen)
+scope voor toevoegen van examen gerelateerde documenten: **okd:alldocuments** en **okd:examendocuments**.
+ als een van deze 2 aanwezig is in het authenticatie token kan de actie uitgevoerd worden.

@@ -1,8 +1,8 @@
 ## Flow x Opvragen document
 Bij het opvragen van een document zijn er 3 opties: 
-1. de consumer app vraagt om de binary data en toont deze aan de eindgebruiker 
-2. de consumer app krijggt een url die heel kort geldig is en kan de browser van de gebruiker hier naar toe forwarden. het document komt dan van de djuma srever
-2. de consumer app vraagt om de link in djuma, die alleen werkt als de gebruiker ook bij jdjuma kan inloggen
+1. de component vraagt om de binary data en toont deze aan de eindgebruiker 
+2. de component krijggt een url die heel kort geldig is en kan de browser van de gebruiker hier naar toe forwarden. het document komt dan van de djuma srever
+2. de component vraagt om de link in djuma, die alleen werkt als de gebruiker ook bij jdjuma kan inloggen
 
 ## Optie 1
 ### Endpoint
@@ -18,11 +18,11 @@ Bij het opvragen van een document zijn er 3 opties:
 
 ```mermaid
 sequenceDiagram
-    participant Consumer app
+    participant Component
     participant DMS
-    Consumer app->>DMS: GET .../okd/v1_0/documents/{documentId}
+    Component->>DMS: GET .../okd/v1_0/documents/{documentId}
     activate DMS
-    DMS-->>Consumer app: 200 OK, Binary Data
+    DMS-->>Component: 200 OK, Binary Data
     deactivate DMS
 ```
 
@@ -42,15 +42,15 @@ sequenceDiagram
 ```mermaid
 sequenceDiagram
     participant browser
-    participant Consumer app
+    participant Component
     participant DMS
-    browser ->> Consumer app: show document
+    browser ->> Component: show document
     activate browser
-    Consumer app->>DMS: GET .../okd/v1_0/documents/{documentId}
+    Component->>DMS: GET .../okd/v1_0/documents/{documentId}
     activate DMS
-    DMS->>Consumer app: 200 OK
+    DMS->>Component: 200 OK
     deactivate DMS
-    Consumer app ->> browser: documentdownloadonetimeUrl van content
+    Component ->> browser: documentdownloadonetimeUrl van content
     deactivate browser
     browser->>DMS: GET /{documentdownloadonetimeUrl}
     activate DMS
@@ -77,13 +77,13 @@ Dit is een variatie op 2, alleen word niet de binary data getoond, maar de detia
 
 
 ## Bespreekpunten
-- Openen van document eigenschappen scherm is niet mogelijk, kan alleen via een URL naar de zaak. Echter, dat kan uitsluitend vanuit zaak API, oftewel consumer app zou kennis van zaken moeten hebben. Nut- noodzaak van deze behoefte heroverwegen i.r.t. V1
-
-## Authenticatie:
-scope die ook gebruikt is voor toevoegen (nader invullen)
+- Openen van document eigenschappen scherm is niet mogelijk, kan alleen via een URL naar de dossier. Echter, dat kan uitsluitend vanuit dossier API, oftewel component zou kennis van zaken moeten hebben. Nut- noodzaak van deze behoefte heroverwegen i.r.t. V1
 
 
-
+### Authenticatie:
+scope die ook gebruikt is voor inzien is zelfde als voor toevoegen. (**okd:alldocuments** of de specifiekere varianten)
+Als de scope een specifieker scope is dan gelden de document restricties. okd:bpvdocument mag alleen bpv documenten inzien.
+verder mogen de componenten alleen de door hun aangeleverde documenten inzien.
 
 
 

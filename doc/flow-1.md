@@ -2,7 +2,7 @@
 Aanbieden van documenten rondom de inschrijving van een student.
 Vanuit model Inschrijven naar het DMS: ondersteunende documenten bij de inschrijving die in het student/inschrijvings dossier horen.
 
-## 1.1 nieuw document : Optie A, DMS ontvangt meta data en binary)
+## 1.1 nieuw document : Optie A, (DMS ontvangt meta data en binary)
 ### Sequence diagram 
 ```mermaid
 sequenceDiagram
@@ -18,7 +18,7 @@ sequenceDiagram
 
 voorbeeld :
 ```
-PUT /documents/dbd3e12a-ed8b-4488-ac34-26fd4f64f40b
+PUT .../okd/v1_0/documents/dbd3e12a-ed8b-4488-ac34-26fd4f64f40b
 Host: api.yourdomain.com
 Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
 Content-Length: 2847

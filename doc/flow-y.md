@@ -1,18 +1,39 @@
 ## Flow y Updaten document
-Updaten van een document.
-TODO: wat is een update: nieuwe versie of de inhoud veranderen zopnder dat de meta data verandert?
-Mag dat altijd?
+Updaten van de inhoud van een document, zonder dat de meta data verandert.
+
+#### bespreken:
+ Is deze flow relevant? of is een nieuwe revisie altijd een nieuw document.
 
 ### Endpoint
 
-### optie 1
+### optie 1 (interactief aanpassen)
+Het document kan eerst gelocked worden, dan word er bewerkt, als dat klaar is word het document overschreven in het DMS en daarna unlocked.
 *  endpoint .../okd/v1_0/documents/{documentid}/_lock POST
 *  endpoint .../okd/v1_0/documents/{documentid} PATCH
-*  endpoint .../okd/v1_0/documents/{documentid}/_unlock POST 
-
-of
  *  endpoint .../okd/v1_0/documents/{documentid}/_lock DELETE 
 
+```mermaid
+sequenceDiagram
+    participant Component
+    participant DMS
+    Component->>DMS: POST .../okd/v1_0/documents/{documentId}/lock
+    activate DMS
+    DMS-->>Component: 204 No content
+    deactivate DMS
+    activate Component
+    Component --> Component: update document
+    Component->>DMS: PATCH .../okd/v1_0/documents/{documentId}
+    deactivate Component
+
+    activate DMS
+    DMS-->>Component: 204 No content
+    deactivate DMS
+     Component->>DMS: DELETE .../okd/v1_0/documents/{documentId}/lock
+    activate DMS
+    DMS-->>Component: 204 No content
+    deactivate DMS
+
+```
 ### optie 2
 direct de nieuwe inhoud van het document uploaden. Als het document gelocked is faalt de call
 *  endpoint .../okd/v1_0/documents/{documentid} PATCH
@@ -22,17 +43,17 @@ direct de nieuwe inhoud van het document uploaden. Als het document gelocked is 
 
 ```mermaid
 sequenceDiagram
-    participant Consumer app
+    participant Component
     participant DMS
-    Consumer app->>DMS: PATCH .../okd/v1_0/documents/{documentId} (alleen binary content)
+    Component->>DMS: PATCH .../okd/v1_0/documents/{documentId} (alleen binary content)
     activate DMS
-    DMS-->>Consumer app: 204 No content
+    DMS-->>Component: 204 No content
     deactivate DMS
 ```
 
 ####  voorbeeld :
 ```
-PUT /documents/dbd3e12a-ed8b-4488-ac34-26fd4f64f40b
+PATCH .../okd/v1_0/documents/dbd3e12a-ed8b-4488-ac34-26fd4f64f40b
 Host: api.yourdomain.com
 Content-Type: application/pdf
 Content-Length: 12847
@@ -60,3 +81,5 @@ endobj
 %%EOF
 ```
 
+### Authenticatie:
+scope die ook gebruikt is voor updaten is zelfde als voor toevoegen. (**okd:alldocuments** of de specifiekere varianten)
