@@ -222,12 +222,13 @@ Content-Type: application/json
             {
                 "consumerKey": "nl-okd",
                 "documentType": "inschrijving",
-                "documentid: "dbd3e12a-ed8b-4488-ac34-26fd4f64f40b",
+                "documentSubtype" : "vrijstellingsaanvraag"
+                "documentId: "dbd3e12a-ed8b-4488-ac34-26fd4f64f40b",
                 "documentName": "inschrijving-100245.pdf",
-                "startDate": "2021-09-01", 
-                "expectedEndDate": "2025-07-31",
-                "finalEndDate": null
-                "sequenceCode": "1.1"
+                "bewaartermijnsuggestie": "3Y"
+                "inschrijvingStartDate": "2021-09-01", 
+                "inschrijvingExpectedEndDate": "2025-07-31",
+                "inschrijvingFinalEndDate": null
             }
         ]
         "person": {
@@ -372,20 +373,87 @@ sequenceDiagram
 
 
 
-### Class diagram 
-Todo!!
+### Class diagram of meta information
+```mermaid
+	classDiagram
 
-### Example of request
-Todo!!
+    class programOfferingAssociation {
+        offering: offeringId or programOffering object
+        person: personId or Person object
+        comsumers: nl-okd-assciation
+    }
+    class Person {
+        "personId": "111-2222-33-4444-222",
+        "primaryCode": 1234
+        "codeType": "studentNumber- "1234567",
+        "givenName": "Maartje",
+        "surnamePrefix": "van",
+        "surname": "Damme",
+        "displayName": "Maartje van Damme",
+        "activeEnrollment": true,
+        "affiliations": "student",
+        "mail": "vandamme.mcw\@student.roc.nl",
+    }
+    class ProgramOffering {
+        offeringId : uuid-string
+        primaryCode : IdentifierEntry
+        offeringType : string = "program"
+        name : LanguageTypedString[]
+        description : LanguageTypedString[]
+        teachingLanguage : string
+        resultExpected : boolean
+        consumers : nl-okd-Offering
+        startDate : date-string
+        endDate : date-string
+        program : programId or Program object
+        organization : organizationId or Organization object
+    }
+    class Program {
+        "programId": "123e4567-e89b-12d3-a456-426614174000",
+        "primaryCode":  "C12063128",
+        "programType": "program",
+        "name": "Netwerk- en mediabeheerder",
+        "abbreviation": "N&M",
+        "description":"In deze MBO-opleiding ...",
+        "teachingLanguage": "nld",
+        "modeOfStudy": "full-time",
+        "levelOfQualification": "4"
+    }
 
+    class `nl-okd-assciation` {
+        consumerKey : string = "nl-okd"
+		"documentType": enum = "inschrijving",
+        "documentSubtype" : string= "vrijstellingsaanvraag"
+        "documentId: "dbd3e12a-ed8b-4488-ac34-26fd4f64f40b",
+        "documentName": "inschrijving-100245.pdf",
+        "bewaartermijnsuggestie": "3Y"
+        "inschrijvingStartDate": "2021-09-01", 
+        "inschrijvingExpectedEndDate": "2025-07-31",
+        "inschrijvingFinalEndDate": null
+    }
+    class Organization {
+        organizationId : uuid-string
+        primaryCode : IdentifierEntry
+        organizationType : string
+        name : string
+        description : LanguageTypedString[]
+        addresses : Address object[]
+        link : uri-string
+        logo : uri-string
+        otherCodes : IdentifierEntry[]
+        parent : organizationId or Organization object
+        children : organizationId[] or Organization object[]
+        validFrom : date-string
+        validTo : date-string
+    }
+    programOfferingAssociation -- ProgramOffering
+    programOfferingAssociation -- Person
+    ProgramOffering --o Program
+    programOfferingAssociation o-- `nl-okd-assciation`
+    ProgramOffering --o Organization 
 
-Info naar het DMS:
-- student
-- inschrijving en opleiding
-- soort document
-- meta info over een document (id, size en location)
-- voorgestelde bewaar termijn
-- inhoud van het document
+```
+
 
 
 ### Remarks
@@ -394,12 +462,3 @@ Info naar het DMS:
 - DMS krijgt de inhoud van het document indezelfde call als meta informatie
 
 
-### domain model
-- document id
-- persoon id, naam
-- verbintenis id en bladnummer
-- opleiding
-- document type (mimetype)
-- document catagory
-- voorgestelde bewaartermijn (dagen)
-- 
