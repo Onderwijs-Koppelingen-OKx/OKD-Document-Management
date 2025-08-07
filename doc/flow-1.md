@@ -9,12 +9,12 @@ sequenceDiagram
     Participant Inschrijven
     Participant DMS
 
-    Inschrijven->>+DMS: PUT /okd/v1_0/document/{documentid} (meta informatie & inhoud)
+    Inschrijven->>+DMS: PUT .../okd/v1_0/document/{documentid} (meta informatie & inhoud)
     DMS->>-Inschrijven: nieuwe DMS referentie (UUID)
 
 ```
 #### endpoints voor deze flow bij DMS
-- `PUT /okd/v1_0/documents/{documentId}`
+- `PUT .../okd/v1_0/documents/{documentId}`
 
 voorbeeld :
 ```
@@ -33,6 +33,14 @@ Content-Type: application/json
     "consumers": [
         "consumerKey": "nl-okd",
         "documentType": "inschrijving",
+        "documentSubtype" : "vrijstellingsaanvraag"
+        "documentId: "dbd3e12a-ed8b-4488-ac34-26fd4f64f40b",
+        "documentName": "inschrijving-100245.pdf",
+        "bewaartermijnsuggestie": "3Y"
+        "inschrijvingStartDate": "2021-09-01", 
+        "inschrijvingExpectedEndDate": "2025-07-31",
+        "inschrijvingFinalEndDate": null
+
         "association": {
             "associationId: "123e4567-e89b-12d3-a456-426614174000",
             "associationType": "programOfferingAssociation",
@@ -48,15 +56,7 @@ Content-Type: application/json
                     "code": "23089"
                 }
             ],            
-            "consumers": [
-                {
-                    "consumerKey": "nl-okd",
-                    "startDate": "2021-09-01", 
-                    "expectedEndDate": "2025-07-31",
-                    "finalEndDate": null
-                    "sequenceCode": "1.1"
-                }
-            ]
+            "consumers": [],
             "person": {
                 "personId": "111-2222-33-4444-222",
                 "primaryCode": 
@@ -182,16 +182,16 @@ sequenceDiagram
     Participant Inschrijven
     Participant DMS
 
-    Inschrijven->>+DMS: PUT /okd/v1_0/associations/{associationId} (meta informatie & inhoud)
+    Inschrijven->>+DMS: PUT .../okd/v1_0/associations/{associationId} (meta informatie & inhoud)
     DMS->>-Inschrijven: nieuwe DMS referentie (UUID)
 
 ```
 #### endpoints voor deze flow bij DMS
-- `PUT /okd/v1_0/associations/{associationId}`
+- `PUT .../okd/v1_0/associations/{associationId}`
 
 voorbeeld :
 ```
-PUT /okd/v1_0/associations/123e4567-e89b-12d3-a456-426614174000
+PUT .../okd/v1_0/associations/123e4567-e89b-12d3-a456-426614174000
 Host: api.yourdomain.com
 Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
 Content-Length: 2847
@@ -357,18 +357,18 @@ sequenceDiagram
     Participant Inschrijven
     Participant DMS
 
-    Inschrijven->>+DMS:  PUT /okd/v1_0/documents/{documentid} (alleen meta informatie)
+    Inschrijven->>+DMS:  PUT .../okd/v1_0/documents/{documentid} (alleen meta informatie)
     DMS->>-Inschrijven: nieuwe referentie (UUID)
-    DMS->>+Inschrijven:  GET /okd/v1_0/documents/{documentid}
+    DMS->>+Inschrijven:  GET .../okd/v1_0/documents/{documentid}
     Inschrijven->>-DMS: (binary content)
 
 
 
 ```
 #### endpoints voor deze flow bij DMS
-- `PUT /okd/v1_0/documents/{documentId}` 
+- `PUT .../okd/v1_0/documents/{documentId}` 
 #### endpoints voor deze flow bij andere 
-- `GET /okd/v1_0/documents/{documentId}` 
+- `GET .../okd/v1_0/documents/{documentId}` 
 
 
 
@@ -461,4 +461,7 @@ sequenceDiagram
 - Het student inschrijvings dossier wordt aangemaakt bij het sturen van het eerste document als het nog niet bestaat.
 - DMS krijgt de inhoud van het document indezelfde call als meta informatie
 
+
+## Authenticatie:
+scope die ook gebruikt is voor toevoegen (nader invullen)
 

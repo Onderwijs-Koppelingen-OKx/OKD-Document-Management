@@ -9,16 +9,11 @@ sequenceDiagram
     Participant DMS
 
     Examineren->>+DMS: Overdragen document bij toetsresultaat (meta-data & inhoud)
-    Note right of Examineren: endpoint /ooapi/documents POST
+    Note right of Examineren: endpoint .../okd/v1_0/documents POST
     DMS->>-Examineren: 201 Created (inclusief referentie)
 
 
 ```
-
-Te bespreken
-* V6 beschikt alleen over een GET documents, OKD zal minimaal een POST nodig hebben.
-* Waarom wordt in OKE soms "OOAPI" als prefix in endpoint gezet?
-* Update van document is generiek en beschreven in flow-y
 
 
 
@@ -61,4 +56,8 @@ Todo! Identiek aan toetsresultaat bijlagen, maar excl. student.
 
 
 ## Flow 2.4 Update a document in the DMS
-Todo: openmen in 2.1 of apart beschrijven?
+Todo: zie flow y?
+
+
+## Authenticatie:
+scope die ook gebruikt is voor toevoegen (nader invullen)
