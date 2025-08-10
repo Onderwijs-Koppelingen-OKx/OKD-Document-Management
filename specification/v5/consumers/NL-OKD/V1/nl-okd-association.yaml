@@ -1,0 +1,27 @@
+type: object
+description: nl-okd add-on attributes to the Association 
+required:
+ - consumerKey
+properties:
+  consumerKey:
+    type: string
+  inschrijvingStartDate:
+    type: string
+    format: date
+    description: |
+      identifies the start date of the inschrijving.
+    example: "2021-09-01"
+  inschrijvingExpectedEndDate:
+    type: string
+    format: date
+    description: |
+      identifies the expected end date of the inschrijving.
+    example: "2025-07-31"
+  inschrijvingFinalEndDate:
+    type: string
+    format: date
+    description: |
+      identifies the final end date of the inschrijving.
+    example: null
+  
+

@@ -22,7 +22,7 @@ properties:
     description: URL of the API documentation, including general terms and privacy statement
     format: uri
     maxLength: 2048
-    example: https://open-education-api.github.io/specification/v4/docs.html
+    example: https://open-education-api.github.io/specification/v5/docs.html
   supportedVersions: 
     type: array
     items:
@@ -37,6 +37,6 @@ properties:
     items:
       $ref: './Consumer.yaml'
     example:
-      $ref: '../consumers/TEST/V1/examples/TestConsumer.yaml'
+      []
   ext:
     $ref: './Ext.yaml'

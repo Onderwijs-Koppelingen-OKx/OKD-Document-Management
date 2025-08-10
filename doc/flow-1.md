@@ -36,11 +36,7 @@ Content-Type: application/json
         "documentSubtype" : "vrijstellingsaanvraag"
         "documentId: "dbd3e12a-ed8b-4488-ac34-26fd4f64f40b",
         "documentName": "inschrijving-100245.pdf",
-        "bewaartermijnsuggestie": "3Y"
-        "inschrijvingStartDate": "2021-09-01", 
-        "inschrijvingExpectedEndDate": "2025-07-31",
-        "inschrijvingFinalEndDate": null
-
+        "bewaartermijnsuggestie": "3Y",
         "association": {
             "associationId: "123e4567-e89b-12d3-a456-426614174000",
             "associationType": "programOfferingAssociation",
@@ -56,7 +52,14 @@ Content-Type: application/json
                     "code": "23089"
                 }
             ],            
-            "consumers": [],
+            "consumers": [
+                {
+                    "consumerKey": "nl-okd",
+                    "inschrijvingStartDate": "2021-09-01",
+                    "inschrijvingExpectedEndDate": "2025-07-31",
+                    "inschrijvingFinalEndDate": null
+                }
+            ],
             "person": {
                 "personId": "111-2222-33-4444-222",
                 "primaryCode": 

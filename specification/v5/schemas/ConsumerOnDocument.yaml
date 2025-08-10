@@ -1,16 +1,41 @@
 type: object
 description: The additional consumer elements that can be provided, see the [documentation on support for specific consumers](https://open-education-api.github.io/specification/#/consumers) for more information about this mechanism.
 properties:
-  name: consumers
-  type: array
-  items:
+  consumers:
+    type: array
+    items:
     anyOf:
       - $ref: '../schemas/Consumer.yaml'
       - $ref: '../consumers/NL-OKD/V1/nl-okd-Document.yaml'
-  example:
-    - consumerKey: nl-okd
-      consumerVersion: v1
-      consumerData:
-        documentId: e68ee6c0-d503-4e56-8dce-d7fbf3e5b52d
-        documentUrl: https://api.djuma.nl/documents/meta/e68ee6c0-d503-4e56-8dce-d7fbf3e5b52d
-        message: This is a sample message for the document.
+    example: 
+      [
+        {
+          consumerKey: 'nl-okd',
+          documentType: 'inschrijving',
+          documentSubtype : 'vrijstellingsaanvraag',
+          documentId: 'dbd3e12a-ed8b-4488-ac34-26fd4f64f40b',
+          documentName: 'inschrijving-100245.pdf',
+          bewaartermijnsuggestie: '3Y',
+          association: {
+            associationType: 'programOfferingAssociation',
+            associationId: '123e4567-e89b-12d3-a456-426614174000',
+            associationStartDate: '2021-09-01',
+            associationEndDate: '2025-07-31',
+            associationStatus: 'active',
+            associationRole: 'student',
+            consumers: [
+              {
+                consumerKey: 'nl-okd',
+                inschrijvingStartDate: '2021-09-01',
+                inschrijvingExpectedEndDate: '2025-07-31',
+                inschrijvingFinalEndDate: null
+              }
+            ]
+          },
+          person: {
+            personId: '123e4567-e89b-12d3-a456-426614174000',
+            personType: 'student',
+            personName: 'John Doe'
+          }
+        }
+      ]

@@ -1,0 +1,11 @@
+type: array
+description: The additional consumer elements that can be provided, see the [documentation on support for specific consumers](https://open-education-api.github.io/specification/#/consumers) for more information about this mechanism.
+items:
+ anyOf:
+  - $ref: '../schemas/Consumer.yaml'
+  - $ref: '../consumers/NL-OKD/V1/nl-okd-association.yaml'
+example: 
+  - consumerKey: 'nl-okd'
+    inschrijvingStartDate: '2021-09-01'
+    inschrijvingExpectedEndDate: '2025-07-31'
+    inschrijvingFinalEndDate: null
