@@ -460,9 +460,10 @@ sequenceDiagram
 
 
 ### Remarks
-- Het DMS retourneert de documentreferentie (bijv UUID), hiermee kan document op een later moment gedownload of ingezien worden.
-- Het student inschrijvings dossier wordt aangemaakt bij het sturen van het eerste document als het nog niet bestaat.
-- DMS krijgt de inhoud van het document indezelfde call als meta informatie
+~~- Het DMS retourneert de documentreferentie (bijv UUID), hiermee kan document op een later moment gedownload of ingezien worden.~~
+~~- Het student inschrijvings dossier wordt aangemaakt bij het sturen van het eerste document als het nog niet bestaat.~~
+~~- DMS krijgt de inhoud van het document indezelfde call als meta informatie~~
+- Berichten van maximaal 1 GB ondersteunen. Als we in de toekomst meer dan 1 GB willen ondersteunen, dan moet de metadata en het bestand apart gestuurd worden.
 
 
 ## Authenticatie:
