@@ -8,27 +8,27 @@ Updaten van de inhoud van een document, zonder dat de meta data verandert.
 
 ### optie 1 (interactief aanpassen)
 Het document kan eerst gelocked worden, dan word er bewerkt, als dat klaar is word het document overschreven in het DMS en daarna unlocked.
-*  endpoint .../okd/v1_0/documents/{documentid}/_lock POST
-*  endpoint .../okd/v1_0/documents/{documentid} PATCH
- *  endpoint .../okd/v1_0/documents/{documentid}/_lock DELETE 
+*  endpoint .../okd/v1/documents/{documentid}/_lock POST
+*  endpoint .../okd/v1/documents/{documentid} PATCH
+ *  endpoint .../okd/v1/documents/{documentid}/_lock DELETE 
 
 ```mermaid
 sequenceDiagram
     participant Component
     participant DMS
-    Component->>DMS: POST .../okd/v1_0/documents/{documentId}/lock
+    Component->>DMS: POST .../okd/v1/documents/{documentId}/lock
     activate DMS
     DMS-->>Component: 204 No content
     deactivate DMS
     activate Component
     Component --> Component: update document
-    Component->>DMS: PATCH .../okd/v1_0/documents/{documentId}
+    Component->>DMS: PATCH .../okd/v1/documents/{documentId}
     deactivate Component
 
     activate DMS
     DMS-->>Component: 204 No content
     deactivate DMS
-     Component->>DMS: DELETE .../okd/v1_0/documents/{documentId}/lock
+     Component->>DMS: DELETE .../okd/v1/documents/{documentId}/lock
     activate DMS
     DMS-->>Component: 204 No content
     deactivate DMS
@@ -36,7 +36,7 @@ sequenceDiagram
 ```
 ### optie 2
 direct de nieuwe inhoud van het document uploaden. Als het document gelocked is faalt de call
-*  endpoint .../okd/v1_0/documents/{documentid} PATCH
+*  endpoint .../okd/v1/documents/{documentid} PATCH
 
 
 ### Sequence Diagram
@@ -45,7 +45,7 @@ direct de nieuwe inhoud van het document uploaden. Als het document gelocked is 
 sequenceDiagram
     participant Component
     participant DMS
-    Component->>DMS: PATCH .../okd/v1_0/documents/{documentId} (alleen binary content)
+    Component->>DMS: PATCH .../okd/v1/documents/{documentId} (alleen binary content)
     activate DMS
     DMS-->>Component: 204 No content
     deactivate DMS
@@ -53,7 +53,7 @@ sequenceDiagram
 
 ####  voorbeeld :
 ```
-PATCH .../okd/v1_0/documents/dbd3e12a-ed8b-4488-ac34-26fd4f64f40b
+PATCH .../okd/v1/documents/dbd3e12a-ed8b-4488-ac34-26fd4f64f40b
 Host: api.yourdomain.com
 Content-Type: application/pdf
 Content-Length: 12847
