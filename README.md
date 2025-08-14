@@ -4,9 +4,9 @@ Onderwijs Koppeling voor Document Management
 ```
 NOTE: Onderstaande informatie is niet definitief. Er kunnen geen rechten aan ontleend worden.
 ```
-Deze API definitie is in het kader van de OKx koppelingen in het MBO onderwijs in nederland. Het is een uitwerking van de door Npuls voorgestelde "OKx Best practise" om voor het MBO standaard koppelvlakkken te maken op basis van de OOAPI.
+Deze API definitie is in het kader van de OKx koppelingen in het MBO onderwijs in Nederland. Het is een uitwerking van de door Npuls voorgestelde "OKx Best practice" om voor het MBO standaard koppelvlakken te maken op basis van de OOAPI.
 
-Deze koppeling definieerd de interactie tussen de diverse systeemen/modules op het gebied van document management. Deze wordt momenteel ontworpen door scholen en leveranciers in het MBO.
+Deze koppeling definieert de interactie tussen de diverse systemen/modules op het gebied van document management. Deze wordt momenteel ontworpen door scholen en leveranciers in het MBO.
 
 
 https://mora.mbodigitaal.nl/index.php/Id-31e23eae-6bea-63fd-b4e9-79bc4f4981ae
@@ -18,9 +18,9 @@ Voor het vullen van de dossiers in het DMS voor een leerling zijn verschillende 
 
 - vanuit de module **"Inschrijven"** (KRS): 
   - ondersteunende documenten voor de inschrijving van de student
-  - bewijs van eerder behaalde competenties en vrijstellingen vrijstellingen
+  - bewijs van eerder behaalde competenties en vrijstellingen
 - vanuit **"Examineren"** (SVS,KRS,OKE,VOLG):
-  - bewijslast van behaalde examens (beoordelings docmuenten, soms gemaakt werk)
+  - bewijslast van behaalde examens (beoordelingsdocumenten, soms gemaakt werk)
   - zittingsverslagen van bijgewoonde examens
 - vanuit **"BPV"** module
   - Matchen en plaatsen: BPV overeenkomst en andere documenten
@@ -114,12 +114,12 @@ De flows worden in detail verder uitgewerkt, beschreven in de OOAPI structuur.
 - flow-3: [BPV dossier](./doc/flow-2.md)
 - flow-4: [Diplomeren en Certificeren dossier](./doc/flow-4.md)
 - flow-5: [Uitschrijven](./doc/flow-5.md)
-- flow-6: [document vernietigt notificatie](./doc/flow-6.md)
+- flow-6: [document vernietigd notificatie](./doc/flow-6.md)
 - flow-x: [Opvragen document (vanuit alle componenten naar DMS)](./doc/flow-x.md)
 - flow-y: [Wijzigen document (vanuit alle componenten naar DMS)](./doc/flow-y.md)
 - flow-z: [Verwijderen document (vanuit alle componenten naar DMS)](./doc/flow-z.md)
 
-Authenticatie volgt de OKx aanbeveling en nl-gov en edustandaardt richtlijnen. zie [authenticatie](./doc/authenticatie.md)
+Authenticatie volgt de OKx aanbeveling en nl-gov en edustandaard richtlijnen. zie [authenticatie](./doc/authenticatie.md)
 
 
 *Nog te onderzoeken*: zijn er flows vanuit het DMS naar deze modules voor het aanbieden van nieuwe documenten ?
