@@ -15,7 +15,7 @@ is allemaal goed voor de OKD.
 
 ### Endpoint
 
-- **`DELETE .../okd/v1_0/documents/{documentId}`**
+- **`DELETE .../okd/v1/documents/{documentId}`**
   - **Description**: Delete a specified document from the DMS, identified by its `documentId`. 
   - **Parameters**: 
     - `documentId` (required): A unique identifier (UUID) for the document to be deleted. (OPEN VRAAG : WELK ID? die van DMS of van APP?)
@@ -29,7 +29,7 @@ is allemaal goed voor de OKD.
 sequenceDiagram
     participant Component
     participant DMS
-    Component-->>DMS: DELETE .../okd/v1_0/documents/{documentId}
+    Component-->>DMS: DELETE .../okd/v1/documents/{documentId}
     activate DMS
     DMS-->>Component: 204 No content
     deactivate DMS
