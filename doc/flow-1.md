@@ -9,16 +9,16 @@ sequenceDiagram
     Participant Inschrijven
     Participant DMS
 
-    Inschrijven->>+DMS: PUT .../okd/v1_0/document/{documentid} (meta informatie & inhoud)
+    Inschrijven->>+DMS: PUT .../okd/v1/document/{documentid} (meta informatie & inhoud)
     DMS->>-Inschrijven: nieuwe DMS referentie (UUID)
 
 ```
 #### endpoints voor deze flow bij DMS
-- `PUT .../okd/v1_0/documents/{documentId}`
+- `PUT .../okd/v1/documents/{documentId}`
 
 voorbeeld :
 ```
-PUT .../okd/v1_0/documents/dbd3e12a-ed8b-4488-ac34-26fd4f64f40b
+PUT .../okd/v1/documents/dbd3e12a-ed8b-4488-ac34-26fd4f64f40b
 Host: api.yourdomain.com
 Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
 Content-Length: 2847
@@ -185,16 +185,16 @@ sequenceDiagram
     Participant Inschrijven
     Participant DMS
 
-    Inschrijven->>+DMS: PUT .../okd/v1_0/associations/{associationId} (meta informatie & inhoud)
+    Inschrijven->>+DMS: PUT .../okd/v1/associations/{associationId} (meta informatie & inhoud)
     DMS->>-Inschrijven: nieuwe DMS referentie (UUID)
 
 ```
 #### endpoints voor deze flow bij DMS
-- `PUT .../okd/v1_0/associations/{associationId}`
+- `PUT .../okd/v1/associations/{associationId}`
 
 voorbeeld :
 ```
-PUT .../okd/v1_0/associations/123e4567-e89b-12d3-a456-426614174000
+PUT .../okd/v1/associations/123e4567-e89b-12d3-a456-426614174000
 Host: api.yourdomain.com
 Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
 Content-Length: 2847
@@ -360,18 +360,18 @@ sequenceDiagram
     Participant Inschrijven
     Participant DMS
 
-    Inschrijven->>+DMS:  PUT .../okd/v1_0/documents/{documentid} (alleen meta informatie)
+    Inschrijven->>+DMS:  PUT .../okd/v1/documents/{documentid} (alleen meta informatie)
     DMS->>-Inschrijven: nieuwe referentie (UUID)
-    DMS->>+Inschrijven:  GET .../okd/v1_0/documents/{documentid}
+    DMS->>+Inschrijven:  GET .../okd/v1/documents/{documentid}
     Inschrijven->>-DMS: (binary content)
 
 
 
 ```
 #### endpoints voor deze flow bij DMS
-- `PUT .../okd/v1_0/documents/{documentId}` 
+- `PUT .../okd/v1/documents/{documentId}` 
 #### endpoints voor deze flow bij andere 
-- `GET .../okd/v1_0/documents/{documentId}` 
+- `GET .../okd/v1/documents/{documentId}` 
 
 
 
