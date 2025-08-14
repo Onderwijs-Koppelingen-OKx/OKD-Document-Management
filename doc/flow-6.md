@@ -8,7 +8,7 @@ Nadat de bewaartermijn verstreken is, wordt document vernietigd in DMS. DMS meld
 
 ### Endpoint
 
-- **`DELETE .../okd/v1_0/documents/{documentId}`**
+- **`DELETE .../okd/v1/documents/{documentId}`**
   - **Description**: DMS has deleted a specified document, identified by its `documentId`.  Components should remove reference.
   - **Parameters**: 
     - `documentId` (required): A unique identifier (UUID) for the document to be deleted. (OPEN VRAAG : WELK ID? die van DMS of van APP?)
@@ -22,7 +22,7 @@ Nadat de bewaartermijn verstreken is, wordt document vernietigd in DMS. DMS meld
 sequenceDiagram
     participant DMS
     participant Component
-    DMS-->>Component: DELETE .../okd/v1_0/documents/{documentId}
+    DMS-->>Component: DELETE .../okd/v1/documents/{documentId}
     activate Component
     Component-->>DMS: 204 No content
     deactivate Component
