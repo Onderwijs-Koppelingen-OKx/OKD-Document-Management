@@ -149,7 +149,7 @@ Deze OKD standaard is gedefinieerd door een combinatie van leveranciers, scholen
 | Name | Organization | contact |
 |---|---|---|
 | Kees van Ginkel | Topicus (EduArte)  | [@mcginkel](https://github.com/mcginkel) -  kees@vanginkels.com |
-| Theo vlastuin | Topicus (EduArte)  |  |
-| Roel Janssen | Visma (Djuma)  |  |
-| Tim Meijs | Visma (Djuma)  |  |
-| Bas Retera | Visma (Djuma)  |  |
+| Theo vlastuin | Topicus (EduArte)  | |
+| Roel Janssen | Visma Circle (Djuma)  | [@roeljanssen82](https://github.com/roeljanssen82) - roel.janssen@visma.com |
+| Tim Meijs | Visma Circle (Djuma)  | [@TimVisma](https://github.com/timvisma) - tim.meijs@visma.com |
+| Bas Retera | Visma Circle (Djuma)  | [@basretera](https://github.com/basretera) - bas.retera@visma.com |
