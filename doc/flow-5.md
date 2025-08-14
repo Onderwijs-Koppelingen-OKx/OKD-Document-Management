@@ -11,17 +11,17 @@ sequenceDiagram
     Participant Uitschrijven
     Participant DMS
 
-    Uitschrijven->>+DMS: PATCH .../okd/v1_0/associations/{associationId}
+    Uitschrijven->>+DMS: PATCH .../okd/v1/associations/{associationId}
 
     DMS->>-Uitschrijven: nieuwe DMS referentie (UUID)
 
 ```
 #### endpoints voor deze flow bij DMS
-- `PATCH .../okd/v1_0/associations/{associationId}`
+- `PATCH .../okd/v1/associations/{associationId}`
 
 voorbeeld :
 ```
-PUT .../okd/v1_0/associations/123e4567-e89b-12d3-a456-426614174000
+PUT .../okd/v1/associations/123e4567-e89b-12d3-a456-426614174000
 Host: api.yourdomain.com
 Content-Type: application/json
 boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
