@@ -351,8 +351,8 @@ endobj
 
 ```
 
-## Optie C
-## 1.1 nieuw document : Optie B, DMS ontvangt meta data en DMS haalt binary op)
+## Optie C (deze heeft niet onze voorkeur!)
+## 1.1 nieuw document : Optie B, DMS ontvangt meta data en DMS haalt binary op) (deze heeft niet onze voorkeur!)
 
 ### Sequence diagram
 ```mermaid
