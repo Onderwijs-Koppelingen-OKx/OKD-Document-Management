@@ -13,7 +13,7 @@ sequenceDiagram
 
     Uitschrijven->>+DMS: PATCH .../okd/v1/associations/{associationId}
 
-    DMS->>-Uitschrijven: nieuwe DMS referentie (UUID)
+    DMS->>-Uitschrijven: 204 No-content
 
 ```
 #### endpoints voor deze flow bij DMS
@@ -35,7 +35,7 @@ Accept: application/json
         "associationId: "123e4567-e89b-12d3-a456-426614174000",
         "associationType": "programOfferingAssociation",
         "role": "student",
-        "state": "cancelled",
+        "state": "finished",
         "primaryCode": {
             "codeType": "opleidingsblad",
             "code": "1.1"
