@@ -9,16 +9,16 @@ sequenceDiagram
     Participant Inschrijven
     Participant DMS
 
-    Inschrijven->>+DMS: PUT .../okd/v1/document/{documentid} (meta informatie & inhoud)
+    Inschrijven->>+DMS: POST .../okd/v1/document (meta informatie & inhoud)
     DMS->>-Inschrijven: nieuwe DMS referentie (UUID)
 
 ```
 #### endpoints voor deze flow bij DMS
-- `PUT .../okd/v1/documents/{documentId}`
+- `POST .../okd/v1/documents
 
 voorbeeld :
 ```
-PUT .../okd/v1/documents/dbd3e12a-ed8b-4488-ac34-26fd4f64f40b
+POST .../okd/v1/documents
 Host: api.yourdomain.com
 Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
 Content-Length: 2847
@@ -176,6 +176,13 @@ endobj
 %%EOF
 ------WebKitFormBoundary7MA4YWxkTrZu0gW--
 
+```
+
+Response:
+```
+{
+    dmsdocumentid: "4e12169d-84b9-4d21-a987-f373bbbe4e6e"
+}
 ```
 
 ## optie B, endpoint is metadata
@@ -351,6 +358,13 @@ endobj
 
 ```
 
+Response:
+```
+{
+    dmsdocumentid: "4e12169d-84b9-4d21-a987-f373bbbe4e6e"
+}
+```
+
 ## Optie C (deze heeft niet onze voorkeur!)
 ## 1.1 nieuw document : Optie B, DMS ontvangt meta data en DMS haalt binary op) (deze heeft niet onze voorkeur!)
 
@@ -467,5 +481,6 @@ sequenceDiagram
 
 
 ## Authenticatie:
-scope die ook gebruikt is voor toevoegen (nader invullen)
+scope voor toevoegen van inschrijving gerelateerde documenten: **okd:alldocuments** en **okd:inuitschrijven**.
+ als een van deze 2 aanwezig is in het authenticatie token kan de actie uitgevoerd worden.
 

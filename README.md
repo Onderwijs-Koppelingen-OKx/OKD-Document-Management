@@ -5,8 +5,16 @@ Onderwijs Koppeling voor Document Management
 NOTE: Onderstaande informatie is niet definitief. Er kunnen geen rechten aan ontleend worden.
 ```
 
-### Inleidende tekst toevoegen (actie Roel)
-todo
+## Doel van de koppeling
+Het doel van de OKD koppeling is de overdracht van documenten uit verschillende applicaties/componenten naar een DMS (Document Management systeem). Onderdeel van de overdracht is het toevoegen van voeldoende meta informatie over het document zodat het DMS de documenten goed kan indelen en bewaartermijnen kan regelen.
+
+Ook is voorzien van het weer inzien van deze doumenten die overgedragen zijn.
+Het bijwerken van de documenten en signaleren dat document niet langer relevant zijn is ook onderdeel.
+
+Documenten kunnen vanuit verschillende appliacties aangeboden worden zodat het DMS een totaalbeeld heeft van alle relevante documenten van een student.
+
+
+### TODO : Inleidende tekst toevoegen (actie Roel)todo
 
 Deze API definitie is in het kader van de OKx koppelingen in het MBO onderwijs in Nederland. Het is een uitwerking van de door Npuls voorgestelde "OKx Best practice" om voor het MBO standaard koppelvlakken te maken op basis van de OOAPI.
 
@@ -101,12 +109,15 @@ sequenceDiagram
     BPV->>DMS: Wijzigen document
     Diplomeren_en_Certificeren->>DMS: Wijzigen document
     Uitschrijven->>DMS: Wijzigen document
-    DMS ->> Inschrijven: Verwijderen document
-    DMS ->> Examineren: Verwijderen document
-    DMS ->> BPV: Verwijderen document
-    DMS ->> Diplomeren_en_Certificeren: Verwijderen document
-    DMS ->> Uitschrijven: Verwijderen document
- 
+    Inschrijven -->> DMS: Verwijderen document
+    Examineren -->> DMS: Verwijderen document
+    BPV -->> DMS: Verwijderen document
+    Diplomeren_en_Certificeren -->> DMS: Verwijderen document
+    DMS ->> Inschrijven: Vernietiging notificatie
+    DMS ->> Examineren: Vernietiging notificatie
+    DMS ->> BPV: Vernietiging notificatie
+    DMS ->> Diplomeren_en_Certificeren: Vernietiging notificatie
+    DMS ->> Uitschrijven: Vernietiging notificatie
 
 
 ```
@@ -126,7 +137,8 @@ De flows worden in detail verder uitgewerkt, beschreven in de OOAPI structuur.
 Authenticatie volgt de OKx aanbeveling en nl-gov en edustandaard richtlijnen. zie [authenticatie](./doc/authenticatie.md)
 
 
-*Nog te onderzoeken*: zijn er flows vanuit het DMS naar deze modules voor het aanbieden van nieuwe documenten ?
+
+*Nog te onderzoeken*: zijn er flows vanuit het DMS naar deze modules voor het aanbieden van nieuwe documenten ? Dit is geen onderdeel van de OKD 1.0, maar wel voor volgende versie
 
 ## Version history
 
