@@ -8,27 +8,27 @@ Updaten van de inhoud van een document, zonder dat de meta data verandert.
 
 ### optie 1 (interactief aanpassen)
 Het document kan eerst gelocked worden, dan word er bewerkt, als dat klaar is word het document overschreven in het DMS en daarna unlocked.
-*  endpoint .../okd/v1/documents/{documentid}/lock POST
-*  endpoint .../okd/v1/documents/{documentid} PUT
- *  endpoint .../okd/v1/documents/{documentid}/unlock POST 
+*  endpoint .../okd/v1/documents/{documentid}/_lock POST
+*  endpoint .../okd/v1/documents/{documentid} PATCH
+ *  endpoint .../okd/v1/documents/{documentid}/_lock DELETE 
 
 ```mermaid
 sequenceDiagram
     participant Component
     participant DMS
-    Component->>DMS: POST .../okd/v1/documents/{documentId}/lock
+    Component->>DMS: POST .../okd/v1/documents/{documentId}/_lock
     activate DMS
-    DMS-->>Component: 200 Ok with lockId (UUID)
+    DMS-->>Component: 204 No content
     deactivate DMS
     activate Component
     Component --> Component: update document
-    Component->>DMS: PUT .../okd/v1/documents/{documentId}
+    Component->>DMS: PATCH .../okd/v1/documents/{documentId}
     deactivate Component
 
     activate DMS
-    DMS-->>Component: 200 Ok
+    DMS-->>Component: 204 No content
     deactivate DMS
-     Component->>DMS: POST .../okd/v1/documents/{documentId}/unlock
+     Component->>DMS: DELETE .../okd/v1/documents/{documentId}/lock
     activate DMS
     DMS-->>Component: 204 No content
     deactivate DMS
@@ -36,7 +36,7 @@ sequenceDiagram
 ```
 ### optie 2
 direct de nieuwe inhoud van het document uploaden. Als het document gelocked is faalt de call
-*  endpoint .../okd/v1/documents/{documentid} PUT
+*  endpoint .../okd/v1/documents/{documentid} PATCH
 
 
 ### Sequence Diagram
@@ -53,7 +53,7 @@ sequenceDiagram
 
 ####  voorbeeld :
 ```
-PUT .../okd/v1/documents/dbd3e12a-ed8b-4488-ac34-26fd4f64f40b
+PATCH .../okd/v1/documents/dbd3e12a-ed8b-4488-ac34-26fd4f64f40b
 Host: api.yourdomain.com
 Content-Type: application/pdf
 Content-Length: 12847
@@ -80,8 +80,6 @@ endobj
 ...
 %%EOF
 ```
-### Remarks
-- Het is belangrijk dat bij het updaten van een document het LockId (UUID) mee wordt gestuurd.
 
 ### Authenticatie:
 scope die ook gebruikt is voor updaten is zelfde als voor toevoegen. (**okd:alldocuments** of de specifiekere varianten)
