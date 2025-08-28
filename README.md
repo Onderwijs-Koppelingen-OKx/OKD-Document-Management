@@ -14,7 +14,7 @@ Het bijwerken van de documenten en signaleren dat document niet langer relevant 
 Documenten kunnen vanuit verschillende appliacties aangeboden worden zodat het DMS een totaalbeeld heeft van alle relevante documenten van een student.
 
 
-### TODO : Inleidende tekst toevoegen (actie Roel)todo
+### Relatie met OKx
 
 Deze API definitie is in het kader van de OKx koppelingen in het MBO onderwijs in Nederland. Het is een uitwerking van de door Npuls voorgestelde "OKx Best practice" om voor het MBO standaard koppelvlakken te maken op basis van de OOAPI.
 
