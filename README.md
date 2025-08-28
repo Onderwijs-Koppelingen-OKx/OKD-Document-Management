@@ -26,6 +26,7 @@ https://mora.mbodigitaal.nl/index.php/Id-31e23eae-6bea-63fd-b4e9-79bc4f4981ae
 
 
 
+### Betrokken Applicaties en Mora componenten
 Voor het vullen van de dossiers in het DMS voor een leerling zijn verschillende applicaties en componenten betrokken
 
 - vanuit de module **"Inschrijven"** (KRS): 
@@ -47,7 +48,6 @@ Vanuit het DMS worden signalen gegeven als de documenten werkelijk vernietigd zi
   - signaal dat document vernietigd is en niet meer in het DMS opgevraagd kan worden.
 
 
-### Betrokken Applicaties en Mora componenten
 ```mermaid
 block-beta
 columns 1
