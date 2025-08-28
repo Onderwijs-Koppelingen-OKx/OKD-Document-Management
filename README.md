@@ -6,12 +6,12 @@ NOTE: Onderstaande informatie is niet definitief. Er kunnen geen rechten aan ont
 ```
 
 ## Doel van de koppeling
-Het doel van de OKD koppeling is de overdracht van documenten uit verschillende applicaties/componenten naar een DMS (Document Management systeem). Onderdeel van de overdracht is het toevoegen van voeldoende meta informatie over het document zodat het DMS de documenten goed kan indelen en bewaartermijnen kan regelen.
+VismaGPT
+Het doel van de OKD-koppeling is om documenten vanuit diverse applicaties en componenten over te brengen naar een DMS (Document Management Systeem). Tijdens deze overdracht wordt voldoende meta-informatie aan de documenten toegevoegd, zodat het DMS in staat is de documenten correct te categoriseren en de juiste bewaartermijnen toe te passen.
 
-Ook is voorzien van het weer inzien van deze doumenten die overgedragen zijn.
-Het bijwerken van de documenten en signaleren dat document niet langer relevant zijn is ook onderdeel.
+Verder biedt de koppeling de mogelijkheid om de overgedragen documenten opnieuw te bekijken. Het bijwerken van documenten en het signaleren wanneer documenten niet langer relevant zijn, maakt eveneens deel uit van de functionaliteiten.
 
-Documenten kunnen vanuit verschillende appliacties aangeboden worden zodat het DMS een totaalbeeld heeft van alle relevante documenten van een student.
+Documenten kunnen vanuit verschillende applicaties worden aangeleverd, zodat het DMS een compleet overzicht heeft van alle relevante documenten van een student.
 
 
 ### Relatie met OKx
