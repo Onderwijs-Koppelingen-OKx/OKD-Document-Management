@@ -6,7 +6,6 @@ NOTE: Onderstaande informatie is niet definitief. Er kunnen geen rechten aan ont
 ```
 
 ## Doel van de koppeling
-VismaGPT
 Het doel van de OKD-koppeling is om documenten vanuit diverse applicaties en componenten over te brengen naar een DMS (Document Management Systeem). Tijdens deze overdracht wordt voldoende meta-informatie aan de documenten toegevoegd, zodat het DMS in staat is de documenten correct te categoriseren en de juiste bewaartermijnen toe te passen.
 
 Verder biedt de koppeling de mogelijkheid om de overgedragen documenten opnieuw te bekijken. Het bijwerken van documenten en het signaleren wanneer documenten niet langer relevant zijn, maakt eveneens deel uit van de functionaliteiten.
