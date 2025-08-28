@@ -192,16 +192,16 @@ sequenceDiagram
     Participant Inschrijven
     Participant DMS
 
-    Inschrijven->>+DMS: PUT .../okd/v1/associations/{associationId} (meta informatie & inhoud)
+    Inschrijven->>+DMS: POST .../okd/v1/associations/{associationId} (meta informatie & inhoud)
     DMS->>-Inschrijven: nieuwe DMS referentie (UUID)
 
 ```
 #### endpoints voor deze flow bij DMS
-- `PUT .../okd/v1/associations/{associationId}`
+- `POST .../okd/v1/associations/{associationId}`
 
 voorbeeld :
 ```
-PUT .../okd/v1/associations/123e4567-e89b-12d3-a456-426614174000
+POST .../okd/v1/associations/123e4567-e89b-12d3-a456-426614174000
 Host: api.yourdomain.com
 Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
 Content-Length: 2847
