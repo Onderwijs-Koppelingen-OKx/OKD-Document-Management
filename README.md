@@ -3,9 +3,8 @@
 ```
 NOTE: Onderstaande informatie is niet definitief. Er kunnen geen rechten aan ontleend worden.
 ```
-
 ## Doel van de koppeling
-Het doel van de OKD-koppeling is om documenten vanuit diverse applicaties en componenten over te brengen naar een DMS (Document Management Systeem). Tijdens deze overdracht wordt voldoende meta-informatie aan de documenten toegevoegd, zodat het DMS in staat is de documenten correct te categoriseren en de juiste bewaartermijnen toe te passen.
+Steeds meer onderwijsinstellingen kiezen ervoor om gebruik te maken van en centraal DMS voor het registreren en preserveren van studenten- en examendossiers. Omdat er een breed scala aan applicaties aangesloten moeten worden, is er behoefte aan een gestandaardiseerde gegevensuitwisseling. Het doel van de OKD-koppeling is om documenten vanuit diverse applicaties en componenten over te brengen naar een DMS (Document Management Systeem). Tijdens deze overdracht wordt voldoende meta-informatie aan de documenten toegevoegd, zodat het DMS in staat is de documenten correct te categoriseren en de juiste bewaartermijnen toe te passen.
 
 Verder biedt de koppeling de mogelijkheid om de overgedragen documenten opnieuw te bekijken. Het bijwerken van documenten en het signaleren wanneer documenten niet langer relevant zijn, maakt eveneens deel uit van de functionaliteiten.
 
