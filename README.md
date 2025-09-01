@@ -1,5 +1,4 @@
-# OKD-Document-Management
-Onderwijs Koppeling voor Document Management
+# OOAPI-OKD - Onderwijs Koppeling voor Document Management
 
 ```
 NOTE: Onderstaande informatie is niet definitief. Er kunnen geen rechten aan ontleend worden.
