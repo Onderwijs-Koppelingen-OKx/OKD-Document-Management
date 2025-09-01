@@ -15,17 +15,16 @@ Documenten kunnen vanuit verschillende applicaties worden aangeleverd, zodat het
 
 ### Relatie met OKx
 
-Deze API definitie is in het kader van de OKx koppelingen in het MBO onderwijs in Nederland. Het is een uitwerking van de door Npuls voorgestelde "OKx Best practice" om voor het MBO standaard koppelvlakken te maken op basis van de OOAPI.
+Deze API-definitie is opgesteld in het kader van de OKx-koppelingen binnen het MBO-onderwijs in Nederland. Het volgt de door Npuls voorgestelde "OKx Best practice" en richt zich op het creëren van standaard koppelvlakken voor het MBO, gebaseerd op de OOAPI.
 
-Deze koppeling definieert de interactie tussen de diverse systemen/modules op het gebied van document management. Deze wordt momenteel ontworpen door scholen en leveranciers in het MBO.
+Deze koppeling specificeert de interactie tussen verschillende systemen/modules op het gebied van documentbeheer. Momenteel wordt deze ontworpen door zowel scholen als leveranciers in het MBO.
 
-
+### Relatie met MORA
+#### Betrokken Applicatiecomponenten
 https://mora.mbodigitaal.nl/index.php/Id-31e23eae-6bea-63fd-b4e9-79bc4f4981ae
-<img width="997" alt="image" src="https://github.com/user-attachments/assets/e038dade-fc30-4186-8e9b-06b3a26f9cfb" />
+<img width="900" alt="image" src="https://github.com/user-attachments/assets/e038dade-fc30-4186-8e9b-06b3a26f9cfb" />
 
-
-
-### Betrokken Applicaties en Mora componenten
+#### Betrokken Applicaties en Componenten
 Voor het vullen van de dossiers in het DMS voor een leerling zijn verschillende applicaties en componenten betrokken
 
 - vanuit de module **"Inschrijven"** (KRS): 
@@ -70,8 +69,6 @@ columns 1
 ```
 
 ### Flows gedurende onderwijsperiode van de student
-
-
 
 ```mermaid
 sequenceDiagram
