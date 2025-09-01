@@ -4,9 +4,9 @@
 NOTE: Onderstaande informatie is niet definitief. Er kunnen geen rechten aan ontleend worden.
 ```
 ## Doel van de koppeling
-Steeds meer onderwijsinstellingen kiezen ervoor om gebruik te maken van en centraal DMS voor het registreren en preserveren van studenten- en examendossiers. Omdat er een breed scala aan applicaties aangesloten moeten worden, is er behoefte aan een gestandaardiseerde gegevensuitwisseling. 
+Om de efficiëntie in het beheer van documenten in studenten- en examendossiers te verbeteren, kiezen steeds meer onderwijsinstellingen voor een centraal Document Management Systeem (DMS). Gezien de diversiteit aan applicaties die aangesloten moeten worden, is er behoefte aan een gestandaardiseerde gegevensuitwisseling.
 
-Het doel van de OKD-koppeling is om documenten vanuit diverse applicaties en componenten over te brengen naar een DMS (Document Management Systeem). Documenten kunnen vanuit verschillende applicaties worden aangeleverd, zodat het DMS een compleet overzicht heeft van alle relevante documenten van een student. Tijdens deze overdracht wordt tevens de benodigde meta-data meegelever , zodat het DMS in staat is de documenten correct te categoriseren en de juiste bewaartermijnen toe te passen. Verder biedt de koppeling de mogelijkheid om de overgedragen documenten opnieuw te bekijken, te bewerken en te signaleren bij vernietiging. 
+Het doel van de OKD-koppeling is om documenten (inclusief metadata) vanuit diverse applicaties en componenten over te brengen naar een DMS (Document Management Systeem). Documenten kunnen vanuit verschillende applicaties worden aangeleverd, zodat het DMS een compleet overzicht heeft van alle relevante documenten van een student. Tijdens deze overdracht wordt tevens de benodigde meta-data meegelevert, zodat het DMS in staat is de documenten correct te categoriseren en de juiste bewaartermijnen toe te passen. Verder biedt de koppeling de mogelijkheid om de overgedragen documenten opnieuw te bekijken, te bewerken en te verwijderen. Het DMS is verantwoordelijk voor het preserveren van documenten gedurende de gehele archieftermijn.
 
 
 ### Relatie met OKx
