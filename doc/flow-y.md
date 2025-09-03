@@ -1,45 +1,12 @@
-## Flow y Updaten document
+## OKD - Flow y Updaten document
 Updaten van de inhoud van een document, zonder dat de meta data verandert.
 
-#### bespreken:
- Is deze flow relevant? of is een nieuwe revisie altijd een nieuw document.
+## X.1 Updaten binaire data van een document
+Direct de nieuwe inhoud van het document uploaden. Als het document gelocked is faalt de call. Er wordt alleen binaire data geupdate en geen metadata van het document.
 
-### Endpoint
+*  endpoint .../okd/v1/documents/{documentid} PATCH
 
-### optie 1 (interactief aanpassen)
-Het document kan eerst gelocked worden, dan word er bewerkt, als dat klaar is word het document overschreven in het DMS en daarna unlocked.
-*  endpoint .../okd/v1/documents/{documentid}/lock POST
-*  endpoint .../okd/v1/documents/{documentid} PUT
- *  endpoint .../okd/v1/documents/{documentid}/unlock POST 
-
-```mermaid
-sequenceDiagram
-    participant Component
-    participant DMS
-    Component->>DMS: POST .../okd/v1/documents/{documentId}/lock
-    activate DMS
-    DMS-->>Component: 200 Ok with lockId (UUID)
-    deactivate DMS
-    activate Component
-    Component --> Component: update document
-    Component->>DMS: PUT .../okd/v1/documents/{documentId}
-    deactivate Component
-
-    activate DMS
-    DMS-->>Component: 200 Ok
-    deactivate DMS
-     Component->>DMS: POST .../okd/v1/documents/{documentId}/unlock
-    activate DMS
-    DMS-->>Component: 204 No content
-    deactivate DMS
-
-```
-### optie 2
-direct de nieuwe inhoud van het document uploaden. Als het document gelocked is faalt de call
-*  endpoint .../okd/v1/documents/{documentid} PUT
-
-
-### Sequence Diagram
+### Sequence Diagram of Update binaire data document
 
 ```mermaid
 sequenceDiagram
@@ -51,9 +18,20 @@ sequenceDiagram
     deactivate DMS
 ```
 
-####  voorbeeld :
+### Class diagram of Update binaire data document
+```mermaid
+classDiagram
+  class Document {
+    documentId : string
+    documentType : string
+    documentName : string
+  }
+  
 ```
-PUT .../okd/v1/documents/dbd3e12a-ed8b-4488-ac34-26fd4f64f40b
+
+####  Example of request Update binaire data document :
+```
+PATCH .../okd/v1/documents/dbd3e12a-ed8b-4488-ac34-26fd4f64f40b
 Host: api.yourdomain.com
 Content-Type: application/pdf
 Content-Length: 12847
@@ -80,8 +58,11 @@ endobj
 ...
 %%EOF
 ```
-### Remarks
-- Het is belangrijk dat bij het updaten van een document het LockId (UUID) mee wordt gestuurd.
+
+Remarks
+- Er wordt alleen de binaire data geupdate en niet metadata van het document.
+- Het DMS is verantwoordelijk voor het locken van een document. Wanneer het document gelockt is, dan krijgt de client een foutmelding.
+- Documenten mogen niet groter zijn dan 1 GB.
 
 ### Authenticatie:
-scope die ook gebruikt is voor updaten is zelfde als voor toevoegen. (**okd:alldocuments** of de specifiekere varianten)
+Scope die ook gebruikt is voor updaten is zelfde als voor toevoegen. (**okd:alldocuments** of de specifiekere varianten)
