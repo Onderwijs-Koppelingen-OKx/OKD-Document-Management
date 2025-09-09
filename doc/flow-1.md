@@ -55,9 +55,9 @@ Content-Type: application/json
             "consumers": [
                 {
                     "consumerKey": "nl-okd",
-                    "inschrijvingStartDate": "2021-09-01",
-                    "inschrijvingExpectedEndDate": "2025-07-31",
-                    "inschrijvingFinalEndDate": null
+                    "enrollmentStartDate": "2021-09-01",
+                    "enrollmentExpectedEndDate": "2025-07-31",
+                    "enrollmentFinalEndDate": null
                 }
             ],
             "person": {
@@ -236,9 +236,9 @@ Content-Type: application/json
                 "documentId: "dbd3e12a-ed8b-4488-ac34-26fd4f64f40b",
                 "documentName": "inschrijving-100245.pdf",
                 "bewaartermijnsuggestie": "3Y"
-                "inschrijvingStartDate": "2021-09-01", 
-                "inschrijvingExpectedEndDate": "2025-07-31",
-                "inschrijvingFinalEndDate": null
+                "enrollmentStartDate": "2021-09-01", 
+                "enrollmentExpectedEndDate": "2025-07-31",
+                "enrollmentFinalEndDate": null
             }
         ]
         "person": {
