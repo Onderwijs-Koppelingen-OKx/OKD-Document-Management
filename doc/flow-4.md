@@ -39,24 +39,23 @@ Content-Disposition: form-data; name="metadata"
 Content-Type: application/json
 
 {
-    "association": {
-        "associationId: "123e4567-e89b-12d3-a456-426614174000",
-        "consumers": [
-            {
-                "consumerKey": "nl-okd",
-                "documentType": "diplomering",
-                "documentSubtype" : "diploma"
-                "documentId: "65f64c44-e3c4-4579-8e05-a729d4b89d06",
-                "documentName": "diploma-MBO.pdf",
-                "bewaartermijnsuggestie": "3Y"
-                "inschrijvingStartDate": "2021-09-01", 
-                "inschrijvingExpectedEndDate": "2025-07-31",
-                "inschrijvingFinalEndDate": null
-            }
-        ],
-        "person": "111-2222-33-4444-222" ,
-        "offering": "5ffc6127-debe-48ce-90ae-75ea80756475"
-    }
+    "associationId: "123e4567-e89b-12d3-a456-426614174000",
+    "associationType": "programOfferingAssociation",
+    "consumers": [
+        {
+            "consumerKey": "nl-okd",
+            "documentType": "diplomering",
+            "documentSubtype" : "diploma"
+            "documentId: "65f64c44-e3c4-4579-8e05-a729d4b89d06",
+            "documentName": "diploma-MBO.pdf",
+            "bewaartermijnsuggestie": "3Y"
+            "inschrijvingStartDate": "2021-09-01", 
+            "inschrijvingExpectedEndDate": "2025-07-31",
+            "inschrijvingFinalEndDate": null
+        }
+    ],
+    "person": "111-2222-33-4444-222" ,
+    "offering": "5ffc6127-debe-48ce-90ae-75ea80756475"
 }
 ------WebKitFormBoundary7MA4YWxkTrZu0gW
 Content-Disposition: form-data; name="file"; filename="diploma-MBO.pdf"

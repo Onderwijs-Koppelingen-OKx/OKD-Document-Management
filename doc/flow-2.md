@@ -41,27 +41,24 @@ Content-Disposition: form-data; name="metadata"
 Content-Type: application/json
 
 {
-    "association": {
-        "associationId: "123e4567-e89b-12d3-a456-426614174000",
-        "associationType": "programOfferingAssociation",
-        "role": "student",
-        "state": "associated",           
-        "consumers": [
-            {
-                "consumerKey": "nl-okd",
-                "documentType": "examinering",
-                "documentSubtype" : "examenbeoordeling"
-                "documentId: "dbd3e12a-ed8b-4488-ac34-26fd4f64f40b",
-                "documentName": "beoordeling-100245.pdf",
-                "bewaartermijnsuggestie": "3Y"
-                "examDate": "2021-09-01", 
-                "examComponentOffering": "c9c3875b-0c6b-435a-a8a4-211bf66620b5",
-                "examName": "Examen Mediabeheer K3-W1"
-            }
-        ]
-        "person": "111-2222-33-4444-222"
-    }
-
+    "associationId: "123e4567-e89b-12d3-a456-426614174000",
+    "associationType": "programOfferingAssociation",
+    "role": "student",
+    "state": "associated",           
+    "consumers": [
+        {
+            "consumerKey": "nl-okd",
+            "documentType": "examinering",
+            "documentSubtype" : "examenbeoordeling"
+            "documentId: "dbd3e12a-ed8b-4488-ac34-26fd4f64f40b",
+            "documentName": "beoordeling-100245.pdf",
+            "bewaartermijnsuggestie": "3Y"
+            "examDate": "2021-09-01", 
+            "examComponentOffering": "c9c3875b-0c6b-435a-a8a4-211bf66620b5",
+            "examName": "Examen Mediabeheer K3-W1"
+        }
+    ]
+    "person": "111-2222-33-4444-222"
 }
 ------WebKitFormBoundary7MA4YWxkTrZu0gW
 Content-Disposition: form-data; name="file"; filename="inschrijving-100245.pdf"
@@ -98,28 +95,24 @@ Content-Disposition: form-data; name="metadata"
 Content-Type: application/json
 
 {
-        "offering": {
-            "offeringId": "c9c3875b-0c6b-435a-a8a4-211bf66620b5",
-            "offeringType": "component",
-            "name": "Examen Mediabeheer K3-W1",
-            "program": {
-                "......
-            },
-            "organization": "38bdbeb1-12b2-48fd-84f8-653e7adfaf99",
-            "consumers": [
-            {
-                "consumerKey": "nl-okd",
-                "documentType": "examinering",
-                "documentSubtype" : "zittingsverslag"
-                "documentId: "dbd3e12a-ed8b-4488-ac34-26fd4f64f40b",
-                "documentName": "verslag-100245.pdf",
-                "bewaartermijnsuggestie": "6M"
+    "offeringId": "c9c3875b-0c6b-435a-a8a4-211bf66620b5",
+    "offeringType": "component",
+    "name": "Examen Mediabeheer K3-W1",
+    "program": {
+        "......gaan we deze vullen ?"
+    },
+    "organization": "38bdbeb1-12b2-48fd-84f8-653e7adfaf99",
+    "consumers": [
+        {
+            "consumerKey": "nl-okd",
+            "documentType": "examinering",
+            "documentSubtype" : "zittingsverslag"
+            "documentId: "dbd3e12a-ed8b-4488-ac34-26fd4f64f40b",
+            "documentName": "verslag-100245.pdf",
+            "bewaartermijnsuggestie": "6M"
 
-            }
-        ]
-        
-
-    }
+        }
+    ]
 
 }
 ------WebKitFormBoundary7MA4YWxkTrZu0gW

@@ -37,119 +37,116 @@ Content-Disposition: form-data; name="metadata"
 Content-Type: application/json
 
 {
-    "association": {
-        "associationId: "123e4567-e89b-12d3-a456-426614174000",
-        "associationType": "programOfferingAssociation",
-        "role": "student",
-        "state": "associated",
+    "associationId: "123e4567-e89b-12d3-a456-426614174000",
+    "associationType": "programOfferingAssociation",
+    "role": "student",
+    "state": "associated",
+    "primaryCode": {
+        "codeType": "opleidingsblad",
+        "code": "1.1"
+    },
+    "otherCodes": [
+        {
+            "codeType": "opleidingscode",
+            "code": "23089"
+        }
+    ],            
+    "consumers": [
+        {
+            "consumerKey": "nl-okd",
+            "documentType": "inschrijving",
+            "documentSubtype" : "vrijstellingsaanvraag"
+            "documentId: "dbd3e12a-ed8b-4488-ac34-26fd4f64f40b",
+            "documentName": "inschrijving-100245.pdf",
+            "bewaartermijnsuggestie": "3Y"
+            "enrollmentStartDate": "2021-09-01", 
+            "enrollmentExpectedEndDate": "2025-07-31",
+            "enrollmentFinalEndDate": null
+        }
+    ]
+    "person": {
+        "personId": "111-2222-33-4444-222",
+        "primaryCode": 
+        {
+            "codeType": "studentNumber",
+            "code": "1234567"
+        },
+        "givenName": "Maartje",
+        "surnamePrefix": "van",
+        "surname": "Damme",
+        "displayName": "Maartje van Damme",
+        "activeEnrollment": true,
+        "affiliations": 
+        [
+            "student"
+        ],
+        "mail": "vandamme.mcw@student.roc.nl",
+        "languageOfChoice":	[
+            "nl-NL"
+        ],
+        "otherCodes": []
+    },
+    "offering": {
+        "offeringId": "5ffc6127-debe-48ce-90ae-75ea80756475",
         "primaryCode": {
-            "codeType": "opleidingsblad",
-            "code": "1.1"
+        "codeType": "identifier",
+        "code": "25190BOL"
         },
-        "otherCodes": [
-            {
-                "codeType": "opleidingscode",
-                "code": "23089"
-            }
-        ],            
-        "consumers": [
-            {
-                "consumerKey": "nl-okd",
-                "documentType": "inschrijving",
-                "documentSubtype" : "vrijstellingsaanvraag"
-                "documentId: "dbd3e12a-ed8b-4488-ac34-26fd4f64f40b",
-                "documentName": "inschrijving-100245.pdf",
-                "bewaartermijnsuggestie": "3Y"
-                "enrollmentStartDate": "2021-09-01", 
-                "enrollmentExpectedEndDate": "2025-07-31",
-                "enrollmentFinalEndDate": null
-            }
-        ]
-        "person": {
-            "personId": "111-2222-33-4444-222",
-            "primaryCode": 
-            {
-                "codeType": "studentNumber",
-                "code": "1234567"
-            },
-            "givenName": "Maartje",
-            "surnamePrefix": "van",
-            "surname": "Damme",
-            "displayName": "Maartje van Damme",
-            "activeEnrollment": true,
-            "affiliations": 
-            [
-                "student"
-            ],
-            "mail": "vandamme.mcw@student.roc.nl",
-            "languageOfChoice":	[
-                "nl-NL"
-            ],
-            "otherCodes": []
-        },
-        "offering": {
-            "offeringId": "5ffc6127-debe-48ce-90ae-75ea80756475",
+        "offeringType": "program",
+        "name": "Netwerk- en mediabeheerder BOL (25190)",
+        "program": {
+            "programId": "123e4567-e89b-12d3-a456-426614174000",
             "primaryCode": {
-            "codeType": "identifier",
-            "code": "25190BOL"
+                "codeType": "identifier",
+                "code": "C12063128"
             },
-            "offeringType": "program",
-            "name": "Netwerk- en mediabeheerder BOL (25190)",
-            "program": {
-                "programId": "123e4567-e89b-12d3-a456-426614174000",
-                "primaryCode": {
-                    "codeType": "identifier",
-                    "code": "C12063128"
-                },
-                "programType": "program",
-                "name": [
-                    {
-                    "language": "nl-NL",
-                    "value": "Netwerk- en mediabeheerder"
-                    }
-                ],
-                "abbreviation": "N&M",
-                "description": [
-                    {
-                    "language": "nl-NL",
-                    "value": "In deze MBO-opleiding word je opgeleid voor het officieel erkende diploma 'MBO Netwerkbeheerder, niveau 4'. Met dit diploma ben je breed opgeleid en kun je het netwerk van een organisatie beheren. Dit is hét diploma voor de professionele netwerkbeheerder op het hoogste MBO-niveau. Je legt een uitstekende basis voor een mooie carrière als netwerkbeheerder. Bovendien is dit een diploma waarmee je eventueel probleemloos kunt doorstuderen naar een HBO-opleiding"
-                    }
-                ],
-                "teachingLanguage": "nld",
-                "modeOfStudy": "full-time",
-                "levelOfQualification": "4"
-            },
-            "organization": {
-                "organizationID": "38bdbeb1-12b2-48fd-84f8-653e7adfaf99",
-                "primaryCode": {
-                    "codeType": "identifier",
-                    "code": "ICTE"
-                },
-                "organizationType": "department",
-                "name": [
-                    {
-                    "language": "nl-NL",
-                    "value": "ICT-academie"
-                    }
-                ],
-                "shortname": "ICTA",
-                "parent": {
-                    "organizationID": "650e1627-9f3d-4176-ab5a-e82eef0d219d",
-                    "primaryCode": {
-                    "codeType": "identifier",
-                    "code": "CICT"
-                    },
-                    "name": [
-                    {
-                        "language": "nl-NL",
-                        "value": "Cluster ICT en EIS"
-                    }
-                    ]
+            "programType": "program",
+            "name": [
+                {
+                "language": "nl-NL",
+                "value": "Netwerk- en mediabeheerder"
                 }
-            }
+            ],
+            "abbreviation": "N&M",
+            "description": [
+                {
+                "language": "nl-NL",
+                "value": "In deze MBO-opleiding word je opgeleid voor het officieel erkende diploma 'MBO Netwerkbeheerder, niveau 4'. Met dit diploma ben je breed opgeleid en kun je het netwerk van een organisatie beheren. Dit is hét diploma voor de professionele netwerkbeheerder op het hoogste MBO-niveau. Je legt een uitstekende basis voor een mooie carrière als netwerkbeheerder. Bovendien is dit een diploma waarmee je eventueel probleemloos kunt doorstuderen naar een HBO-opleiding"
+                }
+            ],
+            "teachingLanguage": "nld",
+            "modeOfStudy": "full-time",
+            "levelOfQualification": "4"
         },
+        "organization": {
+            "organizationID": "38bdbeb1-12b2-48fd-84f8-653e7adfaf99",
+            "primaryCode": {
+                "codeType": "identifier",
+                "code": "ICTE"
+            },
+            "organizationType": "department",
+            "name": [
+                {
+                "language": "nl-NL",
+                "value": "ICT-academie"
+                }
+            ],
+            "shortname": "ICTA",
+            "parent": {
+                "organizationID": "650e1627-9f3d-4176-ab5a-e82eef0d219d",
+                "primaryCode": {
+                "codeType": "identifier",
+                "code": "CICT"
+                },
+                "name": [
+                {
+                    "language": "nl-NL",
+                    "value": "Cluster ICT en EIS"
+                }
+                ]
+            }
+        }
     }
-
 }
 ------WebKitFormBoundary7MA4YWxkTrZu0gW
 Content-Disposition: form-data; name="file"; filename="inschrijving-100245.pdf"

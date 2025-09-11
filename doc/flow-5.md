@@ -30,25 +30,22 @@ Accept: application/json
 
 
 {
-    "association": {
-        "associationId: "123e4567-e89b-12d3-a456-426614174000",
-        "associationType": "programOfferingAssociation",
-        "role": "student",
-        "state": "finished",
-        "primaryCode": {
-            "codeType": "opleidingsblad",
-            "code": "1.1"
-        },
-        "otherCodes": [
-            {
-                "codeType": "opleidingscode",
-                "code": "23089"
-            }
-        ]
-        "person": "111-2222-33-4444-222",
- 
-        "offering": "5ffc6127-debe-48ce-90ae-75ea80756475",
-    }
+    "associationId: "123e4567-e89b-12d3-a456-426614174000",
+    "associationType": "programOfferingAssociation",
+    "role": "student",
+    "state": "finished",
+    "primaryCode": {
+        "codeType": "opleidingsblad",
+        "code": "1.1"
+    },
+    "otherCodes": [
+        {
+            "codeType": "opleidingscode",
+            "code": "23089"
+        }
+    ]
+    "person": "111-2222-33-4444-222",
+    "offering": "5ffc6127-debe-48ce-90ae-75ea80756475"
 }
 ```
 
