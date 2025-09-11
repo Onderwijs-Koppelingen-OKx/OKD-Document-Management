@@ -4,6 +4,7 @@ Nadat de bewaartermijn verstreken is, wordt document vernietigd in DMS. DMS meld
 
 
 **Openvraag:** is dit nodig? of merkt de app het wel als er een document getoon moet worden (flow x)
+**Openvraag 2:** komen we niet in conflict met de vraag of de component weet welke documentid gebruikt moet worden. Moeten we hier niet juist het documentid van de component gebruiken ?  
 
 
 ### Endpoint
@@ -11,7 +12,7 @@ Nadat de bewaartermijn verstreken is, wordt document vernietigd in DMS. DMS meld
 - **`DELETE .../okd/v1/documents/{documentId}`**
   - **Description**: DMS has deleted a specified document, identified by its `documentId`.  Components should remove reference.
   - **Parameters**: 
-    - `documentId` (required): A unique identifier (UUID) for the document to be deleted. (OPEN VRAAG : WELK ID? die van DMS of van APP?)
+    - `documentId` (required): A unique identifier (UUID) for the document to be deleted. dit is het ID dat het DMS in de POST calls errder geretourneerd heeft. Dus niet het documentID van de component)
   - **geen body**
   - **Response**:
     - **Success 204 (No content)**

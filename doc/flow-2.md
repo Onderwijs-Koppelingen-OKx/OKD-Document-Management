@@ -9,9 +9,8 @@ Deze flows lijken erg op flow 1, met het verschil dat de metainformatie in deze 
 * een examen zitting. (componentOffering in OOAPI termen)
 * een examen beoordeling/resultaat: inschrijving van student (programOfferingAssociation)
 
-Open vraag: sturen we een examen beeoordeling bij de inschrijving van de student? of bij de examenzitting. Hoe weet het DMS voor welke student het is? Of op de associatie van de student op de exameninschrijving?
-
-## optie B, endpoint is metadata
+__Open vraag: sturen we een examen beeoordeling bij de inschrijving van de student? of bij de examenzitting. Hoe weet het DMS voor welke student het is? Of op de associatie van de student op de exameninschrijving?__
+ 
 We sturen het request naar het endpoint waar de metadata hoort. Bv association/{id} of de verbintenis/inschrijving van de student te geven. Omdat we hier niet in de inschrijving flow zitten zullen we hier zo min mogelijk velden geven, net de verplichte en een consumer met meta informatie van het document.
 
 ### Sequence diagram 
@@ -42,26 +41,25 @@ Content-Disposition: form-data; name="metadata"
 Content-Type: application/json
 
 {
-    "offering": {
+    "association": {
         "associationId: "123e4567-e89b-12d3-a456-426614174000",
-        "associationType": "programOfferingAssociation", (of "ComponentAssociation")
+        "associationType": "programOfferingAssociation",
         "role": "student",
         "state": "associated",           
         "consumers": [
             {
                 "consumerKey": "nl-okd",
-                "documentType": "inschrijving",
-                "documentSubtype" : "vrijstellingsaanvraag"
+                "documentType": "examinering",
+                "documentSubtype" : "examenbeoordeling"
                 "documentId: "dbd3e12a-ed8b-4488-ac34-26fd4f64f40b",
-                "documentName": "inschrijving-100245.pdf",
+                "documentName": "beoordeling-100245.pdf",
                 "bewaartermijnsuggestie": "3Y"
-                "inschrijvingStartDate": "2021-09-01", 
-                "inschrijvingExpectedEndDate": "2025-07-31",
-                "inschrijvingFinalEndDate": null
+                "examDate": "2021-09-01", 
+                "examComponentOffering": "c9c3875b-0c6b-435a-a8a4-211bf66620b5",
+                "examName": "Examen Mediabeheer K3-W1"
             }
         ]
-        "person": "111-2222-33-4444-222",
-        "offering": "5ffc6127-debe-48ce-90ae-75ea80756475"
+        "person": "111-2222-33-4444-222"
     }
 
 }
@@ -79,7 +77,7 @@ Content-Type: application/binary
 Response:
 ```
 {
-    dmsdocumentid: "4e12169d-84b9-4d21-a987-f373bbbe4e6e"
+    dmsDocumentId: "4e12169d-84b9-4d21-a987-f373bbbe4e6e"
 }
 ```
 
@@ -138,7 +136,7 @@ Content-Type: application/binary
 Response:
 ```
 {
-    dmsdocumentid: "4e12169d-84b9-4d21-a987-f373bbbe4e6e"
+    dmsDocumentId: "4e12169d-84b9-4d21-a987-f373bbbe4e6e"
 }
 ```
 

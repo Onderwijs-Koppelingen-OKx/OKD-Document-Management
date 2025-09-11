@@ -5,10 +5,23 @@ Aanbieden van BPV gerelateerde documenten naar het DMS. Deze documenten worden o
 ZIE ook details van flow 1
 Deze flows lijkt erg op flow 1, met het verschil dat de metainformatie in deze flow 
 
-* BPV periode
 * Een inschrijving van student
 
 Dit word nog uitgewerkt zodra we de details van flow 1 100% uitgewerkt hebben om consistent te blijven
+
+### Sequence diagram 
+```mermaid
+sequenceDiagram
+    Participant BPV
+    Participant DMS
+
+    BPV->>+DMS: PUT .../okd/v1/associations/{associationId} (beperkte meta informatie & inhoud)
+    DMS->>-BPV: nieuwe DMS referentie (UUID)
+
+```
+#### Endpoints voor deze flow bij DMS
+- `PUT .../okd/v1/associations/{associationId}`
+
 
 ## Verwerking in DMS
 Het DMS kan zelf bepalen hoe de documenten opgelagen en verwerkt worden: of een apart bpv dossier of alles onder de student inschrijving dossier

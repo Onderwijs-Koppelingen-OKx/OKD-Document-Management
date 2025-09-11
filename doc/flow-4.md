@@ -87,7 +87,7 @@ endobj
 Response:
 ```
 {
-    dmsdocumentid: "e8eab8a4-2b2d-4366-8d96-d9f5ba66508b"
+    dmsDocumentId: "e8eab8a4-2b2d-4366-8d96-d9f5ba66508b"
 }
 ```
 
