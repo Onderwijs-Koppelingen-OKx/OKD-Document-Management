@@ -44,6 +44,7 @@ Content-Type: application/json
     "consumers": [
         {
             "consumerKey": "nl-okd",
+            "studentNumber": "1234567",
             "documentType": "diplomering",
             "documentSubtype" : "diploma"
             "documentId: "65f64c44-e3c4-4579-8e05-a729d4b89d06",
