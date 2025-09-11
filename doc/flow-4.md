@@ -1,13 +1,7 @@
 # OKD - Flow 4 - diplomering Document overdragen naar DMS
 Aanbieden van diplomering gerelateerde documenten naar het DMS. Deze documenten worden opgeslagen in het DMS als onderdeel van examendossier en gelinkt aan de student inschrijving.
 
-## NOG TE DOEN:
-ZIE ook details van flow 1
-Deze flows lijkt erg op flow 1, met het verschil dat de metainformatie in deze flow 
 
-* Een inschrijving van student
-
-Dit word nog uitgewerkt zodra we de details van flow 1 100% uitgewerkt hebben om consistent te blijven
 
 ## verwerking in DMS
 Het DMS kan zelf bepalen hoe de documenten opgeslagen en verwerkt worden: logisch onder de student inschrijving dossier
@@ -15,9 +9,6 @@ Het DMS kan zelf bepalen hoe de documenten opgeslagen en verwerkt worden: logisc
 ## Remarks
 - Berichten van maximaal 1 GB ondersteunen. Als we in de toekomst meer dan 1 GB willen ondersteunen, dan moet de metadata en het bestand apart gestuurd worden.
 
-## Authenticatie:
-scope voor toevoegen van examen gerelateerde documenten: **okd:alldocuments** en **okd:diplomerendocuments**.
- als een van deze 2 aanwezig is in het authenticatie token kan de actie uitgevoerd worden.
 
 
 ## Endpoint is metadata
@@ -27,16 +18,16 @@ sequenceDiagram
     Participant Diplomering
     Participant DMS
 
-    Diplomering->>+DMS: POST .../okd/v1/diplomering/associations/{associationId} (meta informatie & inhoud)
+    Diplomering->>+DMS: POST .../okd/v1/associations/{associationId} (meta informatie & inhoud)
     DMS->>-Diplomering: nieuwe DMS referentie (UUID)
 
 ```
 #### endpoints voor deze flow bij DMS
-- `POST .../okd/v1/diplomering/associations/{associationId}`
+- `POST .../okd/v1/associations/{associationId}`
 
 voorbeeld :
 ```
-POST .../okd/v1/diplomering/associations/123e4567-e89b-12d3-a456-426614174000
+POST .../okd/v1/associations/123e4567-e89b-12d3-a456-426614174000
 Host: api.yourdomain.com
 Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
 Content-Length: 2847
@@ -100,3 +91,7 @@ Response:
 }
 ```
 
+## Authenticatie:
+
+Scope voor toevoegen van examen gerelateerde documenten: **okd:alldocuments** en **okd:graduationdocuments**.
+Als een van deze 2 aanwezig is in het authenticatie token kan de actie uitgevoerd worden.

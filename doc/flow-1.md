@@ -376,6 +376,6 @@ Response:
 
 
 ## Authenticatie:
-scope voor toevoegen van inschrijving gerelateerde documenten: **okd:alldocuments** en **okd:inuitschrijven**.
+scope voor toevoegen van inschrijving gerelateerde documenten: **okd:alldocuments** en **okd:enrollmentderollment**.
  als een van deze 2 aanwezig is in het authenticatie token kan de actie uitgevoerd worden.
 

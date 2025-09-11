@@ -105,6 +105,6 @@ Accept: application/json
 ```
 
 ## Authenticatie:
-scope die ook gebruikt is **okd:inuitschrijven**
+scope die ook gebruikt is  **okd:alldocuments** en **okd:enrollmentderollment**
 
 dit geeft een fijnmazige authorizatie mogenlijk waarbij applicaties wel examen of bpv documenten mogen toevoegen, maar niet uitschrijven

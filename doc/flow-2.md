@@ -149,5 +149,5 @@ Het DMS kan zelf bepalen hoe de documenten opgeslagen en verwerkt worden: of een
 - Berichten van maximaal 1 GB ondersteunen. Als we in de toekomst meer dan 1 GB willen ondersteunen, dan moet de metadata en het bestand apart gestuurd worden.
 
 ## Authenticatie:
-scope voor toevoegen van examen gerelateerde documenten: **okd:alldocuments** en **okd:examendocuments**.
+scope voor toevoegen van examen gerelateerde documenten: **okd:alldocuments** en **okd:examdocuments**.
  als een van deze 2 aanwezig is in het authenticatie token kan de actie uitgevoerd worden.

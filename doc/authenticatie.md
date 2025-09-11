@@ -23,10 +23,10 @@ de verschillende flows zullen verschillende catagorie scopes krijgen, waardoor e
 
 
 - flow 1,2,3,4:**okd:alldocuments**
-- flow 2: **okd:examendocuments**
+- flow 2: **okd:examdocuments**
 - flow 3: **okd:bpvdocuments**
-- flow 4: **okd:diplomerendocuments**
-- flow 1,5:**okd:inuitschrijven**
+- flow 4: **okd:graduationdocuments**
+- flow 1,5:**okd:enrollmentderollment**
 - flow 6:**okd:destroyednotification**
 
 Leveranciers die applicatie maken die meerdere MORA componenten bevatten kunnen tokens aanvragen met meerdere scopes tegelijkertijd.
