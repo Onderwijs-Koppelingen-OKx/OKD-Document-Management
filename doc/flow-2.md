@@ -48,6 +48,7 @@ Content-Type: application/json
     "consumers": [
         {
             "consumerKey": "nl-okd",
+            "studentNumber": "1234567",
             "documentType": "examinering",
             "documentSubtype" : "examenbeoordeling"
             "documentId: "dbd3e12a-ed8b-4488-ac34-26fd4f64f40b",
@@ -129,7 +130,7 @@ Content-Type: application/binary
 Response:
 ```
 {
-    dmsDocumentId: "4e12169d-84b9-4d21-a987-f373bbbe4e6e"
+    "dmsDocumentId": "4e12169d-84b9-4d21-a987-f373bbbe4e6e"
 }
 ```
 
