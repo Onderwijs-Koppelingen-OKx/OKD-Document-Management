@@ -10,6 +10,8 @@ Als flow 1 niet geimplementeerd word en er bv alleen documenten via flow 2,3 aan
 - **`GET .../okd/v1/person/{personId}`**
 - **`GET .../okd/v1/association/{associationId}`**
 
+- **`GET .../okd/v1/person?primaryCode={studentNummer}`**
+
 ### Sequence Diagram
 
 ```mermaid
@@ -27,7 +29,7 @@ sequenceDiagram
     deactivate Inschrijven
 ```
 
-Voorbeeld:
+#### Voorbeeld 1:
 
 GET .../okd/v1/person/5ab399b8-c499-4da8-af6d-b55e66251f31
 
@@ -57,7 +59,46 @@ Response
 }
 ```
 
-Voorbeeld2:
+#### Voorbeeld 2:
+
+GET .../okd/v1/person?primaryCode=1234567
+
+Response
+```
+{
+"pageSize": 1,
+"pageNumber": 1,
+"hasPreviousPage": false,
+"hasNextPage": false,
+"totalPages": 1,
+"items": [
+  {
+      "personId": "5ab399b8-c499-4da8-af6d-b55e66251f31",
+      "primaryCode": 
+      {
+          "codeType": "studentNumber",
+          "code": "1234567"
+      },
+      "givenName": "Maartje",
+      "surnamePrefix": "van",
+      "surname": "Damme",
+      "displayName": "Maartje van Damme",
+      "activeEnrollment": true,
+      "affiliations": 
+      [
+          "student"
+      ],
+      "mail": "vandamme.mcw@student.roc.nl",
+      "languageOfChoice":	[
+          "nl-NL"
+      ],
+      "otherCodes": []
+  }
+]
+```
+Note: Alleen de query parameter 'primaryCode' word ondersteund, tbv convertie en legacy 
+
+#### Voorbeeld 3:
 
 GET .../okd/v1/association/123e4567-e89b-12d3-a456-426614174000
 
