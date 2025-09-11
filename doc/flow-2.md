@@ -1,22 +1,18 @@
 # OKD - Flow 2 - examen Document overdragen naar DMS
-Aanbieden van examenresultaat en examenmoment gerelateerde documenten naar het DMS. Deze documenten worden opgeslagen in DMS als onderdeel van examendossier en gelinkt aan de students inschrijving.
+Aanbieden van examenresultaat en examenmoment gerelateerde documenten naar het DMS. Deze documenten worden opgeslagen in DMS als onderdeel van examendossier en gelinkt aan de student inschrijving.
 
-er zijn 2 hoofd documenttypes:
+Er zijn twee hoofd documenttypes:
 * examenzittingverslag document
 * examen resultaat document
 
-
-
-
-Deze flows lijkt erg op flow 1, met het verschil dat de metainformatie in deze flow een van de volgende is:
-
+Deze flows lijken erg op flow 1, met het verschil dat de metainformatie in deze flow een van de volgende is:
 * een examen zitting. (componentOffering in OOAPI termen)
 * een examen beoordeling/resultaat: inschrijving van student (programOfferingAssociation)
 
 Open vraag: sturen we een examen beeoordeling bij de inschrijving van de student? of bij de examenzitting. Hoe weet het DMS voor welke student het is? Of op de associatie van de student op de exameninschrijving?
 
 ## optie B, endpoint is metadata
-We sturen het request naar het endpoint waar de metat data hoort. bv association/{id} of de verbintenis/inschrijving van de student te geven. Omdat we hier niet in de inschrijving flow zitten zullen we hier zo min mogelijk velden geven, net de verplichte en een consumer met meta informatie van het document.
+We sturen het request naar het endpoint waar de metadata hoort. Bv association/{id} of de verbintenis/inschrijving van de student te geven. Omdat we hier niet in de inschrijving flow zitten zullen we hier zo min mogelijk velden geven, net de verplichte en een consumer met meta informatie van het document.
 
 ### Sequence diagram 
 ```mermaid
@@ -28,7 +24,7 @@ sequenceDiagram
     DMS->>-Inschrijven: nieuwe DMS referentie (UUID)
 
 ```
-#### endpoints voor deze flow bij DMS
+#### Endpoints voor deze flow bij DMS
 - `PUT .../okd/v1/associations/{associationId}`
 - `PUT .../okd/v1/offering/{componentOfferingId}`
 
@@ -146,8 +142,11 @@ Response:
 }
 ```
 
-## verwerking in CMS
-Het DMS kan zelf bepalen hoe de documenten opgelagen en verwerkt worden: of een apart examen dossier of alles onder de student inschrijving dossier
+## Verwerking in het DMS
+Het DMS kan zelf bepalen hoe de documenten opgeslagen en verwerkt worden: of een apart examen dossier of alles onder de student inschrijving dossier
+
+## Remarks
+- Berichten van maximaal 1 GB ondersteunen. Als we in de toekomst meer dan 1 GB willen ondersteunen, dan moet de metadata en het bestand apart gestuurd worden.
 
 ## Authenticatie:
 scope voor toevoegen van examen gerelateerde documenten: **okd:alldocuments** en **okd:examendocuments**.

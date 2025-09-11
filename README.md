@@ -1,31 +1,26 @@
-# OKD-Document-Management
-Onderwijs Koppeling voor Document Management
+# OOAPI-OKD - Onderwijs Koppeling voor Document Management
 
 ```
 NOTE: Onderstaande informatie is niet definitief. Er kunnen geen rechten aan ontleend worden.
 ```
-
 ## Doel van de koppeling
-Het doel van de OKD-koppeling is om documenten vanuit diverse applicaties en componenten over te brengen naar een DMS (Document Management Systeem). Tijdens deze overdracht wordt voldoende meta-informatie aan de documenten toegevoegd, zodat het DMS in staat is de documenten correct te categoriseren en de juiste bewaartermijnen toe te passen.
+Om de efficiëntie in het beheer van documenten in studenten- en examendossiers te verbeteren, kiezen steeds meer onderwijsinstellingen voor een centraal Document Management Systeem (DMS). Gezien de diversiteit aan applicaties die aangesloten moeten worden, is er behoefte aan een gestandaardiseerde gegevensuitwisseling.
 
-Verder biedt de koppeling de mogelijkheid om de overgedragen documenten opnieuw te bekijken. Het bijwerken van documenten en het signaleren wanneer documenten niet langer relevant zijn, maakt eveneens deel uit van de functionaliteiten.
-
-Documenten kunnen vanuit verschillende applicaties worden aangeleverd, zodat het DMS een compleet overzicht heeft van alle relevante documenten van een student.
+Het doel van de OKD-koppeling is om documenten (inclusief metadata) vanuit diverse applicaties en componenten over te brengen naar een DMS (Document Management Systeem). Documenten kunnen vanuit verschillende applicaties worden aangeleverd, zodat het DMS een compleet overzicht heeft van alle relevante documenten van een student. Tijdens deze overdracht wordt tevens de benodigde meta-data meegelevert, zodat het DMS in staat is de documenten correct te categoriseren en de juiste bewaartermijnen toe te passen. Verder biedt de koppeling de mogelijkheid om de overgedragen documenten opnieuw te bekijken, te bewerken en te verwijderen. Het DMS is verantwoordelijk voor het preserveren van documenten gedurende de gehele archieftermijn.
 
 
 ### Relatie met OKx
 
-Deze API definitie is in het kader van de OKx koppelingen in het MBO onderwijs in Nederland. Het is een uitwerking van de door Npuls voorgestelde "OKx Best practice" om voor het MBO standaard koppelvlakken te maken op basis van de OOAPI.
+Deze API-definitie is opgesteld in het kader van de OKx-koppelingen binnen het MBO-onderwijs in Nederland. Het volgt de door Npuls voorgestelde "OKx Best practice" en richt zich op het creëren van standaard koppelvlakken voor het MBO, gebaseerd op de OOAPI.
 
-Deze koppeling definieert de interactie tussen de diverse systemen/modules op het gebied van document management. Deze wordt momenteel ontworpen door scholen en leveranciers in het MBO.
+Deze koppeling specificeert de interactie tussen verschillende systemen/modules op het gebied van documentbeheer. Momenteel wordt deze ontworpen door zowel scholen als leveranciers in het MBO.
 
-
+### Relatie met MORA
+#### Betrokken Applicatiecomponenten
 https://mora.mbodigitaal.nl/index.php/Id-31e23eae-6bea-63fd-b4e9-79bc4f4981ae
-<img width="997" alt="image" src="https://github.com/user-attachments/assets/e038dade-fc30-4186-8e9b-06b3a26f9cfb" />
+<img width="900" alt="image" src="https://github.com/user-attachments/assets/e038dade-fc30-4186-8e9b-06b3a26f9cfb" />
 
-
-
-### Betrokken Applicaties en Mora componenten
+#### Betrokken Applicaties en Componenten
 Voor het vullen van de dossiers in het DMS voor een leerling zijn verschillende applicaties en componenten betrokken
 
 - vanuit de module **"Inschrijven"** (KRS): 
@@ -70,8 +65,6 @@ columns 1
 ```
 
 ### Flows gedurende onderwijsperiode van de student
-
-
 
 ```mermaid
 sequenceDiagram

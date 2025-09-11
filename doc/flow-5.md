@@ -1,8 +1,7 @@
 # OKD - Flow 5 melden van uitschrijven bij DMS
-Notificeren dat een student zijn studie/verbintenis heeft beeindigt en de bewaartermijn van zijn documenten in mag gaan.
+Notificeren dat een student zijn studie/verbintenis heeft beëindigd en de bewaartermijn van zijn documenten in mag gaan.
 
 Vanuit component Uitschrijven naar het DMS
-
 
 
 ### Sequence diagram 
@@ -16,7 +15,7 @@ sequenceDiagram
     DMS->>-Uitschrijven: 204 No-content
 
 ```
-#### endpoints voor deze flow bij DMS
+#### Endpoints voor deze flow bij DMS
 - `PATCH .../okd/v1/associations/{associationId}`
 
 voorbeeld :
