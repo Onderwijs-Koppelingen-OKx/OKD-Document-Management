@@ -63,12 +63,8 @@ Content-Type: application/json
                 "inschrijvingFinalEndDate": null
             }
         ],
-        "person": {
-            "personId": "111-2222-33-4444-222"
-        },
-        "offering": {
-            "offeringId": "5ffc6127-debe-48ce-90ae-75ea80756475"
-        }
+        "person": "111-2222-33-4444-222" ,
+        "offering": "5ffc6127-debe-48ce-90ae-75ea80756475"
     }
 }
 ------WebKitFormBoundary7MA4YWxkTrZu0gW
