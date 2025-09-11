@@ -90,6 +90,20 @@ Response:
 }
 ```
 
+### OKD consumer
+Het oopai uitbreidingsmechanisme van consumers word gebruikt voor extra informatie:
+* "consumerKey": dit moet hardcoded "nl-okd" zijn ter identificatie van de consumer,
+* "documentType": grofmazig document type "inschrijving",
+* "documentSubtype" : subtype. dit is door de school/component te definieeren
+* "documentId: id van het document zoals de component het kent
+* "documentName": naam van het toete voegen document
+* "bewaartermijnsuggestie": suggestie van bewaartermijn zoals evt gedefiniteerd door component. Is suggestie , DMS mag negeren vb: "3Y", "6M", "1321D"
+
+Specifiek voor inschrijven : 3 datums voor de inschrijving van deze student:
+* "enrollmentStartDate": "2021-09-01", 
+* "enrollmentExpectedEndDate": "2025-07-31",
+* "enrollmentFinalEndDate": null
+
 ## Authenticatie:
 
 Scope voor toevoegen van examen gerelateerde documenten: **okd:alldocuments** en **okd:graduationdocuments**.

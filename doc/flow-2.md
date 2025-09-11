@@ -136,6 +136,20 @@ Response:
 ## Verwerking in het DMS
 Het DMS kan zelf bepalen hoe de documenten opgeslagen en verwerkt worden: of een apart examen dossier of alles onder de student inschrijving dossier
 
+### OKD consumer
+Het oopai uitbreidingsmechanisme van consumers word gebruikt voor extra informatie:
+* "consumerKey": dit moet hardcoded "nl-okd" zijn ter identificatie van de consumer,
+* "documentType": grofmazig document type "inschrijving",
+* "documentSubtype" : subtype. dit is door de school/component te definieeren
+* "documentId: id van het document zoals de component het kent
+* "documentName": naam van het toete voegen document
+* "bewaartermijnsuggestie": suggestie van bewaartermijn zoals evt gedefiniteerd door component. Is suggestie , DMS mag negeren vb: "3Y", "6M", "1321D"
+
+speciaal voor examn documenten:
+* "examDate": datum wanneer examen afgenomen is, 
+* "examComponentOffering": component offering id van examen. 
+* "examName": examennaam bv: "Examen Mediabeheer K3-W1"
+
 ## Remarks
 - Berichten van maximaal 1 GB ondersteunen. Als we in de toekomst meer dan 1 GB willen ondersteunen, dan moet de metadata en het bestand apart gestuurd worden.
 

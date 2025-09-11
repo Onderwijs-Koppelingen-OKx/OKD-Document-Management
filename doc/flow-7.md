@@ -171,6 +171,16 @@ Response
     }
 ```
 
+
+### OKD consumer
+Het oopai uitbreidingsmechanisme van consumers word gebruikt voor extra informatie:
+* "consumerKey": dit moet hardcoded "nl-okd" zijn ter identificatie van de consumer,
+
+Specifiek voor inschrijven : 3 datums voor de inschrijving van deze student:
+* "enrollmentStartDate": "2021-09-01", 
+* "enrollmentExpectedEndDate": "2025-07-31",
+* "enrollmentFinalEndDate": null
+
 ### Authenticatie:
 scope die ook gebruikt is voor notificatie: **okd:studentinfo**
 
