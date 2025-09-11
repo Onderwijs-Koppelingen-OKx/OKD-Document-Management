@@ -22,12 +22,13 @@ Each request will need a scope in the auth token. voor OKD zullen deze beginnen 
 de verschillende flows zullen verschillende catagorie scopes krijgen, waardoor er fijnmazig toestemming geven kan worden op niveau een MORA referentie componenten.
 
 
-- flow 1,2,3,4:**okd:alldocuments**
+- flow 1,2,3,4: **okd:alldocuments**
 - flow 2: **okd:examdocuments**
 - flow 3: **okd:bpvdocuments**
 - flow 4: **okd:graduationdocuments**
-- flow 1,5:**okd:enrollmentderollment**
-- flow 6:**okd:destroyednotification**
+- flow 1,5: **okd:enrollmentderollment**
+- flow 6: **okd:destroyednotification**
+- flow 7: **okd:studentinfo**
 
 Leveranciers die applicatie maken die meerdere MORA componenten bevatten kunnen tokens aanvragen met meerdere scopes tegelijkertijd.
 ....

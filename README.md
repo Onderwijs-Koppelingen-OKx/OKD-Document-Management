@@ -115,6 +115,34 @@ sequenceDiagram
 ```
 Natuurlijk kan een student meerdere inschrijvingen doorlopen
 
+### ophalen van student en inschrijving informatie
+Als flow 1 niet geimplementeerd word en er bv alleen documenten via flow 2,3 aangeboden worden heeft het DMS ook een mogenlijkheid nodig om student en inschrijvings informatie op te halen.
+```mermaid
+sequenceDiagram
+    Participant Inschrijven
+    Participant BPV
+    Participant DMS
+
+    BPV->>DMS: BPV document inleveren
+    activate DMS
+    DMS->>BPV: Ok (200)
+    deactivate DMS
+
+    DMS->>Inschrijven: geef student infomatie
+    activate Inschrijven
+    Inschrijven->>DMS: student informatie
+    deactivate Inschrijven
+
+    DMS->>Inschrijven: geef inschrijvings infomatie
+    activate Inschrijven
+    Inschrijven->>DMS: inschrijvings informatie
+    deactivate Inschrijven
+
+```
+
+### Flows
+
+
 De flows worden in detail verder uitgewerkt, beschreven in de OOAPI structuur.
 - flow-1: [Inschrijvings dossier](./doc/flow-1.md)
 - flow-2: [Examen dossier](./doc/flow-2.md)
@@ -122,6 +150,7 @@ De flows worden in detail verder uitgewerkt, beschreven in de OOAPI structuur.
 - flow-4: [Diplomeren en Certificeren dossier](./doc/flow-4.md)
 - flow-5: [Uitschrijven](./doc/flow-5.md)
 - flow-6: [document vernietigd notificatie](./doc/flow-6.md)
+- flow-7: [extra ophalen student en inschrijving gegevens](./doc/flow-7.md)
 - flow-x: [Opvragen document (vanuit alle componenten naar DMS)](./doc/flow-x.md)
 - flow-y: [Wijzigen document (vanuit alle componenten naar DMS)](./doc/flow-y.md)
 - flow-z: [Verwijderen document (vanuit alle componenten naar DMS)](./doc/flow-z.md)

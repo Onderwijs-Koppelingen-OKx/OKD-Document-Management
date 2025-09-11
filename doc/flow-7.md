@@ -1,41 +1,68 @@
-# OKD - Flow 1 Opslaan ondersteunende documenten bij de inschrijving in DMS
-Aanbieden van documenten rondom de inschrijving van een student.
-Vanuit model Inschrijven naar het DMS: ondersteunende documenten bij de inschrijving die in het student/inschrijvings dossier horen.
+## Flow 7 extra student informatie ophalen
 
-De call word gedaan op het endpoint waar de metat informatie normaal opgeslagen word, alleen is het request een multipart Post waarbij eerst de metadata in json formaat en daarna de inhoud van het document als binary of pdf gestuurd word.
+Als flow 1 niet geimplementeerd word en er bv alleen documenten via flow 2,3 aangeboden worden heeft het DMS ook een mogenlijkheid nodig om student en inschrijvings informatie op te halen.
 
-Het DMS bepaalt daarna het documentID en retourneerd deze. dit id is nodig om documenten in te zien, te updaten of verwijderen. In het DMS worden documenten uitveel bronnen opgeslagen en de uniciteit van de id kan ook alleen vanuit het dms gegarandeerd worden.
 
-De calls vanuit de inschrijven module bevatten relatief veel meta data. Dit is in de inschrijf module beschikbaar en is de bron om student en inschrijving gegevens naar het DMS te sturen. Andere modules zoals BPV en Examinering verwijzen naar deze informatie en daar is de metatdata ook veel kleiner.
+**Open vraag:** wat is de minimale info die nodig is voor de doelbinding met het DMS? Antwoord: zelfde informatie uit flow 1
 
-Note: In het request zit wel het documentId van de component, die anderskan zijn dan die van het DMS.
+### Endpoint
 
-### Sequence diagram 
+- **`GET .../okd/v1/person/{personId}`**
+- **`GET .../okd/v1/association/{associationId}`**
+
+### Sequence Diagram
+
 ```mermaid
 sequenceDiagram
-    Participant Inschrijven
-    Participant DMS
+    participant DMS
+    participant Inschrijven
+    DMS-->>Inschrijven: GET .../okd/v1/person/{personId}
+    activate Inschrijven
+    Inschrijven-->>DMS: 200 person
+    deactivate Inschrijven
 
-    Inschrijven->>+DMS: POST .../okd/v1/associations/{associationId} (meta informatie & inhoud)
-    DMS->>-Inschrijven: nieuwe DMS referentie (UUID)
-
+    DMS-->>Inschrijven: GET .../okd/v1/association/{associationId}
+    activate Inschrijven
+    Inschrijven-->>DMS: 200 Association (inschrijving)
+    deactivate Inschrijven
 ```
-#### endpoints voor deze flow bij DMS
-- `POST .../okd/v1/associations/{associationId}`
 
-voorbeeld :
+Voorbeeld:
+
+GET .../okd/v1/person/5ab399b8-c499-4da8-af6d-b55e66251f31
+
+Response
 ```
-POST .../okd/v1/associations/123e4567-e89b-12d3-a456-426614174000
-Host: api.yourdomain.com
-Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
-Content-Length: 2847
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
-Accept: application/json
+{
+    "personId": "5ab399b8-c499-4da8-af6d-b55e66251f31",
+    "primaryCode": 
+    {
+        "codeType": "studentNumber",
+        "code": "1234567"
+    },
+    "givenName": "Maartje",
+    "surnamePrefix": "van",
+    "surname": "Damme",
+    "displayName": "Maartje van Damme",
+    "activeEnrollment": true,
+    "affiliations": 
+    [
+        "student"
+    ],
+    "mail": "vandamme.mcw@student.roc.nl",
+    "languageOfChoice":	[
+        "nl-NL"
+    ],
+    "otherCodes": []
+}
+```
 
-------WebKitFormBoundary7MA4YWxkTrZu0gW
-Content-Disposition: form-data; name="metadata"
-Content-Type: application/json
+Voorbeeld2:
 
+GET .../okd/v1/association/123e4567-e89b-12d3-a456-426614174000
+
+Response
+```
 {
     "associationId: "123e4567-e89b-12d3-a456-426614174000",
     "associationType": "programOfferingAssociation",
@@ -54,11 +81,6 @@ Content-Type: application/json
     "consumers": [
         {
             "consumerKey": "nl-okd",
-            "documentType": "inschrijving",
-            "documentSubtype" : "vrijstellingsaanvraag"
-            "documentId: "dbd3e12a-ed8b-4488-ac34-26fd4f64f40b",
-            "documentName": "inschrijving-100245.pdf",
-            "bewaartermijnsuggestie": "3Y"
             "enrollmentStartDate": "2021-09-01", 
             "enrollmentExpectedEndDate": "2025-07-31",
             "enrollmentFinalEndDate": null
@@ -147,49 +169,10 @@ Content-Type: application/json
             }
         }
     }
-}
-------WebKitFormBoundary7MA4YWxkTrZu0gW
-Content-Disposition: form-data; name="file"; filename="inschrijving-100245.pdf"
-Content-Type: application/pdf
-
-%PDF-1.4
-1 0 obj
-<<
-/Type /Catalog
-/Pages 2 0 R
->>
-endobj
-2 0 obj
-<<
-/Type /Pages
-/Kids [3 0 R]
-/Count 1
->>
-endobj
-...
-[Binary PDF content continues]
-...
-%%EOF
-------WebKitFormBoundary7MA4YWxkTrZu0gW--
-
 ```
 
-Response:
-```
-{
-    dmsDocumentId: "4e12169d-84b9-4d21-a987-f373bbbe4e6e"
-}
-```
+### Authenticatie:
+scope die ook gebruikt is voor notificatie: **okd:studentinfo**
 
 
-
-### Remarks
-
-- Berichten van maximaal 1 GB ondersteunen. Als we in de toekomst meer dan 1 GB willen ondersteunen, dan moet de metadata en het bestand apart gestuurd worden.
-- We supporteren alleen student als personAffliations. In de toekomst zou dit nog altijd uitgebreid kunnen worden voor bijv. Employee.
-
-
-## Authenticatie:
-scope voor toevoegen van inschrijving gerelateerde documenten: **okd:alldocuments** en **okd:enrollmentderollment**.
- als een van deze 2 aanwezig is in het authenticatie token kan de actie uitgevoerd worden.
 

@@ -58,7 +58,7 @@ Content-Type: application/json
             "examName": "Examen Mediabeheer K3-W1"
         }
     ]
-    "person": "111-2222-33-4444-222"
+    "person": "5ab399b8-c499-4da8-af6d-b55e66251f31"
 }
 ------WebKitFormBoundary7MA4YWxkTrZu0gW
 Content-Disposition: form-data; name="file"; filename="inschrijving-100245.pdf"
