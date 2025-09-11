@@ -9,12 +9,94 @@ Deze flows lijkt erg op flow 1, met het verschil dat de metainformatie in deze f
 
 Dit word nog uitgewerkt zodra we de details van flow 1 100% uitgewerkt hebben om consistent te blijven
 
-## Verwerking in CMS
-Het DMS kan zelf bepalen hoe de documenten opgelagen en verwerkt worden: logisch onder de student inschrijving dossier
+## verwerking in DMS
+Het DMS kan zelf bepalen hoe de documenten opgeslagen en verwerkt worden: logisch onder de student inschrijving dossier
 
 ## Remarks
 - Berichten van maximaal 1 GB ondersteunen. Als we in de toekomst meer dan 1 GB willen ondersteunen, dan moet de metadata en het bestand apart gestuurd worden.
 
 ## Authenticatie:
-Scope voor toevoegen van examen gerelateerde documenten: **okd:alldocuments** en **okd:diplomerendocuments**.
-Als een van deze 2 aanwezig is in het authenticatie token kan de actie uitgevoerd worden.
+scope voor toevoegen van examen gerelateerde documenten: **okd:alldocuments** en **okd:diplomerendocuments**.
+ als een van deze 2 aanwezig is in het authenticatie token kan de actie uitgevoerd worden.
+
+
+## Endpoint is metadata
+### Sequence diagram
+```mermaid
+sequenceDiagram
+    Participant Diplomering
+    Participant DMS
+
+    Diplomering->>+DMS: POST .../okd/v1/diplomering/associations/{associationId} (meta informatie & inhoud)
+    DMS->>-Diplomering: nieuwe DMS referentie (UUID)
+
+```
+#### endpoints voor deze flow bij DMS
+- `POST .../okd/v1/diplomering/associations/{associationId}`
+
+voorbeeld :
+```
+POST .../okd/v1/diplomering/associations/123e4567-e89b-12d3-a456-426614174000
+Host: api.yourdomain.com
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Length: 2847
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+Accept: application/json
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="metadata"
+Content-Type: application/json
+
+{
+    "association": {
+        "associationId: "123e4567-e89b-12d3-a456-426614174000",
+        "consumers": [
+            {
+                "consumerKey": "nl-okd",
+                "documentType": "diplomering",
+                "documentSubtype" : "diploma"
+                "documentId: "65f64c44-e3c4-4579-8e05-a729d4b89d06",
+                "documentName": "diploma-MBO.pdf",
+                "bewaartermijnsuggestie": "3Y"
+                "inschrijvingStartDate": "2021-09-01", 
+                "inschrijvingExpectedEndDate": "2025-07-31",
+                "inschrijvingFinalEndDate": null
+            }
+        ],
+        "person": "111-2222-33-4444-222" ,
+        "offering": "5ffc6127-debe-48ce-90ae-75ea80756475"
+    }
+}
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="file"; filename="diploma-MBO.pdf"
+Content-Type: application/pdf
+
+%PDF-1.4
+1 0 obj
+<<
+/Type /Catalog
+/Pages 2 0 R
+>>
+endobj
+2 0 obj
+<<
+/Type /Pages
+/Kids [3 0 R]
+/Count 1
+>>
+endobj
+...
+[Binary PDF content continues]
+...
+%%EOF
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+```
+
+Response:
+```
+{
+    dmsdocumentid: "e8eab8a4-2b2d-4366-8d96-d9f5ba66508b"
+}
+```
+
