@@ -75,6 +75,7 @@ Content-Type: application/json
         "surnamePrefix": "van",
         "surname": "Damme",
         "displayName": "Maartje van Damme",
+        "initials": "MCW",
         "activeEnrollment": true,
         "affiliations": 
         [
