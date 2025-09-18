@@ -56,6 +56,7 @@ Content-Type: application/json
             "bewaartermijnsuggestie": "3Y"
             "examDateTime": "2021-12-15T11:05:04Z",
             "examComponentOffering": "c9c3875b-0c6b-435a-a8a4-211bf66620b5",
+            "examCode": "MEDIAK3-W1"
             "examName": "Examen Mediabeheer K3-W1"
         }
     ]
