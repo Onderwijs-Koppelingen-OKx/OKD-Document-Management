@@ -1,4 +1,4 @@
-## OKD - Flow 7 Extra student informatie ophalen
+## OKD - Flow 7 Extra student/inschrijving informatie ophalen
 
 Als flow 1 niet geimplementeerd wordt en er bv alleen documenten via flow 2 en 3 aangeboden worden heeft het DMS ook een mogenlijkheid nodig om student en inschrijvings informatie op te halen.
 
