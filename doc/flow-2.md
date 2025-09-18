@@ -54,7 +54,7 @@ Content-Type: application/json
             "documentId: "dbd3e12a-ed8b-4488-ac34-26fd4f64f40b",
             "documentName": "beoordeling-100245.pdf",
             "bewaartermijnsuggestie": "3Y"
-            "examDate": "2021-09-01", 
+            "examDateTime": "2021-12-15T11:05:04Z",
             "examComponentOffering": "c9c3875b-0c6b-435a-a8a4-211bf66620b5",
             "examName": "Examen Mediabeheer K3-W1"
         }
