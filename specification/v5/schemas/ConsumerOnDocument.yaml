@@ -6,7 +6,7 @@ properties:
     items:
     anyOf:
       - $ref: '../schemas/Consumer.yaml'
-      - $ref: '../consumers/NL-OKD/V1/nl-okd-Document.yaml'
+      - $ref: '../consumers/NL-OKD/V1/nl-okd-document.yaml'
     example: 
       [
         {

@@ -49,28 +49,22 @@ post:
   operationId: uploadDocument
   tags:
     - documents
+  parameters:
+    - name: documentId
+      in: path
+      description: Document ID
+      required: true
+      schema:
+        type: string
+        format: uuid
   requestBody:
     required: true
     content:
-      multipart/form-data:
+      application/octet-stream:
         schema:
-          type: object
-          required:
-            - metadata            
-            - file
-          properties:
-            metadata:
-              $ref: '../schemas/ConsumerOnDocument.yaml'
-            file:
-              type: string
-              format: binary
-              description: The document file to upload
-
-        encoding:
-          file:
-            contentType: application/pdf, application/msword, application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/octet-stream, text/plain
-          metadata:
-            contentType: application/json
+          type: string
+          format: binary
+          description: The document file to upload
   responses:
     '200':
       description: Document uploaded successfully
