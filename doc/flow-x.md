@@ -5,7 +5,7 @@ Wanneer een client een interne document viewer heeft, kan deze rechtstreeks de b
 
 ### Endpoint
 
-- **`GET .../okd/v1/documents/{documentId}/download`**
+- **`GET .../okd/v1/documents/{documentId}`** (request application/octet-stream)
   - **Description**: Fetches the specified document's  binary content from the DMS, identified by its `documentId`.
   - **Parameters**: 
     - `documentId` (required): A unique identifier (UUID) for the document to be retrieved.
@@ -29,7 +29,7 @@ De client toont de binaire data van het document in een apart tabblad in de brow
 
 ### Endpoint
 
-- **`GET .../okd/v1/documents/{documentId}`**
+- **`GET .../okd/v1/documents/{documentId}`** (request application/json)
   - **Description**: Fetches the specified document's url or content url from the DMS, identified by its `documentId`.
   - **Parameters**: 
     - `documentId` (required): A unique identifier (UUID) for the document to be retrieved.

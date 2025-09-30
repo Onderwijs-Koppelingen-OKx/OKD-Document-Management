@@ -66,8 +66,6 @@ properties:
     type: array
     items:
       $ref: './Consumer.yaml'
-    example:
-      $ref: '../consumers/TEST/V1/examples/TestConsumer.yaml'
   organization:
     description: |
       The organization that manages this group. [`expandable`](.#tag/organization_model)

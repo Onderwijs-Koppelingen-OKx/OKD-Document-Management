@@ -35,7 +35,10 @@ servers:
 
 tags:
   - name: service metadata
-    description: The service API provides additional metadata needed to make the OOAPI fit for this organization.
+    description: | 
+      The service API provides additional metadata needed to make the OOAPI fit for this organization.
+
+          Voor de OKD: De service API biedt aanvullende metadata die nodig is om te zien welke versie van de ooapi en OKD ondersteund wordt.
 #  - name: academic sessions
 #    description: The academic sessions API provides information about the different time periods a program can be offered.
   # - name: associations
@@ -108,14 +111,32 @@ tags:
   #   description: The offerings API provides information about offerings which have a global timeframe, e.g. a period to which students can enroll.
   # - name: organizations
   #   description: The organizations API provides the organizations that are responsible for the execution and recognition of education.
-  # - name: persons
-  #   description: The persons API provides information about persons related to an organization.
-#  - name: programs
-#    description: The programs API provides a coherent set of educational components, aimed at the realization of competences or objectives in the field of knowledge, insight, attitudes and skills that the person who completes the program must have.
+  # - name: programs
+  #   description: The programs API provides a coherent set of educational components, aimed at the realization of competences or objectives in the field of knowledge, insight, attitudes and skills that the person who completes the program must have.
 #  - name: rooms
 #    description: The rooms API provides the part of a building where an activity can take place. Including detail information on the resources available, number of seats, etc. (Updated continuously)
   - name: documents
-    description: The documments API provides access to the documents in a binary format 
+    description: |
+      The documents API provides access to the documents in a binary format
+
+          Voor de OKD: De documenten API biedt toegang tot de documenten in een binaire vorm en de mogenlijkheid om de inhoud van documenten te updaten. Het aanbieden van documenten gaat via andere endpoints.
+  - name: associations
+    description: |
+      De associations API biedt informatie over de inschrijvingen van personen bij programma's, cursussen en componenten.
+          
+          Voor de OKD: In het Nederlandse onderwijssysteem zijn dit de inschrijving-verbintenis en de inschrijving voor BPV of examens
+  - name: persons
+    description: |
+      The persons API provides information about persons related to an organization.
+
+          Voor de OKD: De personen API geeft de mogenlijkheid om een bestand aan te bieden die aan de persoon gelinkt is.
+
+          Ook kan er additionele informatie van een persoon opgehaald worden. (zoeken op studentnummer of id)
+  - name: offerings
+    description: |
+      The offerings API provides information about offerings which have a global timeframe, e.g. a period to which students can enroll.
+
+          Voor de OKD: De offerings API biedt informatie over de onderwijsaanbod die een instelling aanbiedt. Hiermee kna meer informatie over een opleiding .
 #  - name: service_model
 #    x-displayName: Service
 #    description: |
@@ -274,6 +295,8 @@ components:
     #   - $ref: schemas/Program.yaml
     #   - $ref: schemas/ProgramOffering.yaml
     #   - $ref: schemas/Room.yaml
+    association:
+      $ref: 'schemas/AssociationFull.yaml'
     #   - $ref: schemas/AssociationFull.yaml
 
 paths:

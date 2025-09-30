@@ -2,7 +2,6 @@ type: object
 description: nl-okd add-on attributes to the Document 
 required:
  - consumerKey
- - documentType
 properties:
   consumerKey:
     type: string
@@ -41,10 +40,3 @@ properties:
     description: |
       identifies the suggested retention period for the document, e.g. "3Y" (3 years), "5Y" (5 years), "10Y" (10 years).
     example: "3Y"
-
-
-  association:
-    $ref: '../../../schemas/AssociationFull.yaml'
-  person:
-    $ref: '../../../schemas/Person.yaml'
-

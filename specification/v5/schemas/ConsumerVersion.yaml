@@ -11,6 +11,6 @@ properties:
   version:
     description: the version number of this consumer
     type: string
-    example: "0.7.0"
+    example: "1.0.0"
 
 

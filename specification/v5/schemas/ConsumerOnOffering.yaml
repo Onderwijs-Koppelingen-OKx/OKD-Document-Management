@@ -3,3 +3,4 @@ description: The additional consumer elements that can be provided, see the [doc
 items:
  anyOf:
   - $ref: '../schemas/Consumer.yaml'
+  - $ref: '../consumers/NL-OKD/V1/nl-okd-document.yaml'

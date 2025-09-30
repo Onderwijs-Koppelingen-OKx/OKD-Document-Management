@@ -4,7 +4,7 @@ get:
   description: Get a single person.
   security:
     - oAuthFlows:  
-      - nl-test-admin-flow-1-5
+      - nl-okd-all
   tags:
     - persons
   parameters:
@@ -22,38 +22,23 @@ get:
         application/json:
           schema:
             $ref: '../schemas/Person.yaml'
-          examples:
-            Person values:
-              value:
-                personId: "123e4567-e89b-12d3-a456-426614174000"
-                primaryCode: 
-                  codeType: "identifier"
-                  code: "1234qwe12"
-                givenName: "Maartje"
-                surnamePrefix: "van"
-                surname: "Damme"
-                displayName: "Maartje van Damme"
-                initials: "MCW"
-                activeEnrollment: true
-                affiliations: 
-                - "student"
-                mail: "vandamme.mcw@universiteitvanharderwijk.nl"
-                languageOfChoice: 
-                - "nl-NL"
-                otherCodes: 
-                - codeType: "eckid"
-                  code: "00000"
-                consumers: 
-                - consumerKey: "nl-test-admin"
-                  preferredName: "Maar"
-                  assignedNeeds:     
-                    code: "extraTimeOnlyMath25%"
-                    description:
-                    - language: nl-NL
-                      value: "Extra tijd van 25% bij de totale tijd van een toets waarin rekenen voorkomt"                
-                    startDate: "2023-10-25"
-                    endDate: "2025-09-30"
-                  idCheckName: "Damme, Maartje van"    
+          example:
+            personId: "5ab399b8-c499-4da8-af6d-b55e66251f31"
+            primaryCode:
+              codeType: "studentNumber"
+              code: "1234567"
+            givenName: "Maartje"
+            surnamePrefix: "van"
+            surname: "Damme"
+            displayName: "Maartje van Damme"
+            initials: "MCW"
+            activeEnrollment: true
+            affiliations:
+              - "student"
+            mail: "vandamme.mcw@student.roc.nl"
+            languageOfChoice:
+              - "nl-NL"
+            otherCodes: []  
     '400':
       $ref: '../schemas/ErrorBadRequest.yaml'
     '401':
@@ -71,14 +56,14 @@ get:
 
 
 
-put:
-  summary: PUT /persons/{personId}
+post:
+  summary: POST /persons/{personId}
   description: |
-    PUT a single person from the leading/source system into a following system. 
-  operationId: replacePersonById
+    POST a document for a person. 
+  operationId: postDocumentOnPersonById
   security:
     - oAuthFlows:  
-      - nl-test-admin-flow-1-5
+      - okd:alldocuments
   tags:
     - persons
   parameters:
@@ -93,45 +78,22 @@ put:
   requestBody:
     required: true
     content:
-        application/json:
-          schema:
-            $ref: '../schemas/Person.yaml'
-            title: person
-          examples:
-            Create person in remote system:
-              value:
-                personId: "123e4567-e89b-12d3-a456-426614174000"
-                primaryCode: 
-                  codeType: "identifier"
-                  code: "1234qwe12"
-                givenName: "Maartje"
-                surnamePrefix: "van"
-                surname: "Damme"
-                displayName: "Maartje van Damme"
-                initials: "MCW"
-                activeEnrollment: true
-                affiliations: 
-                - "student"
-                mail: "vandamme.mcw@universiteitvanharderwijk.nl"
-                languageOfChoice: 
-                - "nl-NL"
-                otherCodes: 
-                - codeType: "eckid"
-                  code: "00000"
-                consumers: 
-                - consumerKey: "nl-test-admin"
-                  preferredName: "Maar"                
-                  assignedNeeds:     
-                    code: "extraTimeOnlyMath25%"
-                    description:
-                    - language: nl-NL
-                      value: "Extra tijd van 25% bij de totale tijd van een toets waarin rekenen voorkomt"        
-                    startDate: "2023-10-25"
-                    endDate: "2025-09-30"
-                  idCheckName: "Damme, Maartje van"  
-
+      multipart/form-data:
+        schema:
+          type: object
+          properties:
+            person:
+              $ref: '../schemas/Person.yaml'
+            file:
+              type: string
+              format: binary
+              description: File to upload
+          required:
+            - person
+            - file
   responses:
     '200':
+      $ref: '../schemas/DocumentUploadResponse.yaml'
       description: OK
     '201':
       description: Created
