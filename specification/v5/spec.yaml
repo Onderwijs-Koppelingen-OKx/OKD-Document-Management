@@ -9,20 +9,20 @@ info:
     <br/>
     <figure>
     	<a target="_blank" href="OOAPIv5_model.png">
-      <img src="OOAPIv5_model.png" alt="OOAPI information model that feeds OOAPI specification" width="70%" class="img-responsive">
+      <img src="OOAPIv5_model.png" alt="OOAPI informatiemodel dat de OOAPI specificatie voedt" width="70%" class="img-responsive">
       </a>
-      <figcaption> OOAPI information model that feeds OOAPI specification (click to enlage)</figcaption>
+      <figcaption> OOAPI informatiemodel dat de OOAPI specificatie voedt (klik om te vergroten)</figcaption>
     </figure>
 
-    The model provides an overview of how the objects on which the API is specified are related. The overarching concept educations is not found in the in the end points of the API. The smaller concepts of programOffering, courseOffering and conceptOffering are all found in the offering endpoint. The different types of association can all be found in the association endpoint.
+    Het model geeft een overzicht van hoe de objecten waarop de API is gespecificeerd zijn gerelateerd. Het overkoepelende concept educations wordt niet gevonden in de eindpunten van de API. De kleinere concepten van programOffering, courseOffering en conceptOffering worden allemaal gevonden in het offering eindpunt. De verschillende types van associatie kunnen allemaal worden gevonden in het association eindpunt.
     
-    The original file for this model can be found <a target="_blank" href="OOAPIv5_model_v0.5.drawio">here</a>
+    Het originele bestand voor dit model kan <a target="_blank" href="OOAPIv5_model_v0.5.drawio">hier</a> worden gevonden
 
-    The program relations object is not found as a separate endpoint but relations between programs can be found within the program endpoint by expanding that endpoint.
+    Het program relations object wordt niet gevonden als een apart eindpunt, maar relaties tussen programma's kunnen worden gevonden binnen het program eindpunt door dat eindpunt uit te breiden.
 
-    Information about earlier meetings and presentations can be found <a target="_blank" href="https://github.com/open-education-api/notulen">here</a>
+    Informatie over eerdere bijeenkomsten en presentaties kan <a target="_blank" href="https://github.com/open-education-api/notulen">hier</a> worden gevonden
 
-    Information on the EDU-API model that was also used for this api is shown <a target="_blank" href="eduapi.png">here</a>
+    Informatie over het EDU-API model dat ook werd gebruikt voor deze api wordt <a target="_blank" href="eduapi.png">hier</a> getoond
 
   contact: 
     name: Kees van Ginkel
@@ -190,18 +190,18 @@ x-tagGroups:
     tags: 
       - service metadata
 #      - academic sessions
-#      - associations
+      - associations
 #      - buildings
-#      - courses
-#      - components
+      - courses
+      - components
 #      - education specifications
 #      - groups
 #      - news
       - documents
-#      - offerings
+      - offerings
 #      - organizations
-#      - persons
-#      - programs
+      - persons
+      - programs
 #      - rooms
   - name: Models
     tags:
@@ -209,18 +209,18 @@ x-tagGroups:
 #      - academic_session_model
 #      - association_model
 #      - building_model
-#      - component_model
-#      - component_offering_model
-#      - course_model
-#      - course_offering_model
+      - component_model
+      - component_offering_model
+      - course_model
+      - course_offering_model
 #      - education_specification_model
 #      - group_model
 #      - news_feed_model
 #      - news_item_model
 #      - organization_model
-#      - person_model
-#      - program_model
-#      - program_offering_model
+      - person_model
+      - program_model
+      - program_offering_model
 #      - room_model
 
 components:
@@ -233,10 +233,31 @@ components:
         clientCredentials:
           tokenUrl: https://example.nl/oauth2/authorize
           scopes:
-            nl-okd-all: functions needed to allow the transfer of enrollments, persons and offerings between systems in MBO
+            okd:alldocuments: flow 1,2,3,4
+            okd:examdocuments: flow 2
+            okd:bpvdocuments: flow 3
+            okd:graduationdocuments: flow 4
+            okd:enrollmentderollment: flow 1,5
+            okd:destroyednotification: flow 6
+            okd:studentinfo: flow 7
+  schemas:
+    Service:
+      $ref: 'schemas/Service.yaml'
+    Component:
+      $ref: 'schemas/Component.yaml'
+    ComponentOffering:
+      $ref: 'schemas/ComponentOffering.yaml'
+    Course:
+      $ref: 'schemas/Course.yaml'
+    CourseOffering:
+      $ref: 'schemas/CourseOffering.yaml'
+    Person:
+      $ref: 'schemas/Person.yaml'
+    Program:
+      $ref: 'schemas/Program.yaml'
+    ProgramOffering:
+      $ref: 'schemas/ProgramOffering.yaml'
 
-  #schemas:
-    # allOf: 
     #   - $ref: 'schemas/Service.yaml'
     #   - $ref: schemas/AcademicSession.yaml
     #   - $ref: schemas/Building.yaml
@@ -258,8 +279,8 @@ components:
 paths:
   /:
     $ref: paths/Service.yaml
-  # /persons:
-  #   $ref: paths/PersonCollection.yaml
+  /persons:
+    $ref: paths/PersonCollection.yaml
   # /persons/me:
   #   $ref: paths/PersonMe.yaml
   /persons/{personId}:
@@ -328,8 +349,8 @@ paths:
   #   $ref: paths/OfferingGroupCollection.yaml
   /documents/{documentId}:
     $ref: paths/DocumentInstance.yaml
-  #/associations/{associationId}:
-  #  $ref: paths/AssociationInstance.yaml
+  /associations/{associationId}:
+    $ref: paths/AssociationInstance.yaml
   #/associations/{associationId}/url:
   #  $ref: paths/AssociationUrl.yaml
   # /associations/me:

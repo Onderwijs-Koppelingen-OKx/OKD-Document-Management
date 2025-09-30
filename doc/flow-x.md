@@ -69,16 +69,16 @@ returns (check response from gettting document details in ZGW):
 {
     "documentId": "5ffc6127-debe-48ce-90ae-75ea80756475",
     "title": "Test title",
-    "documentTempDownloadUrl": "http://aaa.djuma.nl/download/5ffc6127-debe-48ce-90ae-75ea80756475&tempaccess=#556633ga6dr53g3"
-    ...
+    "documentTempDownloadUrl": "http://aaa.djuma.nl/download/5ffc6127-debe-48ce-90ae-75ea80756475&tempaccess=#556633ga6dr53g3",
+    "creatiedatum": "2025-09-03",
+    "formaat": "application/pdf",
+    "bestandsnaam": "test.pdf",
+    "bestandsomvang": 243857
 }
 ```
-~~## Optie 3 
-Dit is een variatie op 2, alleen word niet de binary data getoond, maar de detials pagina van het DMS~~
 
-## Bespreekpunten
-- Openen van document eigenschappen scherm is niet mogelijk, kan alleen via een URL naar de dossier. Echter, dat kan uitsluitend vanuit dossier API, oftewel component zou kennis van zaken moeten hebben. Nut- noodzaak van deze behoefte heroverwegen i.r.t. V1
-- Response bepalen van "details" van een document.
+
+
 
 ### Authenticatie:
 scope die ook gebruikt is voor inzien is zelfde als voor toevoegen. (**okd:alldocuments** of de specifiekere varianten)
