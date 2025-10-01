@@ -53,7 +53,7 @@ Content-Type: application/json
             "documentSubtype" : "examenbeoordeling"
             "documentId: "dbd3e12a-ed8b-4488-ac34-26fd4f64f40b",
             "documentName": "beoordeling-100245.pdf",
-            "bewaartermijnsuggestie": "3Y"
+            "retentionPeriodSuggestion": "3Y"
             "examDateTime": "2021-12-15T11:05:04Z",
             "examComponentOffering": "c9c3875b-0c6b-435a-a8a4-211bf66620b5",
             "examCode": "MEDIAK3-W1"
@@ -112,7 +112,7 @@ Content-Type: application/json
             "documentSubtype" : "zittingsverslag"
             "documentId: "dbd3e12a-ed8b-4488-ac34-26fd4f64f40b",
             "documentName": "verslag-100245.pdf",
-            "bewaartermijnsuggestie": "6M"
+            "retentionPeriodSuggestion": "6M"
         }
     ]
 
@@ -145,7 +145,7 @@ Het oopai uitbreidingsmechanisme van consumers word gebruikt voor extra informat
 * "documentSubtype" : subtype. dit is door de school/component te definieeren
 * "documentId: id van het document zoals de component het kent
 * "documentName": naam van het toete voegen document
-* "bewaartermijnsuggestie": suggestie van bewaartermijn zoals evt gedefiniteerd door component. Is suggestie , DMS mag negeren vb: "3Y", "6M", "1321D"
+* "retentionPeriodSuggestion": suggestie van bewaartermijn zoals evt gedefiniteerd door component. Is suggestie , DMS mag negeren vb: "3Y", "6M", "1321D"
 
 speciaal voor examn documenten:
 * "examDate": datum wanneer examen afgenomen is, 

@@ -49,7 +49,7 @@ Content-Type: application/json
             "documentSubtype" : "diploma"
             "documentId: "65f64c44-e3c4-4579-8e05-a729d4b89d06",
             "documentName": "diploma-MBO.pdf",
-            "bewaartermijnsuggestie": "3Y"
+            "retentionPeriodSuggestion": "3Y"
             "inschrijvingStartDate": "2021-09-01", 
             "inschrijvingExpectedEndDate": "2025-07-31",
             "inschrijvingFinalEndDate": null
@@ -98,7 +98,7 @@ Het oopai uitbreidingsmechanisme van consumers word gebruikt voor extra informat
 * "documentSubtype" : subtype. dit is door de school/component te definieeren
 * "documentId: id van het document zoals de component het kent
 * "documentName": naam van het toete voegen document
-* "bewaartermijnsuggestie": suggestie van bewaartermijn zoals evt gedefiniteerd door component. Is suggestie , DMS mag negeren vb: "3Y", "6M", "1321D"
+* "retentionPeriodSuggestion": suggestie van bewaartermijn zoals evt gedefiniteerd door component. Is suggestie , DMS mag negeren vb: "3Y", "6M", "1321D"
 
 Specifiek voor inschrijven : 3 datums voor de inschrijving van deze student:
 * "enrollmentStartDate": "2021-09-01", 

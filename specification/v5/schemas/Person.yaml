@@ -21,8 +21,8 @@ example:
     otherCodes: []
     consumers: 
       - consumerKey: 'nl-okd'
-        documentType: 'inschrijving'
+        documentType: 'enrollment'
         documentSubtype: 'dyslexieverklaring'
         documentId: 'acd3e12a-ed8b-4488-ac34-26fd4f64f40b'
         documentName: 'dyslexieverklaring-100245.pdf'
-        bewaartermijnsuggestie: '7Y'
+        retentionPeriodSuggestion: '7Y'

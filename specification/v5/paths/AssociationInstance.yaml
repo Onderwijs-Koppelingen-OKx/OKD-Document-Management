@@ -224,7 +224,7 @@ post:
     - This endpoint should be implemented by the DMS component, so that the components can upload documents for a association/verbintenis.
     - the call is a multipart/form-data call with 2 parts: metadata (json) and file (binary).
     - hoewel de ooapi meer states kent gebruiken we alleen "associated", "finished".
-    
+
   operationId: postFileOnAssociationById
   security:
     - oAuthFlows:  
@@ -269,7 +269,7 @@ post:
                 documentSubtype: "diploma"
                 documentId: "65f64c44-e3c4-4579-8e05-a729d4b89d06"
                 documentName: "diploma-MBO.pdf"
-                bewaartermijnsuggestie: "3Y"
+                retentionPeriodSuggestion: "3Y"
                 inschrijvingStartDate: "2021-09-01"
                 inschrijvingExpectedEndDate: "2025-07-31"
                 inschrijvingFinalEndDate: null
