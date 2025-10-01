@@ -28,6 +28,12 @@ get:
               description: File download
               summary: File download
               value: <raw data>
+        application/json:
+          schema:
+            id: 
+              type: string
+              format: uuid
+              
       description: OK
     '400':
       $ref: '../schemas/ErrorBadRequest.yaml'
@@ -44,8 +50,8 @@ get:
     '500':
       $ref: '../schemas/ErrorInternalServerError.yaml'
 post:
-  summary: Upload document with metadata
-  description: Upload a document file along with JSON metadata in a single request
+  summary: Upload document to replace the content of an existing document
+  description: Upload a document file
   operationId: uploadDocument
   tags:
     - documents

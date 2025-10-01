@@ -3,3 +3,8 @@ content:
   application/problem+json:
     schema:
       $ref: 'Problem.yaml'
+    example:
+      type: 'https://open-education-api.github.io/specification/v5/schemas/ErrorUnauthorized.yaml'
+      title: 'Unauthorized'
+      status: 401
+      detail: 'The request requires user authentication.'

@@ -16,7 +16,7 @@ properties:
     description: URL of the API specification (YAML or JSON, compliant with [Open API Specification v3](https://github.com/OAI/OpenAPI-Specification/))
     format: uri
     maxLength: 2048
-    example: https://rawgit.com/open-education-api/specification/v3/docs.html#tag/course-offerings/paths/~1course-offerings/get
+    example: https://github.com/Onderwijs-Koppelingen-OKx/OKD-Document-Management/blob/main/specification/v5/spec.yaml
   documentation:
     type: string
     description: URL of the API documentation, including general terms and privacy statement

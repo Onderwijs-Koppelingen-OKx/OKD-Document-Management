@@ -99,11 +99,12 @@ Content-Type: application/json
 {
     "offeringId": "c9c3875b-0c6b-435a-a8a4-211bf66620b5",
     "offeringType": "component",
-    "name": "Examen Mediabeheer K3-W1",
-    "program": {
-        "......gaan we deze vullen ?"
-    },
-    "organization": "38bdbeb1-12b2-48fd-84f8-653e7adfaf99",
+    "name": [
+        {
+            "language": "nl-NL"
+            value: "Examen Mediabeheer K3-W1"
+        }
+    ],
     "consumers": [
         {
             "consumerKey": "nl-okd",
@@ -112,7 +113,6 @@ Content-Type: application/json
             "documentId: "dbd3e12a-ed8b-4488-ac34-26fd4f64f40b",
             "documentName": "verslag-100245.pdf",
             "bewaartermijnsuggestie": "6M"
-
         }
     ]
 

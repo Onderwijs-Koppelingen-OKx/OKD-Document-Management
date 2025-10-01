@@ -139,8 +139,6 @@ properties:
     type: array
     items:
       $ref: './Consumer.yaml'
-    example:
-      $ref: '../consumers/RIO/V1/examples/Course.yaml'
   ext:
     $ref: './Ext.yaml'
   programs:

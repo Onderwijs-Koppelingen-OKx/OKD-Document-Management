@@ -20,7 +20,7 @@ sequenceDiagram
 
 voorbeeld :
 ```
-PUT .../okd/v1/associations/123e4567-e89b-12d3-a456-426614174000
+PATCH .../okd/v1/associations/123e4567-e89b-12d3-a456-426614174000
 Host: api.yourdomain.com
 Content-Type: application/json
 boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
