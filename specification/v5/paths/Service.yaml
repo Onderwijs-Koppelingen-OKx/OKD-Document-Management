@@ -2,7 +2,12 @@ get:
   parameters: []
   summary: GET /
   operationId: listServiceMetaData
-  description: Get metadata for the service.
+  description: | 
+    Get metadata for the service.
+  
+    note:
+    - This endpoint does not require authentication.
+    - This endpoint should be implemented by the DMS and all components
   tags:
     - service metadata
   responses:

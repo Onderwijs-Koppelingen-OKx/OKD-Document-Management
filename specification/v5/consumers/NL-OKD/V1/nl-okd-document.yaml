@@ -8,18 +8,19 @@ properties:
     example: nl-okd
   documentType:
       description: |
-        identifies the kind of document; supported values: "inschrijving" (registration), "bla bla 1" (description for bla bla 1), "bla bla 2" (description for bla bla 2), "other" (any document not suitable for the other values).
+        identifies the kind of document; supported values: "enrollment", "examination", "graduation", "bpv","other"
       type: string
       enum:
-        - inschrijving
-        - bla bla 1
-        - bla bla 2
-      example: inschrijving
+        - enrollment
+        - examination
+        - graduation
+        - bpv
+        - other
+      example: enrollment
   documentSubtype:
     type: string
     description: |
-      identifies the subtype of the document; supported values: "vrijstellingsaanvraag" (exemption request), "bla bla 1" (description for bla bla 1), "bla bla 2" (description for bla bla 2), "other" (any document not suitable for the other values).
-    enum:
+      identifies the subtype of the document; supported values depend on the school.
       - vrijstellingsaanvraag
       - bla bla 1
       - bla bla 2
@@ -35,8 +36,21 @@ properties:
     description: |
       identifies the name of the document.
     example: "inschrijving-100245.pdf"
-  bewaartermijnsuggestie:
+  retentionPeriodSuggestion:
     type: string
     description: |
-      identifies the suggested retention period for the document, e.g. "3Y" (3 years), "5Y" (5 years), "10Y" (10 years).
+      identifies the suggested retention period for the document, e.g. "3Y" (3 years), "5Y" (5 years), "10Y" (10 years), "24H" (24 hours), "6D" (6 days).
+      The DMS may choose to ignore this suggestion.
     example: "3Y"
+  receivedDate:
+    type: string
+    format: date
+    description: |
+      identifies the date the document was received.
+    example: "2023-09-01"
+  registrationDate:
+    type: string
+    format: date
+    description: |
+      identifies the date the document was registered.
+    example: "2023-09-02"

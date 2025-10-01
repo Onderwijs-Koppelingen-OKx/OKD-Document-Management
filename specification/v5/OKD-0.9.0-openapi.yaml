@@ -1,0 +1,4394 @@
+openapi: 3.0.3
+info:
+  title: OKD - Open Education API
+  description: "OpenAPI specification for the Open Education API, used in the OKD.\n\
+    <br/>\nNOTE:This is a subset of the OOAPI that is used in the \"MBO-OKD\" project\
+    \ (sponsored by npuls/mbo-digitaal in the netherlands). This project uses the\
+    \ \"nl-okd\" consumer \n<br/>\n<figure>\n\t<a target=\"_blank\" href=\"OOAPIv5_model.png\"\
+    >\n  <img src=\"OOAPIv5_model.png\" alt=\"OOAPI informatiemodel dat de OOAPI specificatie\
+    \ voedt\" width=\"70%\" class=\"img-responsive\">\n  </a>\n  <figcaption> OOAPI\
+    \ informatiemodel dat de OOAPI specificatie voedt (klik om te vergroten)</figcaption>\n\
+    </figure>\n\nHet model geeft een overzicht van hoe de objecten waarop de API is\
+    \ gespecificeerd zijn gerelateerd. Het overkoepelende concept educations wordt\
+    \ niet gevonden in de eindpunten van de API. De kleinere concepten van programOffering,\
+    \ courseOffering en conceptOffering worden allemaal gevonden in het offering eindpunt.\
+    \ De verschillende types van associatie kunnen allemaal worden gevonden in het\
+    \ association eindpunt.\n\nHet originele bestand voor dit model kan <a target=\"\
+    _blank\" href=\"OOAPIv5_model_v0.5.drawio\">hier</a> worden gevonden\n\nHet program\
+    \ relations object wordt niet gevonden als een apart eindpunt, maar relaties tussen\
+    \ programma's kunnen worden gevonden binnen het program eindpunt door dat eindpunt\
+    \ uit te breiden.\n\nInformatie over eerdere bijeenkomsten en presentaties kan\
+    \ <a target=\"_blank\" href=\"https://github.com/open-education-api/notulen\"\
+    >hier</a> worden gevonden\n\nInformatie over het EDU-API model dat ook werd gebruikt\
+    \ voor deze api wordt <a target=\"_blank\" href=\"eduapi.png\">hier</a> getoond\n"
+  contact:
+    name: Kees van Ginkel
+    email: kees.van.ginkel@topicus.nl
+  version: 0.9.0
+  x-logo:
+    url: ../logo.png
+servers:
+- url: http://okd.eduapi.nl/v5
+  description: OKD demo implementation
+tags:
+- name: service metadata
+  description: |
+    The service API provides additional metadata needed to make the OOAPI fit for this organization.
+
+        Voor de OKD: De service API biedt aanvullende metadata die nodig is om te zien welke versie van de ooapi en OKD ondersteund wordt.
+- name: documents
+  description: |
+    The documents API provides access to the documents in a binary format
+
+        Voor de OKD: De documenten API biedt toegang tot de documenten in een binaire vorm en de mogenlijkheid om de inhoud van documenten te updaten. Het aanbieden van documenten gaat via andere endpoints.
+- name: associations
+  description: "De associations API biedt informatie over de inschrijvingen van personen\
+    \ bij programma's, cursussen en componenten.\n    \n    Voor de OKD: In het Nederlandse\
+    \ onderwijssysteem zijn dit de inschrijving-verbintenis en de inschrijving voor\
+    \ BPV of examens\n"
+- name: persons
+  description: |
+    The persons API provides information about persons related to an organization.
+
+        Voor de OKD: De personen API geeft de mogenlijkheid om een bestand aan te bieden die aan de persoon gelinkt is.
+
+        Ook kan er additionele informatie van een persoon opgehaald worden. (zoeken op studentnummer of id)
+- name: offerings
+  description: |
+    The offerings API provides information about offerings which have a global timeframe, e.g. a period to which students can enroll.
+
+        Voor de OKD: De offerings API biedt informatie over de onderwijsaanbod die een instelling aanbiedt. een onderdeel zijn componentOfferings, die in de OKD als examens of toetsen worden gebruikt.
+paths:
+  /:
+    get:
+      tags:
+      - service metadata
+      summary: GET /
+      description: |
+        Get metadata for the service.
+
+        note:
+        - This endpoint does not require authentication.
+        - This endpoint should be implemented by the DMS and all components
+      operationId: listServiceMetaData
+      parameters: []
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Service'
+        "400":
+          description: Bad request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+              example:
+                type: https://open-education-api.github.io/specification/v5/schemas/ErrorBadRequest.yaml
+                title: Bad request
+                status: 400
+                detail: The request could not be understood by the server due to malformed
+                  syntax. The client SHOULD NOT repeat the request without modifications.
+        "401":
+          description: Unauthorized
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+              example:
+                type: https://open-education-api.github.io/specification/v5/schemas/ErrorUnauthorized.yaml
+                title: Unauthorized
+                status: 401
+                detail: The request requires user authentication.
+        "403":
+          description: Forbidden
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+              example:
+                type: https://open-education-api.github.io/specification/v5/schemas/ErrorForbidden.yaml
+                title: Forbidden
+                status: 403
+                detail: "The request was valid, but the server is refusing action.\
+                  \ The client might not have the necessary permissions for the resource."
+        "404":
+          description: Not Found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+              example:
+                type: https://open-education-api.github.io/specification/v5/schemas/Error  NotFound.yaml
+                title: Not Found
+                status: 404
+                detail: The requested resource could not be found.
+        "405":
+          description: Method not allowed
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+              example:
+                type: https://open-education-api.github.io/specification/v5/schemas/ErrorMethodNotAllowed.yaml
+                title: Method not allowed
+                status: 405
+                detail: The request method is not supported for the requested resource.
+        "429":
+          description: Too many requests
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+              example:
+                type: https://open-education-api.github.io/specification/v5/schemas/ErrorTooManyRequests.yaml
+                title: Too many requests
+                status: 429
+                detail: The user has sent too many requests in a given amount of time.
+        "500":
+          description: Internal Server Error
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+              example:
+                type: https://open-education-api.github.io/specification/v5/schemas/ErrorInternalServerError.yaml
+                title: Internal Server Error
+                status: 500
+                detail: The server encountered an unexpected condition that prevented
+                  it from fulfilling the request.
+  /persons:
+    get:
+      tags:
+      - persons
+      summary: GET /persons
+      description: |
+        Get a list of persons, select by primaryCode/Student nummer
+
+        note:
+        - This endpoint should be implemented by the SIS component, so that the DMS can retrieve person information (flow-7)
+      operationId: listPersons
+      parameters:
+      - name: primaryCode
+        in: query
+        description: The primaryCode of the requested item. This is often the source
+          identifier as defined by the institution.
+        required: false
+        schema:
+          type: string
+      - name: affiliations
+        in: query
+        description: Filter by affiliations
+        required: false
+        schema:
+          $ref: '#/components/schemas/personAffiliations'
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200'
+        "400":
+          description: Bad request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+              example:
+                type: https://open-education-api.github.io/specification/v5/schemas/ErrorBadRequest.yaml
+                title: Bad request
+                status: 400
+                detail: The request could not be understood by the server due to malformed
+                  syntax. The client SHOULD NOT repeat the request without modifications.
+        "401":
+          description: Unauthorized
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+              example:
+                type: https://open-education-api.github.io/specification/v5/schemas/ErrorUnauthorized.yaml
+                title: Unauthorized
+                status: 401
+                detail: The request requires user authentication.
+        "403":
+          description: Forbidden
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+              example:
+                type: https://open-education-api.github.io/specification/v5/schemas/ErrorForbidden.yaml
+                title: Forbidden
+                status: 403
+                detail: "The request was valid, but the server is refusing action.\
+                  \ The client might not have the necessary permissions for the resource."
+        "405":
+          description: Method not allowed
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+              example:
+                type: https://open-education-api.github.io/specification/v5/schemas/ErrorMethodNotAllowed.yaml
+                title: Method not allowed
+                status: 405
+                detail: The request method is not supported for the requested resource.
+        "429":
+          description: Too many requests
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+              example:
+                type: https://open-education-api.github.io/specification/v5/schemas/ErrorTooManyRequests.yaml
+                title: Too many requests
+                status: 429
+                detail: The user has sent too many requests in a given amount of time.
+        "500":
+          description: Internal Server Error
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+              example:
+                type: https://open-education-api.github.io/specification/v5/schemas/ErrorInternalServerError.yaml
+                title: Internal Server Error
+                status: 500
+                detail: The server encountered an unexpected condition that prevented
+                  it from fulfilling the request.
+      security:
+      - oAuthFlows:
+        - okd:studentinfo
+  /persons/{personId}:
+    get:
+      tags:
+      - persons
+      summary: "GET /persons/{personId}"
+      description: |
+        Get a single person
+
+        note:
+        - This endpoint should be implemented by the SIS component, so that the DMS can retrieve person information (flow-7)
+      operationId: listPersonById
+      parameters:
+      - name: personId
+        in: path
+        description: User ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Person'
+              example:
+                personId: 5ab399b8-c499-4da8-af6d-b55e66251f31
+                primaryCode:
+                  codeType: studentNumber
+                  code: "1234567"
+                givenName: Maartje
+                surnamePrefix: van
+                surname: Damme
+                displayName: Maartje van Damme
+                initials: MCW
+                activeEnrollment: true
+                affiliations:
+                - student
+                mail: vandamme.mcw@student.roc.nl
+                languageOfChoice:
+                - nl-NL
+                otherCodes: []
+        "400":
+          description: Bad request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+              example:
+                type: https://open-education-api.github.io/specification/v5/schemas/ErrorBadRequest.yaml
+                title: Bad request
+                status: 400
+                detail: The request could not be understood by the server due to malformed
+                  syntax. The client SHOULD NOT repeat the request without modifications.
+        "401":
+          description: Unauthorized
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+              example:
+                type: https://open-education-api.github.io/specification/v5/schemas/ErrorUnauthorized.yaml
+                title: Unauthorized
+                status: 401
+                detail: The request requires user authentication.
+        "403":
+          description: Forbidden
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+              example:
+                type: https://open-education-api.github.io/specification/v5/schemas/ErrorForbidden.yaml
+                title: Forbidden
+                status: 403
+                detail: "The request was valid, but the server is refusing action.\
+                  \ The client might not have the necessary permissions for the resource."
+        "404":
+          description: Not Found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+              example:
+                type: https://open-education-api.github.io/specification/v5/schemas/Error  NotFound.yaml
+                title: Not Found
+                status: 404
+                detail: The requested resource could not be found.
+        "405":
+          description: Method not allowed
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+              example:
+                type: https://open-education-api.github.io/specification/v5/schemas/ErrorMethodNotAllowed.yaml
+                title: Method not allowed
+                status: 405
+                detail: The request method is not supported for the requested resource.
+        "429":
+          description: Too many requests
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+              example:
+                type: https://open-education-api.github.io/specification/v5/schemas/ErrorTooManyRequests.yaml
+                title: Too many requests
+                status: 429
+                detail: The user has sent too many requests in a given amount of time.
+        "500":
+          description: Internal Server Error
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+              example:
+                type: https://open-education-api.github.io/specification/v5/schemas/ErrorInternalServerError.yaml
+                title: Internal Server Error
+                status: 500
+                detail: The server encountered an unexpected condition that prevented
+                  it from fulfilling the request.
+      security:
+      - oAuthFlows:
+        - okd:studentinfo
+    post:
+      tags:
+      - persons
+      summary: "POST /persons/{personId}"
+      description: |
+        POST a document for a person
+
+        note:
+        - This endpoint should be implemented by the DMS component, so that the components can upload documents for a person (flow 1,2,3,4)
+        - the call is a multipart/form-data call with 2 parts: metadata (json) and file (binary).
+      operationId: postDocumentOnPersonById
+      parameters:
+      - name: personId
+        in: path
+        description: Person ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/persons_personId_body'
+        required: true
+      responses:
+        "200":
+          description: A system message as a response to a Document upload POST message
+        "201":
+          description: Created
+        "400":
+          description: Bad request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+              example:
+                type: https://open-education-api.github.io/specification/v5/schemas/ErrorBadRequest.yaml
+                title: Bad request
+                status: 400
+                detail: The request could not be understood by the server due to malformed
+                  syntax. The client SHOULD NOT repeat the request without modifications.
+        "401":
+          description: Unauthorized
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+              example:
+                type: https://open-education-api.github.io/specification/v5/schemas/ErrorUnauthorized.yaml
+                title: Unauthorized
+                status: 401
+                detail: The request requires user authentication.
+        "403":
+          description: Forbidden
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+              example:
+                type: https://open-education-api.github.io/specification/v5/schemas/ErrorForbidden.yaml
+                title: Forbidden
+                status: 403
+                detail: "The request was valid, but the server is refusing action.\
+                  \ The client might not have the necessary permissions for the resource."
+        "404":
+          description: Not Found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+              example:
+                type: https://open-education-api.github.io/specification/v5/schemas/Error  NotFound.yaml
+                title: Not Found
+                status: 404
+                detail: The requested resource could not be found.
+        "405":
+          description: Method not allowed
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+              example:
+                type: https://open-education-api.github.io/specification/v5/schemas/ErrorMethodNotAllowed.yaml
+                title: Method not allowed
+                status: 405
+                detail: The request method is not supported for the requested resource.
+        "429":
+          description: Too many requests
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+              example:
+                type: https://open-education-api.github.io/specification/v5/schemas/ErrorTooManyRequests.yaml
+                title: Too many requests
+                status: 429
+                detail: The user has sent too many requests in a given amount of time.
+        "500":
+          description: Internal Server Error
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+              example:
+                type: https://open-education-api.github.io/specification/v5/schemas/ErrorInternalServerError.yaml
+                title: Internal Server Error
+                status: 500
+                detail: The server encountered an unexpected condition that prevented
+                  it from fulfilling the request.
+      security:
+      - oAuthFlows:
+        - okd:alldocuments
+  /offerings/{offeringId}:
+    post:
+      tags:
+      - offerings
+      summary: "POST /offerings/{offeringId}"
+      description: "POST an file on the offerings.\n\n    For the OKD: Plaats een\
+        \ document bij een zitting (offering). bv het zittingsverslag. \n    Documenten\
+        \ speciaal voor een persoon (beoordeling etc) moeten op de associatie van\
+        \ deze persoon geplaats worden.\n\nnote:\n- This endpoint should be implemented\
+        \ by the DMS component, so that the components can upload documents for a\
+        \ offering.\n- the call is a multipart/form-data call with 2 parts: metadata\
+        \ (json) and file (binary).\n"
+      operationId: postFileOnOfferingById
+      parameters:
+      - name: offeringId
+        in: path
+        description: Offering ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        description: Multipart form data with metadata and file to upload
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/offerings_offeringId_body'
+            example:
+              metadata:
+                offeringId: c9c3875b-0c6b-435a-a8a4-211bf66620b5
+                offeringType: component
+                primaryCode:
+                  codeType: offeringCode
+                  code: Remindo_rekenen_MBO-3_op_woendag_middag_21-jun-22_om_13:00_in_lokaal_13
+                name:
+                - language: nl-NL
+                  value: Remindo rekenen MBO-3
+        required: true
+      responses:
+        "200":
+          description: A system message as a response to a Document upload POST message
+        "400":
+          description: Bad request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+              example:
+                type: https://open-education-api.github.io/specification/v5/schemas/ErrorBadRequest.yaml
+                title: Bad request
+                status: 400
+                detail: The request could not be understood by the server due to malformed
+                  syntax. The client SHOULD NOT repeat the request without modifications.
+        "401":
+          description: Unauthorized
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+              example:
+                type: https://open-education-api.github.io/specification/v5/schemas/ErrorUnauthorized.yaml
+                title: Unauthorized
+                status: 401
+                detail: The request requires user authentication.
+        "403":
+          description: Forbidden
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+              example:
+                type: https://open-education-api.github.io/specification/v5/schemas/ErrorForbidden.yaml
+                title: Forbidden
+                status: 403
+                detail: "The request was valid, but the server is refusing action.\
+                  \ The client might not have the necessary permissions for the resource."
+        "404":
+          description: Not Found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+              example:
+                type: https://open-education-api.github.io/specification/v5/schemas/Error  NotFound.yaml
+                title: Not Found
+                status: 404
+                detail: The requested resource could not be found.
+        "405":
+          description: Method not allowed
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+              example:
+                type: https://open-education-api.github.io/specification/v5/schemas/ErrorMethodNotAllowed.yaml
+                title: Method not allowed
+                status: 405
+                detail: The request method is not supported for the requested resource.
+        "429":
+          description: Too many requests
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+              example:
+                type: https://open-education-api.github.io/specification/v5/schemas/ErrorTooManyRequests.yaml
+                title: Too many requests
+                status: 429
+                detail: The user has sent too many requests in a given amount of time.
+        "500":
+          description: Internal Server Error
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+              example:
+                type: https://open-education-api.github.io/specification/v5/schemas/ErrorInternalServerError.yaml
+                title: Internal Server Error
+                status: 500
+                detail: The server encountered an unexpected condition that prevented
+                  it from fulfilling the request.
+      security:
+      - oAuthFlows:
+        - okd:alldocuments
+        - okd:examdocuments
+  /documents/{documentId}:
+    get:
+      tags:
+      - documents
+      summary: "GET /documents/{documentId}"
+      description: |
+        Get the document stored in the DMS.
+        This can be done in 2 ways:
+        1. Get the metadata of a document (request content-type application/json)
+        2. Get the binary data from a document. (request content-type application/octet-stream)
+
+        note:
+        - This endpoint should be implemented by the DMS component, so that the components can retrieve documents. (flow-x)
+        - The documentId is the ID returned by the DMS when the document was uploaded.
+      operationId: getDocumentById
+      parameters:
+      - name: documentId
+        in: path
+        description: Document ID to retrieve. This is the ID returned by the DMS when
+          the document was uploaded.
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        "200":
+          description: OK
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+              examples:
+                file-download:
+                  summary: File download
+                  description: File download
+                  value: <raw data>
+            application/json:
+              example:
+                dmsDocumentId: e68ee6c0-d503-4e56-8dce-d7fbf3e5b52d
+                title: ExamenBeoordeling van Jan
+                documentTempDownloadUrl: http://api.djuma.nl/download/5ffc6127-debe-48ce-90ae-75ea80756475&tempaccess=#556633ga6dr53g3
+                creatiedatum: 2025-09-30T14:48:00Z
+                formaat: application/pdf
+                documentname: beoordeling-jan.pdf
+                documentsize: 234567
+        "400":
+          description: Bad request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+              example:
+                type: https://open-education-api.github.io/specification/v5/schemas/ErrorBadRequest.yaml
+                title: Bad request
+                status: 400
+                detail: The request could not be understood by the server due to malformed
+                  syntax. The client SHOULD NOT repeat the request without modifications.
+        "401":
+          description: Unauthorized
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+              example:
+                type: https://open-education-api.github.io/specification/v5/schemas/ErrorUnauthorized.yaml
+                title: Unauthorized
+                status: 401
+                detail: The request requires user authentication.
+        "403":
+          description: Forbidden
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+              example:
+                type: https://open-education-api.github.io/specification/v5/schemas/ErrorForbidden.yaml
+                title: Forbidden
+                status: 403
+                detail: "The request was valid, but the server is refusing action.\
+                  \ The client might not have the necessary permissions for the resource."
+        "404":
+          description: Not Found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+              example:
+                type: https://open-education-api.github.io/specification/v5/schemas/Error  NotFound.yaml
+                title: Not Found
+                status: 404
+                detail: The requested resource could not be found.
+        "405":
+          description: Method not allowed
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+              example:
+                type: https://open-education-api.github.io/specification/v5/schemas/ErrorMethodNotAllowed.yaml
+                title: Method not allowed
+                status: 405
+                detail: The request method is not supported for the requested resource.
+        "429":
+          description: Too many requests
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+              example:
+                type: https://open-education-api.github.io/specification/v5/schemas/ErrorTooManyRequests.yaml
+                title: Too many requests
+                status: 429
+                detail: The user has sent too many requests in a given amount of time.
+        "500":
+          description: Internal Server Error
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+              example:
+                type: https://open-education-api.github.io/specification/v5/schemas/ErrorInternalServerError.yaml
+                title: Internal Server Error
+                status: 500
+                detail: The server encountered an unexpected condition that prevented
+                  it from fulfilling the request.
+      security:
+      - oAuthFlows:
+        - okd:alldocuments
+        - okd:examdocuments
+        - okd:bpvdocuments
+        - okd:graduationdocuments
+        - okd:enrollmentderollment
+    delete:
+      tags:
+      - documents
+      summary: "DELETE /documents/{documentId}"
+      description: |
+        Delete the document stored in the DMS.
+
+        note:
+        - This endpoint should be implemented by the DMS component, so that the components can delete documents. (flow-z)
+        - This endpoint should be implemented by the components, so that the DMS can inform that the document is destroyed. (flow-6)
+        - The documentId is the ID returned by the DMS when the document was uploaded.
+        - oAuthFlows okd:destroyednotification is only for the DMS to inform the components that a document is destroyed.
+      operationId: deleteDocumentById
+      parameters:
+      - name: documentId
+        in: path
+        description: Document ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        "204":
+          description: No Content. Document deleted successfully.
+        "400":
+          description: Bad request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+              example:
+                type: https://open-education-api.github.io/specification/v5/schemas/ErrorBadRequest.yaml
+                title: Bad request
+                status: 400
+                detail: The request could not be understood by the server due to malformed
+                  syntax. The client SHOULD NOT repeat the request without modifications.
+        "401":
+          description: Unauthorized
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+              example:
+                type: https://open-education-api.github.io/specification/v5/schemas/ErrorUnauthorized.yaml
+                title: Unauthorized
+                status: 401
+                detail: The request requires user authentication.
+        "403":
+          description: Forbidden
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+              example:
+                type: https://open-education-api.github.io/specification/v5/schemas/ErrorForbidden.yaml
+                title: Forbidden
+                status: 403
+                detail: "The request was valid, but the server is refusing action.\
+                  \ The client might not have the necessary permissions for the resource."
+        "404":
+          description: Not Found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+              example:
+                type: https://open-education-api.github.io/specification/v5/schemas/Error  NotFound.yaml
+                title: Not Found
+                status: 404
+                detail: The requested resource could not be found.
+        "405":
+          description: Method not allowed
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+              example:
+                type: https://open-education-api.github.io/specification/v5/schemas/ErrorMethodNotAllowed.yaml
+                title: Method not allowed
+                status: 405
+                detail: The request method is not supported for the requested resource.
+        "429":
+          description: Too many requests
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+              example:
+                type: https://open-education-api.github.io/specification/v5/schemas/ErrorTooManyRequests.yaml
+                title: Too many requests
+                status: 429
+                detail: The user has sent too many requests in a given amount of time.
+        "500":
+          description: Internal Server Error
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+              example:
+                type: https://open-education-api.github.io/specification/v5/schemas/ErrorInternalServerError.yaml
+                title: Internal Server Error
+                status: 500
+                detail: The server encountered an unexpected condition that prevented
+                  it from fulfilling the request.
+      security:
+      - oAuthFlows:
+        - okd:alldocuments
+        - okd:examdocuments
+        - okd:bpvdocuments
+        - okd:graduationdocuments
+        - okd:enrollmentderollment
+        - okd:destroyednotification
+    patch:
+      tags:
+      - documents
+      summary: Upload document to replace the content of an existing document
+      description: |
+        Update the document stored in the DMS.
+
+        note:
+        - This endpoint should be implemented by the DMS component, so that the components can update documents. (flow-y)
+        - The documentId is the ID returned by the DMS when the document was uploaded.
+        - The call is a application/octet-stream call with the binary file to upload
+        - no meta data updates is possible with this call.
+      operationId: updateDocument
+      parameters:
+      - name: documentId
+        in: path
+        description: Document ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        content:
+          application/octet-stream:
+            schema:
+              type: string
+              description: The document file to upload
+              format: binary
+        required: true
+      responses:
+        "200":
+          description: Document uploaded successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentUploadResponse'
+        "400":
+          description: Bad request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+              example:
+                type: https://open-education-api.github.io/specification/v5/schemas/ErrorBadRequest.yaml
+                title: Bad request
+                status: 400
+                detail: The request could not be understood by the server due to malformed
+                  syntax. The client SHOULD NOT repeat the request without modifications.
+        "401":
+          description: Unauthorized
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+              example:
+                type: https://open-education-api.github.io/specification/v5/schemas/ErrorUnauthorized.yaml
+                title: Unauthorized
+                status: 401
+                detail: The request requires user authentication.
+        "403":
+          description: Forbidden
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+              example:
+                type: https://open-education-api.github.io/specification/v5/schemas/ErrorForbidden.yaml
+                title: Forbidden
+                status: 403
+                detail: "The request was valid, but the server is refusing action.\
+                  \ The client might not have the necessary permissions for the resource."
+        "404":
+          description: Not Found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+              example:
+                type: https://open-education-api.github.io/specification/v5/schemas/Error  NotFound.yaml
+                title: Not Found
+                status: 404
+                detail: The requested resource could not be found.
+        "405":
+          description: Method not allowed
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+              example:
+                type: https://open-education-api.github.io/specification/v5/schemas/ErrorMethodNotAllowed.yaml
+                title: Method not allowed
+                status: 405
+                detail: The request method is not supported for the requested resource.
+        "413":
+          description: File too large
+        "422":
+          description: Invalid metadata format
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+        "429":
+          description: Too many requests
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+              example:
+                type: https://open-education-api.github.io/specification/v5/schemas/ErrorTooManyRequests.yaml
+                title: Too many requests
+                status: 429
+                detail: The user has sent too many requests in a given amount of time.
+        "500":
+          description: Internal Server Error
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+              example:
+                type: https://open-education-api.github.io/specification/v5/schemas/ErrorInternalServerError.yaml
+                title: Internal Server Error
+                status: 500
+                detail: The server encountered an unexpected condition that prevented
+                  it from fulfilling the request.
+      security:
+      - oAuthFlows:
+        - okd:alldocuments
+        - okd:examdocuments
+        - okd:bpvdocuments
+        - okd:graduationdocuments
+        - okd:enrollmentderollment
+  /associations/{associationId}:
+    get:
+      tags:
+      - associations
+      summary: "GET /associations/{associationId}"
+      description: |
+        Get a single association (OKD: inschrijving/verbintenis)
+
+        note:
+        - This endpoint should be implemented by the SIS component, so that the DMS can retrieve a persons verbintenis information
+      operationId: listAssociationById
+      parameters:
+      - name: associationId
+        in: path
+        description: Association ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: expand
+        in: query
+        description: "Optional properties to expand, separated by a comma"
+        required: false
+        explode: false
+        schema:
+          type: array
+          items:
+            type: string
+            enum:
+            - person
+            - offering
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AssociationFull'
+              example:
+                associationId: 123e4567-e89b-12d3-a456-426614174000
+                associationType: programOfferingAssociation
+                role: student
+                state: associated
+                primaryCode:
+                  codeType: opleidingsblad
+                  code: "1.1"
+                otherCodes:
+                - codeType: opleidingscode
+                  code: "23089"
+                consumers:
+                - consumerKey: nl-okd
+                  enrollmentStartDate: 2021-09-01
+                  enrollmentExpectedEndDate: 2025-07-31
+                  enrollmentFinalEndDate: null
+                person:
+                  personId: 5ab399b8-c499-4da8-af6d-b55e66251f31
+                  primaryCode:
+                    codeType: studentNumber
+                    code: "1234567"
+                  givenName: Maartje
+                  surnamePrefix: van
+                  surname: Damme
+                  displayName: Maartje van Damme
+                  initials: MCW
+                  activeEnrollment: true
+                  affiliations:
+                  - student
+                  mail: vandamme.mcw@student.roc.nl
+                  languageOfChoice:
+                  - nl-NL
+                  otherCodes: []
+                offering:
+                  offeringId: 5ffc6127-debe-48ce-90ae-75ea80756475
+                  primaryCode:
+                    codeType: identifier
+                    code: 25190BOL
+                  offeringType: program
+                  name: Netwerk- en mediabeheerder BOL (25190)
+                  program:
+                    programId: 123e4567-e89b-12d3-a456-426614174000
+                    primaryCode:
+                      codeType: identifier
+                      code: C12063128
+                    programType: program
+                    name:
+                    - language: nl-NL
+                      value: Netwerk- en mediabeheerder
+                    abbreviation: N&M
+                    description:
+                    - language: nl-NL
+                      value: "In deze MBO-opleiding word je opgeleid voor het officieel\
+                        \ erkende diploma 'MBO Netwerkbeheerder, niveau 4'. Met dit\
+                        \ diploma ben je breed opgeleid en kun je het netwerk van\
+                        \ een organisatie beheren. Dit is hét diploma voor de professionele\
+                        \ netwerkbeheerder op het hoogste MBO-niveau. Je legt een\
+                        \ uitstekende basis voor een mooie carrière als netwerkbeheerder.\
+                        \ Bovendien is dit een diploma waarmee je eventueel probleemloos\
+                        \ kunt doorstuderen naar een HBO-opleiding"
+                    teachingLanguage: nld
+                    modeOfStudy: full-time
+                    levelOfQualification: "4"
+                  organization:
+                    organizationID: 38bdbeb1-12b2-48fd-84f8-653e7adfaf99
+                    primaryCode:
+                      codeType: identifier
+                      code: ICTE
+                    organizationType: department
+                    name:
+                    - language: nl-NL
+                      value: ICT-academie
+                    shortname: ICTA
+                    parent:
+                      organizationID: 650e1627-9f3d-4176-ab5a-e82eef0d219d
+                      primaryCode:
+                        codeType: identifier
+                        code: CICT
+                      name:
+                      - language: nl-NL
+                        value: Cluster ICT en EIS
+        "400":
+          description: Bad request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+              example:
+                type: https://open-education-api.github.io/specification/v5/schemas/ErrorBadRequest.yaml
+                title: Bad request
+                status: 400
+                detail: The request could not be understood by the server due to malformed
+                  syntax. The client SHOULD NOT repeat the request without modifications.
+        "401":
+          description: Unauthorized
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+              example:
+                type: https://open-education-api.github.io/specification/v5/schemas/ErrorUnauthorized.yaml
+                title: Unauthorized
+                status: 401
+                detail: The request requires user authentication.
+        "403":
+          description: Forbidden
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+              example:
+                type: https://open-education-api.github.io/specification/v5/schemas/ErrorForbidden.yaml
+                title: Forbidden
+                status: 403
+                detail: "The request was valid, but the server is refusing action.\
+                  \ The client might not have the necessary permissions for the resource."
+        "404":
+          description: Not Found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+              example:
+                type: https://open-education-api.github.io/specification/v5/schemas/Error  NotFound.yaml
+                title: Not Found
+                status: 404
+                detail: The requested resource could not be found.
+        "405":
+          description: Method not allowed
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+              example:
+                type: https://open-education-api.github.io/specification/v5/schemas/ErrorMethodNotAllowed.yaml
+                title: Method not allowed
+                status: 405
+                detail: The request method is not supported for the requested resource.
+        "429":
+          description: Too many requests
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+              example:
+                type: https://open-education-api.github.io/specification/v5/schemas/ErrorTooManyRequests.yaml
+                title: Too many requests
+                status: 429
+                detail: The user has sent too many requests in a given amount of time.
+        "500":
+          description: Internal Server Error
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+              example:
+                type: https://open-education-api.github.io/specification/v5/schemas/ErrorInternalServerError.yaml
+                title: Internal Server Error
+                status: 500
+                detail: The server encountered an unexpected condition that prevented
+                  it from fulfilling the request.
+      security:
+      - oAuthFlows:
+        - okd:studentinfo
+    post:
+      tags:
+      - associations
+      summary: "POST /associations/{associationId}"
+      description: "POST a document with the association (inschrijving) metadata.\
+        \ \n\n    For the OKD: Plaats een document bij een verbintenis. \n\nnote:\n\
+        - This endpoint should be implemented by the DMS component, so that the components\
+        \ can upload documents for a association/verbintenis.\n- the call is a multipart/form-data\
+        \ call with 2 parts: metadata (json) and file (binary).\n- hoewel de ooapi\
+        \ meer states kent gebruiken we alleen \"associated\", \"finished\".\n"
+      operationId: postFileOnAssociationById
+      parameters:
+      - name: associationId
+        in: path
+        description: Association ID
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/associations_associationId_body'
+            example:
+              metadata:
+                associationId: 123e4567-e89b-12d3-a456-426614174000
+                associationType: programOfferingAssociation
+                role: student
+                state: associated
+                consumers:
+                - consumerKey: nl-okd
+                  studentNumber: "1234567"
+                  documentType: diplomering
+                  documentSubtype: diploma
+                  documentId: 65f64c44-e3c4-4579-8e05-a729d4b89d06
+                  documentName: diploma-MBO.pdf
+                  bewaartermijnsuggestie: 3Y
+                  inschrijvingStartDate: 2021-09-01
+                  inschrijvingExpectedEndDate: 2025-07-31
+                  inschrijvingFinalEndDate: null
+                person: 5ab399b8-c499-4da8-af6d-b55e66251f31
+                offering: 5ffc6127-debe-48ce-90ae-75ea80756475
+              file: (binary file content)
+        required: true
+      responses:
+        "200":
+          description: A system message as a response to a Document upload POST message
+        "400":
+          description: Bad request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+              example:
+                type: https://open-education-api.github.io/specification/v5/schemas/ErrorBadRequest.yaml
+                title: Bad request
+                status: 400
+                detail: The request could not be understood by the server due to malformed
+                  syntax. The client SHOULD NOT repeat the request without modifications.
+        "401":
+          description: Unauthorized
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+              example:
+                type: https://open-education-api.github.io/specification/v5/schemas/ErrorUnauthorized.yaml
+                title: Unauthorized
+                status: 401
+                detail: The request requires user authentication.
+        "403":
+          description: Forbidden
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+              example:
+                type: https://open-education-api.github.io/specification/v5/schemas/ErrorForbidden.yaml
+                title: Forbidden
+                status: 403
+                detail: "The request was valid, but the server is refusing action.\
+                  \ The client might not have the necessary permissions for the resource."
+        "404":
+          description: Not Found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+              example:
+                type: https://open-education-api.github.io/specification/v5/schemas/Error  NotFound.yaml
+                title: Not Found
+                status: 404
+                detail: The requested resource could not be found.
+        "405":
+          description: Method not allowed
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+              example:
+                type: https://open-education-api.github.io/specification/v5/schemas/ErrorMethodNotAllowed.yaml
+                title: Method not allowed
+                status: 405
+                detail: The request method is not supported for the requested resource.
+        "429":
+          description: Too many requests
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+              example:
+                type: https://open-education-api.github.io/specification/v5/schemas/ErrorTooManyRequests.yaml
+                title: Too many requests
+                status: 429
+                detail: The user has sent too many requests in a given amount of time.
+        "500":
+          description: Internal Server Error
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+              example:
+                type: https://open-education-api.github.io/specification/v5/schemas/ErrorInternalServerError.yaml
+                title: Internal Server Error
+                status: 500
+                detail: The server encountered an unexpected condition that prevented
+                  it from fulfilling the request.
+      security:
+      - oAuthFlows:
+        - okd:alldocuments
+        - okd:enrollmentderollment
+    patch:
+      tags:
+      - associations
+      summary: "PATCH /associations/{associationId}"
+      description: "Update the status or result of an enrollment. Other elements of\
+        \ the association object COULD \nalso be PATCHED. But are not likely and have\
+        \ therefor not been included in this endpoint.\nImplementation of the PATCH\
+        \ activity is based on use PATCH with JSON Merge Patch standard, \na specialized\
+        \ media type `application/merge-patch+json` for partial resource representation\
+        \ \nto update parts of resource objects.\n\n    Voor OKD: Update de status\
+        \ of het resultaat van een inschrijving. Eigenlijk word alleen het veld \"\
+        state\" verandert om aan te geven dat de verbintenis beeindigt is.\n    hoewel\
+        \ de ooapi meer states kent gebruiken we alleen \"associated\", \"finished\"\
+        .\n\nNote:\n  - This endpoint should be implemented by the DMS component,\
+        \ so that the Uitschrijven component can update a persons verbintenis information\
+        \ (flow 5)\n"
+      operationId: partialUpdateAssociationById
+      parameters:
+      - name: associationId
+        in: path
+        description: The id of the association to update
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        content:
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/associations_associationId_body_1'
+            example:
+              associationId: 123e4567-e89b-12d3-a456-426614174000
+              associationType: programOfferingAssociation
+              role: student
+              state: finished
+              primaryCode:
+                codeType: opleidingsblad
+                code: "1.1"
+              otherCodes:
+              - codeType: opleidingscode
+                code: "23089"
+              person: 5ab399b8-c499-4da8-af6d-b55e66251f31
+              offering: 5ffc6127-debe-48ce-90ae-75ea80756475
+        required: true
+      responses:
+        "204":
+          description: No Content. The association has been updated successfully.
+        "400":
+          description: Bad request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+              example:
+                type: https://open-education-api.github.io/specification/v5/schemas/ErrorBadRequest.yaml
+                title: Bad request
+                status: 400
+                detail: The request could not be understood by the server due to malformed
+                  syntax. The client SHOULD NOT repeat the request without modifications.
+        "401":
+          description: Unauthorized
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+              example:
+                type: https://open-education-api.github.io/specification/v5/schemas/ErrorUnauthorized.yaml
+                title: Unauthorized
+                status: 401
+                detail: The request requires user authentication.
+        "403":
+          description: Forbidden
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+              example:
+                type: https://open-education-api.github.io/specification/v5/schemas/ErrorForbidden.yaml
+                title: Forbidden
+                status: 403
+                detail: "The request was valid, but the server is refusing action.\
+                  \ The client might not have the necessary permissions for the resource."
+        "404":
+          description: Not Found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+              example:
+                type: https://open-education-api.github.io/specification/v5/schemas/Error  NotFound.yaml
+                title: Not Found
+                status: 404
+                detail: The requested resource could not be found.
+        "405":
+          description: Method not allowed
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+              example:
+                type: https://open-education-api.github.io/specification/v5/schemas/ErrorMethodNotAllowed.yaml
+                title: Method not allowed
+                status: 405
+                detail: The request method is not supported for the requested resource.
+        "429":
+          description: Too many requests
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+              example:
+                type: https://open-education-api.github.io/specification/v5/schemas/ErrorTooManyRequests.yaml
+                title: Too many requests
+                status: 429
+                detail: The user has sent too many requests in a given amount of time.
+        "500":
+          description: Internal Server Error
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/Problem'
+              example:
+                type: https://open-education-api.github.io/specification/v5/schemas/ErrorInternalServerError.yaml
+                title: Internal Server Error
+                status: 500
+                detail: The server encountered an unexpected condition that prevented
+                  it from fulfilling the request.
+      security:
+      - oAuthFlows:
+        - okd:enrollmentderollment
+components:
+  schemas:
+    Service:
+      required:
+      - contactEmail
+      - documentation
+      - specification
+      type: object
+      properties:
+        contactEmail:
+          maxLength: 256
+          type: string
+          description: Contact e-mail address of the service owner
+          format: email
+          example: admin@universiteitvanharderwijk.nl
+        specification:
+          maxLength: 2048
+          type: string
+          description: "URL of the API specification (YAML or JSON, compliant with\
+            \ [Open API Specification v3](https://github.com/OAI/OpenAPI-Specification/))"
+          format: uri
+          example: https://github.com/Onderwijs-Koppelingen-OKx/OKD-Document-Management/blob/main/specification/v5/spec.yaml
+        documentation:
+          maxLength: 2048
+          type: string
+          description: "URL of the API documentation, including general terms and\
+            \ privacy statement"
+          format: uri
+          example: https://open-education-api.github.io/specification/v5/docs.html
+        supportedVersions:
+          type: array
+          items:
+            $ref: '#/components/schemas/versions'
+        supportedConsumers:
+          type: array
+          items:
+            $ref: '#/components/schemas/ConsumerVersion'
+        consumers:
+          type: array
+          description: "The additional consumer elements that can be provided, see\
+            \ the [documentation on support for specific consumers](https://open-education-api.github.io/specification/#/consumers)\
+            \ for more information about this mechanism."
+          example: []
+          items:
+            $ref: '#/components/schemas/Consumer'
+        ext:
+          $ref: '#/components/schemas/Ext'
+      description: A metadataset providing details on the provider of this OOAPI implementation
+    Component:
+      required:
+      - abbreviation
+      - componentId
+      - componentType
+      - name
+      - primaryCode
+      - teachingLanguage
+      type: object
+      properties:
+        componentId:
+          type: string
+          description: Unique id of this component
+          format: uuid
+          readOnly: true
+          example: 123e4567-e89b-12d3-a456-426614174000
+        primaryCode:
+          $ref: '#/components/schemas/IdentifierEntry'
+        componentType:
+          $ref: '#/components/schemas/componentType'
+        name:
+          minItems: 1
+          type: array
+          description: The name of this component
+          example:
+          - language: en-GB
+            value: Written test for INFOMQNM
+          items:
+            $ref: '#/components/schemas/LanguageTypedString'
+        abbreviation:
+          maxLength: 256
+          type: string
+          description: The abbreviation of this component
+          example: Test-INFOMQNM
+        modeOfDelivery:
+          $ref: '#/components/schemas/modesOfDelivery'
+        duration:
+          pattern: "^(-?)P(?=\\d|T\\d)(?:(\\d+)Y)?(?:(\\d+)M)?(?:(\\d+)([DW]))?(?:T(?:(\\\
+            d+)H)?(?:(\\d+)M)?(?:(\\d+(?:\\.\\d+)?)S)?)?$"
+          type: string
+          description: The duration of this component. The duration format is from
+            the ISO 8601 ABNF as given in Appendix A of RFC 3339.
+          example: P1DT30H4S
+        description:
+          minItems: 1
+          type: array
+          description: The description of this component.
+          example:
+          - language: en-GB
+            value: |
+              'Prove executable knowledge of research methods, including: Acquire knowledge of HCI research paradigms Able to design suitable research studies (e.g., choose between within and between subject designs) Define/apply/design metrics and scales Define/produce materials (e.g., stimuli and questionnaires) Define protocols for research studies Understands and take in account concepts of reliability and validity Analyze and improve methods and analysis of published scientific articles Able to deliver scientific reports
+              Prove executable knowledge of ­­­statistics, including: Handle hypothesis testing with complex designs (e.g., including , dependent, independent, and co variates) Data preparation (e.g., coding and feature selection) Reason towards adequate techniques to ensure valid outcomes (e.g., be aware of type I, type II errors) Select an appropriate sampling method (e.g., stratified) Perform parametric tests (e.g., repeated measures (M)ANOVA) Perform non-parametric tests (e.g., Chi-square, Mann-Whitney, and Kruskal-Wallis)'
+          items:
+            $ref: '#/components/schemas/LanguageTypedString'
+        teachingLanguage:
+          maxLength: 3
+          minLength: 3
+          pattern: "^[a-z]{3}$"
+          type: string
+          description: "The (primary) teaching language in which this component is\
+            \ given, should be a three-letter language code as specified by ISO 639-2."
+          example: nld
+        learningOutcomes:
+          type: array
+          description: Statements that describe the knowledge or skills students should
+            acquire by the end of a particular course (ECTS-learningoutcome).
+          items:
+            minItems: 1
+            type: array
+            example:
+            - language: en-GB
+              value: "Executable knowledge of research methods, including: Acquire\
+                \ knowledge of HCI research paradigms."
+            items:
+              $ref: '#/components/schemas/LanguageTypedString'
+        enrollment:
+          type: array
+          description: The extra information that is provided for enrollment
+          example:
+          - language: en-GB
+            value: "enrollment through SIS. [The limited implementation of Git Hub\
+              \ Markdown syntax](#tag/formatting-and-displaying-results-from-API)\
+              \ MAY be used for rich text representation."
+          items:
+            $ref: '#/components/schemas/LanguageTypedString'
+        resources:
+          type: array
+          description: An overview of the literature and other resources that is used
+            in this course (ECTS-recommended reading and other sources)
+          example:
+          - book to be announced
+          - on-line resource x
+          items:
+            type: string
+        assessment:
+          minItems: 1
+          type: array
+          description: A description of the way exams for this course are taken (ECTS-assessment
+            method and criteria).
+          example:
+          - language: en-GB
+            value: Exam on campus
+          items:
+            $ref: '#/components/schemas/LanguageTypedString'
+        addresses:
+          type: array
+          description: Addresses for this component
+          items:
+            $ref: '#/components/schemas/Address'
+        otherCodes:
+          type: array
+          description: An array of additional human readable codes/identifiers for
+            the entity being described.
+          items:
+            $ref: '#/components/schemas/IdentifierEntry'
+        course:
+          description: |
+            The course of which this component is a part. [`expandable`](#tag/course_model)
+            By default only the `courseId` (a string) is returned. If the client requested an expansion of `course` the full course object should be returned.
+          oneOf:
+          - $ref: '#/components/schemas/Identifier'
+          - $ref: '#/components/schemas/Course'
+        organization:
+          description: |
+            The organization which provides this component. [`expandable`](#tag/organization_model)
+            By default only the `organizationId` (a string) is returned. If the client requested an expansion of `organization` the full organization object should be returned.
+          oneOf:
+          - $ref: '#/components/schemas/Identifier'
+          - $ref: '#/components/schemas/Organization'
+        consumers:
+          $ref: '#/components/schemas/ConsumerOnComponent'
+        ext:
+          $ref: '#/components/schemas/Ext'
+      description: A component is a part of a course
+    ComponentOffering:
+      allOf:
+      - $ref: '#/components/schemas/OfferingId'
+      - $ref: '#/components/schemas/ComponentOfferingProperties'
+      - required:
+        - description
+        - endDateTime
+        - name
+        - offeringId
+        - offeringType
+        - primaryCode
+        - resultExpected
+        - startDateTime
+        - teachingLanguage
+        type: object
+    Course:
+      allOf:
+      - $ref: '#/components/schemas/CourseId'
+      - $ref: '#/components/schemas/CourseProperties'
+      - type: object
+        properties:
+          validFrom:
+            type: string
+            description: The first day this course is valid (inclusive).
+            format: date
+          validTo:
+            type: string
+            description: The day this course ceases to be valid (e.g. exclusive).
+            format: date
+    CourseOffering:
+      allOf:
+      - $ref: '#/components/schemas/OfferingId'
+      - $ref: '#/components/schemas/CourseOfferingProperties'
+      - required:
+        - description
+        - endDate
+        - name
+        - offeringType
+        - primaryCode
+        - resultExpected
+        - startDate
+        - teachingLanguage
+        type: object
+    Person:
+      example:
+      - personId: 5ab399b8-c499-4da8-af6d-b55e66251f31
+        primaryCode:
+          codeType: studentNumber
+          code: "1234567"
+        givenName: Maartje
+        surnamePrefix: van
+        surname: Damme
+        displayName: Maartje van Damme
+        initials: MCW
+        activeEnrollment: true
+        affiliations:
+        - student
+        mail: vandamme.mcw@student.roc.nl
+        languageOfChoice:
+        - nl-NL
+        otherCodes: []
+        consumers:
+        - consumerKey: nl-okd
+          documentType: inschrijving
+          documentSubtype: dyslexieverklaring
+          documentId: acd3e12a-ed8b-4488-ac34-26fd4f64f40b
+          documentName: dyslexieverklaring-100245.pdf
+          bewaartermijnsuggestie: 7Y
+      allOf:
+      - $ref: '#/components/schemas/PersonId'
+      - $ref: '#/components/schemas/PersonProperties'
+    Program:
+      allOf:
+      - $ref: '#/components/schemas/ProgramId'
+      - $ref: '#/components/schemas/ProgramProperties'
+      - type: object
+        properties:
+          validFrom:
+            type: string
+            description: The first day this program is valid (inclusive).
+            format: date
+          validTo:
+            type: string
+            description: The day this program ceases to be valid (e.g. exclusive).
+            format: date
+    ProgramOffering:
+      allOf:
+      - $ref: '#/components/schemas/OfferingId'
+      - $ref: '#/components/schemas/ProgramOfferingProperties'
+      - required:
+        - description
+        - endDate
+        - name
+        - offeringType
+        - primaryCode
+        - resultExpected
+        - startDate
+        - teachingLanguage
+        type: object
+    Association:
+      properties:
+        person:
+          readOnly: true
+          oneOf:
+          - $ref: '#/components/schemas/Identifier'
+          - $ref: '#/components/schemas/Person'
+        offering:
+          oneOf:
+          - $ref: '#/components/schemas/Identifier'
+          - $ref: '#/components/schemas/ComponentOffering'
+          - $ref: '#/components/schemas/CourseOffering'
+          - $ref: '#/components/schemas/ProgramOffering'
+      oneOf:
+      - $ref: '#/components/schemas/ProgramOfferingAssociation'
+      - $ref: '#/components/schemas/CourseOfferingAssociation'
+      - $ref: '#/components/schemas/ComponentOfferingAssociation'
+    Problem:
+      required:
+      - status
+      - title
+      type: object
+      properties:
+        status:
+          type: string
+          description: The HTTP status code
+          example: "404"
+        title:
+          type: string
+          description: "A short, human-readable summary of the problem type"
+          example: Resource not found
+        detail:
+          type: string
+          description: A human-readable explanation specific to this occurrence of
+            the problem
+      description: A system message including the error code and an explanation
+    personAffiliations:
+      type: array
+      description: |
+        The affiliations of this person, the relations a person has with the organization providing this endpoint
+        - student: student
+        - employee: medewerker
+        - guest: gast
+      items:
+        type: string
+        example: student
+        enum:
+        - student
+        - employee
+        - guest
+    Pagination:
+      required:
+      - hasNextPage
+      - hasPreviousPage
+      - items
+      - pageNumber
+      - pageSize
+      type: object
+      properties:
+        pageSize:
+          type: integer
+          description: The number of items per page
+          format: int32
+          example: 10
+        pageNumber:
+          minimum: 1
+          type: integer
+          description: The current page number
+          format: int32
+          example: 1
+        hasPreviousPage:
+          type: boolean
+          description: Whether there is a previous page
+          example: false
+        hasNextPage:
+          type: boolean
+          description: Whether there is a previous page
+          example: false
+        totalPages:
+          type: integer
+          description: Total number of pages
+          format: int32
+          example: 1
+    Ext:
+      type: object
+      description: Object for additional non-standard attributes
+    DocumentUploadResponse:
+      required:
+      - message
+      type: object
+      properties:
+        dmsDocumentId:
+          type: string
+          description: id van de zojuist geuploade document
+          example: e68ee6c0-d503-4e56-8dce-d7fbf3e5b52d
+        url:
+          type: string
+          description: URL where additional information can be found e.g. by use of
+            deeplink
+          format: uri
+          example: https://api.djuma.nl/documents/meta/e68ee6c0-d503-4e56-8dce-d7fbf3e5b52d
+      description: A system message as a response to a Document upload POST message
+    AssociationFull:
+      properties:
+        person:
+          readOnly: true
+          oneOf:
+          - $ref: '#/components/schemas/Identifier'
+          - $ref: '#/components/schemas/Person'
+        offering:
+          oneOf:
+          - $ref: '#/components/schemas/Identifier'
+          - $ref: '#/components/schemas/ComponentOffering'
+          - $ref: '#/components/schemas/CourseOffering'
+          - $ref: '#/components/schemas/ProgramOffering'
+      oneOf:
+      - $ref: '#/components/schemas/ProgramOfferingAssociation'
+      - $ref: '#/components/schemas/CourseOfferingAssociation'
+      - $ref: '#/components/schemas/ComponentOfferingAssociation'
+    ComponentOfferingAssociationExpanded:
+      properties:
+        person:
+          readOnly: true
+          oneOf:
+          - $ref: '#/components/schemas/Identifier'
+          - $ref: '#/components/schemas/Person'
+        offering:
+          oneOf:
+          - $ref: '#/components/schemas/Identifier'
+          - $ref: '#/components/schemas/ComponentOffering'
+      allOf:
+      - $ref: '#/components/schemas/ComponentOfferingAssociation'
+    ComponentOfferingAssociationPatch:
+      properties:
+        person:
+          oneOf:
+          - $ref: '#/components/schemas/Identifier'
+          - $ref: '#/components/schemas/Person'
+        offering:
+          oneOf:
+          - $ref: '#/components/schemas/Identifier'
+          - $ref: '#/components/schemas/ComponentOffering'
+      allOf:
+      - $ref: '#/components/schemas/ComponentOfferingAssociationProperties'
+    versions:
+      type: string
+      description: The version number of the specification
+      example: v5
+      enum:
+      - v4
+      - v5
+    ConsumerVersion:
+      required:
+      - consumerKey
+      - version
+      type: object
+      properties:
+        consumerKey:
+          type: string
+          description: "The key of the consumer (destination) for which this information\
+            \ is intended. See the [consumer registry](https://open-education-api.github.io/specification/#/consumers)\
+            \ for more information."
+          example: nl-okd
+        version:
+          type: string
+          description: the version number of this consumer
+          example: 1.0.0
+      description: Object for communicating data to a specific consumer (destination).
+        This object has no relationship with the `consumer` query parameter.
+    Consumer:
+      required:
+      - consumerKey
+      type: object
+      properties:
+        consumerKey:
+          type: string
+          description: "The key of the consumer (destination) for which this information\
+            \ is intended. See the [consumer registry](https://open-education-api.github.io/specification/#/consumers)\
+            \ for more information."
+      additionalProperties: true
+      description: Object for communicating data to a specific consumer (destination).
+        This object has no relationship with the `consumer` query parameter.
+    OfferingId:
+      type: object
+      properties:
+        offeringId:
+          type: string
+          description: Unique id of this offering
+          format: uuid
+          example: 123e4567-e89b-12d3-a456-134564174000
+      description: "ID of Either a program, course or component offering which descrbes\
+        \ the program, course or offering in time"
+    ComponentOfferingProperties:
+      allOf:
+      - $ref: '#/components/schemas/OfferingProperties'
+      - type: object
+        properties:
+          startDateTime:
+            type: string
+            description: "The moment on which this offering starts, RFC3339 (date-time)"
+            format: date-time
+            example: 2020-12-15T20:00:00+01:00
+          endDateTime:
+            type: string
+            description: "The moment on which this offering ends, RFC3339 (date-time)"
+            format: date-time
+            example: 2020-12-16T20:00:00+01:00
+          enrollStartDate:
+            type: string
+            description: The first day on which a student can enroll for this course.
+            format: date
+          enrollEndDate:
+            type: string
+            description: The last day on which a student can enroll for this course.
+            format: date
+          resultWeight:
+            maximum: 100
+            minimum: 0
+            type: integer
+            description: The result weight of this offering
+            example: 100
+          addresses:
+            type: array
+            description: Addresses for this offering
+            items:
+              $ref: '#/components/schemas/Address'
+          priceInformation:
+            type: array
+            description: Price information for this offering.
+            items:
+              $ref: '#/components/schemas/Cost'
+          room:
+            $ref: '#/components/schemas/Room'
+          component:
+            description: |
+              The component that is offered in this componentoffering. [`expandable`](#tag/component_model)
+              By default only the `componentId` (a string) is returned. If the client requested an expansion of `component` the full component object should be returned.
+            oneOf:
+            - $ref: '#/components/schemas/Identifier'
+            - $ref: '#/components/schemas/Component'
+          courseOffering:
+            description: |
+              The courseoffering where this componentoffering is related to. [`expandable`](#tag/course_offering_model)
+              By default only the `courseOfferingId` (a string) is returned. If the client requested an expansion of `courseOffering` the full courseOffering object should be returned.
+            oneOf:
+            - $ref: '#/components/schemas/Identifier'
+            - $ref: '#/components/schemas/CourseOffering'
+          organization:
+            description: |
+              The organization that manages this componentoffering. [`expandable`](#tag/organization_model)
+              By default only the `organizationId` (a string) is returned. If the client requested an expansion of `organization` the full organization object should be returned.
+            oneOf:
+            - $ref: '#/components/schemas/Identifier'
+            - $ref: '#/components/schemas/Organization'
+    PersonId:
+      required:
+      - personId
+      type: object
+      properties:
+        personId:
+          type: string
+          description: Unique id of this person
+          format: uuid
+          example: 123e4567-e89b-12d3-a456-426614174000
+    PersonProperties:
+      required:
+      - activeEnrollment
+      - affiliations
+      - displayName
+      - givenName
+      - mail
+      - primaryCode
+      - surname
+      type: object
+      properties:
+        primaryCode:
+          $ref: '#/components/schemas/IdentifierEntry'
+        givenName:
+          maxLength: 256
+          type: string
+          description: The first name of this person
+          example: Maartje
+        surnamePrefix:
+          type: string
+          description: The prefix of the family name of this person
+          example: van
+        surname:
+          maxLength: 256
+          type: string
+          description: The family name of this person
+          example: Damme
+        displayName:
+          maxLength: 256
+          type: string
+          description: The name of this person which will be displayed
+          example: Maartje van Damme
+        initials:
+          type: string
+          description: The initials of this person
+          example: MCW
+        activeEnrollment:
+          type: boolean
+          description: Whether this person has an active enrollment.
+          example: false
+        dateOfBirth:
+          type: string
+          description: "The date of birth of this person, RFC3339 (full-date)"
+          format: date
+          example: 2003-09-30
+        cityOfBirth:
+          type: string
+          description: The city of birth of this person
+          example: Utrecht
+        countryOfBirth:
+          type: string
+          description: "The country of birth of this person the country code according\
+            \ to [iso-3166-1-alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)"
+          example: NL
+        nationality:
+          type: string
+          description: The nationality (CCA3) of this person according to https://gist.github.com/zspine/2365808.
+          example: Dutch
+        dateOfNationality:
+          type: string
+          description: "The date of nationality of this person, RFC3339 (full-date)"
+          format: date
+          example: 2003-09-30
+        affiliations:
+          $ref: '#/components/schemas/personAffiliations'
+        mail:
+          maxLength: 256
+          type: string
+          description: The primary e-mailaddress of this person
+          format: email
+          example: vandamme.mcw@universiteitvanharderwijk.nl
+        secondaryMail:
+          maxLength: 256
+          type: string
+          description: The secondary e-mailaddress of this person
+          format: email
+          example: poekie@xyz.nl
+        telephoneNumber:
+          maxLength: 256
+          type: string
+          description: The telephone number of this person
+          example: +31 123 456 789
+        mobileNumber:
+          maxLength: 256
+          type: string
+          description: The mobile number of this person
+          example: +31 612 345 678
+        photoSocial:
+          maxLength: 2048
+          type: string
+          description: The url of the informal picture of this person
+          format: uri
+          example: https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Placeholder_female_superhero_c.png/203px-Placeholder_female_superhero_c.png
+        photoOfficial:
+          maxLength: 2048
+          type: string
+          description: The url of the official picture of this person
+          format: uri
+          example: https://upload.wikimedia.org/wikipedia/commons/6/66/Johannes_Vermeer_%281632-1675%29_-_The_Girl_With_The_Pearl_Earring_%281665%29.jpg
+        gender:
+          $ref: '#/components/schemas/gender'
+        titlePrefix:
+          type: string
+          description: A title prefix to be used for this person
+          example: drs
+        titleSuffix:
+          type: string
+          description: A title suffix to be used for this person
+          example: BSc
+        office:
+          type: string
+          description: The name of the office where this person is located
+        address:
+          $ref: '#/components/schemas/Address'
+        ICEName:
+          maxLength: 256
+          type: string
+          description: Full name of In Case of Emergency contact
+          example: Janne
+        ICEPhoneNumber:
+          maxLength: 256
+          type: string
+          description: Phone number of In Case of Emergency contact
+          example: +31 623 456 789
+        ICERelation:
+          $ref: '#/components/schemas/ICERelationType'
+        languageOfChoice:
+          type: array
+          description: "The language(s) of choice for this person, RFC3066"
+          items:
+            type: string
+            example: nl-NL
+        otherCodes:
+          type: array
+          description: An array of additional human readable codes/identifiers for
+            the entity being described.
+          example:
+          - codeType: nationalIdentityNumber
+            code: "00000"
+          items:
+            $ref: '#/components/schemas/IdentifierEntry'
+        consumers:
+          $ref: '#/components/schemas/ConsumerOnPerson'
+        ext:
+          $ref: '#/components/schemas/Ext'
+      description: A person that has a relationship with this institution
+    ProgramOfferingAssociation:
+      allOf:
+      - $ref: '#/components/schemas/Association_1'
+      - type: object
+        properties:
+          result:
+            $ref: '#/components/schemas/ProgramResult'
+    CourseOfferingAssociation:
+      allOf:
+      - $ref: '#/components/schemas/Association_1'
+      - type: object
+        properties:
+          result:
+            $ref: '#/components/schemas/CourseResult'
+    ComponentOfferingAssociation:
+      allOf:
+      - $ref: '#/components/schemas/AssociationId'
+      - $ref: '#/components/schemas/ComponentOfferingAssociationProperties'
+      - required:
+        - associationId
+        - associationType
+        - role
+        - state
+        type: object
+    Identifier:
+      type: string
+      description: An identifier of another resource.
+      format: uuid
+    ComponentOfferingAssociationProperties:
+      allOf:
+      - $ref: '#/components/schemas/AssociationProperties'
+      - type: object
+        properties:
+          result:
+            $ref: '#/components/schemas/ComponentResult'
+    IdentifierEntry:
+      required:
+      - code
+      - codeType
+      type: object
+      properties:
+        codeType:
+          $ref: '#/components/schemas/codeType'
+        code:
+          type: string
+          description: Human readable value for the code/identifier
+      additionalProperties: false
+      example:
+        codeType: identifier
+        code: 1234qwe12
+    componentType:
+      type: string
+      description: |
+        The component type
+        - test: tentamen
+        - lecture: college
+        - practical: practicum
+        - tutorial: werkcollege
+        - consultation: consultatie
+        - project: project
+        - workshop: workshop
+        - excursion: excursie
+        - independent study: zelfstudie
+        - external: extern
+        - skills training: vaardighedentraining
+      example: test
+      enum:
+      - test
+      - lecture
+      - practical
+      - tutorial
+      - consultation
+      - project
+      - workshop
+      - excursion
+      - independent study
+      - external
+      - skills training
+    LanguageTypedString:
+      type: object
+      properties:
+        language:
+          pattern: "^[a-z]{2,4}(-[A-Z][a-z]{3})?(-([A-Z]{2}|[0-9]{3}))?$"
+          type: string
+          description: The language used in the described entity. A string formatted
+            according to RFC3066.
+        value:
+          type: string
+          description: String to describe the entity.
+      description: A String with an associated language code.
+      example:
+        language: en-GB
+        value: program that is a place holder for all courses that are made available
+          for student mobility
+    modesOfDelivery:
+      type: array
+      description: |
+        The mode of delivery of the component (ECTS-mode of delivery)
+        - distance-learning: afstandsleren
+        - on campus: op de campus
+        - online: online
+        - hybrid: hybride
+        - situated: op locatie
+      items:
+        type: string
+        example: situated
+        enum:
+        - distance-learning
+        - on campus
+        - online
+        - hybrid
+        - situated
+    Address:
+      required:
+      - addressType
+      type: object
+      properties:
+        addressType:
+          $ref: '#/components/schemas/addressType'
+        street:
+          type: string
+          description: The street name
+          example: Moreelsepark
+        streetNumber:
+          type: string
+          description: The street number
+          example: "48"
+        additional:
+          minItems: 1
+          type: array
+          description: "Further details like building name, suite, apartment number,\
+            \ etc."
+          example:
+          - language: en-GB
+            value: On the other side of the road
+          items:
+            $ref: '#/components/schemas/LanguageTypedString'
+        postalCode:
+          type: string
+          description: Postal code
+          example: 3511 EP
+        city:
+          type: string
+          description: name of the city / locality
+          example: Utrecht
+        countryCode:
+          type: string
+          description: "the country code according to [iso-3166-1-alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2)"
+          example: NL
+        geolocation:
+          $ref: '#/components/schemas/Address_geolocation'
+        ext:
+          $ref: '#/components/schemas/Ext'
+      description: The full street address
+    Organization:
+      required:
+      - name
+      - organizationId
+      - organizationType
+      - primaryCode
+      - shortName
+      type: object
+      properties:
+        organizationId:
+          type: string
+          description: Unique id of this organization
+          format: uuid
+          readOnly: true
+          example: 123e4567-e89b-12d3-a456-123514174000
+        primaryCode:
+          $ref: '#/components/schemas/IdentifierEntry'
+        organizationType:
+          $ref: '#/components/schemas/organizationType'
+        name:
+          minItems: 1
+          type: array
+          description: The name of the organization
+          example:
+          - language: nl-NL
+            value: Coöperatie SURF U.A.
+          items:
+            $ref: '#/components/schemas/LanguageTypedString'
+        shortName:
+          maxLength: 256
+          type: string
+          description: Short name of the organization
+          example: SURF
+        description:
+          minItems: 1
+          type: array
+          description: "Any general description of the organization should clearly\
+            \ mention the type of higher education organization, especially in the\
+            \ case of a binary system. In Dutch; universiteit (university) or hogeschool\
+            \ (university of applied sciences)."
+          example:
+          - language: nl-NL
+            value: SURF is een coöperatieve vereniging van Nederlandse onderwijs-
+              en onderzoeksinstellingen waarin de leden hun krachten bundelen. De
+              leden zijn eigenaar van SURF.
+          items:
+            $ref: '#/components/schemas/LanguageTypedString'
+        addresses:
+          type: array
+          description: Addresses of this organization
+          items:
+            $ref: '#/components/schemas/Address'
+        link:
+          maxLength: 2048
+          type: string
+          description: URL of the organization's website
+          format: uri
+          example: https://surf.nl
+        logo:
+          maxLength: 2048
+          type: string
+          description: Logo of this organization
+          format: uri
+          example: https://www.surf.nl/themes/surf/logo.svg
+        otherCodes:
+          minItems: 1
+          type: array
+          description: An array of additional human readable codes/identifiers for
+            the entity being described.
+          example:
+          - codeType: brin
+            code: 00AA
+          - codeType: kvk
+            code: "12345678"
+          items:
+            $ref: '#/components/schemas/IdentifierEntry'
+        parent:
+          description: |
+            The organizational unit which is the parent of this organization. [`expandable`](#tag/organization_model)
+            By default only the `organizationId` (a string) is returned. If the client requested an expansion of `organization` the full organization object should be returned.
+          oneOf:
+          - $ref: '#/components/schemas/Identifier'
+          - $ref: '#/components/schemas/Organization'
+        children:
+          type: array
+          description: |
+            All the organizational units for which this organization is the parent. [`expandable`](#tag/organization_model)
+            By default only the `organizationId` (a string) is returned. If the client requested an expansion of `organization` the full organization object should be returned.
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/Identifier'
+            - $ref: '#/components/schemas/Organization'
+        consumers:
+          type: array
+          description: "The additional consumer elements that can be provided, see\
+            \ the [documentation on support for specific consumers](https://open-education-api.github.io/specification/#/consumers)\
+            \ for more information about this mechanism."
+          items:
+            $ref: '#/components/schemas/Consumer'
+        ext:
+          $ref: '#/components/schemas/Ext'
+      description: A description of a group of people working together to achieve
+        a goal
+    ConsumerOnComponent:
+      type: array
+      description: "The additional consumer elements that can be provided, see the\
+        \ [documentation on support for specific consumers](https://open-education-api.github.io/specification/#/consumers)\
+        \ for more information about this mechanism."
+      items:
+        anyOf:
+        - $ref: '#/components/schemas/Consumer'
+    CourseId:
+      required:
+      - courseId
+      type: object
+      properties:
+        courseId:
+          type: string
+          description: Unique id of this course
+          format: uuid
+          readOnly: true
+          example: 123e4567-e89b-12d3-a456-426614174000
+      description: An object describing the metadata of a course
+    CourseProperties:
+      required:
+      - abbreviation
+      - description
+      - level
+      - name
+      - primaryCode
+      - teachingLanguage
+      type: object
+      properties:
+        primaryCode:
+          $ref: '#/components/schemas/IdentifierEntry'
+        name:
+          minItems: 1
+          type: array
+          description: The name of this course (ECTS-title)
+          example:
+          - language: en-GB
+            value: Academic and Professional Writing
+          items:
+            $ref: '#/components/schemas/LanguageTypedString'
+        abbreviation:
+          maxLength: 256
+          type: string
+          description: The abbreviation or internal code used to identify this course
+            (ECTS-code)
+          example: INFOMQNM
+        studyLoad:
+          $ref: '#/components/schemas/StudyLoadDescriptor'
+        modeOfDelivery:
+          $ref: '#/components/schemas/modesOfDelivery'
+        duration:
+          pattern: "^(-?)P(?=\\d|T\\d)(?:(\\d+)Y)?(?:(\\d+)M)?(?:(\\d+)([DW]))?(?:T(?:(\\\
+            d+)H)?(?:(\\d+)M)?(?:(\\d+(?:\\.\\d+)?)S)?)?$"
+          type: string
+          description: The duration of this course. The duration format is from the
+            ISO 8601 ABNF as given in Appendix A of RFC 3339.
+          example: P1DT30H4S
+        firstStartDate:
+          type: string
+          description: The date when participants can follow this course for the first
+            time.
+          format: date
+        description:
+          minItems: 1
+          type: array
+          description: The description of this course (ECTS-description).
+          example:
+          - language: en-GB
+            value: "As with all empirical sciences, to assure valid outcomes, HCI\
+              \ studies heavily rely on research methods and statistics. This holds\
+              \ for the design of user interfaces, personalized recommender systems,\
+              \ and interaction paradigms for the internet of things. This course\
+              \ prepares you to do so by learning you to collect data, design experiments,\
+              \ and analyze the results. By the end of the course, you will have a\
+              \ detailed understanding of how to select and apply quantitative research\
+              \ methods and analysis to address virtually all HCI challenges. Quantitative\
+              \ research and data analysis will be taught in the context of state-of-the-art\
+              \ HCI challenges. Lectures will be alternated with hands-on learning,\
+              \ including work with predefined datasets (e.g., addressing facial features,\
+              \ cognitive load, and emotion). Additionally, students will set up their\
+              \ own research (e.g., using eye tracking). Data processing and analysis\
+              \ will be executed using R."
+          items:
+            $ref: '#/components/schemas/LanguageTypedString'
+        teachingLanguage:
+          maxLength: 3
+          minLength: 3
+          pattern: "^[a-z]{3}$"
+          type: string
+          description: "The (primary) teaching language in which this course is given,\
+            \ should be a three-letter language code as specified by ISO 639-2."
+          example: nld
+        fieldsOfStudy:
+          maxLength: 4
+          type: string
+          description: Field(s) of study (e.g. ISCED-F) (http://uis.unesco.org/sites/default/files/documents/isced-fields-of-education-and-training-2013-en.pdf.
+          example: "0732"
+        learningOutcomes:
+          type: array
+          description: Statements that describe the knowledge or skills students should
+            acquire by the end of a particular course (ECTS-learningoutcome).
+          items:
+            minItems: 1
+            type: array
+            example:
+            - language: en-GB
+              value: "Executable knowledge of research methods, including: Acquire\
+                \ knowledge of HCI research paradigms."
+            items:
+              $ref: '#/components/schemas/LanguageTypedString'
+        admissionRequirements:
+          minItems: 1
+          type: array
+          description: This information may be given at an institutional level and/or
+            at the level of individual programmes. Make sure that it is clear whether
+            the information applies to fee-paying students (national and/or international)
+            or to exchange students.
+          example:
+          - language: en-GB
+            value: Students need to be enrolled at qualifying institutions of higher
+              education that participate in this alliance
+          items:
+            $ref: '#/components/schemas/LanguageTypedString'
+        qualificationRequirements:
+          minItems: 1
+          type: array
+          description: "Normally, students will receive a diploma when they have completed\
+            \ the (official) study program and have obtained the required number of\
+            \ credits. If there are any other specific requirements that students\
+            \ need to have fulfilled, mention them here."
+          items:
+            $ref: '#/components/schemas/LanguageTypedString'
+        level:
+          $ref: '#/components/schemas/level'
+        enrollment:
+          type: array
+          description: The extra information that is provided for enrollment
+          example:
+          - language: en-GB
+            value: "enrollment through SIS. [The limited implementation of Git Hub\
+              \ Markdown syntax](#tag/formatting-and-displaying-results-from-API)\
+              \ MAY be used for rich text representation."
+          items:
+            $ref: '#/components/schemas/LanguageTypedString'
+        resources:
+          type: array
+          description: An overview of the literature and other resources that is used
+            in this course (ECTS-recommended reading and other sources)
+          example:
+          - book to be announced
+          - on-line resource x
+          items:
+            type: string
+        assessment:
+          minItems: 1
+          type: array
+          description: A description of the way exams for this course are taken (ECTS-assessment
+            method and criteria).
+          example:
+          - language: en-GB
+            value: Exam on campus
+          items:
+            $ref: '#/components/schemas/LanguageTypedString'
+        link:
+          maxLength: 2048
+          type: string
+          description: URL of the course's website
+          format: uri
+          example: https://osiris.uu.nl/osiris_student_uuprd/OnderwijsCatalogusZoekCursus.do#submitForm?cursuscode=INFOMQNM
+        educationSpecification:
+          description: "The educationSpecification of which this course is a more\
+            \ concrete implementation. [`expandable`](#tag/education_specification_model)"
+          oneOf:
+          - $ref: '#/components/schemas/Identifier'
+          - $ref: '#/components/schemas/EducationSpecification'
+        addresses:
+          type: array
+          description: Addresses for this course
+          items:
+            $ref: '#/components/schemas/Address'
+        otherCodes:
+          type: array
+          description: An array of additional human readable codes/identifiers for
+            the entity being described.
+          items:
+            $ref: '#/components/schemas/IdentifierEntry'
+        consumers:
+          type: array
+          description: "The additional consumer elements that can be provided, see\
+            \ the [documentation on support for specific consumers](https://open-education-api.github.io/specification/#/consumers)\
+            \ for more information about this mechanism."
+          items:
+            $ref: '#/components/schemas/Consumer'
+        ext:
+          $ref: '#/components/schemas/Ext'
+        programs:
+          type: array
+          description: "The program of which this course is a part of. This object\
+            \ is [`expandable`](#tag/program_model)"
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/Identifier'
+            - $ref: '#/components/schemas/Program'
+        coordinators:
+          type: array
+          description: "The person(s) responsible for this course. This object is\
+            \ [`expandable`](#tag/person_model)"
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/Identifier'
+            - $ref: '#/components/schemas/Person'
+        organization:
+          description: |
+            The organization that manages this group. [`expandable`](#tag/organization_model)
+            By default only the `organizationId` (a string) is returned. If the client requested an expansion of `organization` the full organization object should be returned.
+          oneOf:
+          - $ref: '#/components/schemas/Identifier'
+          - $ref: '#/components/schemas/Organization'
+      description: An object describing the metadata of a course
+    CourseOfferingProperties:
+      allOf:
+      - $ref: '#/components/schemas/OfferingProperties'
+      - type: object
+        properties:
+          startDate:
+            type: string
+            description: "The moment on which this offering starts, RFC3339 (full-date)"
+            format: date
+            example: 2019-08-21
+          endDate:
+            type: string
+            description: "The moment on which this offering ends, RFC3339 (full-date)"
+            format: date
+            example: 2019-10-23
+          enrollStartDate:
+            type: string
+            description: The first day on which a student can enroll for this course.
+            format: date
+            example: 2019-05-01
+          enrollEndDate:
+            type: string
+            description: The last day on which a student can enroll for this course.
+            format: date
+            example: 2019-08-01
+          flexibleEntryPeriodStart:
+            type: string
+            description: "If this is a course wherein participants can start at various\
+              \ moments, without missing anything, use this attribute in combination\
+              \ with `flexibleEntryPeriodEnd`."
+            format: date
+          flexibleEntryPeriodEnd:
+            type: string
+            description: "If this is a course wherein participants can start at various\
+              \ moments, without missing anything, use this attribute in combination\
+              \ with `flexibleEntryPeriodStart`."
+            format: date
+          addresses:
+            type: array
+            description: Addresses for this offering
+            items:
+              $ref: '#/components/schemas/Address'
+          priceInformation:
+            type: array
+            description: Price information for this offering.
+            items:
+              $ref: '#/components/schemas/Cost'
+          course:
+            description: |
+              The course that is offered in this courseoffering. [`expandable`](#tag/course_model)
+              By default only the `courseId` (a string) is returned. If the client requested an expansion of `course` the full course object should be returned.
+            oneOf:
+            - $ref: '#/components/schemas/Identifier'
+            - $ref: '#/components/schemas/Course'
+          programOffering:
+            description: |
+              The programoffering where this courseoffering is related to. [`expandable`](#tag/program_offering_model)
+              By default only the `programOfferingId` (a string) is returned. If the client requested an expansion of `programOffering` the full programOffering object should be returned.
+            oneOf:
+            - $ref: '#/components/schemas/Identifier'
+            - $ref: '#/components/schemas/ProgramOffering'
+          organization:
+            description: |
+              The organization that manages this courseoffering. [`expandable`](#tag/organization_model)
+              By default only the `organizationId` (a string) is returned. If the client requested an expansion of `organization` the full organization object should be returned.
+            oneOf:
+            - $ref: '#/components/schemas/Identifier'
+            - $ref: '#/components/schemas/Organization'
+    ProgramId:
+      required:
+      - programId
+      type: object
+      properties:
+        programId:
+          type: string
+          description: Unique id for this program
+          format: uuid
+          readOnly: true
+          example: 123e4567-e89b-12d3-a456-426614174000
+      description: A collection of courses that lead to a certifiable learning outcome
+    ProgramProperties:
+      type: object
+      properties:
+        primaryCode:
+          $ref: '#/components/schemas/IdentifierEntry'
+        programType:
+          $ref: '#/components/schemas/programType'
+        name:
+          minItems: 1
+          type: array
+          description: The name of this program
+          example:
+          - language: en-GB
+            value: Biology
+          items:
+            $ref: '#/components/schemas/LanguageTypedString'
+        abbreviation:
+          maxLength: 256
+          type: string
+          description: The abbreviation of this program
+          example: BIO
+        description:
+          minItems: 1
+          type: array
+          description: The description of this program
+          example:
+          - language: en-GB
+            value: The study of life
+          items:
+            $ref: '#/components/schemas/LanguageTypedString'
+        teachingLanguage:
+          maxLength: 3
+          minLength: 3
+          pattern: "^[a-z]{3}$"
+          type: string
+          description: "The (primary) teaching language in which this program is given,\
+            \ should be a three-letter language code as specified by ISO 639-2."
+          example: nld
+        studyLoad:
+          $ref: '#/components/schemas/StudyLoadDescriptor'
+        qualificationAwarded:
+          $ref: '#/components/schemas/qualificationAwarded'
+        modeOfStudy:
+          $ref: '#/components/schemas/modeOfStudy'
+        modeOfDelivery:
+          $ref: '#/components/schemas/modesOfDelivery'
+        duration:
+          pattern: "^(-?)P(?=\\d|T\\d)(?:(\\d+)Y)?(?:(\\d+)M)?(?:(\\d+)([DW]))?(?:T(?:(\\\
+            d+)H)?(?:(\\d+)M)?(?:(\\d+(?:\\.\\d+)?)S)?)?$"
+          type: string
+          description: The duration of this program. The duration format is from the
+            ISO 8601 ABNF as given in Appendix A of RFC 3339.
+          example: P1DT30H4S
+        firstStartDate:
+          type: string
+          description: The date when participants can follow this program for the
+            first time.
+          format: date
+        levelOfQualification:
+          $ref: '#/components/schemas/levelOfQualification'
+        level:
+          $ref: '#/components/schemas/level'
+        sector:
+          $ref: '#/components/schemas/sector'
+        fieldsOfStudy:
+          maxLength: 4
+          type: string
+          description: Field(s) of study (e.g. ISCED-F) (http://uis.unesco.org/sites/default/files/documents/isced-fields-of-education-and-training-2013-en.pdf.
+          example: "0732"
+        enrollment:
+          type: array
+          description: The extra information that is provided for enrollment
+          example:
+          - language: en-GB
+            value: "enrollment through SIS. [The limited implementation of Git Hub\
+              \ Markdown syntax](#tag/formatting-and-displaying-results-from-API)\
+              \ MAY be used for rich text representation."
+          items:
+            $ref: '#/components/schemas/LanguageTypedString'
+        resources:
+          type: array
+          description: An overview of the literature and other resources that is used
+            in this course (ECTS-recommended reading and other sources)
+          example:
+          - book to be announced
+          - on-line resource x
+          items:
+            type: string
+        learningOutcomes:
+          type: array
+          description: List of learning outcomes at program level. It is advisable
+            to limit the number of learning outcomes to approximately 20. It is also
+            advisable to make sure that the program learning outcomes in the course
+            catalogue correspond with those on the Diploma Supplement.
+          items:
+            minItems: 1
+            type: array
+            example:
+            - language: en-GB
+              value: "Executable knowledge of research methods, including: Acquire\
+                \ knowledge of HCI research paradigms."
+            items:
+              $ref: '#/components/schemas/LanguageTypedString'
+        assessment:
+          minItems: 1
+          type: array
+          description: A description of the way exams for this course are taken (ECTS-assessment
+            method and criteria).
+          example:
+          - language: en-GB
+            value: Exam on campus
+          items:
+            $ref: '#/components/schemas/LanguageTypedString'
+        admissionRequirements:
+          minItems: 1
+          type: array
+          description: This information may be given at an institutional level and/or
+            at the level of individual programmes. Make sure that it is clear whether
+            the information applies to fee-paying students (national and/or international)
+            or to exchange students.
+          example:
+          - language: en-GB
+            value: Students need to be enrolled at qualifying institutions of higher
+              education that participate in this alliance
+          items:
+            $ref: '#/components/schemas/LanguageTypedString'
+        qualificationRequirements:
+          minItems: 1
+          type: array
+          description: "Normally, students will receive a diploma when they have completed\
+            \ the (official) study program and have obtained the required number of\
+            \ credits. If there are any other specific requirements that students\
+            \ need to have fulfilled, mention them here."
+          items:
+            $ref: '#/components/schemas/LanguageTypedString'
+        link:
+          maxLength: 2048
+          type: string
+          description: URL of the program's website
+          format: uri
+          example: https://bijvak.nl
+        educationSpecification:
+          description: "The educationSpecification of which this program is a more\
+            \ concrete implementation. [`expandable`](#tag/education_specification_model)"
+          oneOf:
+          - $ref: '#/components/schemas/Identifier'
+          - $ref: '#/components/schemas/EducationSpecification'
+        otherCodes:
+          type: array
+          description: An array of additional human readable codes/identifiers for
+            the entity being described.
+          example:
+          - codeType: crohoCreboCode
+            code: "59312"
+          items:
+            $ref: '#/components/schemas/IdentifierEntry'
+        addresses:
+          type: array
+          description: Addresses for this program
+          items:
+            $ref: '#/components/schemas/Address'
+        parent:
+          description: "Parent program of which the current program is a child. This\
+            \ object is [`expandable`](#tag/program_model)"
+          oneOf:
+          - $ref: '#/components/schemas/Identifier'
+          - $ref: '#/components/schemas/Program'
+        children:
+          type: array
+          description: "Programs which are a part of this program (e.g specializations).\
+            \ This object is [`expandable`](#tag/program_model)"
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/Identifier'
+            - $ref: '#/components/schemas/Program'
+        coordinators:
+          type: array
+          description: "The person(s) responsible for this program. This object is\
+            \ [`expandable`](#tag/person_model)"
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/Identifier'
+            - $ref: '#/components/schemas/Person'
+        organization:
+          description: |
+            The organization providing this program. [`expandable`](#tag/organization_model)
+            By default only the `organizationId` (a string) is returned. If the client requested an expansion of `organization` the full organization object should be returned.
+          oneOf:
+          - $ref: '#/components/schemas/Identifier'
+          - $ref: '#/components/schemas/Organization'
+        consumers:
+          type: array
+          description: "The additional consumer elements that can be provided, see\
+            \ the [documentation on support for specific consumers](https://open-education-api.github.io/specification/#/consumers)\
+            \ for more information about this mechanism."
+          items:
+            $ref: '#/components/schemas/Consumer'
+        ext:
+          $ref: '#/components/schemas/Ext'
+      description: A collection of courses that lead to a certifiable learning outcome
+    ProgramOfferingProperties:
+      allOf:
+      - $ref: '#/components/schemas/OfferingProperties'
+      - type: object
+        properties:
+          startDate:
+            type: string
+            description: "The moment on which this offering starts, RFC3339 (full-date)"
+            format: date
+            example: 2019-08-21
+          endDate:
+            type: string
+            description: "The moment on which this offering ends, RFC3339 (full-date)"
+            format: date
+            example: 2023-06-15
+          enrollStartDate:
+            type: string
+            description: The first day on which a student can enroll for this program.
+            format: date
+            example: 2019-05-01
+          enrollEndDate:
+            type: string
+            description: The last day on which a student can enroll for this program.
+            format: date
+            example: 2019-08-01
+          flexibleEntryPeriodStart:
+            type: string
+            description: "If this is a program wherein participants can start at various\
+              \ moments, without missing anything, use this attribute in combination\
+              \ with `flexibleEntryPeriodEnd`."
+            format: date
+          flexibleEntryPeriodEnd:
+            type: string
+            description: "If this is a program wherein participants can start at various\
+              \ moments, without missing anything, use this attribute in combination\
+              \ with `flexibleEntryPeriodStart`."
+            format: date
+          addresses:
+            type: array
+            description: Addresses for this offering
+            items:
+              $ref: '#/components/schemas/Address'
+          priceInformation:
+            minItems: 1
+            type: array
+            description: Price information for this offering.
+            items:
+              $ref: '#/components/schemas/Cost'
+          program:
+            description: |
+              The Program that is offered in this programoffering. [`expandable`](#tag/program_model)
+              By default only the `programId` (a string) is returned. If the client requested an expansion of `program` the full program object should be returned.
+            oneOf:
+            - $ref: '#/components/schemas/Identifier'
+            - $ref: '#/components/schemas/Program'
+          organization:
+            description: |
+              The organization that manages this programeoffering. [`expandable`](#tag/organization_model)
+              By default only the `organizationId` (a string) is returned. If the client requested an expansion of `organization` the full organization object should be returned.
+            oneOf:
+            - $ref: '#/components/schemas/Identifier'
+            - $ref: '#/components/schemas/Organization'
+    OfferingProperties:
+      type: object
+      properties:
+        primaryCode:
+          $ref: '#/components/schemas/IdentifierEntry'
+        offeringType:
+          type: string
+          description: The type of this offering
+          example: component
+          enum:
+          - program
+          - course
+          - component
+        academicSession:
+          description: |
+            The academicsession during which this offering takes place. [`expandable`](#tag/academic_session_model)
+            By default only the `academicSessionId` (a string) is returned. If the client requested an expansion of `academicSession` the full academicsession object should be returned.
+          oneOf:
+          - $ref: '#/components/schemas/Identifier'
+          - $ref: '#/components/schemas/AcademicSession'
+        name:
+          minItems: 1
+          type: array
+          description: The name of this offering
+          example:
+          - language: en-GB
+            value: Final written test for INFOMQNM for fall semseter 2020
+          - language: nl-NL
+            values: Eindtoets vor het vak
+          items:
+            $ref: '#/components/schemas/LanguageTypedString'
+        abbreviation:
+          maxLength: 256
+          type: string
+          description: The abbreviation or internal code used to identify this offering
+          example: Test-INFOMQNM-20FS
+        description:
+          minItems: 1
+          type: array
+          description: The description of this offering.
+          example:
+          - language: en-GB
+            value: |
+              'Prove in writing knowledge of research methods, including:
+              Acquire knowledge of HCI research paradigms
+              Able to design suitable research studies (e.g., choose between within and between subject designs)
+              Define/apply/design metrics and scales
+              Define/produce materials (e.g., stimuli and questionnaires)
+              Define protocols for research studies
+              Understands and take in account concepts of reliability and validity
+              Analyze and improve methods and analysis of published scientific articles
+              Able to deliver scientific reports
+              Prove in writing knowledge of ­­­statistics, including:
+              Handle hypothesis testing with complex designs (e.g., including , dependent, independent, and co variates)
+              Data preparation (e.g., coding and feature selection)
+              Reason towards adequate techniques to ensure valid outcomes (e.g., be aware of type I, type II errors)
+              Select an appropriate sampling method (e.g., stratified)
+              Perform parametric tests (e.g., repeated measures (M)ANOVA)
+              Perform non-parametric tests (e.g., Chi-square, Mann-Whitney, and Kruskal-Wallis)'
+          items:
+            $ref: '#/components/schemas/LanguageTypedString'
+        teachingLanguage:
+          maxLength: 3
+          minLength: 3
+          pattern: "^[a-z]{3}$"
+          type: string
+          description: "The (primary) teaching language in which this offering is\
+            \ given, should be a three-letter language code as specified by ISO 639-2."
+          example: nld
+        modeOfDelivery:
+          $ref: '#/components/schemas/modesOfDelivery'
+        maxNumberStudents:
+          minimum: 0
+          type: number
+          description: The maximum number of students allowed to enroll for this offering
+          format: int32
+          example: 200
+        enrolledNumberStudents:
+          minimum: 0
+          type: number
+          description: The number of students that have already enrolled for this
+            offering
+          format: int32
+          example: 150
+        pendingNumberStudents:
+          minimum: 0
+          type: number
+          description: The number of students that have a pending enrollment request
+            for this offering
+          format: int32
+          example: 50
+        minNumberStudents:
+          minimum: 0
+          type: number
+          description: The minimum number of students needed for this offering to
+            proceed
+          format: int32
+          example: 15
+        resultExpected:
+          type: boolean
+          description: "resultExpected, previously knwon as isLineItem is used so\
+            \ the specific instance of the object is identified as being an element\
+            \ that CAN contain “grade” information.\nOfferings do not always have\
+            \ to result in a grade or an other type of result. \nIf there is a result\
+            \ expected from a programOffering/courseOffering/componentOffering the\
+            \ is resultExpected field should parse true\n"
+          example: true
+        resultValueType:
+          $ref: '#/components/schemas/resultValueType'
+        link:
+          maxLength: 2048
+          type: string
+          description: URL of this offering's webpage.
+          format: uri
+          example: https://osiris.uu.nl/osiris_student_uuprd/OnderwijsCatalogusZoekCursus.do#submitForm?cursuscode=INFOMQNM
+        otherCodes:
+          type: array
+          description: An array of additional human readable codes/identifiers for
+            the entity being described.
+          items:
+            $ref: '#/components/schemas/IdentifierEntry'
+        consumers:
+          $ref: '#/components/schemas/ConsumerOnOffering'
+        ext:
+          $ref: '#/components/schemas/Ext'
+      description: "Either a program, course or component offering which descrbes\
+        \ the program, course or offering in time"
+    Cost:
+      required:
+      - costType
+      type: object
+      properties:
+        costType:
+          $ref: '#/components/schemas/costType'
+        amount:
+          pattern: ^\d+(?:\.\d+)?$
+          type: string
+          description: "The total amount of the cost as a string. Use a '.' (dot)\
+            \ as an optional separator. The numbers before the separator signify the\
+            \ major units of the currency, after the dot the minor units. Only a single\
+            \ separator is allowed. Do not use a comma."
+          example: "340.84"
+        vatAmount:
+          pattern: ^\d+(?:\.\d+)?$
+          type: string
+          description: "The part of the cost that is VAT, as a string. Use a '.' (dot)\
+            \ as an optional separator. The numbers before the separator signify the\
+            \ major units of the currency, after the dot the minor units. Only a single\
+            \ separator is allowed. Do not use a comma."
+          example: "40"
+        amountWithoutVat:
+          pattern: ^\d+(?:\.\d+)?$
+          type: string
+          description: "The part of the cost that is non-VAT. as a string. Use a '.'\
+            \ (dot) as an optional separator. The numbers before the separator signify\
+            \ the major units of the currency, after the dot the minor units. Only\
+            \ a single separator is allowed. Do not use a comma."
+          example: "300.84"
+        currency:
+          type: string
+          description: The currency this cost is in. Should correspond to one of the
+            currency codes from ISO 4217.
+          example: EUR
+        displayAmount:
+          type: array
+          description: An array of optional pre-formatted strings in different locales.
+            Clients can choose to use this string instead of rendering their own based
+            on the current locale of the user.
+          example:
+          - language: nl-NL
+            value: "€380,84"
+          - language: en-US
+            value: $401.17
+          items:
+            $ref: '#/components/schemas/LanguageTypedString'
+        ext:
+          $ref: '#/components/schemas/Ext'
+      additionalProperties: false
+    Room:
+      required:
+      - name
+      - primaryCode
+      - roomId
+      - roomType
+      type: object
+      properties:
+        roomId:
+          type: string
+          description: Unique id for this room
+          format: uuid
+          example: 123e4567-e89b-12d3-a456-332114174000
+        primaryCode:
+          $ref: '#/components/schemas/IdentifierEntry'
+        roomType:
+          $ref: '#/components/schemas/roomType'
+        abbreviation:
+          maxLength: 256
+          type: string
+          description: The abbreviation of the name of this room
+          example: Bb4.54
+        name:
+          minItems: 1
+          type: array
+          description: The name of this room
+          example:
+          - language: en-GB
+            value: Beatrix building room 4.54
+          items:
+            $ref: '#/components/schemas/LanguageTypedString'
+        description:
+          minItems: 1
+          type: array
+          description: "The description of this room. [The limited implementation\
+            \ of Git Hub Markdown syntax](#tag/formatting-and-displaying-results-from-API)\
+            \ MAY be used for rich text representation."
+          example:
+          - language: en-GB
+            value: External education and exam room 4.54
+          items:
+            $ref: '#/components/schemas/LanguageTypedString'
+        totalSeats:
+          type: integer
+          description: The total number of seats located in the room
+          format: int32
+          example: 300
+        availableSeats:
+          type: integer
+          description: The total number of available (=non-reserved) seats in the
+            room
+          format: int32
+          example: 200
+        floor:
+          type: string
+          description: The floor on which this room is located
+          example: "4"
+        wing:
+          type: string
+          description: The wing in which this room is located
+          example: None
+        geolocation:
+          $ref: '#/components/schemas/Room_geolocation'
+        otherCodes:
+          type: array
+          description: An array of additional human readable codes/identifiers for
+            the entity being described.
+          items:
+            $ref: '#/components/schemas/IdentifierEntry'
+        building:
+          description: |
+            The building in which the room is located. [`expandable`](#tag/building_model)
+            By default only the `buildingId` (a string) is returned. If the client requested an expansion of `building` the full building object should be returned.
+          oneOf:
+          - $ref: '#/components/schemas/Identifier'
+          - $ref: '#/components/schemas/Building'
+        consumers:
+          type: array
+          description: "The additional consumer elements that can be provided, see\
+            \ the [documentation on support for specific consumers](https://open-education-api.github.io/specification/#/consumers)\
+            \ for more information about this mechanism."
+          items:
+            $ref: '#/components/schemas/Consumer'
+        ext:
+          $ref: '#/components/schemas/Ext'
+      description: An area within a building where education can take place
+    gender:
+      type: string
+      description: The gender of this person
+      example: F
+      enum:
+      - M
+      - F
+      - U
+      - X
+    ICERelationType:
+      type: string
+      description: Type of relation between person and In Case of Emergency contact
+      example: partner
+      enum:
+      - partner
+      - parent
+      - other
+    ConsumerOnPerson:
+      type: array
+      description: "The additional consumer elements that can be provided, see the\
+        \ [documentation on support for specific consumers](https://open-education-api.github.io/specification/#/consumers)\
+        \ for more information about this mechanism."
+      example:
+      - consumerKey: nl-okd
+        documentType: enrollment
+        documentSubtype: dyslexieverklaring
+        documentId: acd3e12a-ed8b-4488-ac34-26fd4f64f40b
+        documentName: dyslexieverklaring-100245.pdf
+        retentionPeriodSuggestion: 7Y
+        studentNumber: "100245"
+      items:
+        anyOf:
+        - $ref: '#/components/schemas/Consumer'
+        - $ref: '#/components/schemas/nl-okd-document'
+        - $ref: '#/components/schemas/nl-okd-additional-studentinfo'
+    Association_1:
+      allOf:
+      - $ref: '#/components/schemas/AssociationId'
+      - $ref: '#/components/schemas/AssociationProperties'
+    ProgramResult:
+      allOf:
+      - $ref: '#/components/schemas/Result'
+      - required:
+        - studyLoad
+        type: object
+        properties:
+          studyLoad:
+            $ref: '#/components/schemas/StudyLoadDescriptor'
+    CourseResult:
+      allOf:
+      - $ref: '#/components/schemas/Result'
+      - required:
+        - studyLoad
+        type: object
+        properties:
+          studyLoad:
+            $ref: '#/components/schemas/StudyLoadDescriptor'
+    AssociationId:
+      type: object
+      properties:
+        associationId:
+          type: string
+          description: Unique id of this association
+          format: uuid
+          example: 123e4567-e89b-12d3-a456-426614174000
+    AssociationProperties:
+      type: object
+      properties:
+        associationType:
+          type: string
+          description: The type of this association
+          example: componentOfferingAssociation
+          enum:
+          - programOfferingAssociation
+          - courseOfferingAssociation
+          - componentOfferingAssociation
+        role:
+          $ref: '#/components/schemas/associationRole'
+        state:
+          $ref: '#/components/schemas/associationState'
+        remoteState:
+          $ref: '#/components/schemas/remoteAssociationState'
+        consumers:
+          $ref: '#/components/schemas/ConsumerOnAssociation'
+        ext:
+          $ref: '#/components/schemas/Ext'
+      description: A relationship between a person object and an offering
+    ComponentResult:
+      allOf:
+      - $ref: '#/components/schemas/Result'
+      - required:
+        - weight
+        type: object
+        properties:
+          weight:
+            maximum: 100
+            minimum: 0
+            type: integer
+            description: The weight to 100 as total for this offering in the course
+            format: int32
+            example: 100
+    codeType:
+      type: string
+      description: "The code/identifier type. \n\nThis is an *extensible enumeration*.\
+        \ Use `x-` to prefix custom values\n\nThe predefined values are:\n  - `brin`:\
+        \ The registration number for a Dutch educational institution that is issued\
+        \ by the Dutch Ministry of Education, Culture and Science\n  - `crohoCreboCode`:\
+        \ programs with a CREBO and CROHO number are accredited by the Dutch Ministry\
+        \ of Education, Culture and Science (OCW)\n  - `programCode`: Identifier for\
+        \ the program (collection of courses)\n  - `courseCode`: Identifier for the\
+        \ course \n  - `componentCode`: The code for a component (part of a course)\n\
+        \  - `offeringCode`: The code to identify a specific offering (program, course\
+        \ or component offering)\n  - `organizationId`: The identifier for the organization\n\
+        \  - `buildingId`: The number or code to identify a building\n  - `bagId`:\
+        \ The identification of a building as it is known in the Dutch Building Administration\
+        \ (BAG)\n  - `roomCode`: The code for a room\n  - `systemId`: Identifier assigned\
+        \ to an entity in context of a specific system\n  - `productId`: Identifier\
+        \ assigned to a specific product\n  - `nationalIdentityNumber`: Identifier\
+        \ assigned by the governement of the person. e.g. a social security number\
+        \ in the USA\n  - `studentNumber`: Identifier for the student\n  - `studielinkNumber`:\
+        \ Identifier for the person as determined by Studielink\n  - `esi`: European\
+        \ Student Identifier\n  - `userName`: The name of a user\n  - `accountId`:\
+        \ Identifier assigned to a specific account\n  - `emailAdress`: An email address\n\
+        \  - `groupCode`: The identifier for a group (of persons)\n  - `isbn`: International\
+        \ Standard Book Number that serve as product identifiers for Books\n  - `issn`:\
+        \ International Standard Book Number that serve as product identifiers for\
+        \ periodicals\n  - `orcId`: Open Researcher and Contributor ID\n  - `uuid`:\
+        \ A universally unique identifier\n  - `schacHome`: Home organization using\
+        \ the domain name of the organization\n  - `identifier`: Generic Identifier\n\
+        \  - `eckid`: ID used in the education content chain\n  - `nationalEducationCode`:\
+        \ Code used to specify an education with in a country (e.g. RIO opleidingscode\
+        \ for NL) \n"
+      example: identifier
+      x-ooapi-extensible-enum:
+      - brin
+      - crohoCreboCode
+      - programCode
+      - courseCode
+      - componentCode
+      - offeringCode
+      - organizationId
+      - buildingId
+      - bagId
+      - roomCode
+      - systemId
+      - productId
+      - nationalIdentityNumber
+      - studentNumber
+      - studielinkNumber
+      - esi
+      - userName
+      - accountId
+      - emailAdress
+      - groupCode
+      - isbn
+      - issn
+      - orcId
+      - uuid
+      - schacHome
+      - identifier
+      - eckid
+      - nationalEducationCode
+    addressType:
+      type: string
+      description: |
+        Address type
+        - postal: post
+        - visit: bezoek
+        - deliveries: bezorg
+        - billing: factuur
+        - teaching: the address where education takes place
+      enum:
+      - postal
+      - visit
+      - deliveries
+      - billing
+      - teaching
+    organizationType:
+      type: string
+      description: |
+        The type of this organization. Each OOAPI endpoint should have a single organization with type `root`, describing the root organization.
+        - root: the root of this organization, representing the Educational Institution itself
+        - institute: instituut
+        - department: departement
+        - faculty: faculteit
+        - branch: vestiging
+        - academy: academie
+        - school: school
+      example: root
+      enum:
+      - root
+      - institute
+      - department
+      - faculty
+      - branch
+      - academy
+      - school
+    StudyLoadDescriptor:
+      type: object
+      properties:
+        studyLoadUnit:
+          type: string
+          description: "The unit in which the studyload is specfied\n- contacttime:\
+            \ CONTACTUUR\tamount of time spent in classes\n- ects: ECTS_PUNT\tEuropean\
+            \ Credit Transfer System\n- sbu: SBU\tstudentloadhours\n- sp: STUDIEPUNT\
+            \ studentpoints\n- hour: UUR\thours\n"
+          example: ects
+          enum:
+          - contacttime
+          - ects
+          - sbu
+          - sp
+          - hour
+        value:
+          type: number
+          description: The amount of load depicted in numbers
+          example: 3
+      description: The amount of effort to complete this education in the specified
+        unit.
+      example:
+        studyLoadUnit: ects
+        value: 3
+    level:
+      type: string
+      description: |
+        The level of this course (ECTS-year of study if applicable)
+        - secondary vocational education: mbo
+        - secondary vocational education 1: mbo 1, corresponds to levelOfQualification 1
+        - secondary vocational education 2: mbo 2, corresponds to levelOfQualification 2
+        - secondary vocational education 3: mbo 3, corresponds to levelOfQualification 3
+        - secondary vocational education 4: mbo 4, corresponds to levelOfQualification 4
+        - associate degree: associate degree, corresponds to levelOfQualification 5
+        - bachelor: bachelor, corresponds to levelOfQualification 6
+        - master: master, corresponds to levelOfQualification 7
+        - doctoral: doctoraal, corresponds to levelOfQualification 8
+        - undefined: onbepaald
+        - undivided: ongedeeld
+        - nt2-1: NT2 niveau 1
+        - nt2-2: NT2 niveau 2
+      example: master
+      enum:
+      - secondary vocational education
+      - secondary vocational education 1
+      - secondary vocational education 2
+      - secondary vocational education 3
+      - secondary vocational education 4
+      - associate degree
+      - bachelor
+      - master
+      - doctoral
+      - undefined
+      - undivided
+      - nt2-1
+      - nt2-2
+    EducationSpecification:
+      allOf:
+      - $ref: '#/components/schemas/EducationSpecificationId'
+      - $ref: '#/components/schemas/EducationSpecificationProperties'
+      - type: object
+        properties:
+          validFrom:
+            type: string
+            description: The first day this EducationSpecification is valid (inclusive).
+            format: date
+          validTo:
+            type: string
+            description: The day this EducationSpecification ceases to be valid (e.g.
+              exclusive).
+            format: date
+    programType:
+      type: string
+      description: |
+        The type of this program
+        - program: opleiding
+        - minor: minor
+        - honours: honours
+        - specialization: specialisatie
+        - track: track
+      example: program
+      enum:
+      - program
+      - minor
+      - honours
+      - specialization
+      - track
+    qualificationAwarded:
+      type: string
+      description: Type of qualificaton that can be obtained on finishing the program
+      example: None
+      enum:
+      - AD
+      - BA
+      - BSc
+      - LLB
+      - MA
+      - MSc
+      - LLM
+      - Phd
+      - None
+    modeOfStudy:
+      type: string
+      description: |
+        Indicates whether the education is full-time, part-time, dual or self-paced.
+          - full-time: fulltime
+          - part-time: parttime
+          - dual training: duaal
+          - self-paced: eigen tempo
+          - extraneous : extraneus student: examendeelnemer (student mag alleen aan de toetsen deelnemen / beperkt colegegeld)
+      enum:
+      - full-time
+      - part-time
+      - dual training
+      - self-paced
+      - extraneous
+    levelOfQualification:
+      type: string
+      description: "Level of qualification according to the Dutch National Qualification\
+        \ Framework and the European Qualifications Framework, see [this overview](https://nlqf.nl/images/downloads/English2018/Schematic_overview_NLQF_2020.pdf)\
+        \ for more information."
+      example: "6"
+      enum:
+      - "1"
+      - "2"
+      - "3"
+      - "4"
+      - 4+
+      - "5"
+      - "6"
+      - "7"
+      - "8"
+    sector:
+      type: string
+      description: |
+        The sector for this program
+        - secondary vocational education: middelbaar beroepsonderwijs
+        - higher professional education: hoger beroepsonderwijs
+        - university education: universitair onderwijs
+      example: university education
+      enum:
+      - secondary vocational education
+      - higher professional education
+      - university education
+    AcademicSession:
+      required:
+      - academicSessionId
+      - endDate
+      - name
+      - startDate
+      type: object
+      properties:
+        academicSessionId:
+          type: string
+          description: Unique id for this academic session
+          format: uuid
+          readOnly: true
+          example: 123e4567-e89b-12d3-a456-426614174000
+        academicSessionType:
+          $ref: '#/components/schemas/academicSessionType'
+        primaryCode:
+          $ref: '#/components/schemas/IdentifierEntry'
+        name:
+          minItems: 1
+          type: array
+          description: The name of this academic session
+          example:
+          - language: en-GB
+            value: Fall semester 2020
+          items:
+            $ref: '#/components/schemas/LanguageTypedString'
+        startDate:
+          type: string
+          description: "The day on which this academic session starts, RFC3339 (full-date)"
+          format: date
+          example: 2020-08-17
+        endDate:
+          type: string
+          description: "The day on which this academic session ends, RFC3339 (full-date)"
+          format: date
+          example: 2020-12-18
+        parent:
+          description: "The parent Academicsession of this session (e.g. fall semester\
+            \ 20xx where the current session is a week 40). This object is [`expandable`](#tag/academic_sessions_model)"
+          oneOf:
+          - $ref: '#/components/schemas/Identifier'
+          - $ref: '#/components/schemas/AcademicSession'
+        children:
+          type: array
+          description: "The list of Academicsession children of this Session (e.g.\
+            \ all academic sessions in fall semester 20xx). This object is [`expandable`](#tag/academic_sessions_model)"
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/Identifier'
+            - $ref: '#/components/schemas/AcademicSession'
+        year:
+          description: "The top level year of this session (e.g. 20xx where the current\
+            \ session is a week 40 of a semester). This object is [`expandable`](#tag/academic_sessions_model)"
+          oneOf:
+          - $ref: '#/components/schemas/Identifier'
+          - $ref: '#/components/schemas/AcademicSession'
+        otherCodes:
+          type: array
+          description: An array of additional human readable codes/identifiers for
+            the entity being described.
+          items:
+            $ref: '#/components/schemas/IdentifierEntry'
+        consumers:
+          type: array
+          description: "The additional consumer elements that can be provided, see\
+            \ the [documentation on support for specific consumers](https://open-education-api.github.io/specification/#/consumers)\
+            \ for more information about this mechanism."
+          items:
+            $ref: '#/components/schemas/Consumer'
+        ext:
+          $ref: '#/components/schemas/Ext'
+      description: |
+        A named period of time that can be used to communicate the various schedules and time periods an institution recognizes and uses to organize their education. AcademicSessions can be nested.
+        Offerings MAY be be linked to a specific AcademicSession to indicate that the specified Offering takes place during the AcademicSession, however this is not mandatory.
+    resultValueType:
+      type: string
+      description: |
+        The result value type for this offering
+        - pass-or-fail = Resultvalue is from valuelist {passed, failed}
+        - insufficient-satisfactory-good = Resultvalue is from valuelist {insufficient, satisfactory, good}
+        - US letter = Resultvalue is a letter from A t/m D en F voor fail as in US
+        - UK letter = Resultvalue is a letter from A t/m G en U voor ungraded/unclassified as in UK
+        - DE grade = Resultvalue is a letter as used in Germany
+        - 0-100 = Resultvalue is a number from range (0,100)
+        - 0-10 = Resultvalue is a number from range (0,10)
+        - 0.0-10.0 = Resultvalue is a decimal number from range (0.0,10.0)
+        - referenceLevelRKTR = Resultvalue is a reference level from the Dutch "Referentiekader Taal en Rekenen" from value set {1F, 1S, 2F, 2S, 3F, 3S, 4F, 4S} and additional values like "Op weg naar 1F"
+        - referenceLevelERK = Resultvalue is a reference level from the "Europees Referencekader voor de talen" from value set {A1, A2, B1, B2, C1, C2}
+      example: 0-10
+      enum:
+      - pass-or-fail
+      - insufficient-satisfactory-good
+      - US letter
+      - UK letter
+      - DE grade
+      - 0-100
+      - 0-10
+      - 0.0-10.0
+      - referenceLevelRKTR
+      - referenceLevelERK
+    ConsumerOnOffering:
+      type: array
+      description: "The additional consumer elements that can be provided, see the\
+        \ [documentation on support for specific consumers](https://open-education-api.github.io/specification/#/consumers)\
+        \ for more information about this mechanism."
+      items:
+        anyOf:
+        - $ref: '#/components/schemas/Consumer'
+        - $ref: '#/components/schemas/nl-okd-document'
+    costType:
+      type: string
+      description: |
+        The type of the cost. This is an *extensible enumeration*.
+
+        The following values have been defined in the specification:
+          - `STAP eligible`: the costs that a student can get STAP subsidy for
+          - `total costs`: the total costs that a student is to pay to follow this offering
+
+        Implementations are allowed to add additional values to those above, as long as they do not overlap in definition to existing values.
+      example: total costs
+      x-ooapi-extensible-enum:
+      - STAP eligible
+      - total costs
+    roomType:
+      type: string
+      description: |
+        The type of this room
+        - general purpose: algemeen
+        - lecture room: collegezaal
+        - computer room: computerruimte
+        - laboratory: laboratorium
+        - office: kantoor
+        - workspace: werkruimte
+        - exam location: tentamenruimte
+        - study room: studieruimte
+        - examination room: onderzoekskamer
+        - conference room: vergaderkamer
+      example: exam location
+      enum:
+      - general purpose
+      - lecture room
+      - computer room
+      - laboratory
+      - office
+      - workspace
+      - exam location
+      - study room
+      - examination room
+      - conference room
+    Building:
+      required:
+      - address
+      - buildingId
+      - name
+      - primaryCode
+      type: object
+      properties:
+        buildingId:
+          type: string
+          description: Unique id of this building
+          format: uuid
+          example: 123e4567-e89b-12d3-a456-331214174000
+        primaryCode:
+          $ref: '#/components/schemas/IdentifierEntry'
+        abbreviation:
+          maxLength: 256
+          type: string
+          description: The abbreviation of the name of this building
+          example: Bb
+        name:
+          minItems: 1
+          type: array
+          description: The name of this building
+          example:
+          - language: en-GB
+            value: Beatrix building
+          items:
+            $ref: '#/components/schemas/LanguageTypedString'
+        description:
+          minItems: 1
+          type: array
+          description: The description of this building.
+          example:
+          - language: en-GB
+            value: external rooms location for exams
+          items:
+            $ref: '#/components/schemas/LanguageTypedString'
+        address:
+          $ref: '#/components/schemas/Address'
+        otherCodes:
+          type: array
+          description: An array of additional human readable codes/identifiers for
+            the entity being described.
+          example:
+          - codeType: bagId
+            code: "0344100000139910"
+          items:
+            $ref: '#/components/schemas/IdentifierEntry'
+        consumers:
+          type: array
+          description: "The additional consumer elements that can be provided, see\
+            \ the [documentation on support for specific consumers](https://open-education-api.github.io/specification/#/consumers)\
+            \ for more information about this mechanism."
+          items:
+            $ref: '#/components/schemas/Consumer'
+        ext:
+          $ref: '#/components/schemas/Ext'
+      description: An object describing a building and the properties of a building.
+    nl-okd-document:
+      required:
+      - consumerKey
+      type: object
+      properties:
+        consumerKey:
+          type: string
+          example: nl-okd
+        documentType:
+          type: string
+          description: |
+            identifies the kind of document; supported values: "enrollment", "examination", "graduation", "bpv","other"
+          example: enrollment
+          enum:
+          - enrollment
+          - examination
+          - graduation
+          - bpv
+          - other
+        documentSubtype:
+          type: string
+          description: |
+            identifies the subtype of the document; supported values depend on the school.
+            - vrijstellingsaanvraag
+            - bla bla 1
+            - bla bla 2
+            - other
+          example: vrijstellingsaanvraag
+        documentId:
+          type: string
+          description: |
+            identifies the unique identifier of the document.
+          example: dbd3e12a-ed8b-4488-ac34-26fd4f64f40b
+        documentName:
+          type: string
+          description: |
+            identifies the name of the document.
+          example: inschrijving-100245.pdf
+        retentionPeriodSuggestion:
+          type: string
+          description: |
+            identifies the suggested retention period for the document, e.g. "3Y" (3 years), "5Y" (5 years), "10Y" (10 years), "24H" (24 hours), "6D" (6 days).
+            The DMS may choose to ignore this suggestion.
+          example: 3Y
+        receivedDate:
+          type: string
+          description: |
+            identifies the date the document was received.
+          format: date
+          example: 2023-09-01
+        registrationDate:
+          type: string
+          description: |
+            identifies the date the document was registered.
+          format: date
+          example: 2023-09-02
+      description: nl-okd add-on attributes to the Document
+    nl-okd-additional-studentinfo:
+      required:
+      - consumerKey
+      type: object
+      properties:
+        consumerKey:
+          type: string
+          example: nl-okd
+        studentNumber:
+          type: string
+          description: |
+            identifies the student number of the person related to the document.
+          example: "1234567"
+      description: nl-okd add-on attributes to the Document
+    Result:
+      required:
+      - resultDate
+      - state
+      type: object
+      properties:
+        state:
+          $ref: '#/components/schemas/resultState'
+        pass:
+          $ref: '#/components/schemas/passState'
+        comment:
+          type: string
+          description: The comment on this result
+        score:
+          type: string
+          description: The score of this program/course/component association (based
+            on resultValueType in offering)
+          example: "9"
+        resultDate:
+          type: string
+          description: "The date this result has been published, RFC3339 (full-date)"
+          format: date
+          example: 2020-09-28
+        consumers:
+          $ref: '#/components/schemas/ConsumerOnResult'
+        ext:
+          $ref: '#/components/schemas/Ext'
+      description: A result as part of an association
+    associationRole:
+      type: string
+      description: |
+        The role of this person associated with the offering
+          - student: student
+          - lecturer: docent
+          - teaching assistant: studentassistent
+          - coordinator: coördinator
+          - guest: gast
+          - invigilator: surveillant
+          - assessor: beoordelaar
+      example: student
+      enum:
+      - student
+      - lecturer
+      - teaching assistant
+      - coordinator
+      - guest
+      - invigilator
+      - assessor
+    associationState:
+      type: string
+      description: The state of this association
+      example: associated
+      enum:
+      - pending
+      - canceled
+      - denied
+      - associated
+      - queued
+      - finished
+    remoteAssociationState:
+      type: string
+      description: The state of this association for the institution performing the
+        request.
+      example: associated
+      enum:
+      - pending
+      - canceled
+      - denied
+      - associated
+      - queued
+      - finished
+    ConsumerOnAssociation:
+      type: array
+      description: "The additional consumer elements that can be provided, see the\
+        \ [documentation on support for specific consumers](https://open-education-api.github.io/specification/#/consumers)\
+        \ for more information about this mechanism."
+      example:
+      - consumerKey: nl-okd
+        documentType: enrollment
+        documentSubtype: vrijstelling aanvraag
+        documentId: dbd3e12a-ed8b-4488-ac34-26fd4f64f40b
+        documentName: inschrijving-100245.pdf
+        bewaartermijnsuggestie: 3Y
+        enrollmentStartDate: 2021-09-01
+        enrollmentExpectedEndDate: 2025-07-31
+        enrollmentFinalEndDate: null
+      items:
+        anyOf:
+        - $ref: '#/components/schemas/Consumer'
+        - $ref: '#/components/schemas/nl-okd-association'
+        - $ref: '#/components/schemas/nl-okd-document'
+        - $ref: '#/components/schemas/nl-okd-additional-studentinfo'
+    EducationSpecificationId:
+      required:
+      - educationSpecificationId
+      type: object
+      properties:
+        educationSpecificationId:
+          type: string
+          description: Unique id for this education specification
+          format: uuid
+          example: 123e4567-e89b-12d3-a456-426614174000
+    EducationSpecificationProperties:
+      required:
+      - educationSpecificationType
+      - name
+      - primaryCode
+      type: object
+      properties:
+        primaryCode:
+          $ref: '#/components/schemas/IdentifierEntry'
+        otherCodes:
+          type: array
+          description: An array of additional human readable codes/identifiers for
+            the entity being described.
+          example:
+          - codeType: crohoCreboCode
+            code: "1234123"
+          items:
+            $ref: '#/components/schemas/IdentifierEntry'
+        educationSpecificationType:
+          $ref: '#/components/schemas/educationSpecificationType'
+        name:
+          type: array
+          description: The name of this education specification
+          example:
+          - language: en-GB
+            value: Bachelor Chemical technology
+          items:
+            $ref: '#/components/schemas/LanguageTypedString'
+        abbreviation:
+          maxLength: 256
+          type: string
+          description: The abbreviation of this program
+          example: B Scheikundige Technologie
+        description:
+          type: array
+          description: "The description of this program. [The limited implementation\
+            \ of Git Hub Markdown syntax](#tag/formatting-and-displaying-results-from-API)\
+            \ MAY be used for rich text representation."
+          example:
+          - language: en-GB
+            value: program that is a place holder for all courses that are made available
+              for student mobility
+          items:
+            $ref: '#/components/schemas/LanguageTypedString'
+        formalDocument:
+          $ref: '#/components/schemas/formalDocument'
+        level:
+          $ref: '#/components/schemas/level'
+        sector:
+          $ref: '#/components/schemas/sector'
+        levelOfQualification:
+          $ref: '#/components/schemas/levelOfQualification'
+        fieldsOfStudy:
+          maxLength: 4
+          type: string
+          description: Field(s) of study (e.g. ISCED-F) (http://uis.unesco.org/sites/default/files/documents/isced-fields-of-education-and-training-2013-en.pdf.
+          example: "0732"
+        studyLoad:
+          $ref: '#/components/schemas/StudyLoadDescriptor'
+        learningOutcomes:
+          type: array
+          description: Statements that describe the knowledge or skills students should
+            acquire by the end of a particular course or program (ECTS-learningoutcome).
+          items:
+            minItems: 1
+            type: array
+            example:
+            - language: en-GB
+              value: "Executable knowledge of Chemical technology, including: Acquire\
+                \ knowledge of research paradigms."
+            items:
+              $ref: '#/components/schemas/LanguageTypedString'
+        link:
+          maxLength: 2048
+          type: string
+          description: URL of the program's website
+          format: uri
+          example: https://bijvak.nl
+        parent:
+          description: "The educationSpecification that is the parent of this educationSpecification\
+            \ if it exists. [`expandable`](#tag/education_specification_model)"
+          oneOf:
+          - $ref: '#/components/schemas/Identifier'
+          - $ref: '#/components/schemas/EducationSpecification'
+        children:
+          type: array
+          description: "The EducationSpecifications that have this EducationSpecification\
+            \ as their parent. [`expandable`](#tag/education_specification_model)"
+          items:
+            oneOf:
+            - $ref: '#/components/schemas/Identifier'
+            - $ref: '#/components/schemas/EducationSpecification'
+        organization:
+          description: |
+            The organization that manages this group. [`expandable`](#tag/organization_model)
+            By default only the `organizationId` (a string) is returned. If the client requested an expansion of `organization` the full organization object should be returned.
+          oneOf:
+          - $ref: '#/components/schemas/Identifier'
+          - $ref: '#/components/schemas/Organization'
+        consumers:
+          type: array
+          description: "The additional consumer elements that can be provided, see\
+            \ the [documentation on support for specific consumers](https://open-education-api.github.io/specification/#/consumers)\
+            \ for more information about this mechanism."
+          items:
+            $ref: '#/components/schemas/Consumer'
+        ext:
+          $ref: '#/components/schemas/Ext'
+      description: "The specification of an education object. This specification allows\
+        \ for other education objects to be derived from it.\nIt is used to aggregate\
+        \ education objects from a supplying institution.\nIt clusters programs to\
+        \ a main educationSpecification that is used in registries such as RIO. \n"
+    academicSessionType:
+      type: string
+      description: |
+        The type of this Academic Session This is an *extensible enumeration*.
+        - academic year: academic year
+        - semester: semester, typically there are two semesters per academic year
+        - trimester: trimester, typically there are three semesters per academic year
+        - quarter: quarter, typically there are four quarters per academic year
+        - testing period: a period in which tests take place
+        - period: any other period in an academic year
+
+        Implementations are allowed to add additional values to those above, as long as they do not overlap in definition to existing values.
+      example: semester
+      x-ooapi-extensible-enum:
+      - academic year
+      - semester
+      - trimester
+      - quarter
+      - testing period
+      - period
+    resultState:
+      type: string
+      description: The state of this result
+      example: completed
+      enum:
+      - in progress
+      - postponed
+      - completed
+      - queued
+    passState:
+      type: string
+      description: The state of this result
+      example: passed
+      enum:
+      - unknown
+      - passed
+      - failed
+    ConsumerOnResult:
+      type: array
+      description: "The additional consumer elements that can be provided, see the\
+        \ [documentation on support for specific consumers](https://open-education-api.github.io/specification/#/consumers)\
+        \ for more information about this mechanism."
+      items:
+        anyOf:
+        - $ref: '#/components/schemas/Consumer'
+    nl-okd-association:
+      required:
+      - consumerKey
+      type: object
+      properties:
+        consumerKey:
+          type: string
+        enrollmentStartDate:
+          type: string
+          description: |
+            identifies the start date of the inschrijving.
+          format: date
+          example: 2021-09-01
+        enrollmentExpectedEndDate:
+          type: string
+          description: |
+            identifies the expected end date of the inschrijving.
+          format: date
+          example: 2025-07-31
+        enrollmentFinalEndDate:
+          type: string
+          description: |
+            identifies the final end date of the inschrijving.
+          format: date
+          example: null
+        x-studentNummer:
+          type: string
+          description: |
+            The studentnummer of the person in the context of this inschrijving.
+          example: "1234567"
+      description: nl-okd add-on attributes to the Association
+    educationSpecificationType:
+      type: string
+      description: |
+        The type of education specification
+          - program: HOOPLEIDING
+          - privateProgram: PARTICULIEREOPLEIDING
+          - programCluster: HOONDERWIJSEENHEDENCLUSTER
+          - course: HOONDERWIJSEENHEID
+      example: program
+      enum:
+      - program
+      - privateProgram
+      - cluster
+      - course
+    formalDocument:
+      type: string
+      description: |
+        The type of formal document obtained after completion of this education
+          - diploma: DIPLOMA
+          - certificate: CERTIFICAAT
+          - no official document: GEEN OFFICIEEL DOCUMENT
+          - testimonial: GETUIGSCHRIFT
+          - school advice: SCHOOLADVIES
+      example: diploma
+      enum:
+      - diploma
+      - certificate
+      - no official document
+      - testimonial
+      - school advice
+    inline_response_200:
+      allOf:
+      - $ref: '#/components/schemas/Pagination'
+      - required:
+        - items
+        type: object
+        properties:
+          items:
+            type: array
+            example:
+            - personId: 5ab399b8-c499-4da8-af6d-b55e66251f31
+              primaryCode:
+                codeType: studentNumber
+                code: "1234567"
+              givenName: Maartje
+              surnamePrefix: van
+              surname: Damme
+              displayName: Maartje van Damme
+              initials: MCW
+              activeEnrollment: true
+              affiliations:
+              - student
+              mail: vandamme.mcw@student.roc.nl
+              languageOfChoice:
+              - nl-NL
+              otherCodes: []
+            items:
+              $ref: '#/components/schemas/Person'
+          ext:
+            $ref: '#/components/schemas/Ext'
+    persons_personId_body:
+      required:
+      - file
+      - metadata
+      type: object
+      properties:
+        metadata:
+          $ref: '#/components/schemas/Person'
+        file:
+          type: string
+          description: File to upload
+          format: binary
+    offerings_offeringId_body:
+      required:
+      - file
+      - metadata
+      type: object
+      properties:
+        metadata:
+          $ref: '#/components/schemas/ComponentOffering'
+        file:
+          type: string
+          description: File to upload
+          format: binary
+    associations_associationId_body:
+      required:
+      - file
+      - metadata
+      type: object
+      properties:
+        metadata:
+          $ref: '#/components/schemas/ComponentOfferingAssociationExpanded'
+        file:
+          type: string
+          description: File to upload
+          format: binary
+    associations_associationId_body_1:
+      allOf:
+      - $ref: '#/components/schemas/ComponentOfferingAssociationPatch'
+    Address_geolocation:
+      required:
+      - latitude
+      - longitude
+      type: object
+      properties:
+        latitude:
+          type: number
+          format: double
+          example: 52.089123
+        longitude:
+          type: number
+          format: double
+          example: 5.113337
+      description: Geolocation of the entrance of this address (WGS84 coordinate reference
+        system)
+    Room_geolocation:
+      required:
+      - latitude
+      - longitude
+      type: object
+      properties:
+        latitude:
+          type: number
+          format: double
+          example: 52.088255
+        longitude:
+          type: number
+          format: double
+          example: 5.106669
+      description: Geolocation of the entrance of this room (WGS84 coordinate reference
+        system)
+  responses:
+    ErrorBadRequest:
+      description: Bad request
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/Problem'
+          example:
+            type: https://open-education-api.github.io/specification/v5/schemas/ErrorBadRequest.yaml
+            title: Bad request
+            status: 400
+            detail: The request could not be understood by the server due to malformed
+              syntax. The client SHOULD NOT repeat the request without modifications.
+    ErrorUnauthorized:
+      description: Unauthorized
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/Problem'
+          example:
+            type: https://open-education-api.github.io/specification/v5/schemas/ErrorUnauthorized.yaml
+            title: Unauthorized
+            status: 401
+            detail: The request requires user authentication.
+    ErrorForbidden:
+      description: Forbidden
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/Problem'
+          example:
+            type: https://open-education-api.github.io/specification/v5/schemas/ErrorForbidden.yaml
+            title: Forbidden
+            status: 403
+            detail: "The request was valid, but the server is refusing action. The\
+              \ client might not have the necessary permissions for the resource."
+    ErrorNotFound:
+      description: Not Found
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/Problem'
+          example:
+            type: https://open-education-api.github.io/specification/v5/schemas/Error  NotFound.yaml
+            title: Not Found
+            status: 404
+            detail: The requested resource could not be found.
+    ErrorMethodNotAllowed:
+      description: Method not allowed
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/Problem'
+          example:
+            type: https://open-education-api.github.io/specification/v5/schemas/ErrorMethodNotAllowed.yaml
+            title: Method not allowed
+            status: 405
+            detail: The request method is not supported for the requested resource.
+    ErrorTooManyRequests:
+      description: Too many requests
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/Problem'
+          example:
+            type: https://open-education-api.github.io/specification/v5/schemas/ErrorTooManyRequests.yaml
+            title: Too many requests
+            status: 429
+            detail: The user has sent too many requests in a given amount of time.
+    ErrorInternalServerError:
+      description: Internal Server Error
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/Problem'
+          example:
+            type: https://open-education-api.github.io/specification/v5/schemas/ErrorInternalServerError.yaml
+            title: Internal Server Error
+            status: 500
+            detail: The server encountered an unexpected condition that prevented
+              it from fulfilling the request.
+    DocumentUploadResponse:
+      description: A system message as a response to a Document upload POST message
+  parameters:
+    primaryCode:
+      name: primaryCode
+      in: query
+      description: The primaryCode of the requested item. This is often the source
+        identifier as defined by the institution.
+      required: false
+      schema:
+        type: string
+  securitySchemes:
+    oAuthFlows:
+      type: oauth2
+      description: |
+        This API uses oauth Cleint credentials for server to server #/components/schemas/EducationSpecification
+      flows:
+        clientCredentials:
+          tokenUrl: https://example.nl/oauth2/token
+          scopes:
+            okd:alldocuments: "flow 1,2,3,4,x,y,z"
+            okd:examdocuments: "flow 2,x,y,z"
+            okd:bpvdocuments: "flow 3,x,y,z"
+            okd:graduationdocuments: "flow 4,x,y,z"
+            okd:enrollmentderollment: "flow 1,5"
+            okd:destroyednotification: flow 6
+            okd:studentinfo: flow 7

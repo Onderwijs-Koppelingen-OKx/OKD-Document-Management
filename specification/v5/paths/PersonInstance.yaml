@@ -1,10 +1,14 @@
 get:
   summary: GET /persons/{personId}
   operationId: listPersonById
-  description: Get a single person.
+  description: | 
+    Get a single person
+  
+    note:
+    - This endpoint should be implemented by the SIS component, so that the DMS can retrieve person information (flow-7)
   security:
     - oAuthFlows:  
-      - nl-okd-all
+      - okd:studentinfo
   tags:
     - persons
   parameters:
@@ -58,8 +62,13 @@ get:
 
 post:
   summary: POST /persons/{personId}
-  description: |
-    POST a document for a person. 
+  description: | 
+    POST a document for a person
+  
+    note:
+    - This endpoint should be implemented by the DMS component, so that the components can upload documents for a person (flow 1,2,3,4)
+    - the call is a multipart/form-data call with 2 parts: metadata (json) and file (binary).
+
   operationId: postDocumentOnPersonById
   security:
     - oAuthFlows:  
@@ -82,14 +91,14 @@ post:
         schema:
           type: object
           properties:
-            person:
+            metadata:
               $ref: '../schemas/Person.yaml'
             file:
               type: string
               format: binary
               description: File to upload
           required:
-            - person
+            - metadata
             - file
   responses:
     '200':
