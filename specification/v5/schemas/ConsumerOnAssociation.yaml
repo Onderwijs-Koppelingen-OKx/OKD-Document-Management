@@ -6,6 +6,7 @@ items:
   - $ref: '../consumers/NL-OKD/V1/nl-okd-association.yaml'
   - $ref: '../consumers/NL-OKD/V1/nl-okd-document.yaml'
   - $ref: '../consumers/NL-OKD/V1/nl-okd-additional-studentinfo.yaml'
+  - $ref: '../consumers/NL-OKD/V1/nl-okd-examen.yaml'
 example: 
   - consumerKey: 'nl-okd'
     documentType: 'enrollment'

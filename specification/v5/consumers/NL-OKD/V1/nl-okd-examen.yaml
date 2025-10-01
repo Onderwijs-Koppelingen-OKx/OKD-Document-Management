@@ -1,0 +1,25 @@
+type: object
+description: nl-okd add-on attributes to the Association 
+required:
+ - consumerKey
+properties:
+  consumerKey:
+    type: string
+  examDate:
+    type: string
+    format: date
+    description: Datum wanneer examen afgenomen is
+    example: "2024-06-15"
+  examComponentOffering:
+    type: string
+    format: uuid
+    description: Component offering id van examen
+    example: "c9c3875b-0c6b-435a-a8a4-211bf66620b5"
+  examName:
+    type: string
+    description: Examennaam
+    example: "Examen Mediabeheer K3-W1"
+
+
+
+
