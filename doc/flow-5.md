@@ -89,9 +89,9 @@ Accept: application/json
 
     class `nl-okd-assciation` {
         consumerKey : string = "nl-okd"
-        "inschrijvingStartDate": "2021-09-01", 
-        "inschrijvingExpectedEndDate": "2025-07-31",
-        "inschrijvingFinalEndDate": "2025-06-03"
+        "enrollmentStartDate": "2021-09-01", 
+        "enrollmentExpectedEndDate": "2025-07-31",
+        "enrollmentFinalEndDate": "2025-06-03"
     }
 
     programOfferingAssociation -- ProgramOffering

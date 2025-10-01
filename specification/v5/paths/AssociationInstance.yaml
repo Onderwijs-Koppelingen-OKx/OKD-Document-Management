@@ -265,14 +265,14 @@ post:
             consumers:
               - consumerKey: "nl-okd"
                 studentNumber: "1234567"
-                documentType: "diplomering"
+                documentType: "examination"
                 documentSubtype: "diploma"
                 documentId: "65f64c44-e3c4-4579-8e05-a729d4b89d06"
                 documentName: "diploma-MBO.pdf"
                 retentionPeriodSuggestion: "3Y"
-                inschrijvingStartDate: "2021-09-01"
-                inschrijvingExpectedEndDate: "2025-07-31"
-                inschrijvingFinalEndDate: null
+                enrollmentStartDate: "2021-09-01"
+                enrollmentExpectedEndDate: "2025-07-31"
+                enrollmentFinalEndDate: null
             person: "5ab399b8-c499-4da8-af6d-b55e66251f31"
             offering: "5ffc6127-debe-48ce-90ae-75ea80756475"
           file: "(binary file content)"

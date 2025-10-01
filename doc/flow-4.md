@@ -45,14 +45,14 @@ Content-Type: application/json
         {
             "consumerKey": "nl-okd",
             "studentNumber": "1234567",
-            "documentType": "diplomering",
+            "documentType": "graduation",
             "documentSubtype" : "diploma"
             "documentId: "65f64c44-e3c4-4579-8e05-a729d4b89d06",
             "documentName": "diploma-MBO.pdf",
             "retentionPeriodSuggestion": "3Y"
-            "inschrijvingStartDate": "2021-09-01", 
-            "inschrijvingExpectedEndDate": "2025-07-31",
-            "inschrijvingFinalEndDate": null
+            "enrollmentStartDate": "2021-09-01", 
+            "enrollmentExpectedEndDate": "2025-07-31",
+            "enrollmentFinalEndDate": null
         }
     ],
     "person": "5ab399b8-c499-4da8-af6d-b55e66251f31" ,
