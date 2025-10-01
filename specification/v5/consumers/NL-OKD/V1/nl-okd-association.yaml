@@ -23,4 +23,10 @@ properties:
     description: |
       identifies the final end date of the inschrijving.
     example: null
+  x-studentNummer:
+    type: string
+    description: |
+      The studentnummer of the person in the context of this inschrijving.
+    example: "1234567"
+  
   

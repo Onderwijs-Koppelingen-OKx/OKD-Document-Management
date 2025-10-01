@@ -1,16 +1,28 @@
 get:
   summary: GET /documents/{documentId}
-  operationId: listDocumentById
-  description: Get the binary data from a document.
+  operationId: getDocumentById
+  description: |
+    Get the document stored in the DMS.
+    This can be done in 2 ways:
+    1. Get the metadata of a document (request content-type application/json)
+    2. Get the binary data from a document. (request content-type application/octet-stream)
+    
+    note:
+    - This endpoint should be implemented by the DMS component, so that the components can retrieve documents. (flow-x)
+    - The documentId is the ID returned by the DMS when the document was uploaded.
   security:
     - oAuthFlows:
-      - nl-okd-all
+      - okd:alldocuments
+      - okd:examdocuments
+      - okd:bpvdocuments
+      - okd:graduationdocuments
+      - okd:enrollmentderollment
   tags:
     - documents
   parameters:
     - name: documentId
       in: path
-      description: Document ID
+      description: Document ID to retrieve. This is the ID returned by the DMS when the document was uploaded.
       required: true
       schema:
         type: string
@@ -29,11 +41,15 @@ get:
               summary: File download
               value: <raw data>
         application/json:
-          schema:
-            id: 
-              type: string
-              format: uuid
-              
+          ref: '../schemas/DocumentMetadata.yaml'
+          example:
+            dmsDocumentId: "e68ee6c0-d503-4e56-8dce-d7fbf3e5b52d"
+            title: "ExamenBeoordeling van Jan"
+            documentTempDownloadUrl: "http://api.djuma.nl/download/5ffc6127-debe-48ce-90ae-75ea80756475&tempaccess=#556633ga6dr53g3"
+            creatiedatum: "2025-09-30T14:48:00Z"
+            formaat: "application/pdf"
+            documentname: "beoordeling-jan.pdf"
+            documentsize: 234567
       description: OK
     '400':
       $ref: '../schemas/ErrorBadRequest.yaml'
@@ -49,10 +65,25 @@ get:
       $ref: '../schemas/ErrorTooManyRequests.yaml'
     '500':
       $ref: '../schemas/ErrorInternalServerError.yaml'
-post:
+
+patch:
   summary: Upload document to replace the content of an existing document
-  description: Upload a document file
-  operationId: uploadDocument
+  description: |
+    Update the document stored in the DMS.
+    
+    note:
+    - This endpoint should be implemented by the DMS component, so that the components can update documents. (flow-y)
+    - The documentId is the ID returned by the DMS when the document was uploaded.
+    - The call is a application/octet-stream call with the binary file to upload
+    - no meta data updates is possible with this call.
+  security:
+    - oAuthFlows:
+      - okd:alldocuments
+      - okd:examdocuments
+      - okd:bpvdocuments
+      - okd:graduationdocuments
+      - okd:enrollmentderollment
+  operationId: updateDocument
   tags:
     - documents
   parameters:
@@ -79,11 +110,15 @@ post:
           schema:
             $ref: '../schemas/DocumentUploadResponse.yaml'
     '400':
-      description: Invalid request - bad file format or metadata
-      content:
-        application/json:
-          schema:
-            $ref: '../schemas/Problem.yaml'
+      $ref: '../schemas/ErrorBadRequest.yaml'
+    '401':
+      $ref: '../schemas/ErrorUnauthorized.yaml'
+    '403':
+      $ref: '../schemas/ErrorForbidden.yaml'
+    '404':
+      $ref: '../schemas/ErrorNotFound.yaml'
+    '405':
+      $ref: '../schemas/ErrorMethodNotAllowed.yaml'
     '413':
       description: File too large
     '422':
@@ -92,3 +127,56 @@ post:
         application/json:
           schema:
             $ref: '../schemas/Problem.yaml'
+    '429':
+      $ref: '../schemas/ErrorTooManyRequests.yaml'
+    '500':
+      $ref: '../schemas/ErrorInternalServerError.yaml'
+
+delete:
+  summary: DELETE /documents/{documentId}
+  description: |
+    Delete the document stored in the DMS.
+    
+    note:
+    - This endpoint should be implemented by the DMS component, so that the components can delete documents. (flow-z)
+    - This endpoint should be implemented by the components, so that the DMS can inform that the document is destroyed. (flow-6)
+    - The documentId is the ID returned by the DMS when the document was uploaded.
+    - oAuthFlows okd:destroyednotification is only for the DMS to inform the components that a document is destroyed.
+
+  operationId: deleteDocumentById
+  security:
+    - oAuthFlows:
+      - okd:alldocuments
+      - okd:examdocuments
+      - okd:bpvdocuments
+      - okd:graduationdocuments
+      - okd:enrollmentderollment
+      - okd:destroyednotification
+  tags:
+    - documents
+  parameters:
+    - name: documentId
+      in: path
+      description: Document ID
+      required: true
+      schema:
+        type: string
+        format: uuid
+
+  responses:
+    '204':
+      description: No Content. Document deleted successfully.
+    '400':
+      $ref: '../schemas/ErrorBadRequest.yaml'
+    '401':
+      $ref: '../schemas/ErrorUnauthorized.yaml'
+    '403':
+      $ref: '../schemas/ErrorForbidden.yaml'
+    '404':
+      $ref: '../schemas/ErrorNotFound.yaml'
+    '405':
+      $ref: '../schemas/ErrorMethodNotAllowed.yaml'
+    '429':
+      $ref: '../schemas/ErrorTooManyRequests.yaml'
+    '500':
+      $ref: '../schemas/ErrorInternalServerError.yaml'  
