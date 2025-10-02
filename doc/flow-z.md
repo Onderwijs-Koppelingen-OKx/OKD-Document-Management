@@ -1,6 +1,6 @@
 ## Flow z Verwijderen van een document
 
-De app besluit dat het document bewust verwijdert word. (privacy, error correctie, etc)
+De app besluit dat het document bewust verwijderd wordt. (privacy, error correctie, etc)
 
 
 Als er in een van de apps bewust besloten word om een document te verwijderen, dan is een call naar het document endpoint van het DMS de manier om het DMS te informeren. Wat het DMS er dan mee doet is applicatie afhankelijk. 
