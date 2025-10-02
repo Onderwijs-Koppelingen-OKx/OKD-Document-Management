@@ -90,8 +90,8 @@ Content-Type: application/json
     "offering": {
         "offeringId": "5ffc6127-debe-48ce-90ae-75ea80756475",
         "primaryCode": {
-        "codeType": "identifier",
-        "code": "25190BOL"
+            "codeType": "identifier",
+            "code": "25190BOL"
         },
         "offeringType": "program",
         "name": "Netwerk- en mediabeheerder BOL (25190)",
@@ -128,22 +128,22 @@ Content-Type: application/json
             "organizationType": "department",
             "name": [
                 {
-                "language": "nl-NL",
-                "value": "ICT-academie"
+                    "language": "nl-NL",
+                    "value": "ICT-academie"
                 }
             ],
             "shortname": "ICTA",
             "parent": {
                 "organizationID": "650e1627-9f3d-4176-ab5a-e82eef0d219d",
                 "primaryCode": {
-                "codeType": "identifier",
-                "code": "CICT"
+                    "codeType": "identifier",
+                    "code": "CICT"
                 },
                 "name": [
-                {
-                    "language": "nl-NL",
-                    "value": "Cluster ICT en EIS"
-                }
+                    {
+                        "language": "nl-NL",
+                        "value": "Cluster ICT en EIS"
+                    }
                 ]
             }
         }
@@ -184,7 +184,7 @@ Response:
 
 
 ### OKD consumer
-Het oopai uitbreidingsmechanisme van consumers word gebruikt voor extra informatie:
+Het oopai uitbreidingsmechanisme van consumers wordt gebruikt voor extra informatie:
 * "consumerKey": dit moet hardcoded "nl-okd" zijn ter identificatie van de consumer,
 * "documentType": grofmazig document type "inschrijving",
 * "documentSubtype" : subtype. dit is door de school/component te definieeren
@@ -199,7 +199,7 @@ Specifiek voor inschrijven : 3 datums voor de inschrijving van deze student:
 ### Remarks
 
 - Berichten van maximaal 1 GB ondersteunen. Als we in de toekomst meer dan 1 GB willen ondersteunen, dan moet de metadata en het bestand apart gestuurd worden.
-- We supporteren alleen student als personAffliations. In de toekomst zou dit nog altijd uitgebreid kunnen worden voor bijv. Employee.
+- We ondersteunen alleen student als personAffliations. In de toekomst zou dit nog altijd uitgebreid kunnen worden voor bijv. Employee.
 
 
 ## Authenticatie:
