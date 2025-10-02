@@ -64,7 +64,7 @@ Host: api.yourdomain.com
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
 Accept: application/json
 ```
-returns (check response from gettting document details in ZGW):
+returns (check response from getting document details in ZGW):
 ```
 {
     "documentId": "5ffc6127-debe-48ce-90ae-75ea80756475",
@@ -72,8 +72,8 @@ returns (check response from gettting document details in ZGW):
     "documentTempDownloadUrl": "http://aaa.djuma.nl/download/5ffc6127-debe-48ce-90ae-75ea80756475&tempaccess=#556633ga6dr53g3",
     "creatiedatum": "2025-09-03",
     "formaat": "application/pdf",
-    "bestandsnaam": "test.pdf",
-    "bestandsomvang": 243857
+    "documentname": "test.pdf",
+    "documentsize": 243857
 }
 ```
 
