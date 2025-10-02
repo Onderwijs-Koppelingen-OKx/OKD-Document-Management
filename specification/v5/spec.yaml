@@ -22,7 +22,7 @@ info:
 
     Informatie over eerdere bijeenkomsten en presentaties kan <a target="_blank" href="https://github.com/open-education-api/notulen">hier</a> worden gevonden
 
-    Informatie over het EDU-API model dat ook werd gebruikt voor deze api wordt <a target="_blank" href="eduapi.png">hier</a> getoond
+    Informatie over het EDU-API model, dat ook werd gebruikt voor deze api, wordt <a target="_blank" href="eduapi.png">hier</a> getoond
 
   contact: 
     name: Kees van Ginkel
@@ -45,7 +45,7 @@ tags:
     description: |
       The documents API provides access to the documents in a binary format
 
-          Voor de OKD: De documenten API biedt toegang tot de documenten in een binaire vorm en de mogenlijkheid om de inhoud van documenten te updaten. Het aanbieden van documenten gaat via andere endpoints.
+          Voor de OKD: De documenten API biedt toegang tot de documenten in een binaire vorm en de mogelijkheid om de inhoud van documenten te updaten. Het aanbieden van documenten gaat via andere endpoints.
 
   - name: associations
     description: |
@@ -122,3 +122,4 @@ paths:
 
   /associations/{associationId}:
     $ref: paths/AssociationInstance.yaml
+
