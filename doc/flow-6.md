@@ -1,6 +1,6 @@
 ## Flow 6 document vernietigt notificatie
 
-Nadat de bewaartermijn verstreken is, wordt document vernietigd in DMS. DMS meldt dat vernietiging heeft plaatsgevonden en niet meer langer beschikbaar is.
+Nadat de bewaartermijn verstreken is, wordt het document vernietigd in DMS. DMS meldt dat vernietiging heeft plaatsgevonden en dat het document niet langer meer beschikbaar is.
 
 
 **Openvraag:** is dit nodig? of merkt de app het wel als er een document getoon moet worden (flow x)
