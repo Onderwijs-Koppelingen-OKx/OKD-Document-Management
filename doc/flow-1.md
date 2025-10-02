@@ -76,6 +76,8 @@ Content-Type: application/json
         "surname": "Damme",
         "displayName": "Maartje van Damme",
         "initials": "MCW",
+        "dateOfBirth": "2003-09-30",
+        "gender": "F",
         "activeEnrollment": true,
         "affiliations": 
         [
@@ -200,6 +202,11 @@ Specifiek voor inschrijven : 3 datums voor de inschrijving van deze student:
 
 - Berichten van maximaal 1 GB ondersteunen. Als we in de toekomst meer dan 1 GB willen ondersteunen, dan moet de metadata en het bestand apart gestuurd worden.
 - We ondersteunen alleen student als personAffliations. In de toekomst zou dit nog altijd uitgebreid kunnen worden voor bijv. Employee.
+
+- Onderstaande eigenschappen zijn noodzakelijk om studenten uit bron op te vragen en te identificeren op moment dat studentnummer niet aanwezig is. Bijv. vanuit een stoom waarbij brief via scan toegevoegd wordt aan DMS.
+
+"dateOfBirth": "2003-09-30",
+"gender": "F",
 
 
 ## Authenticatie:
