@@ -46,6 +46,8 @@ Response
     "surname": "Damme",
     "displayName": "Maartje van Damme",
     "initials": "MCW",
+    "dateOfBirth": "2003-09-30",
+    "gender": "F",
     "activeEnrollment": true,
     "affiliations": 
     [
@@ -84,6 +86,8 @@ Response
       "surname": "Damme",
       "displayName": "Maartje van Damme",
       "initials": "MCW",
+      "dateOfBirth": "2003-09-30",
+      "gender": "F",
       "activeEnrollment": true,
       "affiliations": 
       [
@@ -140,6 +144,8 @@ Response
         "surname": "Damme",
         "displayName": "Maartje van Damme",
         "initials": "MCW",
+        "dateOfBirth": "2003-09-30",
+        "gender": "F",
         "activeEnrollment": true,
         "affiliations": 
         [
@@ -223,6 +229,10 @@ Specifiek voor inschrijven : 3 datums voor de inschrijving van deze student:
 * "enrollmentStartDate": "2021-09-01", 
 * "enrollmentExpectedEndDate": "2025-07-31",
 * "enrollmentFinalEndDate": null
+
+Onderstaande eigenschappen zijn noodzakelijk om studenten uit bron op te vragen en te identificeren op moment dat studentnummer niet aanwezig is. Bijv. vanuit een stoom waarbij brief via scan toegevoegd wordt aan DMS.
+* "dateOfBirth": "2003-09-30",
+* "gender": "F",
 
 ### Authenticatie:
 scope: **okd:studentinfo**
