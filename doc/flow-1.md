@@ -2,13 +2,13 @@
 Aanbieden van documenten rondom de inschrijving van een student.
 Vanuit model Inschrijven naar het DMS: ondersteunende documenten bij de inschrijving die in het student/inschrijvings dossier horen.
 
-De call word gedaan op het endpoint waar de metat informatie normaal opgeslagen word, alleen is het request een multipart Post waarbij eerst de metadata in json formaat en daarna de inhoud van het document als binary of pdf gestuurd word.
+De call word gedaan op het endpoint waar de meta informatie normaal opgeslagen wordt, alleen is het request een multipart Post waarbij eerst de metadata in json formaat en daarna de inhoud van het document als binary of pdf gestuurd wordt.
 
-Het DMS bepaalt daarna het documentID en retourneerd deze. dit id is nodig om documenten in te zien, te updaten of verwijderen. In het DMS worden documenten uitveel bronnen opgeslagen en de uniciteit van de id kan ook alleen vanuit het dms gegarandeerd worden.
+Het DMS bepaalt daarna het documentID en retourneerd deze. dit id is nodig om documenten in te zien, te updaten of te verwijderen. In het DMS worden documenten uit veel bronnen opgeslagen en de uniciteit van het id kan ook alleen vanuit het DMS gegarandeerd worden.
 
-De calls vanuit de inschrijven module bevatten relatief veel meta data. Dit is in de inschrijf module beschikbaar en is de bron om student en inschrijving gegevens naar het DMS te sturen. Andere modules zoals BPV en Examinering verwijzen naar deze informatie en daar is de metatdata ook veel kleiner.
+De calls vanuit de inschrijven module bevatten relatief veel meta data. Dit is in de inschrijf module beschikbaar en is de bron om student- en inschrijvinggegevens naar het DMS te sturen. Andere modules zoals BPV en Examinering verwijzen naar deze informatie en daar is de metatdata ook veel kleiner.
 
-Note: In het request zit wel het documentId van de component, die anderskan zijn dan die van het DMS.
+Note: In het request zit wel het documentId van de component, die anders kan zijn dan die van het DMS.
 
 ### Sequence diagram 
 ```mermaid
