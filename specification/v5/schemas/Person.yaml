@@ -3,7 +3,7 @@ allOf:
   - $ref: '../schemas/PersonProperties.yaml'
 
 example:
-  - personId: "5ab399b8-c499-4da8-af6d-b55e66251f31"
+    personId: "5ab399b8-c499-4da8-af6d-b55e66251f31"
     primaryCode:
       codeType: "studentNumber"
       code: "1234567"
