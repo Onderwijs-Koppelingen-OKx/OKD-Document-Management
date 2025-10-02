@@ -1,6 +1,6 @@
 ## OKD - Flow 7 Extra student/inschrijving informatie ophalen
 
-Als flow 1 niet geimplementeerd wordt en er bv alleen documenten via flow 2 en 3 aangeboden worden heeft het DMS ook een mogenlijkheid nodig om student en inschrijvings informatie op te halen.
+Als flow 1 niet geimplementeerd wordt en er bijvoorbeeld alleen documenten via flow 2 en 3 aangeboden worden, heeft het DMS ook een mogelijkheid nodig om student- en inschrijvingsinformatie op te halen.
 
 **Open vraag:** wat is de minimale info die nodig is voor de doelbinding met het DMS? Antwoord: zelfde informatie uit flow 1
 
@@ -97,7 +97,7 @@ Response
   }
 ]
 ```
-Note: Alleen de query parameter 'primaryCode' word ondersteund, tbv convertie en legacy 
+Note: Alleen de query parameter 'primaryCode' word ondersteund, tbv conversie en legacy 
 
 #### Voorbeeld 3:
 
@@ -225,7 +225,7 @@ Specifiek voor inschrijven : 3 datums voor de inschrijving van deze student:
 * "enrollmentFinalEndDate": null
 
 ### Authenticatie:
-scope die ook gebruikt is voor notificatie: **okd:studentinfo**
+scope: **okd:studentinfo**
 
 
 
