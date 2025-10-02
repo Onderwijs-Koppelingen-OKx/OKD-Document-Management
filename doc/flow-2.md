@@ -6,8 +6,8 @@ Er zijn twee hoofd documenttypes:
 * examen resultaat document
 
 Deze flows lijken erg op flow 1, met het verschil dat de metainformatie in deze flow een van de volgende is:
-* een examen zitting. (componentOffering in OOAPI termen)
-* een examen beoordeling/resultaat: inschrijving van student (programOfferingAssociation)
+* een examenzitting. (componentOffering in OOAPI termen)
+* een examenbeoordeling/resultaat: inschrijving van student (programOfferingAssociation)
 
 __Open vraag: sturen we een examen beeoordeling bij de inschrijving van de student? of bij de examenzitting. Hoe weet het DMS voor welke student het is? Of op de associatie van de student op de exameninschrijving?__
  
@@ -147,7 +147,7 @@ Het oopai uitbreidingsmechanisme van consumers word gebruikt voor extra informat
 * "documentName": naam van het toete voegen document
 * "retentionPeriodSuggestion": suggestie van bewaartermijn zoals evt gedefiniteerd door component. Is suggestie , DMS mag negeren vb: "3Y", "6M", "1321D"
 
-speciaal voor examn documenten:
+speciaal voor examendocumenten:
 * "examDate": datum wanneer examen afgenomen is, 
 * "examComponentOffering": component offering id van examen. 
 * "examName": examennaam bv: "Examen Mediabeheer K3-W1"
