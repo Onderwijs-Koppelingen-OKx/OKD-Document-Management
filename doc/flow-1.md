@@ -2,11 +2,11 @@
 Aanbieden van documenten rondom de inschrijving van een student.
 Vanuit model Inschrijven naar het DMS: ondersteunende documenten bij de inschrijving die in het student/inschrijvings dossier horen.
 
-De call word gedaan op het endpoint waar de meta informatie normaal opgeslagen wordt, alleen is het request een multipart Post waarbij eerst de metadata in json formaat en daarna de inhoud van het document als binary of pdf gestuurd wordt.
+De call wordt gedaan op het endpoint waar de meta informatie normaal opgeslagen wordt, alleen is het request een multipart Post waarbij eerst de metadata in json formaat en daarna de inhoud van het document als binary (pdf) gestuurd wordt.
 
-Het DMS bepaalt daarna het documentID en retourneerd deze. dit id is nodig om documenten in te zien, te updaten of te verwijderen. In het DMS worden documenten uit veel bronnen opgeslagen en de uniciteit van het id kan ook alleen vanuit het DMS gegarandeerd worden.
+Het DMS bepaalt daarna het documentID en retourneert deze. Dit id is nodig om documenten in te zien, te updaten of te verwijderen. In het DMS worden documenten uit veel bronnen opgeslagen en de uniciteit van het id kan ook alleen vanuit het DMS gegarandeerd worden.
 
-De calls vanuit de inschrijven module bevatten relatief veel meta data. Dit is in de inschrijf module beschikbaar en is de bron om student- en inschrijvinggegevens naar het DMS te sturen. Andere modules zoals BPV en Examinering verwijzen naar deze informatie en daar is de metatdata ook veel kleiner.
+De calls vanuit de inschrijven module bevatten relatief veel metadata. Dit is in de inschrijf module beschikbaar en het is de bron om student- en inschrijvinggegevens naar het DMS te sturen. Andere modules zoals BPV en Examinering verwijzen naar deze informatie en daar is de metadata ook veel kleiner.
 
 Note: In het request zit wel het documentId van de component, die anders kan zijn dan die van het DMS.
 
@@ -186,13 +186,13 @@ Response:
 
 
 ### OKD consumer
-Het oopai uitbreidingsmechanisme van consumers wordt gebruikt voor extra informatie:
+Het ooapi uitbreidingsmechanisme van consumers wordt gebruikt voor extra informatie:
 * "consumerKey": dit moet hardcoded "nl-okd" zijn ter identificatie van de consumer,
-* "documentType": grofmazig document type "inschrijving",
-* "documentSubtype" : subtype. dit is door de school/component te definieeren
+* "documentType": grofmazig documenttype "inschrijving",
+* "documentSubtype" : subtype. Dit is door de school/component te definiëren
 * "documentId: id van het document zoals de component het kent
-* "documentName": naam van het toete voegen document
-* "retentionPeriodSuggestion": suggestie van bewaartermijn zoals evt gedefiniteerd door component. Is suggestie , DMS mag negeren vb: "3Y", "6M", "1321D"
+* "documentName": naam van het toe te voegen document
+* "retentionPeriodSuggestion": suggestie van bewaartermijn zoals eventueel gedefiniëerd door component. Is suggestie, DMS mag negeren vb: "3Y", "6M", "1321D"
 
 Specifiek voor inschrijven : 3 datums voor de inschrijving van deze student:
 * "enrollmentStartDate": "2021-09-01", 
@@ -201,9 +201,9 @@ Specifiek voor inschrijven : 3 datums voor de inschrijving van deze student:
 ### Remarks
 
 - Berichten van maximaal 1 GB ondersteunen. Als we in de toekomst meer dan 1 GB willen ondersteunen, dan moet de metadata en het bestand apart gestuurd worden.
-- We ondersteunen alleen student als personAffliations. In de toekomst zou dit nog altijd uitgebreid kunnen worden voor bijv. Employee.
+- We ondersteunen alleen student als personAffliations. In de toekomst zou dit nog altijd uitgebreid kunnen worden voor bijvoorbeeld 'Employee'.
 
-- Onderstaande eigenschappen zijn noodzakelijk om studenten uit bron op te vragen en te identificeren op moment dat studentnummer niet aanwezig is. Bijv. vanuit een stoom waarbij brief via scan toegevoegd wordt aan DMS.
+- Onderstaande eigenschappen zijn noodzakelijk om studenten uit bron op te vragen en te identificeren op moment dat studentnummer niet aanwezig is, bijvoorbeeld vanuit een stroom waarbij brief via scan toegevoegd wordt aan DMS.
 
 "dateOfBirth": "2003-09-30",
 "gender": "F",
