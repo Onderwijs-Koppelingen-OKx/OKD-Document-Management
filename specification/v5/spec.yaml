@@ -5,7 +5,7 @@ info:
   description: |
     OpenAPI specification for the Open Education API, used in the OKD.
     <br/>
-    NOTE:This is a subset of the OOAPI that is used in the "MBO-OKD" project (sponsored by npuls/mbo-digitaal in the netherlands). This project uses the "nl-okd" consumer 
+    NOTE: This is a subset of the OOAPI that is used in the "MBO-OKD" project (sponsored by npuls/mbo-digitaal in the netherlands). This project uses the "nl-okd" consumer 
     <br/>
     <figure>
     	<a target="_blank" href="OOAPIv5_model.png">
@@ -13,6 +13,7 @@ info:
       </a>
       <figcaption> OOAPI informatiemodel dat de OOAPI specificatie voedt (klik om te vergroten)</figcaption>
     </figure>
+    ![OOAPI informatiemodel dat de OOAPI specificatie voedt](OOAPIv5_model.png)
 
     Het model geeft een overzicht van hoe de objecten waarop de API is gespecificeerd zijn gerelateerd. Het overkoepelende concept educations wordt niet gevonden in de eindpunten van de API. De kleinere concepten van programOffering, courseOffering en conceptOffering worden allemaal gevonden in het offering eindpunt. De verschillende types van associatie kunnen allemaal worden gevonden in het association eindpunt.
     
