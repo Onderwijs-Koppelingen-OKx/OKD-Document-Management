@@ -1,15 +1,15 @@
-# OKD - Flow 2 - examen Document overdragen naar DMS
+# OKD - Flow 2 - Examen document overdragen naar DMS
 Aanbieden van examenresultaat en examenmoment gerelateerde documenten naar het DMS. Deze documenten worden opgeslagen in DMS als onderdeel van examendossier en gelinkt aan de student inschrijving.
 
-Er zijn twee hoofd documenttypes:
-* examenzittingverslag document
-* examen resultaat document
+Er zijn twee hoofddocumenttypes:
+* Examenzittingverslag document
+* Examenresultaat document
 
 Deze flows lijken erg op flow 1, met het verschil dat de metainformatie in deze flow een van de volgende is:
 * een examenzitting. (componentOffering in OOAPI termen)
 * een examenbeoordeling/resultaat: inschrijving van student (programOfferingAssociation)
 
-__Open vraag: sturen we een examen beeoordeling bij de inschrijving van de student? of bij de examenzitting. Hoe weet het DMS voor welke student het is? Of op de associatie van de student op de exameninschrijving?__
+__Open vraag: sturen we een examenbeeoordeling bij de inschrijving van de student of bij de examenzitting? Hoe weet het DMS voor welke student het is? Of op de associatie van de student op de exameninschrijving?__
  
 We sturen het request naar het endpoint waar de metadata hoort. Bv association/{id} of de verbintenis/inschrijving van de student te geven. Omdat we hier niet in de inschrijving flow zitten zullen we hier zo min mogelijk velden geven, net de verplichte en een consumer met meta informatie van het document.
 
@@ -27,7 +27,7 @@ sequenceDiagram
 - `PUT .../okd/v1/associations/{associationId}`
 - `PUT .../okd/v1/offering/{componentOfferingId}`
 
-voorbeeld :
+voorbeeld:
 ```
 PUT .../okd/v1/associations/123e4567-e89b-12d3-a456-426614174000
 Host: api.yourdomain.com
@@ -83,7 +83,7 @@ Response:
 Als het een examenzitting is:
 - `PUT .../okd/v1/offering/{componentOfferingId}`
 
-voorbeeld :
+voorbeeld:
 ```
 PUT .../okd/v1/offering/c9c3875b-0c6b-435a-a8a4-211bf66620b5
 Host: api.yourdomain.com
@@ -136,16 +136,16 @@ Response:
 ```
 
 ## Verwerking in het DMS
-Het DMS kan zelf bepalen hoe de documenten opgeslagen en verwerkt worden: of een apart examen dossier of alles onder de student inschrijving dossier
+Het DMS kan zelf bepalen hoe de documenten opgeslagen en verwerkt worden: of in een apart examendossier of alles onder het student inschrijvingdossier.
 
 ### OKD consumer
-Het oopai uitbreidingsmechanisme van consumers word gebruikt voor extra informatie:
+Het ooapi uitbreidingsmechanisme van consumers wordt gebruikt voor extra informatie:
 * "consumerKey": dit moet hardcoded "nl-okd" zijn ter identificatie van de consumer,
-* "documentType": grofmazig document type "inschrijving",
-* "documentSubtype" : subtype. dit is door de school/component te definieeren
+* "documentType": grofmazig documenttype "inschrijving",
+* "documentSubtype": subtype. Dit is door de school/component te definiëren
 * "documentId: id van het document zoals de component het kent
-* "documentName": naam van het toete voegen document
-* "retentionPeriodSuggestion": suggestie van bewaartermijn zoals evt gedefiniteerd door component. Is suggestie , DMS mag negeren vb: "3Y", "6M", "1321D"
+* "documentName": naam van het toe te voegen document
+* "retentionPeriodSuggestion": suggestie van bewaartermijn zoals eventueel gedefiniëerd door component. Is suggestie, DMS mag negeren vb: "3Y", "6M", "1321D"
 
 speciaal voor examendocumenten:
 * "examDate": datum wanneer examen afgenomen is, 
