@@ -5,7 +5,7 @@ Wanneer een client een interne document viewer heeft, kan deze rechtstreeks de b
 
 ### Endpoint
 
-- **`GET .../okd/v1/documents/{documentId}`** (request application/octet-stream)
+- **`GET .../okd/v1/documents/{documentId}/download`** (request application/octet-stream)
   - **Description**: Fetches the specified document's  binary content from the DMS, identified by its `documentId`.
   - **Parameters**: 
     - `documentId` (required): A unique identifier (UUID) for the document to be retrieved.
@@ -81,8 +81,8 @@ returns (check response from getting document details in ZGW):
 
 
 ### Authenticatie:
-scope die ook gebruikt is voor inzien is zelfde als voor toevoegen. (**okd:alldocuments** of de specifiekere varianten)
-Als de scope een specifieker scope is dan gelden de document restricties. okd:bpvdocument mag alleen bpv documenten inzien.
+scope die ook gebruikt is voor inzien is dezelfde als voor toevoegen. (**okd:alldocuments** of de specifiekere varianten)
+Als de scope een specifieker scope is dan gelden de document restricties. okd:bpvdocument mag alleen BPV documenten inzien.
 verder mogen de componenten alleen de door hun aangeleverde documenten inzien.
 
 
