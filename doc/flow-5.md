@@ -1,4 +1,4 @@
-# OKD - Flow 5 melden van uitschrijven bij DMS
+# OKD - Flow 5 Melden van uitschrijven bij DMS
 Notificeren dat een student zijn studie/verbintenis heeft beëindigd en de bewaartermijn van zijn documenten in mag gaan.
 
 Vanuit component Uitschrijven naar het DMS
@@ -18,7 +18,7 @@ sequenceDiagram
 #### Endpoints voor deze flow bij DMS
 - `PATCH .../okd/v1/associations/{associationId}`
 
-voorbeeld :
+voorbeeld:
 ```
 PATCH .../okd/v1/associations/123e4567-e89b-12d3-a456-426614174000
 Host: api.yourdomain.com
@@ -107,4 +107,4 @@ Accept: application/json
 ## Authenticatie:
 scope die ook gebruikt is  **okd:alldocuments** en **okd:enrollmentderollment**
 
-dit geeft een fijnmazige authorizatie mogenlijk waarbij applicaties wel examen of bpv documenten mogen toevoegen, maar niet uitschrijven
+Dit geeft een fijnmazige authorizatie mogelijkheid waarbij applicaties wel examen of BPV documenten mogen toevoegen, maar niet uitschrijven.
