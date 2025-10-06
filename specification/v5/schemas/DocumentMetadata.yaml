@@ -16,12 +16,12 @@ properties:
     type: string
     format: uri
     example: http://api.djuma.nl/download/5ffc6127-debe-48ce-90ae-75ea80756475&tempaccess=#556633ga6dr53g3
-  creatiedatum:
+  creationdate:
     description: creatiedatum van het document
     type: string
     format: date-time
     example: "2025-09-30T14:48:00Z"
-  formaat:
+  format:
     description: bestandsformaat (mimetype)
     type: string
     example: application/pdf
@@ -33,4 +33,5 @@ properties:
     description: grootte van het document in bytes
     type: integer
     format: int64
+
     example: 234567
