@@ -1,10 +1,10 @@
-# OKD - Flow 4 - diplomering Document overdragen naar DMS
-Aanbieden van diplomering gerelateerde documenten naar het DMS. Deze documenten worden opgeslagen in het DMS als onderdeel van examendossier en gelinkt aan de student inschrijving.
+# OKD - Flow 4 - Diplomering document overdragen naar DMS
+Aanbieden van diplomering gerelateerde documenten naar het DMS. Deze documenten worden opgeslagen in het DMS als onderdeel van examendossier en gelinkt aan de studentinschrijving.
 
 
 
 ## verwerking in DMS
-Het DMS kan zelf bepalen hoe de documenten opgeslagen en verwerkt worden: logisch onder de student inschrijving dossier
+Het DMS kan zelf bepalen hoe de documenten opgeslagen en verwerkt worden: logisch onder het student inschrijvingsdossier.
 
 ## Remarks
 - Berichten van maximaal 1 GB ondersteunen. Als we in de toekomst meer dan 1 GB willen ondersteunen, dan moet de metadata en het bestand apart gestuurd worden.
@@ -25,7 +25,7 @@ sequenceDiagram
 #### endpoints voor deze flow bij DMS
 - `POST .../okd/v1/associations/{associationId}`
 
-voorbeeld :
+voorbeeld:
 ```
 POST .../okd/v1/associations/123e4567-e89b-12d3-a456-426614174000
 Host: api.yourdomain.com
@@ -93,12 +93,12 @@ Response:
 
 ### OKD consumer
 Het oopai uitbreidingsmechanisme van consumers word gebruikt voor extra informatie:
-* "consumerKey": dit moet hardcoded "nl-okd" zijn ter identificatie van de consumer,
-* "documentType": grofmazig document type "graduation",
-* "documentSubtype" : subtype. dit is door de school/component te definieeren
+* "consumerKey": dit moet hardcoded "nl-okd" zijn ter identificatie van de consumer
+* "documentType": grofmazig document type "graduation"
+* "documentSubtype" : subtype. dit is door de school/component te definiëren
 * "documentId: id van het document zoals de component het kent
 * "documentName": naam van het toe te voegen document
-* "retentionPeriodSuggestion": suggestie van bewaartermijn zoals evt gedefinieerd door component. Is suggestie, DMS mag negeren vb: "3Y", "6M", "1321D"
+* "retentionPeriodSuggestion": suggestie van bewaartermijn zoals eventueel gedefinieerd door component. Is suggestie, DMS mag negeren vb: "3Y", "6M", "1321D"
 
 Specifiek voor inschrijven : 3 datums voor de inschrijving van deze student:
 * "enrollmentStartDate": "2021-09-01", 
@@ -107,5 +107,5 @@ Specifiek voor inschrijven : 3 datums voor de inschrijving van deze student:
 
 ## Authenticatie:
 
-Scope voor toevoegen van examen gerelateerde documenten: **okd:alldocuments** en **okd:graduationdocuments**.
+Scope voor toevoegen van diplomering gerelateerde documenten: **okd:alldocuments** en **okd:graduationdocuments**.
 Als een van deze 2 aanwezig is in het authenticatie token kan de actie uitgevoerd worden.
