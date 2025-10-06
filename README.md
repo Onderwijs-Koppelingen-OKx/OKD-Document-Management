@@ -116,7 +116,7 @@ sequenceDiagram
 Natuurlijk kan een student meerdere inschrijvingen doorlopen
 
 ### ophalen van student en inschrijving informatie
-Als flow 1 niet geimplementeerd word en er bv alleen documenten via flow 2,3 aangeboden worden heeft het DMS ook een mogenlijkheid nodig om student en inschrijvings informatie op te halen.
+Als flow 1 niet geimplementeerd wordt en er bijvoorbeeld alleen documenten via flow 2 en 3 aangeboden worden, heeft het DMS ook een mogenlijkheid nodig om student en inschrijvings informatie op te halen.
 ```mermaid
 sequenceDiagram
     Participant Inschrijven
@@ -159,7 +159,7 @@ Authenticatie volgt de OKx aanbeveling en nl-gov en edustandaard richtlijnen. zi
 
 
 
-*Nog te onderzoeken*: zijn er flows vanuit het DMS naar deze modules voor het aanbieden van nieuwe documenten ? Dit is geen onderdeel van de OKD 1.0, maar wel voor volgende versie
+*Nog te onderzoeken*: zijn er flows vanuit het DMS naar deze modules voor het aanbieden van nieuwe documenten? Dit is geen onderdeel van de OKD 1.0, maar wel voor een mogelijke volgende versie.
 
 ## Version history
 
