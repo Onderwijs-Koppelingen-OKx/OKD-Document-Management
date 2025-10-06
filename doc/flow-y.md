@@ -1,8 +1,8 @@
 ## OKD - Flow y Updaten document
-Updaten van de inhoud van een document, zonder dat de meta data verandert.
+Updaten van de inhoud van een document, zonder dat de metadata verandert.
 
 ## X.1 Updaten binaire data van een document
-Direct de nieuwe inhoud van het document uploaden. Als het document gelocked is faalt de call. Er wordt alleen binaire data geupdate en geen metadata van het document.
+Direct de nieuwe inhoud van het document uploaden. Als het document gelocked is faalt de call. Er wordt alleen binaire data geüpdatet en geen metadata van het document.
 
 *  endpoint .../okd/v1/documents/{documentid} PATCH
 
@@ -60,9 +60,9 @@ endobj
 ```
 
 Remarks
-- Er wordt alleen de binaire data geupdate en niet metadata van het document.
-- Het DMS is verantwoordelijk voor het locken van een document. Wanneer het document gelockt is, dan krijgt de client een foutmelding.
+- Er wordt alleen de binaire data geüpdatet en niet de metadata van het document.
+- Het DMS is verantwoordelijk voor het locken van een document. Wanneer het document reeds gelockt is, dan krijgt de client een foutmelding.
 - Documenten mogen niet groter zijn dan 1 GB.
 
 ### Authenticatie:
-Scope die ook gebruikt is voor updaten is zelfde als voor toevoegen. (**okd:alldocuments** of de specifiekere varianten)
+Scope die ook gebruikt is voor updaten is dezelfde als voor toevoegen. (**okd:alldocuments** of de specifiekere varianten)
