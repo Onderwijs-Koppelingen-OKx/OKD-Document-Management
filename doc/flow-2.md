@@ -145,7 +145,7 @@ Het ooapi uitbreidingsmechanisme van consumers wordt gebruikt voor extra informa
 * "documentSubtype": subtype. Dit is door de school/component te definiëren
 * "documentId: id van het document zoals de component het kent
 * "documentName": naam van het toe te voegen document
-* "retentionPeriodSuggestion": suggestie van bewaartermijn zoals eventueel gedefiniëerd door component. Is suggestie, DMS mag negeren vb: "3Y", "6M", "1321D"
+* "retentionPeriodSuggestion": suggestie van bewaartermijn zoals eventueel gedefinieerd door component. Is suggestie, DMS mag negeren vb: "3Y", "6M", "1321D"
 
 speciaal voor examendocumenten:
 * "examDate": datum wanneer examen afgenomen is, 
