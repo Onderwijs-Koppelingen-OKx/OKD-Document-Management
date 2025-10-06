@@ -187,8 +187,8 @@ Response:
 
 ### OKD consumer
 Het ooapi uitbreidingsmechanisme van consumers wordt gebruikt voor extra informatie:
-* "consumerKey": dit moet hardcoded "nl-okd" zijn ter identificatie van de consumer,
-* "documentType": grofmazig documenttype "inschrijving",
+* "consumerKey": dit moet hardcoded "nl-okd" zijn ter identificatie van de consumer
+* "documentType": grofmazig documenttype "inschrijving"
 * "documentSubtype" : subtype. Dit is door de school/component te definiëren
 * "documentId: id van het document zoals de component het kent
 * "documentName": naam van het toe te voegen document
