@@ -90,21 +90,19 @@ sequenceDiagram
     end
     Diplomeren_en_Certificeren -->> DMS: Behaald certificaat
     Diplomeren_en_Certificeren -->> DMS: Behaald diploma
-    Uitschrijven ->> DMS: Student uitgeschreven, start bewaartermijn
     Inschrijven->>DMS: Opvragen document
     Examineren->>DMS: Opvragen document
     BPV->>DMS: Opvragen document
     Diplomeren_en_Certificeren->>DMS: Opvragen document
-    Uitschrijven->>DMS: Opvragen document
     Inschrijven->>DMS: Wijzigen document
     Examineren->>DMS: Wijzigen document
     BPV->>DMS: Wijzigen document
     Diplomeren_en_Certificeren->>DMS: Wijzigen document
-    Uitschrijven->>DMS: Wijzigen document
     Inschrijven -->> DMS: Verwijderen document
     Examineren -->> DMS: Verwijderen document
     BPV -->> DMS: Verwijderen document
     Diplomeren_en_Certificeren -->> DMS: Verwijderen document
+    Uitschrijven ->> DMS: Student uitgeschreven, start bewaartermijn
     DMS ->> Inschrijven: Vernietiging notificatie
     DMS ->> Examineren: Vernietiging notificatie
     DMS ->> BPV: Vernietiging notificatie
