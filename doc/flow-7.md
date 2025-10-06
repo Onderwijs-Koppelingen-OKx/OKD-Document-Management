@@ -230,12 +230,9 @@ Specifiek voor inschrijven : 3 datums voor de inschrijving van deze student:
 * "enrollmentExpectedEndDate": "2025-07-31",
 * "enrollmentFinalEndDate": null
 
-Onderstaande eigenschappen zijn noodzakelijk om studenten uit bron op te vragen en te identificeren op moment dat studentnummer niet aanwezig is. Bijv. vanuit een stoom waarbij brief via scan toegevoegd wordt aan DMS.
+Onderstaande eigenschappen zijn noodzakelijk om studenten uit bron op te vragen en te identificeren op moment dat studentnummer niet aanwezig is, bijvoorbeeld vanuit een stroom waarbij brief via scan toegevoegd wordt aan DMS.
 * "dateOfBirth": "2003-09-30",
 * "gender": "F",
 
 ### Authenticatie:
 scope: **okd:studentinfo**
-
-
-
