@@ -66,7 +66,7 @@ get:
     '500':
       $ref: '../schemas/ErrorInternalServerError.yaml'
 
-patch:
+put:
   summary: Upload document to replace the content of an existing document
   description: |
     Update the document stored in the DMS.

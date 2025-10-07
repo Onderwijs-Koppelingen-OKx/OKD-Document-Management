@@ -132,7 +132,7 @@ get:
 
 
 
-patch:
+put:
   summary: PATCH /associations/{associationId}
   operationId: partialUpdateAssociationById
   description: |
