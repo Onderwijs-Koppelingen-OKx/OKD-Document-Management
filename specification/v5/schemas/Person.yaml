@@ -12,6 +12,8 @@ example:
     surname: "Damme"
     displayName: "Maartje van Damme"
     initials: "MCW"
+    dateOfBirth: "2000-01-15"
+    gender: "F"
     activeEnrollment: true
     affiliations:
       - "student"
