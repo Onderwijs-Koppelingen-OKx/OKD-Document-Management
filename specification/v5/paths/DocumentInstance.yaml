@@ -46,8 +46,8 @@ get:
             dmsDocumentId: "e68ee6c0-d503-4e56-8dce-d7fbf3e5b52d"
             title: "ExamenBeoordeling van Jan"
             documentTempDownloadUrl: "http://api.djuma.nl/download/5ffc6127-debe-48ce-90ae-75ea80756475&tempaccess=#556633ga6dr53g3"
-            creatiedatum: "2025-09-30T14:48:00Z"
-            formaat: "application/pdf"
+            creationdate: "2025-09-30T14:48:00Z"
+            format: "application/pdf"
             documentname: "beoordeling-jan.pdf"
             documentsize: 234567
       description: OK
