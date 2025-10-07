@@ -218,7 +218,7 @@ post:
   description: |
     POST a document with the association (inschrijving) metadata. 
 
-        For the OKD: Plaats een document bij een verbintenis. 
+        For the OKD: Add a document to a association/verbintenis.
 
     note:
     - This endpoint should be implemented by the DMS component, so that the components can upload documents for a association/verbintenis.

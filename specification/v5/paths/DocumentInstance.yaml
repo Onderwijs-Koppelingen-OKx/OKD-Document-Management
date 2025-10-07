@@ -74,8 +74,8 @@ patch:
     note:
     - This endpoint should be implemented by the DMS component, so that the components can update documents. (flow-y)
     - The documentId is the ID returned by the DMS when the document was uploaded.
-    - The call is a application/octet-stream call with the binary file to upload
-    - no meta data updates is possible with this call.
+    - The call is a application/octet-stream call with the binary file to upload.
+    - No meta data updates is possible with this call.
   security:
     - oAuthFlows:
       - okd:alldocuments
