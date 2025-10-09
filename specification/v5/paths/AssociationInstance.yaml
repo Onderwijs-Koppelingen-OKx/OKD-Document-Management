@@ -142,7 +142,7 @@ patch:
     a specialized media type `application/merge-patch+json` for partial resource representation 
     to update parts of resource objects.
 
-        Voor OKD: Update de status of het resultaat van een inschrijving. Eigenlijk word alleen het veld "state" verandert om aan te geven dat de verbintenis beeindigt is.
+        Voor OKD: Update de status of het resultaat van een inschrijving. Eigenlijk word alleen het veld "state" verandert om aan te geven dat de verbintenis beëindigd is.
         hoewel de ooapi meer states kent gebruiken we alleen "associated", "finished".
 
     Note:
