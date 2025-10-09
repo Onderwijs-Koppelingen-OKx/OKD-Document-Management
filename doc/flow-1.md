@@ -180,7 +180,7 @@ endobj
 Response:
 ```
 {
-    dmsDocumentId: "4e12169d-84b9-4d21-a987-f373bbbe4e6e"
+    "dmsDocumentId": "4e12169d-84b9-4d21-a987-f373bbbe4e6e"
 }
 ```
 
