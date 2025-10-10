@@ -8,8 +8,7 @@ Als flow 1 niet geimplementeerd wordt en er bijvoorbeeld alleen documenten via f
 
 - **`GET .../okd/v1/person/{personId}`**
 - **`GET .../okd/v1/association/{associationId}`**
-
-- **`GET .../okd/v1/person?primaryCode={studentNummer}`**
+- **`GET .../okd/v1/persons?primaryCode={studentNummer}`**
 
 ### Sequence Diagram
 
@@ -25,6 +24,11 @@ sequenceDiagram
     DMS-->>Inschrijven: GET .../okd/v1/association/{associationId}
     activate Inschrijven
     Inschrijven-->>DMS: 200 Association (inschrijving)
+    deactivate Inschrijven
+
+    DMS-->>Inschrijven: GET .../okd/v1/persons?primaryCode={studentNummer}
+    activate Inschrijven
+    Inschrijven-->>DMS: 200 person
     deactivate Inschrijven
 ```
 
@@ -62,48 +66,6 @@ Response
 ```
 
 #### Voorbeeld 2:
-
-GET .../okd/v1/person?primaryCode=1234567
-
-Response
-```
-{
-"pageSize": 1,
-"pageNumber": 1,
-"hasPreviousPage": false,
-"hasNextPage": false,
-"totalPages": 1,
-"items": [
-  {
-      "personId": "5ab399b8-c499-4da8-af6d-b55e66251f31",
-      "primaryCode": 
-      {
-          "codeType": "studentNumber",
-          "code": "1234567"
-      },
-      "givenName": "Maartje",
-      "surnamePrefix": "van",
-      "surname": "Damme",
-      "displayName": "Maartje van Damme",
-      "initials": "MCW",
-      "dateOfBirth": "2003-09-30",
-      "gender": "F",
-      "activeEnrollment": true,
-      "affiliations": 
-      [
-          "student"
-      ],
-      "mail": "vandamme.mcw@student.roc.nl",
-      "languageOfChoice":	[
-          "nl-NL"
-      ],
-      "otherCodes": []
-  }
-]
-```
-Note: Alleen de query parameter 'primaryCode' word ondersteund, tbv conversie en legacy 
-
-#### Voorbeeld 3:
 
 GET .../okd/v1/association/123e4567-e89b-12d3-a456-426614174000
 
@@ -220,6 +182,47 @@ Response
     }
 ```
 
+#### Voorbeeld 3:
+
+GET .../okd/v1/persons?primaryCode=1234567
+
+Response
+```
+{
+"pageSize": 1,
+"pageNumber": 1,
+"hasPreviousPage": false,
+"hasNextPage": false,
+"totalPages": 1,
+"items": [
+  {
+      "personId": "5ab399b8-c499-4da8-af6d-b55e66251f31",
+      "primaryCode": 
+      {
+          "codeType": "studentNumber",
+          "code": "1234567"
+      },
+      "givenName": "Maartje",
+      "surnamePrefix": "van",
+      "surname": "Damme",
+      "displayName": "Maartje van Damme",
+      "initials": "MCW",
+      "dateOfBirth": "2003-09-30",
+      "gender": "F",
+      "activeEnrollment": true,
+      "affiliations": 
+      [
+          "student"
+      ],
+      "mail": "vandamme.mcw@student.roc.nl",
+      "languageOfChoice":	[
+          "nl-NL"
+      ],
+      "otherCodes": []
+  }
+]
+```
+Note: Alleen de query parameter 'primaryCode' wordt ondersteund t.b.v. conversie en legacy 
 
 ### OKD consumer
 Het ooapi uitbreidingsmechanisme van consumers word gebruikt voor extra informatie:
