@@ -180,6 +180,7 @@ Response
             }
         }
     }
+}
 ```
 
 #### Voorbeeld 3:
@@ -221,6 +222,7 @@ Response
       "otherCodes": []
   }
 ]
+}
 ```
 Note: Alleen de query parameter 'primaryCode' wordt ondersteund t.b.v. conversie en legacy 
 
