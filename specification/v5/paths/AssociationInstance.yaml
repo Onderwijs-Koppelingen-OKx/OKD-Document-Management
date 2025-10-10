@@ -222,8 +222,8 @@ post:
 
     note:
     - This endpoint should be implemented by the DMS component, so that the components can upload documents for a association/verbintenis.
-    - the call is a multipart/form-data call with 2 parts: metadata (json) and file (binary).
-    - hoewel de ooapi meer states kent gebruiken we alleen "associated", "finished".
+    - The call is a multipart/form-data call with 2 parts: metadata (json) and file (binary).
+    - Although the ooapi has more states we only use "associated", "finished".
 
   operationId: postFileOnAssociationById
   security:
