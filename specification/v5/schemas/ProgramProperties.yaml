@@ -7,7 +7,7 @@ properties:
     example:
       codeType: programCode
       code: BIO
-    readOnly: true
+    readOnly: false
   programType:
     $ref: '../enumerations/programType.yaml'
   name:

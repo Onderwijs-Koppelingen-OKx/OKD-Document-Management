@@ -7,4 +7,4 @@ content:
       type: 'https://open-education-api.github.io/specification/v5/schemas/ErrorBadRequest.yaml'
       title: 'Bad request'
       status: 400
-      detail: 'The request could not be understood by the server due to malformed syntax. The client SHOULD NOT repeat the request without modifications.'
+      detail: 'The request could not be understood by the server due to malformed syntax. The client SHOULD NOT repeat the request without modifications. example: "Details: the metadata part is missing."'

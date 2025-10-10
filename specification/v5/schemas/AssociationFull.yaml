@@ -4,7 +4,7 @@ oneOf:
   - $ref: '../schemas/ComponentOfferingAssociation.yaml'
 properties:
   person:
-    readOnly: true
+    readOnly: false
     oneOf:
       - $ref: '../schemas/Identifier.yaml'
         title: personId

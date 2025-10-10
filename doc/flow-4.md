@@ -105,6 +105,9 @@ Specifiek voor inschrijven : 3 datums voor de inschrijving van deze student:
 * "enrollmentExpectedEndDate": "2025-07-31",
 * "enrollmentFinalEndDate": null
 
+Sepcifiek voor de student info: (kan het dms vast een student aanmaken als id onbelend is.)
+* "studentNumber": "1234567",
+
 ## Authenticatie:
 
 Scope voor toevoegen van diplomering gerelateerde documenten: **okd:alldocuments** en **okd:graduationdocuments**.

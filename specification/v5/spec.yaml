@@ -85,25 +85,25 @@ components:
             okd:enrollmentderollment: flow 1,5
             okd:destroyednotification: flow 6
             okd:studentinfo: flow 7
-  schemas:
-    Service:
-      $ref: 'schemas/Service.yaml'
-    Component:
-      $ref: 'schemas/Component.yaml'
-    ComponentOffering:
-      $ref: 'schemas/ComponentOffering.yaml'
-    Course:
-      $ref: 'schemas/Course.yaml'
-    CourseOffering:
-      $ref: 'schemas/CourseOffering.yaml'
-    Person:
-      $ref: 'schemas/Person.yaml'
-    Program:
-      $ref: 'schemas/Program.yaml'
-    ProgramOffering:
-      $ref: 'schemas/ProgramOffering.yaml'
-    Association:
-      $ref: 'schemas/AssociationFull.yaml'
+  # schemas:
+  #   Service:
+  #     $ref: 'schemas/Service.yaml'
+  #   Component:
+  #     $ref: 'schemas/Component.yaml'
+  #   ComponentOffering:
+  #     $ref: 'schemas/ComponentOffering.yaml'
+  #   Course:
+  #     $ref: 'schemas/Course.yaml'
+  #   CourseOffering:
+  #     $ref: 'schemas/CourseOffering.yaml'
+  #   Person:
+  #     $ref: 'schemas/Person.yaml'
+  #   Program:
+  #     $ref: 'schemas/Program.yaml'
+  #   ProgramOffering:
+  #     $ref: 'schemas/ProgramOffering.yaml'
+  #   Association:
+  #     $ref: 'schemas/AssociationFull.yaml'
 
 paths:
   /:
