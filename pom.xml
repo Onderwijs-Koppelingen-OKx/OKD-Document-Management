@@ -47,6 +47,10 @@
                         <configuration>
                             <inputSpec>${basedir}/specification/v5/spec.yaml</inputSpec>
                             <output>${project.build.directory}/generated-sources</output>
+                            <configOptions></configOptions>
+                            <additionalProperties>
+                                <additionalProperty>outputFile=openapi-OKD.yaml</additionalProperty>
+                            </additionalProperties>
                         </configuration>
                     </execution>
                 </executions>
