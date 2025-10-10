@@ -190,38 +190,38 @@ GET .../okd/v1/persons?primaryCode=1234567
 Response
 ```
 {
-"pageSize": 1,
-"pageNumber": 1,
-"hasPreviousPage": false,
-"hasNextPage": false,
-"totalPages": 1,
-"items": [
-  {
-      "personId": "5ab399b8-c499-4da8-af6d-b55e66251f31",
-      "primaryCode": 
+    "pageSize": 1,
+    "pageNumber": 1,
+    "hasPreviousPage": false,
+    "hasNextPage": false,
+    "totalPages": 1,
+    "items": [
       {
-          "codeType": "studentNumber",
-          "code": "1234567"
-      },
-      "givenName": "Maartje",
-      "surnamePrefix": "van",
-      "surname": "Damme",
-      "displayName": "Maartje van Damme",
-      "initials": "MCW",
-      "dateOfBirth": "2003-09-30",
-      "gender": "F",
-      "activeEnrollment": true,
-      "affiliations": 
-      [
-          "student"
-      ],
-      "mail": "vandamme.mcw@student.roc.nl",
-      "languageOfChoice":	[
-          "nl-NL"
-      ],
-      "otherCodes": []
-  }
-]
+          "personId": "5ab399b8-c499-4da8-af6d-b55e66251f31",
+          "primaryCode": 
+          {
+              "codeType": "studentNumber",
+              "code": "1234567"
+          },
+          "givenName": "Maartje",
+          "surnamePrefix": "van",
+          "surname": "Damme",
+          "displayName": "Maartje van Damme",
+          "initials": "MCW",
+          "dateOfBirth": "2003-09-30",
+          "gender": "F",
+          "activeEnrollment": true,
+          "affiliations": 
+          [
+              "student"
+          ],
+          "mail": "vandamme.mcw@student.roc.nl",
+          "languageOfChoice":	[
+              "nl-NL"
+          ],
+          "otherCodes": []
+      }
+    ]
 }
 ```
 Note: Alleen de query parameter 'primaryCode' wordt ondersteund t.b.v. conversie en legacy 
