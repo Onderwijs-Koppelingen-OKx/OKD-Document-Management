@@ -5,7 +5,7 @@ info:
   description: |
     OpenAPI specification for the Open Education API, used in the OKD.
     <br/>
-    NOTE:This is a subset of the OOAPI that is used in the "MBO-OKD" project (sponsored by npuls/mbo-digitaal in the netherlands). This project uses the "nl-okd" consumer 
+    NOTE: This is a subset of the OOAPI that is used in the "MBO-OKD" project (sponsored by npuls/mbo-digitaal in the netherlands). This project uses the "nl-okd" consumer 
     <br/>
     <figure>
     	<a target="_blank" href="OOAPIv5_model.png">
@@ -14,11 +14,11 @@ info:
       <figcaption> OOAPI informatiemodel dat de OOAPI specificatie voedt (klik om te vergroten)</figcaption>
     </figure>
 
-    Het model geeft een overzicht van hoe de objecten waarop de API is gespecificeerd zijn gerelateerd. Het overkoepelende concept educations wordt niet gevonden in de eindpunten van de API. De kleinere concepten van programOffering, courseOffering en conceptOffering worden allemaal gevonden in het offering eindpunt. De verschillende types van associatie kunnen allemaal worden gevonden in het association eindpunt.
+    Het model geeft een overzicht van hoe de objecten waarop de API is gespecificeerd zijn gerelateerd. Het overkoepelende concept educations wordt niet gevonden in de endpoints van de API. De kleinere concepten van programOffering, courseOffering en conceptOffering worden allemaal gevonden in het offering endpoint. De verschillende types van associatie kunnen allemaal worden gevonden in het association endpoint.
     
     Het originele bestand voor dit model kan <a target="_blank" href="OOAPIv5_model_v0.5.drawio">hier</a> worden gevonden
 
-    Het program relations object wordt niet gevonden als een apart eindpunt, maar relaties tussen programma's kunnen worden gevonden binnen het program eindpunt door dat eindpunt uit te breiden.
+    Het program relations object wordt niet gevonden als een apart endpoint, maar relaties tussen programma's kunnen worden gevonden binnen het program endpoint door dat endpoint uit te breiden.
 
     Informatie over eerdere bijeenkomsten en presentaties kan <a target="_blank" href="https://github.com/open-education-api/notulen">hier</a> worden gevonden
 
@@ -57,7 +57,7 @@ tags:
     description: |
       The persons API provides information about persons related to an organization.
 
-          Voor de OKD: De personen API geeft de mogenlijkheid om een bestand aan te bieden die aan de persoon gelinkt is.
+          Voor de OKD: De personen API geeft de mogelijkheid om een bestand aan te bieden die aan de persoon gelinkt is.
 
           Ook kan er additionele informatie van een persoon opgehaald worden. (zoeken op studentnummer of id)
 

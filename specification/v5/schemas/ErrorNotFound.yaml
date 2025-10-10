@@ -4,7 +4,7 @@ content:
     schema:
       $ref: 'Problem.yaml'
     example:
-      type: 'https://open-education-api.github.io/specification/v5/schemas/Error  NotFound.yaml'
+      type: 'https://open-education-api.github.io/specification/v5/schemas/ErrorNotFound.yaml'
       title: 'Not Found'
       status: 404
       detail: 'The requested resource could not be found.'
