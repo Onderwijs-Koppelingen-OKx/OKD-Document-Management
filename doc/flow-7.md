@@ -6,8 +6,8 @@ Als flow 1 niet geimplementeerd wordt en er bijvoorbeeld alleen documenten via f
 
 ### Endpoint
 
-- **`GET .../okd/v1/person/{personId}`**
-- **`GET .../okd/v1/association/{associationId}`**
+- **`GET .../okd/v1/persons/{personId}`**
+- **`GET .../okd/v1/associations/{associationId}`**
 - **`GET .../okd/v1/persons?primaryCode={studentNummer}`**
 
 ### Sequence Diagram
@@ -16,25 +16,25 @@ Als flow 1 niet geimplementeerd wordt en er bijvoorbeeld alleen documenten via f
 sequenceDiagram
     participant DMS
     participant Inschrijven
-    DMS-->>Inschrijven: GET .../okd/v1/person/{personId}
+    DMS-->>Inschrijven: GET .../okd/v1/persons/{personId}
     activate Inschrijven
     Inschrijven-->>DMS: 200 person
     deactivate Inschrijven
 
-    DMS-->>Inschrijven: GET .../okd/v1/association/{associationId}
+    DMS-->>Inschrijven: GET .../okd/v1/associations/{associationId}
     activate Inschrijven
     Inschrijven-->>DMS: 200 Association (inschrijving)
     deactivate Inschrijven
 
     DMS-->>Inschrijven: GET .../okd/v1/persons?primaryCode={studentNummer}
     activate Inschrijven
-    Inschrijven-->>DMS: 200 person
+    Inschrijven-->>DMS: 200 persons
     deactivate Inschrijven
 ```
 
 #### Voorbeeld 1:
 
-GET .../okd/v1/person/5ab399b8-c499-4da8-af6d-b55e66251f31
+GET .../okd/v1/persons/5ab399b8-c499-4da8-af6d-b55e66251f31
 
 Response
 ```
@@ -67,7 +67,7 @@ Response
 
 #### Voorbeeld 2:
 
-GET .../okd/v1/association/123e4567-e89b-12d3-a456-426614174000
+GET .../okd/v1/associations/123e4567-e89b-12d3-a456-426614174000
 
 Response
 ```
