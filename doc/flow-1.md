@@ -37,7 +37,7 @@ Content-Disposition: form-data; name="metadata"
 Content-Type: application/json
 
 {
-    "associationId: "123e4567-e89b-12d3-a456-426614174000",
+    "associationId": "123e4567-e89b-12d3-a456-426614174000",
     "associationType": "programOfferingAssociation",
     "role": "student",
     "state": "associated",
@@ -50,24 +50,23 @@ Content-Type: application/json
             "codeType": "opleidingscode",
             "code": "23089"
         }
-    ],            
+    ],
     "consumers": [
         {
             "consumerKey": "nl-okd",
             "documentType": "inschrijving",
-            "documentSubtype" : "vrijstellingsaanvraag"
-            "documentId: "dbd3e12a-ed8b-4488-ac34-26fd4f64f40b",
+            "documentSubtype": "vrijstellingsaanvraag",
+            "documentId": "dbd3e12a-ed8b-4488-ac34-26fd4f64f40b",
             "documentName": "inschrijving-100245.pdf",
-            "retentionPeriodSuggestion": "3Y"
-            "enrollmentStartDate": "2021-09-01", 
+            "retentionPeriodSuggestion": "3Y",
+            "enrollmentStartDate": "2021-09-01",
             "enrollmentExpectedEndDate": "2025-07-31",
             "enrollmentFinalEndDate": null
         }
     ],
     "person": {
         "personId": "5ab399b8-c499-4da8-af6d-b55e66251f31",
-        "primaryCode": 
-        {
+        "primaryCode": {
             "codeType": "studentNumber",
             "code": "1234567"
         },
@@ -79,12 +78,11 @@ Content-Type: application/json
         "dateOfBirth": "2003-09-30",
         "gender": "F",
         "activeEnrollment": true,
-        "affiliations": 
-        [
+        "affiliations": [
             "student"
         ],
         "mail": "vandamme.mcw@student.roc.nl",
-        "languageOfChoice":	[
+        "languageOfChoice": [
             "nl-NL"
         ],
         "otherCodes": []
@@ -106,15 +104,15 @@ Content-Type: application/json
             "programType": "program",
             "name": [
                 {
-                "language": "nl-NL",
-                "value": "Netwerk- en mediabeheerder"
+                    "language": "nl-NL",
+                    "value": "Netwerk- en mediabeheerder"
                 }
             ],
             "abbreviation": "N&M",
             "description": [
                 {
-                "language": "nl-NL",
-                "value": "In deze MBO-opleiding word je opgeleid voor het officieel erkende diploma 'MBO Netwerkbeheerder, niveau 4'. Met dit diploma ben je breed opgeleid en kun je het netwerk van een organisatie beheren. Dit is hét diploma voor de professionele netwerkbeheerder op het hoogste MBO-niveau. Je legt een uitstekende basis voor een mooie carrière als netwerkbeheerder. Bovendien is dit een diploma waarmee je eventueel probleemloos kunt doorstuderen naar een HBO-opleiding"
+                    "language": "nl-NL",
+                    "value": "In deze MBO-opleiding word je opgeleid voor het officieel erkende diploma 'MBO Netwerkbeheerder, niveau 4'. Met dit diploma ben je breed opgeleid en kun je het netwerk van een organisatie beheren. Dit is hét diploma voor de professionele netwerkbeheerder op het hoogste MBO-niveau. Je legt een uitstekende basis voor een mooie carrière als netwerkbeheerder. Bovendien is dit een diploma waarmee je eventueel probleemloos kunt doorstuderen naar een HBO-opleiding"
                 }
             ],
             "teachingLanguage": "nld",
