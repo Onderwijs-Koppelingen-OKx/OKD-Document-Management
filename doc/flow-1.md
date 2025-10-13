@@ -63,7 +63,7 @@ Content-Type: application/json
             "enrollmentExpectedEndDate": "2025-07-31",
             "enrollmentFinalEndDate": null
         }
-    ]
+    ],
     "person": {
         "personId": "5ab399b8-c499-4da8-af6d-b55e66251f31",
         "primaryCode": 
