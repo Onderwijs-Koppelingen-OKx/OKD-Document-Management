@@ -1,27 +1,107 @@
 # OKD - Flow 3 - BPV Document overdragen naar DMS
 Aanbieden van BPV gerelateerde documenten naar het DMS. Deze documenten worden opgeslagen in DMS als onderdeel van het student inschrijvingsdossier.
 
-## NOG TE DOEN:
-ZIE ook details van flow 1
-Deze flows lijkt erg op flow 1, met het verschil dat de metainformatie in deze flow beperkt is.
 
-* Een inschrijving van student
-
-Dit wordt nog uitgewerkt zodra we de details van flow 1 100% uitgewerkt hebben om consistent te blijven.
-
-### Sequence diagram 
+### Sequence diagram
 ```mermaid
 sequenceDiagram
     Participant BPV
     Participant DMS
 
-    BPV->>+DMS: PUT .../okd/v1/associations/{associationId} (beperkte meta informatie & inhoud)
+    BPV->>+DMS: POST .../okd/v1/associations/{associationId} (meta informatie & inhoud)
     DMS->>-BPV: nieuwe DMS referentie (UUID)
 
 ```
-#### Endpoints voor deze flow bij DMS
-- `PUT .../okd/v1/associations/{associationId}`
+#### endpoints voor deze flow bij DMS
+- `POST .../okd/v1/associations/{associationId}`
 
+voorbeeld:
+```
+POST .../okd/v1/associations/123e4567-e89b-12d3-a456-426614174000
+Host: api.yourdomain.com
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Length: 2847
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+Accept: application/json
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="metadata"
+Content-Type: application/json
+
+{
+    "associationId": "123e4567-e89b-12d3-a456-426614174000",
+    "associationType": "programOfferingAssociation",
+    "primaryCode": {
+        "codeType": "opleidingsblad",
+        "code": "1.1"
+    },
+    "otherCodes": [
+        {
+            "codeType": "opleidingscode",
+            "code": "25190BOL"
+        }
+    ],
+    "consumers": [
+        {
+            "consumerKey": "nl-okd",
+            "studentNumber": "1234567",
+            "documentType": "bpv",
+            "documentSubtype": "bpv-overeenkomst",
+            "documentId": "65f64c44-e3c4-4579-8e05-a729d4b89d06",
+            "documentName": "bpv-MBO.pdf",
+            "retentionPeriodSuggestion": "3Y",
+            "enrollmentStartDate": "2021-09-01",
+            "enrollmentExpectedEndDate": "2025-07-31",
+            "enrollmentFinalEndDate": null
+        }
+    ],
+    "person": "5ab399b8-c499-4da8-af6d-b55e66251f31",
+    "offering": "5ffc6127-debe-48ce-90ae-75ea80756475"
+}
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="file"; filename="diploma-MBO.pdf"
+Content-Type: application/pdf
+
+%PDF-1.4
+1 0 obj
+<<
+/Type /Catalog
+/Pages 2 0 R
+>>
+endobj
+2 0 obj
+<<
+/Type /Pages
+/Kids [3 0 R]
+/Count 1
+>>
+endobj
+...
+[Binary PDF content continues]
+...
+%%EOF
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+```
+
+Response:
+```
+{
+    "dmsDocumentId": "e8eab8a4-2b2d-4366-8d96-d9f5ba66508b"
+}
+```
+
+### OKD consumer
+Het oopai uitbreidingsmechanisme van consumers word gebruikt voor extra informatie:
+* "consumerKey": dit moet hardcoded "nl-okd" zijn ter identificatie van de consumer
+* "documentType": grofmazig document type "bpv"
+* "documentSubtype": subtype. dit is door de school/component te definiëren
+* "documentId: id van het document zoals de component het kent
+* "documentName": naam van het toe te voegen document
+* "retentionPeriodSuggestion": suggestie van bewaartermijn zoals eventueel gedefinieerd door component. Is suggestie, DMS mag negeren vb: "3Y", "6M", "1321D"
+
+Specifiek voor de student info: (kan het dms vast een student aanmaken als id onbelend is.)
+* "studentNumber": "1234567",
 
 ## Verwerking in DMS
 Het DMS kan zelf bepalen hoe de documenten opgeslagen en verwerkt worden: of in een apart BPV-dossier of alles onder het student inschrijvingsdossier
