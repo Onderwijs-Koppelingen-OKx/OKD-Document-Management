@@ -110,7 +110,7 @@ Het oopai uitbreidingsmechanisme van consumers word gebruikt voor extra informat
 * "documentName": naam van het toe te voegen document
 * "retentionPeriodSuggestion": suggestie van bewaartermijn zoals eventueel gedefinieerd door component. Is suggestie, DMS mag negeren vb: "3Y", "6M", "1321D"
 
-Specifiek voor de student info: (kan het dms vast een student aanmaken als id onbelend is.)
+Specifiek voor de student info: (kan het dms vast een student aanmaken als id onbekend is.)
 * "studentNumber": "1234567",
 
 ## Authenticatie:
