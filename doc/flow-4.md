@@ -39,7 +39,7 @@ Content-Disposition: form-data; name="metadata"
 Content-Type: application/json
 
 {
-    "associationId: "123e4567-e89b-12d3-a456-426614174000",
+    "associationId": "123e4567-e89b-12d3-a456-426614174000",
     "associationType": "programOfferingAssociation",
     "primaryCode": {
         "codeType": "opleidingsblad",
@@ -56,16 +56,16 @@ Content-Type: application/json
             "consumerKey": "nl-okd",
             "studentNumber": "1234567",
             "documentType": "graduation",
-            "documentSubtype" : "diploma"
-            "documentId: "65f64c44-e3c4-4579-8e05-a729d4b89d06",
+            "documentSubtype": "diploma",
+            "documentId": "65f64c44-e3c4-4579-8e05-a729d4b89d06",
             "documentName": "diploma-MBO.pdf",
-            "retentionPeriodSuggestion": "3Y"
-            "enrollmentStartDate": "2021-09-01", 
+            "retentionPeriodSuggestion": "3Y",
+            "enrollmentStartDate": "2021-09-01",
             "enrollmentExpectedEndDate": "2025-07-31",
             "enrollmentFinalEndDate": null
         }
     ],
-    "person": "5ab399b8-c499-4da8-af6d-b55e66251f31" ,
+    "person": "5ab399b8-c499-4da8-af6d-b55e66251f31",
     "offering": "5ffc6127-debe-48ce-90ae-75ea80756475"
 }
 ------WebKitFormBoundary7MA4YWxkTrZu0gW
