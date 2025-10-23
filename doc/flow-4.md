@@ -3,7 +3,7 @@ Aanbieden van diplomering gerelateerde documenten naar het DMS. Deze documenten 
 
 
 
-## verwerking in DMS
+## Verwerking in DMS
 Het DMS kan zelf bepalen hoe de documenten opgeslagen en verwerkt worden: logisch onder het student inschrijvingsdossier.
 
 ## Remarks
@@ -110,12 +110,7 @@ Het oopai uitbreidingsmechanisme van consumers word gebruikt voor extra informat
 * "documentName": naam van het toe te voegen document
 * "retentionPeriodSuggestion": suggestie van bewaartermijn zoals eventueel gedefinieerd door component. Is suggestie, DMS mag negeren vb: "3Y", "6M", "1321D"
 
-Specifiek voor inschrijven : 3 datums voor de inschrijving van deze student:
-* "enrollmentStartDate": "2021-09-01", 
-* "enrollmentExpectedEndDate": "2025-07-31",
-* "enrollmentFinalEndDate": null
-
-Sepcifiek voor de student info: (kan het dms vast een student aanmaken als id onbelend is.)
+Specifiek voor de student info: (kan het dms vast een student aanmaken als id onbelend is.)
 * "studentNumber": "1234567",
 
 ## Authenticatie:
