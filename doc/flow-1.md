@@ -54,7 +54,7 @@ Content-Type: application/json
     "consumers": [
         {
             "consumerKey": "nl-okd",
-            "documentType": "inschrijving",
+            "documentType": "enrollment",
             "documentSubtype": "vrijstellingsaanvraag",
             "documentId": "dbd3e12a-ed8b-4488-ac34-26fd4f64f40b",
             "documentName": "inschrijving-100245.pdf",
