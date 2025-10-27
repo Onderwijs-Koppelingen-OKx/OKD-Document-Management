@@ -58,7 +58,10 @@ post:
   responses:
     '200':
       description: OK
-      $ref: '../schemas/DocumentUploadResponse.yaml'
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/DocumentUploadResponse.yaml'
     '400':
       $ref: '../schemas/ErrorBadRequest.yaml'
     '401':
@@ -69,9 +72,10 @@ post:
       $ref: '../schemas/ErrorNotFound.yaml'
     '405':
       $ref: '../schemas/ErrorMethodNotAllowed.yaml'
+    '422':
+      $ref: '../schemas/ErrorUnprocessableContent.yaml'
     '429':
       $ref: '../schemas/ErrorTooManyRequests.yaml'
     '500':
       $ref: '../schemas/ErrorInternalServerError.yaml'
-
 
