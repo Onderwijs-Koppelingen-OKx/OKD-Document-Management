@@ -8,6 +8,8 @@ Het DMS bepaalt daarna het documentID en retourneert deze. Dit id is nodig om do
 
 De calls vanuit de inschrijven module bevatten relatief veel metadata. Dit is in de inschrijf module beschikbaar en het is de bron om student- en inschrijvinggegevens naar het DMS te sturen. Andere modules zoals BPV en Examinering verwijzen naar deze informatie en daar is de metadata ook veel kleiner.
 
+Test aanpassing: anders verwoorden
+
 Note: In het request zit wel het documentId van de component, die anders kan zijn dan die van het DMS.
 
 ### Sequence diagram 
