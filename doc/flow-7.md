@@ -83,7 +83,7 @@ Response
     "otherCodes": [
         {
             "codeType": "opleidingscode",
-            "code": "23089"
+            "code": "25190BOL"
         }
     ],            
     "consumers": [
