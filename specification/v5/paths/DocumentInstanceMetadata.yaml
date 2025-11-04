@@ -29,7 +29,8 @@ get:
     '200':
       content:
         application/json:
-          ref: '../schemas/DocumentMetadata.yaml'
+          schema:
+            $ref: '../schemas/DocumentMetadata.yaml'
           example:
             dmsDocumentId: "e68ee6c0-d503-4e56-8dce-d7fbf3e5b52d"
             title: "ExamenBeoordeling van Jan"
