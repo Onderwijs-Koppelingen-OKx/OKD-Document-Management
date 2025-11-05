@@ -5,7 +5,7 @@ Wanneer een client een interne document viewer heeft, kan deze rechtstreeks de b
 
 ### Endpoint
 
-- **`GET .../okd/v1/documents/{documentId}` (accept: binary)** (request application/octet-stream)
+- ** `GET .../okd/v1/documents/{documentId}` ** 
   - **Description**: Fetches the specified document's  binary content from the DMS, identified by its `documentId`.
   - **Parameters**: 
     - `documentId` (required): A unique identifier (UUID) for the document to be retrieved.
@@ -18,7 +18,7 @@ Wanneer een client een interne document viewer heeft, kan deze rechtstreeks de b
 sequenceDiagram
     participant Component
     participant DMS
-    Component->>DMS: GET .../okd/v1/documents/{documentId}/download
+    Component->>DMS: GET .../okd/v1/documents/{documentId}
     activate DMS
     DMS-->>Component: 200 OK, Binary Data
     deactivate DMS
@@ -29,13 +29,13 @@ De client toont de binaire data van het document in een apart tabblad in de brow
 
 ### Endpoint
 
-- **`GET .../okd/v1/documents/{documentId} Accept type: application/json** (request application/json)
+- **`GET .../okd/v1/documents/{documentId}/metadata **
   - **Description**: Fetches the specified document's url or content url from the DMS, identified by its `documentId`.
   - **Parameters**: 
     - `documentId` (required): A unique identifier (UUID) for the document to be retrieved.
   - **Accept type**: application/json
   - **Response**:
-    - **Success 200 (OK)**: Returns the url and content url.
+    - **Success 200 (OK)**: Returns the meta data with downloadurl.
 
 ### Sequence Diagram
 
@@ -46,7 +46,7 @@ sequenceDiagram
     participant DMS
     browser ->> Component: show document
     activate browser
-    Component->>DMS: GET .../okd/v1/documents/{documentId}
+    Component->>DMS: GET .../okd/v1/documents/{documentId}/metadata
     activate DMS
     DMS->>Component: 200 OK with document metadata
     deactivate DMS
@@ -59,12 +59,12 @@ sequenceDiagram
 ```
 
 ```json
-GET .../okd/v1/ooapi/documents/{documentId}
+GET .../okd/v1/ooapi/documents/{documentId}/metadata
 Host: api.yourdomain.com
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
 Accept: application/json
 ```
-returns (check response from getting document details in ZGW):
+returns :
 ```
 {
     "documentId": "5ffc6127-debe-48ce-90ae-75ea80756475",
@@ -86,38 +86,4 @@ Als de scope een specifieker scope is dan gelden de document restricties. okd:bp
 verder mogen de componenten alleen de door hun aangeleverde documenten inzien.
 
 
-### Work in progress: Response Get document details in ZGW
-```
-{
-    "url": "https://x/DevId/api/v1/enkelvoudiginformatieobjecten/cfd9e4dc-f88b-4520-b36a-71e6d2ba88ab",
-    "identificatie": "1446",
-    "bronorganisatie": "802897000",
-    "creationdate": "2025-09-03",
-    "titel": "test.pdf",
-    "vertrouwelijkheidaanduiding": "zaakvertrouwelijk",
-    "auteur": "onbekend",
-    "status": "definitief",
-    "format": "application/pdf",
-    "taal": "nld",
-    "beginRegistratie": "2025-09-03T11:46:04Z",
-    "bestandsnaam": "test.pdf",
-    "inhoud": "https://x/DevId/api/v1/enkelvoudiginformatieobjecten/cfd9e4dc-f88b-4520-b36a-71e6d2ba88ab/download?versie=1",
-    "bestandsomvang": 243857,
-    "link": null,
-    "beschrijving": "",
-    "ontvangstdatum": null,
-    "verzenddatum": null,
-    "indicatieGebruiksrecht": null,
-    "verschijningsvorm": "",
-    "ondertekening": null,
-    "integriteit": {
-        "algoritme": "sha_256",
-        "waarde": "38160477FA5AB580DF77D11FDE7A76DEDA04F56526CBE1CCD9BDFD247F011795",
-        "datum": "2025-09-03T00:00:00"
-    },
-    "informatieobjecttype": "https://x/devid/api/v1/informatieobjecttypen/26754186-a0b7-4e5d-8535-e329501b2a97",
-    "locked": false,
-    "bestandsdelen": [],
-    "lock": null
-}
-```
+

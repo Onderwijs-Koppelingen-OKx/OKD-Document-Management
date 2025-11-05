@@ -119,6 +119,9 @@ paths:
 
   /documents/{documentId}:
     $ref: paths/DocumentInstance.yaml
+    
+  /documents/{documentId}/metadata:
+    $ref: paths/DocumentInstanceMetadata.yaml
 
   /associations/{associationId}:
     $ref: paths/AssociationInstance.yaml
