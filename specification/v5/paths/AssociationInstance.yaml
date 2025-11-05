@@ -169,7 +169,7 @@ patch:
       application/merge-patch+json:
         schema:
           allOf:
-          - $ref: '../schemas/ComponentOfferingAssociationPatch.yaml'
+          - $ref: '../schemas/AssociationPatch.yaml'
         example:
           associationId: "123e4567-e89b-12d3-a456-426614174000"
           associationType: "programOfferingAssociation"
@@ -252,7 +252,7 @@ post:
           type: object
           properties:
             metadata:
-              $ref: '../schemas/ComponentOfferingAssociationExpanded.yaml'
+              $ref: '../schemas/AssociationFull.yaml'
             file:
               type: string
               format: binary
