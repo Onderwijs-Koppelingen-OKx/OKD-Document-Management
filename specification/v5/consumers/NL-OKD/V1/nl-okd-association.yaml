@@ -23,6 +23,7 @@ properties:
     description: |
       identifies the final end date of the inschrijving.
     example: null
-
-  
-  
+  enrollmentCode:
+    type: string
+    description: |
+      the opleidingsblad code of the inschrijving.
