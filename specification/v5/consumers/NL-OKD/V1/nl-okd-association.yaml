@@ -23,6 +23,11 @@ properties:
     description: |
       identifies the final end date of the inschrijving.
     example: null
+  sequenceCode:
+    type: string
+    description: |
+      The transaction number for the person within the SIS for example the loopbaannummer or an opleidingsblad     
 
   
   
+
