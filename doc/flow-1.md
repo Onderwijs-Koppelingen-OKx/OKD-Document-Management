@@ -41,16 +41,6 @@ Content-Type: application/json
     "associationType": "programOfferingAssociation",
     "role": "student",
     "state": "associated",
-    "primaryCode": {
-        "codeType": "opleidingsblad",
-        "code": "1.1"
-    },
-    "otherCodes": [
-        {
-            "codeType": "opleidingscode",
-            "code": "25190BOL"
-        }
-    ],
     "consumers": [
         {
             "consumerKey": "nl-okd",
@@ -61,7 +51,8 @@ Content-Type: application/json
             "retentionPeriodSuggestion": "3Y",
             "enrollmentStartDate": "2021-09-01",
             "enrollmentExpectedEndDate": "2025-07-31",
-            "enrollmentFinalEndDate": null
+            "enrollmentFinalEndDate": null,
+            "sequenceCode": "1.2"
         }
     ],
     "person": {
