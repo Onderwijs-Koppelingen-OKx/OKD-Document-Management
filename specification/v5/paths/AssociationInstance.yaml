@@ -44,17 +44,12 @@ get:
             associationType: "programOfferingAssociation"
             role: "student"
             state: "associated"
-            primaryCode:
-              codeType: "opleidingsblad"
-              code: "1.1"
-            otherCodes:
-              - codeType: "opleidingscode"
-                code: "23089"
             consumers:
               - consumerKey: "nl-okd"
                 enrollmentStartDate: "2021-09-01"
                 enrollmentExpectedEndDate: "2025-07-31"
                 enrollmentFinalEndDate: null
+                sequenceCode: "1.2"
             person:
               personId: "5ab399b8-c499-4da8-af6d-b55e66251f31"
               primaryCode:
