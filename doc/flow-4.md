@@ -41,16 +41,6 @@ Content-Type: application/json
 {
     "associationId": "123e4567-e89b-12d3-a456-426614174000",
     "associationType": "programOfferingAssociation",
-    "primaryCode": {
-        "codeType": "opleidingsblad",
-        "code": "1.1"
-    },
-    "otherCodes": [
-        {
-            "codeType": "opleidingscode",
-            "code": "25190BOL"
-        }
-    ],
     "consumers": [
         {
             "consumerKey": "nl-okd",
