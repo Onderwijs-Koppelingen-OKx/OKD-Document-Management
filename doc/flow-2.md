@@ -24,12 +24,12 @@ sequenceDiagram
 
 ```
 #### Endpoints voor deze flow bij DMS
-- `PUT .../okd/v1/associations/{associationId}`
-- `PUT .../okd/v1/offering/{componentOfferingId}`
+- `POST .../okd/v1/associations/{associationId}`
+- `POST .../okd/v1/offering/{componentOfferingId}`
 
 voorbeeld:
 ```
-PUT .../okd/v1/associations/123e4567-e89b-12d3-a456-426614174000
+POST .../okd/v1/associations/123e4567-e89b-12d3-a456-426614174000
 Host: api.yourdomain.com
 Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
 Content-Length: 2847
@@ -49,7 +49,7 @@ Content-Type: application/json
         {
             "consumerKey": "nl-okd",
             "studentNumber": "1234567",
-            "documentType": "examinering",
+            "documentType": "examination",
             "documentSubtype" : "examenbeoordeling"
             "documentId: "dbd3e12a-ed8b-4488-ac34-26fd4f64f40b",
             "documentName": "beoordeling-100245.pdf",
