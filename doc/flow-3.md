@@ -52,7 +52,8 @@ Content-Type: application/json
             "retentionPeriodSuggestion": "3Y",
             "enrollmentStartDate": "2021-09-01",
             "enrollmentExpectedEndDate": "2025-07-31",
-            "enrollmentFinalEndDate": null
+            "enrollmentFinalEndDate": null,
+            "sequenceCode": "1.2"
         }
     ],
     "person": "5ab399b8-c499-4da8-af6d-b55e66251f31",
