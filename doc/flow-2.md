@@ -98,26 +98,26 @@ Content-Disposition: form-data; name="metadata"
 Content-Type: application/json
 
 {
-    "associationId: "123e4567-e89b-12d3-a456-426614174000",
+    "associationId": "123e4567-e89b-12d3-a456-426614174000",
     "associationType": "programOfferingAssociation",
     "role": "student",
-    "state": "associated",           
+    "state": "associated",
     "consumers": [
         {
             "consumerKey": "nl-okd",
             "studentNumber": "1234567",
             "documentType": "examination",
-            "documentSubtype" : "examenbeoordeling"
-            "documentId: "dbd3e12a-ed8b-4488-ac34-26fd4f64f40b",
+            "documentSubtype" : "examenbeoordeling",
+            "documentId": "dbd3e12a-ed8b-4488-ac34-26fd4f64f40b",
             "documentName": "beoordeling-100245.pdf",
-            "retentionPeriodSuggestion": "3Y"
+            "retentionPeriodSuggestion": "3Y",
             "examDateTime": "2021-12-15T11:05:04Z",
             "examComponentOffering": "c9c3875b-0c6b-435a-a8a4-211bf66620b5",
             "examCode": "MEDIAK3-W1",
             "examName": "Examen Mediabeheer K3-W1"
         }
-    ]
-    "person": "5ab399b8-c499-4da8-af6d-b55e66251f31"
+    ],
+    "person": "5ab399b8-c499-4da8-af6d-b55e66251f31",
 }
 ------WebKitFormBoundary7MA4YWxkTrZu0gW
 Content-Disposition: form-data; name="file"; filename="inschrijving-100245.pdf"
