@@ -6,8 +6,8 @@ Er zijn twee hoofddocumenttypes:
 * Examenresultaat document
 
 Deze flows lijken erg op flow 1, met het verschil dat de metainformatie in deze flow een van de volgende is:
-* een examenzitting. (componentOffering in OOAPI termen)
-* een examenbeoordeling/resultaat: inschrijving van student (programOfferingAssociation)
+* Een examenzitting. (componentOffering in OOAPI termen)
+* Een examenbeoordeling/resultaat: inschrijving van student (programOfferingAssociation)
 
 __Open vraag: sturen we een examenbeeoordeling bij de inschrijving van de student of bij de examenzitting? Hoe weet het DMS voor welke student het is? Of op de associatie van de student op de exameninschrijving?__
  
@@ -19,13 +19,70 @@ sequenceDiagram
     Participant Inschrijven
     Participant DMS
 
-    Inschrijven->>+DMS: PUT .../okd/v1/associations/{associationId} (beperkte meta informatie & inhoud)
+    Inschrijven->>+DMS: POST .../okd/v1/associations/{associationId} (beperkte meta informatie & inhoud)
     DMS->>-Inschrijven: nieuwe DMS referentie (UUID)
 
 ```
 #### Endpoints voor deze flow bij DMS
-- `POST .../okd/v1/associations/{associationId}`
 - `POST .../okd/v1/offering/{componentOfferingId}`
+- `POST .../okd/v1/associations/{associationId}`
+
+Als het een examenzitting is:
+- `POST .../okd/v1/offering/{componentOfferingId}`
+
+voorbeeld:
+```
+POST .../okd/v1/offering/c9c3875b-0c6b-435a-a8a4-211bf66620b5
+Host: api.yourdomain.com
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Length: 2847
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+Accept: application/json
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="metadata"
+Content-Type: application/json
+
+{
+    "offeringId": "c9c3875b-0c6b-435a-a8a4-211bf66620b5",
+    "offeringType": "component",
+    "name": [
+        {
+            "language": "nl-NL"
+            value: "Examen Mediabeheer K3-W1"
+        }
+    ],
+    "consumers": [
+        {
+            "consumerKey": "nl-okd",
+            "documentType": "examinering",
+            "documentSubtype" : "zittingsverslag"
+            "documentId: "dbd3e12a-ed8b-4488-ac34-26fd4f64f40b",
+            "documentName": "verslag-100245.pdf",
+            "retentionPeriodSuggestion": "6M"
+        }
+    ]
+
+}
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="file"; filename="inschrijving-100245.pdf"
+Content-Type: application/binary
+
+.........
+...
+%%EOF
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+```
+
+Response:
+```
+{
+    "dmsDocumentId": "4e12169d-84b9-4d21-a987-f373bbbe4e6e"
+}
+```
+
+Als het een examenresultaat document (gemaakt werk) is:
 
 voorbeeld:
 ```
@@ -77,61 +134,6 @@ Response:
 ```
 {
     dmsDocumentId: "4e12169d-84b9-4d21-a987-f373bbbe4e6e"
-}
-```
-
-Als het een examenzitting is:
-- `PUT .../okd/v1/offering/{componentOfferingId}`
-
-voorbeeld:
-```
-PUT .../okd/v1/offering/c9c3875b-0c6b-435a-a8a4-211bf66620b5
-Host: api.yourdomain.com
-Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
-Content-Length: 2847
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
-Accept: application/json
-
-------WebKitFormBoundary7MA4YWxkTrZu0gW
-Content-Disposition: form-data; name="metadata"
-Content-Type: application/json
-
-{
-    "offeringId": "c9c3875b-0c6b-435a-a8a4-211bf66620b5",
-    "offeringType": "component",
-    "name": [
-        {
-            "language": "nl-NL"
-            value: "Examen Mediabeheer K3-W1"
-        }
-    ],
-    "consumers": [
-        {
-            "consumerKey": "nl-okd",
-            "documentType": "examinering",
-            "documentSubtype" : "zittingsverslag"
-            "documentId: "dbd3e12a-ed8b-4488-ac34-26fd4f64f40b",
-            "documentName": "verslag-100245.pdf",
-            "retentionPeriodSuggestion": "6M"
-        }
-    ]
-
-}
-------WebKitFormBoundary7MA4YWxkTrZu0gW
-Content-Disposition: form-data; name="file"; filename="inschrijving-100245.pdf"
-Content-Type: application/binary
-
-.........
-...
-%%EOF
-------WebKitFormBoundary7MA4YWxkTrZu0gW--
-
-```
-
-Response:
-```
-{
-    "dmsDocumentId": "4e12169d-84b9-4d21-a987-f373bbbe4e6e"
 }
 ```
 
