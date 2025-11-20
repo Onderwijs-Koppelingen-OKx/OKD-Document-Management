@@ -48,21 +48,20 @@ Content-Type: application/json
     "offeringType": "component",
     "name": [
         {
-            "language": "nl-NL"
-            value: "Examen Mediabeheer K3-W1"
+            "language": "nl-NL",
+            "value": "Examen Mediabeheer K3-W1"
         }
     ],
     "consumers": [
         {
             "consumerKey": "nl-okd",
             "documentType": "examinering",
-            "documentSubtype" : "zittingsverslag"
-            "documentId: "dbd3e12a-ed8b-4488-ac34-26fd4f64f40b",
+            "documentSubtype" : "Examendossier",
+            "documentId": "dbd3e12a-ed8b-4488-ac34-26fd4f64f40b",
             "documentName": "verslag-100245.pdf",
             "retentionPeriodSuggestion": "6M"
         }
     ]
-
 }
 ------WebKitFormBoundary7MA4YWxkTrZu0gW
 Content-Disposition: form-data; name="file"; filename="inschrijving-100245.pdf"
