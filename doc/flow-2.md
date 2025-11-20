@@ -24,15 +24,15 @@ sequenceDiagram
 
 ```
 #### Endpoints voor deze flow bij DMS
-- `POST .../okd/v1/offering/{componentOfferingId}`
+- `POST .../okd/v1/offerings/{componentOfferingId}`
 - `POST .../okd/v1/associations/{associationId}`
 
 Als het een examenzitting is:
-- `POST .../okd/v1/offering/{componentOfferingId}`
+- `POST .../okd/v1/offerings/{componentOfferingId}`
 
 voorbeeld:
 ```
-POST .../okd/v1/offering/c9c3875b-0c6b-435a-a8a4-211bf66620b5
+POST .../okd/v1/offerings/c9c3875b-0c6b-435a-a8a4-211bf66620b5
 Host: api.yourdomain.com
 Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
 Content-Length: 2847
