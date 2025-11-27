@@ -55,7 +55,7 @@ Content-Type: application/json
     "consumers": [
         {
             "consumerKey": "nl-okd",
-            "documentType": "examinering",
+            "documentType": "examination",
             "documentSubtype" : "Examendossier",
             "documentId": "dbd3e12a-ed8b-4488-ac34-26fd4f64f40b",
             "documentName": "verslag-100245.pdf",
