@@ -144,7 +144,7 @@ sequenceDiagram
 De flows worden in detail verder uitgewerkt, beschreven in de OOAPI structuur.
 - flow-1: [Inschrijvings dossier](./doc/flow-1.md)
 - flow-2: [Examen dossier](./doc/flow-2.md)
-- flow-3: [BPV dossier](./doc/flow-2.md)
+- flow-3: [BPV dossier](./doc/flow-3.md)
 - flow-4: [Diplomeren en Certificeren dossier](./doc/flow-4.md)
 - flow-5: [Uitschrijven](./doc/flow-5.md)
 - flow-6: [document vernietigd notificatie](./doc/flow-6.md)
