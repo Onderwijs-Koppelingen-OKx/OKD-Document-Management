@@ -67,7 +67,7 @@ Accept: application/json
 returns :
 ```
 {
-    "documentId": "5ffc6127-debe-48ce-90ae-75ea80756475",
+    "dmsDocumentId": "5ffc6127-debe-48ce-90ae-75ea80756475",
     "title": "Test title",
     "documentTempDownloadUrl": "http://aaa.djuma.nl/download/5ffc6127-debe-48ce-90ae-75ea80756475&tempaccess=#556633ga6dr53g3",
     "creationdate": "2025-09-03",
