@@ -2,14 +2,16 @@ type: object
 description: nl-okd add-on attributes to the Association 
 required:
  - consumerKey
+ - examComponentOffering
+ - studentNumber
 properties:
   consumerKey:
     type: string
-  examDate:
+  examDateTime:
     type: string
-    format: date
+    format: datetime
     description: Datum wanneer examen afgenomen is
-    example: "2024-06-15"
+    example: "2021-12-15T11:05:04Z"
   examComponentOffering:
     type: string
     format: uuid
@@ -19,7 +21,12 @@ properties:
     type: string
     description: Examennaam
     example: "Examen Mediabeheer K3-W1"
-
-
-
+  examCode:
+    type: string
+    description: Examencode
+    example: "MEDIAK3-W1"
+  studentNumber:
+    type: string
+    description: identifies the student number of the person related to the document.
+    example: "1234567"
 
