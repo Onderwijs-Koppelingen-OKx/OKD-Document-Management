@@ -45,11 +45,21 @@ Content-Type: application/json
 
 {
     "offeringId": "c9c3875b-0c6b-435a-a8a4-211bf66620b5",
+    "primaryCode": {
+        "codeType": "offeringCode",
+        "code": "INFOMQNM-20FS"
+    },
     "offeringType": "component",
     "name": [
         {
             "language": "nl-NL",
             "value": "Examen Mediabeheer K3-W1"
+        }
+    ],
+    "description": [
+        {
+            "language": "nl-NL",
+            "value": "A beatiful description"
         }
     ],
     "consumers": [
@@ -63,7 +73,11 @@ Content-Type: application/json
             "receivedDate": "2023-09-01",
             "registrationDate": "2023-09-01"
         }
-    ]
+    ],
+    "startDateTime": "2023-10-12T12:00:50Z",
+    "endDateTime": "2023-10-14T12:00:50Z",
+    "teachingLanguage": "nld",
+    "resultExpected": true
 }
 ------WebKitFormBoundary7MA4YWxkTrZu0gW
 Content-Disposition: form-data; name="file"; filename="inschrijving-100245.pdf"
@@ -142,21 +156,23 @@ Response:
 Het DMS kan zelf bepalen hoe de documenten opgeslagen en verwerkt worden: of in een apart examendossier of alles onder het student inschrijvingdossier.
 
 ### OKD consumer
-Het ooapi uitbreidingsmechanisme van consumers wordt gebruikt voor extra informatie:
+Het OOAPI uitbreidingsmechanisme van consumers wordt gebruikt voor extra informatie:
 * "consumerKey": dit moet hardcoded "nl-okd" zijn ter identificatie van de consumer
-* "documentType": grofmazig documenttype "examinering"
+* "documentType": grofmazig documenttype "examination"
 * "documentSubtype": subtype. Dit is door de school/component te definiëren
 * "documentId: id van het document zoals de component het kent
 * "documentName": naam van het toe te voegen document
 * "retentionPeriodSuggestion": suggestie van bewaartermijn zoals eventueel gedefinieerd door component. Is suggestie, DMS mag negeren vb: "3Y", "6M", "1321D"
 
-speciaal voor examendocumenten:
-* "examDate": datum wanneer examen afgenomen is, 
+Speciaal voor examendocumenten:
+* "examDateTime": datum wanneer examen afgenomen is. Wanneer tijd onbekend is, dan 12:00 aanhouden.
 * "examComponentOffering": component offering id van examen. 
-* "examName": examennaam bv: "Examen Mediabeheer K3-W1"
+* "examName": examennaam bv: "Examen Mediabeheer K3-W1" (hoeven niet altijd gevuld te zijn)
+* "examCode": examencode bv: "MEDIAK3-W1" (hoeven niet altijd gevuld te zijn)
 
 ## Remarks
 - Berichten van maximaal 1 GB ondersteunen. Als we in de toekomst meer dan 1 GB willen ondersteunen, dan moet de metadata en het bestand apart gestuurd worden.
+- Het is wenselijk om examComponentOffering verplicht te hebben bij het toevoegen van examenresultaat (bijv. gemaakt werk), maar dit is technisch niet nu mogelijk omdat deze data er niet altijd zal zijn.
 
 ## Authenticatie:
 scope voor toevoegen van examen gerelateerde documenten: **okd:alldocuments** en **okd:examdocuments**.
