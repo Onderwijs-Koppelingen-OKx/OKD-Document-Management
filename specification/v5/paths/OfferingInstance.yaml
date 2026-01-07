@@ -1,5 +1,5 @@
 
-post: 
+post:
   summary: POST /offerings/{offeringId}
   operationId: postFileOnOfferingById
   description: |
@@ -12,9 +12,9 @@ post:
     - This endpoint should be implemented by the DMS component, so that the components can upload documents for a offering.
     - The call is a multipart/form-data call with 2 parts: metadata (json) and file (binary).
   security:
-    - oAuthFlows:  
+    - oAuthFlows:
       - okd:alldocuments
-      - okd:examdocuments      
+      - okd:examdocuments
   tags:
     - offerings
   parameters:
@@ -45,15 +45,28 @@ post:
         example:
           metadata:
             offeringId: "c9c3875b-0c6b-435a-a8a4-211bf66620b5"
-            offeringType: component
-
             primaryCode:
-              codeType: offeringCode
-              code: "Remindo_rekenen_MBO-3_op_woendag_middag_21-jun-22_om_13:00_in_lokaal_13"
+              - codeType: offeringCode
+                code: "INFOMQNM-20FS"
+            offeringType: component
             name:
               - language: nl-NL
-                value: "Remindo rekenen MBO-3"
-
+                value: Examen Mediabeheer K3-W1
+            description:
+              - language: nl-NL
+                value: A beautiful description
+            consumers:
+              - consumerKey: nl-okd
+                documentType: examination
+                documentSubtype : Examendossier
+                documentId: dbd3e12a-ed8b-4488-ac34-26fd4f64f40b
+                documentName: verslag-100245.pdf
+                retentionPeriodSuggestion: 6M
+            startDateTime: 2023-10-12T12:00:50Z
+            endDateTime: 2023-10-14T12:00:50Z
+            teachingLanguage: nld
+            resultExpected: true
+          file: "file content.jpg"
 
   responses:
     '200':
