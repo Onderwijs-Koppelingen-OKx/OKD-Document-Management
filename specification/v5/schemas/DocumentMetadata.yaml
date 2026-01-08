@@ -1,9 +1,9 @@
 type: object
-description: metadata for a document 
+description: metadata for a document
 required:
   - dmsDocumentId
 properties:
-  dmsDocumentId: 
+  dmsDocumentId:
     description: id van het document
     type: string
     example: e68ee6c0-d503-4e56-8dce-d7fbf3e5b52d
@@ -33,5 +33,4 @@ properties:
     description: grootte van het document in bytes
     type: integer
     format: int64
-
     example: 234567
