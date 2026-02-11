@@ -59,7 +59,9 @@ Content-Type: application/json
             "documentSubtype" : "Examendossier",
             "documentId": "dbd3e12a-ed8b-4488-ac34-26fd4f64f40b",
             "documentName": "verslag-100245.pdf",
-            "retentionPeriodSuggestion": "6M"
+            "retentionPeriodSuggestion": "6M",
+            "receivedDate": "2023-09-01",
+            "registrationDate": "2023-09-01"
         }
     ]
 }

@@ -52,7 +52,9 @@ Content-Type: application/json
             "enrollmentStartDate": "2021-09-01",
             "enrollmentExpectedEndDate": "2025-07-31",
             "enrollmentFinalEndDate": null,
-            "sequenceCode": "1.2"
+            "sequenceCode": "1.2",
+            "receivedDate": "2023-09-01",
+            "registrationDate": "2023-09-01"
         }
     ],
     "person": {
