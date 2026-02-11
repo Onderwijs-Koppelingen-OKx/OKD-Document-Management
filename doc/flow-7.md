@@ -122,8 +122,8 @@ Response
     "offering": {
         "offeringId": "5ffc6127-debe-48ce-90ae-75ea80756475",
         "primaryCode": {
-        "codeType": "identifier",
-        "code": "25190BOL"
+            "codeType": "identifier",
+            "code": "25190BOL"
         },
         "offeringType": "program",
         "name": "Netwerk- en mediabeheerder BOL (25190)",
@@ -148,6 +148,12 @@ Response
                 }
             ],
             "teachingLanguage": "nld",
+            "otherCodes": [
+              {
+                "codeType": "opleidingsCode",
+                "code": "25480BOL"
+              }
+            ],
             "modeOfStudy": "full-time",
             "levelOfQualification": "4"
         },

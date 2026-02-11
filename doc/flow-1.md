@@ -107,6 +107,12 @@ Content-Type: application/json
                 }
             ],
             "teachingLanguage": "nld",
+            "otherCodes": [
+              {
+                "codeType": "opleidingsCode",
+                "code": "25480BOL"
+              }
+            ],
             "modeOfStudy": "full-time",
             "levelOfQualification": "4"
         },
