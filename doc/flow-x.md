@@ -70,7 +70,7 @@ returns :
     "dmsDocumentId": "5ffc6127-debe-48ce-90ae-75ea80756475",
     "title": "Test title",
     "documentTempDownloadUrl": "http://aaa.djuma.nl/download/5ffc6127-debe-48ce-90ae-75ea80756475&tempaccess=#556633ga6dr53g3",
-    "creationdate": "2025-09-03",
+    "creationdate": "2025-09-30T14:48:00Z",
     "format": "application/pdf",
     "documentname": "test.pdf",
     "documentsize": 243857
