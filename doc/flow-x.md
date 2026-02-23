@@ -5,9 +5,9 @@ Wanneer een client een interne document viewer heeft, kan deze rechtstreeks de b
 
 ### Endpoint
 
-- ** `GET .../okd/v1/documents/{documentId}` ** 
-  - **Description**: Fetches the specified document's  binary content from the DMS, identified by its `documentId`.
-  - **Parameters**: 
+- **`GET .../okd/v1/documents/{documentId}`**
+  - **Description**: Fetches the specified document's binary content from the DMS, identified by its `documentId`.
+  - **Parameters**:
     - `documentId` (required): A unique identifier (UUID) for the document to be retrieved.
   - **Response**:
     - **Success 200 (OK)**: Returns the complete document binary data.
@@ -29,9 +29,9 @@ De client toont de binaire data van het document in een apart tabblad in de brow
 
 ### Endpoint
 
-- **`GET .../okd/v1/documents/{documentId}/metadata **
+- **`GET .../okd/v1/documents/{documentId}/metadata`**
   - **Description**: Fetches the specified document's url or content url from the DMS, identified by its `documentId`.
-  - **Parameters**: 
+  - **Parameters**:
     - `documentId` (required): A unique identifier (UUID) for the document to be retrieved.
   - **Accept type**: application/json
   - **Response**:
@@ -59,7 +59,7 @@ sequenceDiagram
 ```
 
 ```json
-GET .../okd/v1/ooapi/documents/{documentId}/metadata
+GET .../okd/v1/documents/{documentId}/metadata
 Host: api.yourdomain.com
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
 Accept: application/json
@@ -69,7 +69,7 @@ returns :
 {
     "dmsDocumentId": "5ffc6127-debe-48ce-90ae-75ea80756475",
     "title": "Test title",
-    "documentTempDownloadUrl": "http://aaa.djuma.nl/download/5ffc6127-debe-48ce-90ae-75ea80756475&tempaccess=#556633ga6dr53g3",
+    "documentTempDownloadUrl": "https://aaa.djuma.nl/download/5ffc6127-debe-48ce-90ae-75ea80756475&tempaccess=#556633ga6dr53g3",
     "creationdate": "2025-09-30T14:48:00Z",
     "format": "application/pdf",
     "documentname": "test.pdf",
@@ -77,13 +77,7 @@ returns :
 }
 ```
 
-
-
-
 ### Authenticatie:
-scope die ook gebruikt is voor inzien is dezelfde als voor toevoegen. (**okd:alldocuments** of de specifiekere varianten)
+Scope die ook gebruikt is voor inzien is dezelfde als voor toevoegen. (**okd:alldocuments** of de specifiekere varianten)
 Als de scope een specifieker scope is dan gelden de document restricties. okd:bpvdocument mag alleen BPV documenten inzien.
-verder mogen de componenten alleen de door hun aangeleverde documenten inzien.
-
-
-
+Verder mogen de componenten alleen de door hun aangeleverde documenten inzien.

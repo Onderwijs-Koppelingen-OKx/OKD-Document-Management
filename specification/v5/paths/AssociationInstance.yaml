@@ -8,7 +8,7 @@ get:
 
   operationId: listAssociationById
   security:
-    - oAuthFlows:  
+    - oAuthFlows:
       - okd:studentinfo
   tags:
     - associations
@@ -38,8 +38,8 @@ get:
       content:
         application/json:
           schema:
-            $ref: '../schemas/AssociationFull.yaml'       
-          example: 
+            $ref: '../schemas/AssociationFull.yaml'
+          example:
             associationId: "123e4567-e89b-12d3-a456-426614174000"
             associationType: "programOfferingAssociation"
             role: "student"
@@ -146,7 +146,7 @@ patch:
       - This endpoint should be implemented by the DMS component, so that the Uitschrijven component can update a persons verbintenis information (flow 5)
 
   security:
-    - oAuthFlows:  
+    - oAuthFlows:
       - okd:enrollmentderollment
   tags:
     - associations
@@ -190,7 +190,7 @@ patch:
     #           - $ref: '../schemas/PostResponse.yaml'
     #           - properties:
     #               state:
-    #                 $ref: '../enumerations/associationState.yaml' 
+    #                 $ref: '../enumerations/associationState.yaml'
     '204':
       description: No Content. The association has been updated successfully.
     '400':
@@ -226,7 +226,7 @@ post:
 
   operationId: postFileOnAssociationById
   security:
-    - oAuthFlows:  
+    - oAuthFlows:
       - okd:alldocuments
       - okd:enrollmentderollment
   tags:
@@ -255,27 +255,163 @@ post:
           required:
             - metadata
             - file
-        example:
-          metadata:
-            associationId: "123e4567-e89b-12d3-a456-426614174000"
-            associationType: "programOfferingAssociation"
-            role: "student"
-            state: "associated"
-            consumers:
-              - consumerKey: "nl-okd"
-                studentNumber: "1234567"
-                documentType: "examination"
-                documentSubtype: "diploma"
-                documentId: "65f64c44-e3c4-4579-8e05-a729d4b89d06"
-                documentName: "diploma-MBO.pdf"
-                retentionPeriodSuggestion: "3Y"
-                enrollmentStartDate: "2021-09-01"
-                enrollmentExpectedEndDate: "2025-07-31"
-                enrollmentFinalEndDate: null
-            person: "5ab399b8-c499-4da8-af6d-b55e66251f31"
-            offering: "5ffc6127-debe-48ce-90ae-75ea80756475"
-          file: "(binary file content)"
-
+        examples:
+          enrollmentDocument:
+            summary: Inschrijfdocument (flow 1)
+            value:
+              metadata:
+                associationId: "123e4567-e89b-12d3-a456-426614174000"
+                associationType: "programOfferingAssociation"
+                role: "student"
+                state: "associated"
+                consumers:
+                  - consumerKey: "nl-okd"
+                    documentType: "enrollment"
+                    documentSubtype: "inschrijfbewijs"
+                    documentId: "dbd3e12a-ed8b-4488-ac34-26fd4f64f40b"
+                    documentName: "inschrijving-100245.pdf"
+                    retentionPeriodSuggestion: "3Y"
+                    enrollmentStartDate: "2021-09-01"
+                    enrollmentExpectedEndDate: "2025-07-31"
+                    enrollmentFinalEndDate: null
+                    sequenceCode: "1.2"
+                    receivedDate: "2023-09-01"
+                    registrationDate: "2023-09-01"
+                person:
+                  personId: "5ab399b8-c499-4da8-af6d-b55e66251f31"
+                  primaryCode:
+                    codeType: "studentNumber"
+                    code: "1234567"
+                  givenName: "Maartje"
+                  surnamePrefix: "van"
+                  surname: "Damme"
+                  displayName: "Maartje van Damme"
+                  initials: "MCW"
+                  dateOfBirth: "2003-09-30"
+                  gender: "F"
+                  activeEnrollment: true
+                  affiliations:
+                    - "student"
+                  mail: "vandamme.mcw@student.roc.nl"
+                  languageOfChoice:
+                    - "nl-NL"
+                  otherCodes: []
+                offering:
+                  offeringId: "5ffc6127-debe-48ce-90ae-75ea80756475"
+                  primaryCode:
+                    codeType: "identifier"
+                    code: "25190BOL"
+                  offeringType: "program"
+                  name: "Netwerk- en mediabeheerder BOL (25190)"
+                  program:
+                    programId: "123e4567-e89b-12d3-a456-426614174000"
+                    primaryCode:
+                      codeType: "identifier"
+                      code: "C12063128"
+                    programType: "program"
+                    name:
+                      - language: "nl-NL"
+                        value: "Netwerk- en mediabeheerder"
+                    abbreviation: "N&M"
+                    description:
+                      - language: "nl-NL"
+                        value: "In deze MBO-opleiding word je opgeleid voor het officieel erkende diploma 'MBO Netwerkbeheerder, niveau 4'. Met dit diploma ben je breed opgeleid en kun je het netwerk van een organisatie beheren. Dit is het diploma voor de professionele netwerkbeheerder op het hoogste MBO-niveau. Je legt een uitstekende basis voor een mooie carriere als netwerkbeheerder. Bovendien is dit een diploma waarmee je eventueel probleemloos kunt doorstuderen naar een HBO-opleiding"
+                    teachingLanguage: "nld"
+                    otherCodes:
+                      - codeType: "opleidingsCode"
+                        code: "25480BOL"
+                    modeOfStudy: "full-time"
+                    levelOfQualification: "4"
+                  organization:
+                    organizationID: "38bdbeb1-12b2-48fd-84f8-653e7adfaf99"
+                    primaryCode:
+                      codeType: "identifier"
+                      code: "ICTE"
+                    organizationType: "department"
+                    name:
+                      - language: "nl-NL"
+                        value: "ICT-academie"
+                    shortname: "ICTA"
+                    parent:
+                      organizationID: "650e1627-9f3d-4176-ab5a-e82eef0d219d"
+                      primaryCode:
+                        codeType: "identifier"
+                        code: "CICT"
+                      name:
+                        - language: "nl-NL"
+                          value: "Cluster ICT en EIS"
+              file: "inschrijving-100245.pdf"
+          examResultDocument:
+            summary: Examenresultaat (flow 2)
+            value:
+              metadata:
+                associationId: "123e4567-e89b-12d3-a456-426614174000"
+                associationType: "programOfferingAssociation"
+                role: "student"
+                state: "associated"
+                consumers:
+                  - consumerKey: "nl-okd"
+                    studentNumber: "1234567"
+                    documentType: "examination"
+                    documentSubtype: "examenbeoordeling"
+                    documentId: "dbd3e12a-ed8b-4488-ac34-26fd4f64f40b"
+                    documentName: "beoordeling-100245.pdf"
+                    retentionPeriodSuggestion: "3Y"
+                    receivedDate: "2023-09-01"
+                    registrationDate: "2023-09-01"
+                    examDateTime: "2021-12-15T11:05:04Z"
+                    examComponentOffering: "c9c3875b-0c6b-435a-a8a4-211bf66620b5"
+                    examCode: "MEDIAK3-W1"
+                    examName: "Examen Mediabeheer K3-W1"
+                person: "5ab399b8-c499-4da8-af6d-b55e66251f31"
+                offering: "5ffc6127-debe-48ce-90ae-75ea80756475"
+              file: "beoordeling-100245.pdf"
+          bpvDocument:
+            summary: BPV (praktijkovereenkomst) document (flow 3)
+            value:
+              metadata:
+                associationId: "123e4567-e89b-12d3-a456-426614174000"
+                associationType: "programOfferingAssociation"
+                consumers:
+                  - consumerKey: "nl-okd"
+                    studentNumber: "1234567"
+                    documentType: "bpv"
+                    documentSubtype: "praktijkovereenkomst"
+                    documentId: "65f64c44-e3c4-4579-8e05-a729d4b89d06"
+                    documentName: "praktijkovereenkomst.pdf"
+                    retentionPeriodSuggestion: "3Y"
+                    enrollmentStartDate: "2021-09-01"
+                    enrollmentExpectedEndDate: "2025-07-31"
+                    enrollmentFinalEndDate: null
+                    sequenceCode: "1.2"
+                    receivedDate: "2023-09-01"
+                    registrationDate: "2023-09-01"
+                person: "5ab399b8-c499-4da8-af6d-b55e66251f31"
+                offering: "5ffc6127-debe-48ce-90ae-75ea80756475"
+              file: "praktijkovereenkomst.pdf"
+          graduationDocument:
+            summary: Diplomering document (flow 4)
+            value:
+              metadata:
+                associationId: "123e4567-e89b-12d3-a456-426614174000"
+                associationType: "programOfferingAssociation"
+                consumers:
+                  - consumerKey: "nl-okd"
+                    studentNumber: "1234567"
+                    documentType: "graduation"
+                    documentSubtype: "diploma"
+                    documentId: "65f64c44-e3c4-4579-8e05-a729d4b89d06"
+                    documentName: "diploma-MBO.pdf"
+                    retentionPeriodSuggestion: "3Y"
+                    enrollmentStartDate: "2021-09-01"
+                    enrollmentExpectedEndDate: "2025-07-31"
+                    enrollmentFinalEndDate: null
+                    sequenceCode: "1.2"
+                    receivedDate: "2023-09-01"
+                    registrationDate: "2023-09-01"
+                person: "5ab399b8-c499-4da8-af6d-b55e66251f31"
+                offering: "5ffc6127-debe-48ce-90ae-75ea80756475"
+              file: "diploma-MBO.pdf"
   responses:
     '200':
       description: OK

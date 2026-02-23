@@ -38,7 +38,7 @@ Content-Type: application/json
             "documentType": "bpv",
             "documentSubtype": "bpv-overeenkomst",
             "documentId": "65f64c44-e3c4-4579-8e05-a729d4b89d06",
-            "documentName": "bpv-MBO.pdf",
+            "documentName": "praktijkovereenkomst.pdf",
             "retentionPeriodSuggestion": "3Y",
             "enrollmentStartDate": "2021-09-01",
             "enrollmentExpectedEndDate": "2025-07-31",
@@ -52,7 +52,7 @@ Content-Type: application/json
     "offering": "5ffc6127-debe-48ce-90ae-75ea80756475"
 }
 ------WebKitFormBoundary7MA4YWxkTrZu0gW
-Content-Disposition: form-data; name="file"; filename="bpv-MBO.pdf"
+Content-Disposition: form-data; name="file"; filename="praktijkovereenkomst.pdf"
 Content-Type: application/pdf
 
 %PDF-1.4
