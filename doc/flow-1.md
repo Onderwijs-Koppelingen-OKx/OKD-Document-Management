@@ -1,15 +1,17 @@
 # OKD - Flow 1 Opslaan ondersteunende documenten bij de inschrijving in DMS
 Aanbieden van documenten rondom de inschrijving van een student.
-Vanuit model Inschrijven naar het DMS: ondersteunende documenten bij de inschrijving die in het student/inschrijvings dossier horen.
+Vanuit model Inschrijven naar het DMS: ondersteunende documenten bij de inschrijving die in het student/inschrijvingsdossier horen.
 
 De call wordt gedaan op het endpoint waar de meta informatie normaal opgeslagen wordt, alleen is het request een multipart Post waarbij eerst de metadata in json formaat en daarna de inhoud van het document als binary (pdf) gestuurd wordt.
 
 Het DMS bepaalt daarna het documentID en retourneert deze. Dit id is nodig om documenten in te zien, te updaten of te verwijderen. In het DMS worden documenten uit veel bronnen opgeslagen en de uniciteit van het id kan ook alleen vanuit het DMS gegarandeerd worden.
 
-De calls vanuit de inschrijven module bevatten relatief veel metadata. Dit is in de inschrijf module beschikbaar en het is de bron om student- en inschrijvinggegevens naar het DMS te sturen. Andere modules zoals BPV en Examinering verwijzen naar deze informatie en daar is de metadata ook veel kleiner.
+De calls vanuit de inschrijfmodule bevatten relatief veel metadata. Dit is in de inschrijfmodule beschikbaar en het is de bron om student- en inschrijvinggegevens naar het DMS te sturen. Andere modules zoals BPV en Examinering verwijzen naar deze informatie en daar is de metadata ook veel kleiner.
 
 Note: In het request zit wel het documentId van de component, die anders kan zijn dan die van het DMS.
 
+## Inschrijfdocument toevoegen aan DMS (met gekoppelde opleiding)
+Inschrijfdocumenten die gekoppeld zijn aan een opleiding worden opgeslagen in het studentdossier met behulp van het association endpoint.
 ### Sequence diagram 
 ```mermaid
 sequenceDiagram
@@ -181,12 +183,93 @@ Response:
 }
 ```
 
+## Inschrijfdocument toevoegen aan DMS (zonder gekoppelde opleiding)
+Inschrijfdocumenten die niet gekoppeld zijn aan een opleiding worden opgeslagen in het studentdossier op basis van het persons endpoint, zoals een dyslexieverklaring.
+
+### Sequence diagram
+```mermaid
+sequenceDiagram
+    Participant Inschrijven
+    Participant DMS
+
+    Inschrijven->>+DMS: POST .../okd/v1/persons/{personId} (meta informatie & inhoud)
+    DMS->>-Inschrijven: nieuwe DMS referentie (UUID)
+
+```
+#### endpoints voor deze flow bij DMS
+- `POST .../okd/v1/persons/{personId}`
+
+voorbeeld :
+```
+POST .../okd/v1/persons/123e4567-e89b-12d3-a456-426614174000
+Host: api.yourdomain.com
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Length: 2847
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+Accept: application/json
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="metadata"
+Content-Type: application/json
+
+{
+  "personId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+  "primaryCode": {
+    "codeType": "studentNumber",
+    "code": "200085"
+  },
+  "consumers": [
+    {
+      "consumerKey": "nl-okd",
+      "documentType": "other",
+      "documentSubtype": "DYS",
+      "documentId": "123e4567-e89b-12d3-a456-426614174002",
+      "documentName": "dyslexieverklaring-200085.pdf",
+      "retentionPeriodSuggestion": "3Y",
+      "receivedDate": "2026-01-13",
+      "registrationDate": "2026-01-16"
+    }
+  ]
+}
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="file"; filename="inschrijving-100245.pdf"
+Content-Type: application/pdf
+
+%PDF-1.4
+1 0 obj
+<<
+/Type /Catalog
+/Pages 2 0 R
+>>
+endobj
+2 0 obj
+<<
+/Type /Pages
+/Kids [3 0 R]
+/Count 1
+>>
+endobj
+...
+[Binary PDF content continues]
+...
+%%EOF
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+```
+
+Response:
+```
+{
+    "dmsDocumentId": "4e12169d-84b9-4d21-a987-f373bbbe4e6e"
+}
+```
+
 
 ### OKD consumer
 Het ooapi uitbreidingsmechanisme van consumers wordt gebruikt voor extra informatie:
 * "consumerKey": dit moet hardcoded "nl-okd" zijn ter identificatie van de consumer
 * "documentType": grofmazig documenttype "inschrijving"
-* "documentSubtype" : subtype. Dit is door de school/component te definiëren
+* "documentSubtype": subtype. Dit is door de school/component te definiëren
 * "documentId: id van het document zoals de component het kent
 * "documentName": naam van het toe te voegen document
 * "retentionPeriodSuggestion": suggestie van bewaartermijn zoals eventueel gedefinieerd door component. Is suggestie, DMS mag negeren vb: "3Y", "6M", "1321D"
