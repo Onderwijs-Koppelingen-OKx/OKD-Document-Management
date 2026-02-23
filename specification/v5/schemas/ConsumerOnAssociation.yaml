@@ -7,7 +7,7 @@ items:
   - $ref: '../consumers/NL-OKD/V1/nl-okd-document.yaml'
   - $ref: '../consumers/NL-OKD/V1/nl-okd-additional-studentinfo.yaml'
   - $ref: '../consumers/NL-OKD/V1/nl-okd-examen.yaml'
-example: 
+example:
   - consumerKey: 'nl-okd'
     documentType: 'enrollment'
     documentSubtype: 'vrijstelling aanvraag'
@@ -17,3 +17,5 @@ example:
     enrollmentStartDate: '2021-09-01'
     enrollmentExpectedEndDate: '2025-07-31'
     enrollmentFinalEndDate: null
+    receivedDate: "2026-01-13"
+    registrationDate: "2026-01-16"

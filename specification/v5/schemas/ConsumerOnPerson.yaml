@@ -13,3 +13,5 @@ example:
     documentName: 'dyslexieverklaring-100245.pdf'
     retentionPeriodSuggestion: '7Y'
     studentNumber: '100245'
+    receivedDate: "2026-01-13"
+    registrationDate: "2026-01-16"
