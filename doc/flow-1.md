@@ -266,32 +266,30 @@ Response:
 
 
 ### OKD consumer
-Het ooapi uitbreidingsmechanisme van consumers wordt gebruikt voor extra informatie:
+Het OOAPI uitbreidingsmechanisme van consumers wordt gebruikt voor extra informatie:
 * "consumerKey": dit moet hardcoded "nl-okd" zijn ter identificatie van de consumer
 * "documentType": grofmazig documenttype "inschrijving"
 * "documentSubtype": subtype. Dit is door de school/component te definiëren
-* "documentId: id van het document zoals de component het kent
+* "documentId": id van het document zoals de component het kent
 * "documentName": naam van het toe te voegen document
 * "retentionPeriodSuggestion": suggestie van bewaartermijn zoals eventueel gedefinieerd door component. Is suggestie, DMS mag negeren vb: "3Y", "6M", "1321D"
 * "receivedDate": datum waarop het document ontvangen is door de component
 * "registrationDate": datum waarop het document geregistreerd is door de component
 
-Specifiek voor inschrijven : 3 datums voor de inschrijving van deze student:
+Specifiek voor inschrijven: 3 datums voor de inschrijving van deze student:
 * "enrollmentStartDate": "2021-09-01", 
 * "enrollmentExpectedEndDate": "2025-07-31",
 * "enrollmentFinalEndDate": null
 ### Remarks
 
 - Berichten van maximaal 1 GB ondersteunen. Als we in de toekomst meer dan 1 GB willen ondersteunen, dan moet de metadata en het bestand apart gestuurd worden.
-- We ondersteunen alleen student als personAffliations. In de toekomst zou dit nog altijd uitgebreid kunnen worden voor bijvoorbeeld 'Employee'.
+- We ondersteunen alleen student als personAffiliations. In de toekomst zou dit nog altijd uitgebreid kunnen worden voor bijvoorbeeld 'Employee'.
 
 - Onderstaande eigenschappen zijn noodzakelijk om studenten uit bron op te vragen en te identificeren op moment dat studentnummer niet aanwezig is, bijvoorbeeld vanuit een stroom waarbij brief via scan toegevoegd wordt aan DMS.
-
 "dateOfBirth": "2003-09-30",
 "gender": "F",
 
 
 ## Authenticatie:
-scope voor toevoegen van inschrijving gerelateerde documenten: **okd:alldocuments** en **okd:enrollmentderollment**.
- als een van deze 2 aanwezig is in het authenticatie token kan de actie uitgevoerd worden.
-
+Scope voor toevoegen van inschrijving gerelateerde documenten: **okd:alldocuments** en **okd:enrollmentderollment**.
+Als een van deze 2 aanwezig is in het authenticatie token kan de actie uitgevoerd worden.
