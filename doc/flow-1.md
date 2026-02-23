@@ -273,6 +273,8 @@ Het ooapi uitbreidingsmechanisme van consumers wordt gebruikt voor extra informa
 * "documentId: id van het document zoals de component het kent
 * "documentName": naam van het toe te voegen document
 * "retentionPeriodSuggestion": suggestie van bewaartermijn zoals eventueel gedefinieerd door component. Is suggestie, DMS mag negeren vb: "3Y", "6M", "1321D"
+* "receivedDate": datum waarop het document ontvangen is door de component
+* "registrationDate": datum waarop het document geregistreerd is door de component
 
 Specifiek voor inschrijven : 3 datums voor de inschrijving van deze student:
 * "enrollmentStartDate": "2021-09-01", 

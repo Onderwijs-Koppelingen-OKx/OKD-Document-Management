@@ -129,7 +129,9 @@ Content-Type: application/json
             "examDateTime": "2021-12-15T11:05:04Z",
             "examComponentOffering": "c9c3875b-0c6b-435a-a8a4-211bf66620b5",
             "examCode": "MEDIAK3-W1",
-            "examName": "Examen Mediabeheer K3-W1"
+            "examName": "Examen Mediabeheer K3-W1",
+            "receivedDate": "2026-01-13",
+            "registrationDate": "2026-01-16"
         }
     ],
     "person": "5ab399b8-c499-4da8-af6d-b55e66251f31"
@@ -163,6 +165,8 @@ Het OOAPI uitbreidingsmechanisme van consumers wordt gebruikt voor extra informa
 * "documentId: id van het document zoals de component het kent
 * "documentName": naam van het toe te voegen document
 * "retentionPeriodSuggestion": suggestie van bewaartermijn zoals eventueel gedefinieerd door component. Is suggestie, DMS mag negeren vb: "3Y", "6M", "1321D"
+* "receivedDate": datum waarop het document ontvangen is door de component
+* "registrationDate": datum waarop het document geregistreerd is door de component
 
 Speciaal voor examendocumenten:
 * "examDateTime": datum wanneer examen afgenomen is. Wanneer tijd onbekend is, dan 12:00 aanhouden.

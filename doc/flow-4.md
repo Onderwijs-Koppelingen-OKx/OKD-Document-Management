@@ -102,6 +102,8 @@ Het oopai uitbreidingsmechanisme van consumers word gebruikt voor extra informat
 * "documentId: id van het document zoals de component het kent
 * "documentName": naam van het toe te voegen document
 * "retentionPeriodSuggestion": suggestie van bewaartermijn zoals eventueel gedefinieerd door component. Is suggestie, DMS mag negeren vb: "3Y", "6M", "1321D"
+* "receivedDate": datum waarop het document ontvangen is door de component
+* "registrationDate": datum waarop het document geregistreerd is door de component
 
 Specifiek voor de student info: (kan het dms vast een student aanmaken als id onbekend is.)
 * "studentNumber": "1234567",
