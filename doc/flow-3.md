@@ -38,7 +38,7 @@ Content-Type: application/json
             "documentType": "bpv",
             "documentSubtype": "bpv-overeenkomst",
             "documentId": "65f64c44-e3c4-4579-8e05-a729d4b89d06",
-            "documentName": "bpv-MBO.pdf",
+            "documentName": "praktijkovereenkomst.pdf",
             "retentionPeriodSuggestion": "3Y",
             "enrollmentStartDate": "2021-09-01",
             "enrollmentExpectedEndDate": "2025-07-31",
@@ -52,7 +52,7 @@ Content-Type: application/json
     "offering": "5ffc6127-debe-48ce-90ae-75ea80756475"
 }
 ------WebKitFormBoundary7MA4YWxkTrZu0gW
-Content-Disposition: form-data; name="file"; filename="diploma-MBO.pdf"
+Content-Disposition: form-data; name="file"; filename="praktijkovereenkomst.pdf"
 Content-Type: application/pdf
 
 %PDF-1.4
@@ -85,13 +85,15 @@ Response:
 ```
 
 ### OKD consumer
-Het oopai uitbreidingsmechanisme van consumers word gebruikt voor extra informatie:
+Het OOAPI uitbreidingsmechanisme van consumers wordt gebruikt voor extra informatie:
 * "consumerKey": dit moet hardcoded "nl-okd" zijn ter identificatie van de consumer
-* "documentType": grofmazig document type "bpv"
+* "documentType": grofmazig documenttype "bpv"
 * "documentSubtype": subtype. dit is door de school/component te definiëren
 * "documentId": id van het document zoals de component het kent
 * "documentName": naam van het toe te voegen document
 * "retentionPeriodSuggestion": suggestie van bewaartermijn zoals eventueel gedefinieerd door component. Is suggestie, DMS mag negeren vb: "3Y", "6M", "1321D"
+* "receivedDate": datum waarop het document ontvangen is door de component
+* "registrationDate": datum waarop het document geregistreerd is door de component
 
 Specifiek voor de student info: (kan het dms vast een student aanmaken als id onbekend is.)
 * "studentNumber": "1234567",

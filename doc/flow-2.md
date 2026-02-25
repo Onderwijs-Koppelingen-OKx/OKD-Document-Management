@@ -9,7 +9,7 @@ Deze flows lijken erg op flow 1, met het verschil dat de metainformatie in deze 
 * Een examenzitting. (componentOffering in OOAPI termen)
 * Een examenbeoordeling/resultaat: inschrijving van student (programOfferingAssociation)
 
-__Open vraag: sturen we een examenbeeoordeling bij de inschrijving van de student of bij de examenzitting? Hoe weet het DMS voor welke student het is? Of op de associatie van de student op de exameninschrijving?__
+__Open vraag: sturen we een examenbeoordeling bij de inschrijving van de student of bij de examenzitting? Hoe weet het DMS voor welke student het is? Of op de associatie van de student op de exameninschrijving?__
  
 We sturen het request naar het endpoint waar de metadata hoort. Bv association/{id} of de verbintenis/inschrijving van de student te geven. Omdat we hier niet in de inschrijving flow zitten zullen we hier zo min mogelijk velden geven, net de verplichte en een consumer met meta informatie van het document.
 
@@ -45,6 +45,10 @@ Content-Type: application/json
 
 {
     "offeringId": "c9c3875b-0c6b-435a-a8a4-211bf66620b5",
+    "primaryCode": {
+        "codeType": "offeringCode",
+        "code": "INFOMQNM-20FS"
+    },
     "offeringType": "component",
     "name": [
         {
@@ -52,18 +56,28 @@ Content-Type: application/json
             "value": "Examen Mediabeheer K3-W1"
         }
     ],
+    "description": [
+        {
+            "language": "nl-NL",
+            "value": "A beatiful description"
+        }
+    ],
     "consumers": [
         {
             "consumerKey": "nl-okd",
             "documentType": "examination",
-            "documentSubtype" : "Examendossier",
+            "documentSubtype" : "examendossier",
             "documentId": "dbd3e12a-ed8b-4488-ac34-26fd4f64f40b",
             "documentName": "verslag-100245.pdf",
             "retentionPeriodSuggestion": "6M",
             "receivedDate": "2023-09-01",
             "registrationDate": "2023-09-01"
         }
-    ]
+    ],
+    "startDateTime": "2023-10-12T12:00:50Z",
+    "endDateTime": "2023-10-14T12:00:50Z",
+    "teachingLanguage": "nld",
+    "resultExpected": true
 }
 ------WebKitFormBoundary7MA4YWxkTrZu0gW
 Content-Disposition: form-data; name="file"; filename="inschrijving-100245.pdf"
@@ -115,10 +129,13 @@ Content-Type: application/json
             "examDateTime": "2021-12-15T11:05:04Z",
             "examComponentOffering": "c9c3875b-0c6b-435a-a8a4-211bf66620b5",
             "examCode": "MEDIAK3-W1",
-            "examName": "Examen Mediabeheer K3-W1"
+            "examName": "Examen Mediabeheer K3-W1",
+            "receivedDate": "2026-01-13",
+            "registrationDate": "2026-01-16"
         }
     ],
-    "person": "5ab399b8-c499-4da8-af6d-b55e66251f31"
+    "person": "5ab399b8-c499-4da8-af6d-b55e66251f31",
+    "offering": "5ffc6127-debe-48ce-90ae-75ea80756475"
 }
 ------WebKitFormBoundary7MA4YWxkTrZu0gW
 Content-Disposition: form-data; name="file"; filename="inschrijving-100245.pdf"
@@ -142,22 +159,26 @@ Response:
 Het DMS kan zelf bepalen hoe de documenten opgeslagen en verwerkt worden: of in een apart examendossier of alles onder het student inschrijvingdossier.
 
 ### OKD consumer
-Het ooapi uitbreidingsmechanisme van consumers wordt gebruikt voor extra informatie:
+Het OOAPI uitbreidingsmechanisme van consumers wordt gebruikt voor extra informatie:
 * "consumerKey": dit moet hardcoded "nl-okd" zijn ter identificatie van de consumer
-* "documentType": grofmazig documenttype "examinering"
+* "documentType": grofmazig documenttype "examination"
 * "documentSubtype": subtype. Dit is door de school/component te definiëren
-* "documentId: id van het document zoals de component het kent
+* "documentId": id van het document zoals de component het kent
 * "documentName": naam van het toe te voegen document
 * "retentionPeriodSuggestion": suggestie van bewaartermijn zoals eventueel gedefinieerd door component. Is suggestie, DMS mag negeren vb: "3Y", "6M", "1321D"
+* "receivedDate": datum waarop het document ontvangen is door de component
+* "registrationDate": datum waarop het document geregistreerd is door de component
 
-speciaal voor examendocumenten:
-* "examDate": datum wanneer examen afgenomen is, 
+Speciaal voor examendocumenten:
+* "examDateTime": datum wanneer examen afgenomen is. Wanneer tijd onbekend is, dan 12:00 aanhouden.
 * "examComponentOffering": component offering id van examen. 
-* "examName": examennaam bv: "Examen Mediabeheer K3-W1"
+* "examName": examennaam bv: "Examen Mediabeheer K3-W1" (hoeven niet altijd gevuld te zijn)
+* "examCode": examencode bv: "MEDIAK3-W1" (hoeven niet altijd gevuld te zijn)
 
 ## Remarks
 - Berichten van maximaal 1 GB ondersteunen. Als we in de toekomst meer dan 1 GB willen ondersteunen, dan moet de metadata en het bestand apart gestuurd worden.
+- Het is wenselijk om examComponentOffering verplicht te hebben bij het toevoegen van examenresultaat (bijv. gemaakt werk), maar dit is technisch niet nu mogelijk omdat deze data er niet altijd zal zijn.
 
 ## Authenticatie:
-scope voor toevoegen van examen gerelateerde documenten: **okd:alldocuments** en **okd:examdocuments**.
- als een van deze 2 aanwezig is in het authenticatie token kan de actie uitgevoerd worden.
+Scope voor toevoegen van examen gerelateerde documenten: **okd:alldocuments** en **okd:examdocuments**.
+Als een van deze 2 aanwezig is in het authenticatie token kan de actie uitgevoerd worden.
