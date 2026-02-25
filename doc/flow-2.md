@@ -16,11 +16,11 @@ We sturen het request naar het endpoint waar de metadata hoort. Bv association/{
 ### Sequence diagram 
 ```mermaid
 sequenceDiagram
-    Participant Inschrijven
+    Participant Examineren
     Participant DMS
 
-    Inschrijven->>+DMS: POST .../okd/v1/associations/{associationId} (beperkte meta informatie & inhoud)
-    DMS->>-Inschrijven: nieuwe DMS referentie (UUID)
+    Examineren->>+DMS: POST .../okd/v1/associations/{associationId} (beperkte meta informatie & inhoud)
+    DMS->>-Examineren: nieuwe DMS referentie (UUID)
 
 ```
 #### Endpoints voor deze flow bij DMS
