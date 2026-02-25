@@ -1,0 +1,70 @@
+get:
+  summary: GET /documents/documenttypes
+  operationId: listDocumentTypesWithSubtypes
+  description: |
+    Retrieve all available document types and configured document subtypes.
+
+    note:
+    - This endpoint should be implemented by the component, so that the DMS can retrieve available types and subtypes. (flow-10)
+    - Document subtypes are configurable by the school and should be treated as dynamic values.
+  security:
+    - bearerAuth: []
+  tags:
+    - documents
+
+  responses:
+    '200':
+      description: List of document types with corresponding subtypes.
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              type: object
+              required:
+                - documentType
+                - documentSubTypes
+              properties:
+                documentType:
+                  type: string
+                  description: Functional document category.
+                  example: enrollment
+                documentSubTypes:
+                  type: array
+                  description: School-defined subtypes for the document type.
+                  items:
+                    type: string
+                  example:
+                    - vrijstellingsaanvraag
+                    - Aanmelding
+          example:
+            - documentType: enrollment
+              documentSubTypes:
+                - vrijstellingsaanvraag
+                - Aanmelding
+            - documentType: examination
+              documentSubTypes:
+                - toetsresultaat
+                - toetsverslag
+            - documentType: bpv
+              documentSubTypes:
+                - poc
+                - bedrijfs Informatie
+            - documentType: graduation
+              documentSubTypes:
+                - diploma voorkant
+                - diploma foto
+    '400':
+      $ref: '../schemas/ErrorBadRequest.yaml'
+    '401':
+      $ref: '../schemas/ErrorUnauthorized.yaml'
+    '403':
+      $ref: '../schemas/ErrorForbidden.yaml'
+    '404':
+      $ref: '../schemas/ErrorNotFound.yaml'
+    '405':
+      $ref: '../schemas/ErrorMethodNotAllowed.yaml'
+    '429':
+      $ref: '../schemas/ErrorTooManyRequests.yaml'
+    '500':
+      $ref: '../schemas/ErrorInternalServerError.yaml'

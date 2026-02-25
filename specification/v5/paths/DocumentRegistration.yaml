@@ -1,0 +1,135 @@
+post:
+  summary: POST /documents/_registerdmsdocument
+  operationId: registerDmsDocument
+  description: |
+    Register a document reference from the DMS in the enrollment component.
+  
+    
+    note:
+    - This endpoint should be implemented by the component, so that the DMS can register documents. (flow-11-14)
+    - The documentId is the ID returned by the component
+    - The document content is not exchanged in this call, only metadata and references
+  security:
+    - oAuthFlows:
+      - okd:alldocuments
+      - okd:examdocuments
+      - okd:bpvdocuments
+      - okd:graduationdocuments
+      - okd:enrollmentderollment
+  tags:
+    - documents
+
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          description: Metadata for registering a DMS document for a student and optionally a specific enrollment.
+          required:
+            - dmsDocumentId
+            - documentName
+            - format
+            - documentSize
+            - receivedDate
+            - registrationDate
+            - documentType
+          properties:
+            dmsDocumentId:
+              type: string
+              format: uuid
+              description: Unique ID of the document in the DMS.
+            documentName:
+              type: string
+              description: Original file name of the document.
+            format:
+              type: string
+              description: MIME type of the document.
+              example: application/pdf
+            documentSize:
+              type: integer
+              format: int64
+              minimum: 0
+              description: Size of the document in bytes.
+            description:
+              type: string
+              description: Optional functional description of the document.
+            receivedDate:
+              type: string
+              format: date
+              description: Date the document was received.
+            registrationDate:
+              type: string
+              format: date
+              description: Date the document was registered.
+            documentType:
+              type: string
+              description: Functional category for the document.
+              example: enrollment
+            documentSubtype:
+              type: string
+              description: More specific subtype within documentType.
+            personId:
+              type: string
+              format: uuid
+              description: Preferred identifier of the student.
+            studentNumber:
+              type: string
+              description: Alternative student identifier when personId is not available.
+            associationId:
+              type: string
+              format: uuid
+              description: Preferred identifier of the enrollment association.
+            sequenceCode:
+              type: string
+              description: Alternative enrollment identifier when associationId is not available.
+          anyOf:
+            - required:
+                - personId
+            - required:
+                - studentNumber
+        example:
+          dmsDocumentId: dbd3e12a-ed8b-4488-ac34-26fd4f64f40b
+          documentName: dislectieverklaring-100245.pdf
+          format: application/pdf
+          documentSize: 243857
+          description: we kregen spontaan een handgeschreven aanvraag
+          receivedDate: '2023-09-01'
+          registrationDate: '2023-09-01'
+          documentType: enrollment
+          documentSubtype: vrijstellingsaanvraag
+          personId: 5ab399b8-c499-4da8-af6d-b55e66251f31
+          studentNumber: '1234567'
+          associationId: 123e4567-e89b-12d3-a456-426614174000
+          sequenceCode: '1.2'
+
+  responses:
+    '200':
+      description: Document reference registered successfully.
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - documentId
+            properties:
+              documentId:
+                type: string
+                format: uuid
+                description: Component-generated document reference ID.
+            example:
+              documentId: 4e12169d-84b9-4d21-a987-f373bbbe4e6e
+    '400':
+      $ref: '../schemas/ErrorBadRequest.yaml'
+    '401':
+      $ref: '../schemas/ErrorUnauthorized.yaml'
+    '403':
+      $ref: '../schemas/ErrorForbidden.yaml'
+    '404':
+      $ref: '../schemas/ErrorNotFound.yaml'
+    '405':
+      $ref: '../schemas/ErrorMethodNotAllowed.yaml'
+    '429':
+      $ref: '../schemas/ErrorTooManyRequests.yaml'
+    '500':
+      $ref: '../schemas/ErrorInternalServerError.yaml'

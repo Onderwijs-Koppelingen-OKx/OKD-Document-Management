@@ -14,6 +14,7 @@ Het doel van de OKD-koppeling is om documenten (inclusief metadata) vanuit diver
 Deze API-definitie is opgesteld in het kader van de OKx-koppelingen binnen het MBO-onderwijs in Nederland. Het volgt de door Npuls voorgestelde "OKx Best practice" en richt zich op het creëren van standaard koppelvlakken voor het MBO, gebaseerd op de OOAPI.
 
 Deze koppeling specificeert de interactie tussen verschillende systemen/modules op het gebied van documentbeheer. Momenteel wordt deze ontworpen door zowel scholen als leveranciers in het MBO.
+De eerste versie is begin oktober 2025 aangeboden aan de MOKA voor feedback.
 
 ### Relatie met MORA
 #### Betrokken Applicatiecomponenten
@@ -113,7 +114,54 @@ sequenceDiagram
 ```
 Natuurlijk kan een student meerdere inschrijvingen doorlopen
 
-### ophalen van student en inschrijving informatie
+
+### Flows
+
+
+De flows worden in detail verder uitgewerkt, beschreven in de OOAPI structuur.
+- flow-1: [Inschrijvings dossier](./doc/flow-1.md)
+- flow-2: [Examen dossier](./doc/flow-2.md)
+- flow-3: [BPV dossier](./doc/flow-3.md)
+- flow-4: [Diplomeren en Certificeren dossier](./doc/flow-4.md)
+- flow-5: [Uitschrijven](./doc/flow-5.md)
+- flow-6: [document vernietigd notificatie](./doc/flow-6.md)
+- flow-7: [extra ophalen student en inschrijving gegevens](./doc/flow-7.md)
+- flow-x: [Opvragen document (vanuit alle componenten naar DMS)](./doc/flow-x.md)
+- flow-y: [Wijzigen document (vanuit alle componenten naar DMS)](./doc/flow-y.md)
+- flow-z: [Verwijderen document (vanuit alle componenten naar DMS)](./doc/flow-z.md)
+
+
+### Uitbreiding OKD versie 2.0: 
+
+Voor het registeren van documenten die hun oorsprong in het DMS hebben of daar gescanned of gemailed verzameld worden is de mogelijkheid om deze via de OKD te registeren bij de componenten
+
+```mermaid
+sequenceDiagram
+    Participant DMS
+    Participant Inschrijven
+    Participant Examineren
+    Participant BPV
+    Participant Diplomeren_en_Certificeren
+
+
+    DMS->>Inschrijven: registreer inschrijvings document
+    DMS->>Examineren: registreer inschrijvings document
+    DMS->>BPV: registreer inschrijvings document
+    DMS->>Diplomeren_en_Certificeren: registreer inschrijvings document
+
+```
+
+- flow-10: [Ophalen van de beschikbare document types](./doc/flow-10.md)
+- flow-11: [registeren bij Inschrijvings dossier](./doc/flow-11.md)
+- flow-12: [registeren bij Examen dossier](./doc/flow-12.md)
+- flow-13: [registeren bij BPV dossier](./doc/flow-13.md)
+- flow-14: [registeren bij Diplomeren en Certificeren dossier](./doc/flow-14.md)
+
+
+
+
+
+#### ophalen van student en inschrijving informatie
 Als flow 1 niet geimplementeerd wordt en er bijvoorbeeld alleen documenten via flow 2 en 3 aangeboden worden, heeft het DMS ook een mogenlijkheid nodig om student en inschrijvings informatie op te halen.
 ```mermaid
 sequenceDiagram
@@ -138,28 +186,10 @@ sequenceDiagram
 
 ```
 
-### Flows
-
-
-De flows worden in detail verder uitgewerkt, beschreven in de OOAPI structuur.
-- flow-1: [Inschrijvings dossier](./doc/flow-1.md)
-- flow-2: [Examen dossier](./doc/flow-2.md)
-- flow-3: [BPV dossier](./doc/flow-3.md)
-- flow-4: [Diplomeren en Certificeren dossier](./doc/flow-4.md)
-- flow-5: [Uitschrijven](./doc/flow-5.md)
-- flow-6: [document vernietigd notificatie](./doc/flow-6.md)
-- flow-7: [extra ophalen student en inschrijving gegevens](./doc/flow-7.md)
-- flow-x: [Opvragen document (vanuit alle componenten naar DMS)](./doc/flow-x.md)
-- flow-y: [Wijzigen document (vanuit alle componenten naar DMS)](./doc/flow-y.md)
-- flow-z: [Verwijderen document (vanuit alle componenten naar DMS)](./doc/flow-z.md)
-
+## authenticatie
 Authenticatie volgt de OKx aanbeveling en nl-gov en edustandaard richtlijnen. zie [authenticatie](./doc/authenticatie.md)
 
-
-
-*Nog te onderzoeken*: zijn er flows vanuit het DMS naar deze modules voor het aanbieden van nieuwe documenten? Dit is geen onderdeel van de OKD 1.0, maar wel voor een mogelijke volgende versie.
-
-## Version history
+### Version history
 
 | Version | Date | Status | Author | Comment |
 |---|---|---|---|---|
@@ -169,6 +199,7 @@ Authenticatie volgt de OKx aanbeveling en nl-gov en edustandaard richtlijnen. zi
 | 0.4 |  26 jul 2025 | DRAFT | [@mcginkel](https://github.com/mcginkel)  | Added OOAPI v5 spec |
 | 0.5 |  29 jul 2025 | DRAFT | Tim Meijs  | flow z defined |
 | 0.6 | 7 aug 2025 | DRAFT | [@mcginkel](https://github.com/mcginkel)  | flow 1 details, flow 5 en 6 en authenticatie |
+| 0.7 | 25 feb 2026 | DRAFT | [@mcginkel](https://github.com/mcginkel)  | flow 10-14 registreren van DMS documenten |
 
 
 This repository is an initiative of the MBO Digitaal and NPuls en leveranciers
