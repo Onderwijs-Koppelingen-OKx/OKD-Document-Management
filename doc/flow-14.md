@@ -1,0 +1,75 @@
+# OKD - Flow 14 Aanmelden ondersteunende documenten bij de diplomering in DMS
+
+```
+Note: Deze flow zijn geen onderdeel van de 1.0 versie van de OKD. Ze zijn als voorstel toegevoegd aan de spec, maar zijn nog in ontwikkeling. de definiteve versie kan verschillen. Deze versie is niet opgebouwd met OOAPI taal. In de definitieve versie zal dat wel zo zijn.
+```
+
+Als er documenten met betrekking op de diplomering van een student in het DMS gecreerd of opgeslagen worden die niet afkomstig zijn van de MORA diplomering module dan kan het DMS deze documenten aanmelden bij de module zodat deze getoond en opgevraagd kunnen worden. De inhoud van het document word niet uitgewisseld. 
+
+Het DMS bepaalt het documentID en stuurt deze, samen met genoeg meta informatie over student en inschrijving zodat de bpv module het document goed kan registreren en tonen in de applicatie
+
+Note: In het response zit wel het documentId van de component, die anders kan zijn dan die van het DMS. Bij het opvragen en verdere communicatie os het DMSid de identificatie
+
+
+### Sequence diagram 
+```mermaid
+sequenceDiagram
+    Participant diplomering
+    Participant DMS
+
+    DMS->>+diplomering: POST .../okd/v1/documents/_registerdmsdocument (meta informatie)
+    diplomering->>-DMS: nieuwe referentie (UUID)
+
+```
+#### endpoints voor deze flow bij DMS
+- `POST .../okd/v1/documents/_registerdmsdocument`
+
+voorbeeld :
+```
+POST .../okd/v1/documents/_registerdmsdocument
+Host: api.yourdomain.com
+Content-Type: application/json
+Content-Length: xxxxx
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+Accept: application/json
+
+{
+    "dmsDocumentId": "8dc8436e-802b-4367-81d9-d20c868d77af",
+    
+    "documentName": "getekendDiploma-PimVerboon.pdf",
+    "format": "application/pdf",
+    "documentsize": 55857
+    "description": "Bewijs van afgifte diploma"
+    "receivedDate": "2023-09-01",
+    "registrationDate": "2023-09-01",
+
+    "documentType": "graduation",
+    "documentSubtype": "Diploma",
+
+    "personId": "5ab399b8-c499-4da8-af6d-b55e66251f31",
+    "studentNumber": "1234567"
+    
+    "associationId": "123e4567-e89b-12d3-a456-426614174000"
+    "sequenceCode": "1.2"
+}
+
+
+```
+
+Response:
+```
+{
+    "documentId": "a540920c-739f-4d25-8ebe-b1ad08af3565"
+}
+```
+
+### Remarks
+- als identificatie van de student heeft "personId" de voorkeur. Indien deze niet beschikbaar is kan "studentnumber"
+- als identificatie van de juiste inschrijving heeft "associationId" de voorkeur. Indien deze niet beschikbaar is kan "sequenceCode" gebruikt worden
+- als het document niet aan de inschrijving gekoppelt hoeft te zijn (algemeen persoonlijk document, inschrijving overstijgend), dan is het weglaten van associationId en sequenceCode de indicatie dat het document aan de persoon toegevoegd word ipv inschrijving
+- De inhoud van de documenten wordt niet aangeboden, alleen de registratie dat het document bestaat en aan het dossier van de student inschrijving toegevoegd kan worden
+
+
+## Authenticatie:
+Scope voor toevoegen van diplomering gerelateerde documenten: **okd:alldocuments** en **okd:graduationdocuments**.
+Als een van deze 2 aanwezig is in het authenticatie token kan de actie uitgevoerd worden.
