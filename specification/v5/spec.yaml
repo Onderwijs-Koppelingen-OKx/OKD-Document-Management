@@ -1,6 +1,6 @@
 openapi: "3.0.3"
 info:
-  version: "0.9.0"
+  version: "0.9.1"
   title: OKD - Open Education API
   description: |
     OpenAPI specification for the Open Education API, used in the OKD.

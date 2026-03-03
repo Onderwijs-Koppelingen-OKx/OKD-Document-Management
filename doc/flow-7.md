@@ -151,7 +151,7 @@ Response
             "otherCodes": [
               {
                 "codeType": "opleidingsCode",
-                "code": "25480BOL"
+                "code": "25480BOLMaardeschoolkanditzelfinvullen"
               }
             ],
             "modeOfStudy": "full-time",

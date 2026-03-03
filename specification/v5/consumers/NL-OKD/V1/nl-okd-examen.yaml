@@ -2,7 +2,6 @@ type: object
 description: nl-okd add-on attributes to the Association 
 required:
  - consumerKey
- - studentNumber
 properties:
   consumerKey:
     type: string

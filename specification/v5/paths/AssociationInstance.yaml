@@ -340,7 +340,7 @@ post:
                       name:
                         - language: "nl-NL"
                           value: "Cluster ICT en EIS"
-              file: "inschrijving-100245.pdf"
+              file: "(binary)"
           examResultDocument:
             summary: Examenresultaat (flow 2)
             value:
@@ -365,7 +365,7 @@ post:
                     examName: "Examen Mediabeheer K3-W1"
                 person: "5ab399b8-c499-4da8-af6d-b55e66251f31"
                 offering: "5ffc6127-debe-48ce-90ae-75ea80756475"
-              file: "beoordeling-100245.pdf"
+              file: "(binary)"
           bpvDocument:
             summary: BPV (praktijkovereenkomst) document (flow 3)
             value:
@@ -388,7 +388,7 @@ post:
                     registrationDate: "2023-09-01"
                 person: "5ab399b8-c499-4da8-af6d-b55e66251f31"
                 offering: "5ffc6127-debe-48ce-90ae-75ea80756475"
-              file: "praktijkovereenkomst.pdf"
+              file: "(binary)"
           graduationDocument:
             summary: Diplomering document (flow 4)
             value:
@@ -411,7 +411,7 @@ post:
                     registrationDate: "2023-09-01"
                 person: "5ab399b8-c499-4da8-af6d-b55e66251f31"
                 offering: "5ffc6127-debe-48ce-90ae-75ea80756475"
-              file: "diploma-MBO.pdf"
+              file: "(binary)"
   responses:
     '200':
       description: OK
