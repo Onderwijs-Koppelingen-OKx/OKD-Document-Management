@@ -119,6 +119,12 @@ paths:
 
   /documents/{documentId}:
     $ref: paths/DocumentInstance.yaml
+
+  /documents/documenttypes:
+    $ref: paths/DocumentTypes.yaml
+
+  /documents/_registerdmsdocument:
+    $ref: paths/DocumentRegistration.yaml
     
   /documents/{documentId}/metadata:
     $ref: paths/DocumentInstanceMetadata.yaml
