@@ -43,7 +43,16 @@ Accept: application/json
             "codeType": "opleidingscode",
             "code": "23089"
         }
-    ]
+    ],
+	"consumers": [
+        {
+            "consumerKey": "nl-okd",
+            "enrollmentStartDate": "2021-09-01",
+            "enrollmentExpectedEndDate": "2025-07-31",
+            "enrollmentFinalEndDate": "2025-12-14",
+            "sequenceCode": "1.2",
+        }
+    ],
     "person": "5ab399b8-c499-4da8-af6d-b55e66251f31",
     "offering": "5ffc6127-debe-48ce-90ae-75ea80756475"
 }
