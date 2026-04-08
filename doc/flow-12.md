@@ -55,7 +55,6 @@ Accept: application/json
     "associationId": "123e4567-e89b-12d3-a456-426614174000",
     "sequenceCode": "1.2",
 
-    "examComponentOfferingId": "a51c67c5-1f25-4c75-87cd-29b1a7d3b74e",
     "examCodePath": "/EIND/SE/Toets1"
 }
 

@@ -33,27 +33,44 @@ get:
                   type: array
                   description: School-defined subtypes for the document type.
                   items:
-                    type: string
+                    type: object
+                    properties:
+                      subtypeCode:
+                        type: string
+                        description: Subtype code defined by the school.
+                      subtypeDescription:
+                        type: string
+                        description: Subtype description defined by the school.
                   example:
-                    - vrijstellingsaanvraag
-                    - Aanmelding
+                    - subtypeCode: vrstlanvg
+                      subtypeDescription: Vrijstellingsaanvraag
+                    - subtypeCode: anmeld
+                      subtypeDescription: Aanmelding
           example:
             - documentType: enrollment
               documentSubTypes:
-                - vrijstellingsaanvraag
-                - Aanmelding
+                - subtypeCode: vrstlanvg
+                  subtypeDescription: Vrijstellingsaanvraag
+                - subtypeCode: anmeld
+                  subtypeDescription: Aanmelding
             - documentType: examination
               documentSubTypes:
-                - toetsresultaat
-                - toetsverslag
+                - subtypeCode: toetsresultaat
+                  subtypeDescription: Toetsresultaat
+                - subtypeCode: toetsverslag
+                  subtypeDescription: Toetsverslag
             - documentType: bpv
               documentSubTypes:
-                - poc
-                - bedrijfs Informatie
+                - subtypeCode: poc
+                  subtypeDescription: POC
+                - subtypeCode: bedrijfsinformatie
+                  subtypeDescription: Bedrijfs Informatie
             - documentType: graduation
               documentSubTypes:
-                - diploma voorkant
-                - diploma foto
+                - subtypeCode: diplomavoorkant
+                  subtypeDescription: Diploma voorkant
+                - subtypeCode: diplomafoto
+                  subtypeDescription: Diploma foto
     '400':
       $ref: '../schemas/ErrorBadRequest.yaml'
     '401':

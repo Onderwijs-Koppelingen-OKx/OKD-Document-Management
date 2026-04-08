@@ -37,34 +37,40 @@ Response:
     {
         "documentType": "enrollment",
         "documentSubTypes": [
-            "documentSubtype": "vrijstellingsaanvraag",
-            "documentSubtype": "Aanmelding",
-            "documentSubtype": "etc. etc"
+            {
+                "subtypeCode": "vrstlanvg",
+                "subtypeDescription":"vrijstellingsaanvraag"
+            },
+            {
+                "subtypeCode": "anmeld",
+                "subtypeDescription":"Aanmelding document"
+            }
         ]
     },
     {
         "documentType": "examination",
         "documentSubTypes": [
-            "documentSubtype": "toetsresultaat",
-            "documentSubtype": "toetsverslag",
-            "documentSubtype": "presentieLijst",
-            "documentSubtype": "etc. etc"
-        ]
+            {
+                "subtypeCode": "tst-123-a",
+                "subtypeDescription":"toetsresultaat"
+            },
+            etc
+        ],
     },
     {
         "documentType": "bpv",
-        "documentSubTypes": [
-            "documentSubtype": "poc",
-            "documentSubtype": "bedrijfs Informatie",
-            "documentSubtype": "etc. etc"
-        ]
+       "documentSubTypes": [
+            {
+                "subtypeCode": "poc",
+                "subtypeDescription":"praktijk overeenkomst getekend"
+            }
+            etc
+        ],
     },
         {
         "documentType": "graduation",
         "documentSubTypes": [
-            "documentSubtype": "diploma voorkant",
-            "documentSubtype": "diploma foto",
-            "documentSubtype": "etc. etc"
+            etc etc
         ]
     }
 ]

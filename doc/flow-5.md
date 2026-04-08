@@ -3,6 +3,19 @@ Notificeren dat een student zijn studie/verbintenis heeft beëindigd en de bewaa
 
 Vanuit component Uitschrijven naar het DMS
 
+Als de status na het uitschrijven weer verandert (actief word) word de API opnieuw aangeroepen met de neiwe status. Hiermee is het mogenlijk dat een foutief, overhaast gesloten verbintenis weer actief wordt. Er worden alleen statussen verstuurd van studenten/verbintenissen waar ooit communicatie over geweest is.
+
+voorstel om te bespreken:
+of 
+ Ook de status van een neiuwe verbintenis word actief gestuurd zodra er voor een eerdere verbintenis communicatie in de OKD context is geweest. Omdat de trigger wel een uitschrijving van de eerste verbintenis is blijft dit onder uitschrijven vallen.
+of 
+ flow 7 GET .../okd/v1/persons/{personId}/associations` 
+
+statussen:
+  - canceled
+  - denied
+  - associated
+  - finished
 
 ### Sequence diagram 
 ```mermaid
@@ -43,7 +56,16 @@ Accept: application/json
             "codeType": "opleidingscode",
             "code": "23089"
         }
-    ]
+    ],
+     "consumers": [
+        {
+            "consumerKey": "nl-okd",
+            "studentNumber": "1234567",
+            "enrollmentStartDate": "2021-09-01",
+            "enrollmentExpectedEndDate": "2025-07-31",
+            "enrollmentFinalEndDate": 2025-07-31,
+        }
+    ],
     "person": "5ab399b8-c499-4da8-af6d-b55e66251f31",
     "offering": "5ffc6127-debe-48ce-90ae-75ea80756475"
 }

@@ -31,8 +31,6 @@ post:
             - documentName
             - format
             - documentSize
-            - receivedDate
-            - registrationDate
             - documentType
           properties:
             dmsDocumentId:
@@ -68,7 +66,7 @@ post:
               example: enrollment
             documentSubtype:
               type: string
-              description: More specific subtype within documentType.
+              description: More specific subtype within documentType (code).
             personId:
               type: string
               format: uuid
@@ -83,11 +81,6 @@ post:
             sequenceCode:
               type: string
               description: Alternative enrollment identifier when associationId is not available.
-            examComponentOfferingId:
-              type: string
-              format: uuid
-              description: Component offering id van examen
-              example: "a51c67c5-1f25-4c75-87cd-29b1a7d3b74e"
             examCodePath:
               type: string
               description: Path to the exam code

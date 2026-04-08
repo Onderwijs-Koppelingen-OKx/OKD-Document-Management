@@ -111,8 +111,12 @@ paths:
 
   /persons:
     $ref: paths/PersonCollection.yaml
+
   /persons/{personId}:
     $ref: paths/PersonInstance.yaml
+
+  /persons/{personId}/associations:
+    $ref: paths/PersonAssociationCollection.yaml
 
   /offerings/{offeringId}:
     $ref: paths/OfferingInstance.yaml
