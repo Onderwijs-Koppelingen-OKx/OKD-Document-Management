@@ -113,8 +113,8 @@ Content-Type: application/json
             "teachingLanguage": "nld",
             "otherCodes": [
               {
-                "codeType": "opleidingsCode",
-                "code": "25480BOLMaardeschoolkanditzelfinvullen"
+                "codeType": "crohoCreboCode",
+                "code": "25480"
               }
             ],
             "modeOfStudy": "full-time",
@@ -183,6 +183,13 @@ Response:
 }
 ```
 
+de modeOfStudy van program kan de volgende waarde bevatten:
+  - full-time : BOL
+  - part-time : others
+  - dual training: BBL
+  - self-paced (not used)
+  - extraneous (not used)
+  
 ## Inschrijfdocument toevoegen aan DMS (zonder gekoppelde opleiding)
 Inschrijfdocumenten die niet gekoppeld zijn aan een opleiding worden opgeslagen in het studentdossier op basis van het persons endpoint, zoals een dyslexieverklaring.
 

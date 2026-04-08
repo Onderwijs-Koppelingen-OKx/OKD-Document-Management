@@ -71,7 +71,7 @@ Response:
 - als identificatie van de student heeft "personId" de voorkeur. Indien deze niet beschikbaar is kan "studentnumber"
 - als identificatie van de juiste inschrijving heeft "associationId" de voorkeur. Indien deze niet beschikbaar is kan "sequenceCode" gebruikt worden
 - als het document niet aan de inschrijving gekoppelt hoeft te zijn (algemeen persoonlijk document, inschrijving overstijgend), dan is het weglaten van associationId en sequenceCode de indicatie dat het document aan de persoon toegevoegd word ipv inschrijving
-- op basis van examComponentOffering of examCodePath en de recievedDate word geprobeerd het document op de juiste plek geregistreerd. Indien dit niet lukt word het geregistreerd aan de persoon of inschrijving
+- op basis van examCodePath en de recievedDate word geprobeerd het document op de juiste plek geregistreerd. Indien dit niet lukt word het geregistreerd aan de persoon of inschrijving
 - De inhoud van de documenten wordt niet aangeboden, alleen de registratie dat het document bestaat en aan het dossier van de student inschrijving toegevoegd kan worden
 
 ## Authenticatie:

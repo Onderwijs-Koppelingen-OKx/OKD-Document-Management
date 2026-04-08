@@ -151,8 +151,8 @@ Response
             "teachingLanguage": "nld",
             "otherCodes": [
               {
-                "codeType": "opleidingsCode",
-                "code": "25480BOLMaardeschoolkanditzelfinvullen"
+                "codeType": "crohoCreboCode",
+                "code": "25480"
               }
             ],
             "modeOfStudy": "full-time",
@@ -189,6 +189,13 @@ Response
     }
 }
 ```
+
+de modeOfStudy van program kan de volgende waarde bevatten:
+  - full-time : BOL
+  - part-time : others
+  - dual training: BBL
+  - self-paced (not used)
+  - extraneous (not used)
 
 #### Voorbeeld 3:
 
@@ -239,7 +246,7 @@ GET .../okd/v1/persons/{personId}/associations?associationType=programOffering
 Response
 ```
 {
-    "pageSize": 1,
+    "pageSize": 10,
     "pageNumber": 1,
     "hasPreviousPage": false,
     "hasNextPage": false,
