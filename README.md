@@ -1,7 +1,7 @@
 # OOAPI-OKD - Onderwijs Koppeling voor Document Management
 
 ```
-NOTE: Onderstaande informatie is niet definitief. Er kunnen geen rechten aan ontleend worden.
+NOTE: Onderstaande informatie is bijna definitief, maar er kunnen geen rechten aan ontleend worden.
 ```
 ## Doel van de koppeling
 Om de efficiëntie in het beheer van documenten in studenten- en examendossiers te verbeteren, kiezen steeds meer onderwijsinstellingen voor een centraal Document Management Systeem (DMS). Gezien de diversiteit aan applicaties die aangesloten moeten worden, is er behoefte aan een gestandaardiseerde gegevensuitwisseling.
@@ -161,7 +161,7 @@ sequenceDiagram
 
 
 
-#### ophalen van student en inschrijving informatie
+#### Ophalen van student en inschrijving informatie
 Als flow 1 niet geimplementeerd wordt en er bijvoorbeeld alleen documenten via flow 2 en 3 aangeboden worden, heeft het DMS ook een mogenlijkheid nodig om student en inschrijvings informatie op te halen.
 ```mermaid
 sequenceDiagram
@@ -200,7 +200,7 @@ Authenticatie volgt de OKx aanbeveling en nl-gov en edustandaard richtlijnen. zi
 | 0.5 |  29 jul 2025 | DRAFT | Tim Meijs  | flow z defined |
 | 0.6 | 7 aug 2025 | DRAFT | [@mcginkel](https://github.com/mcginkel)  | flow 1 details, flow 5 en 6 en authenticatie |
 | 0.7 | 25 feb 2026 | DRAFT | [@mcginkel](https://github.com/mcginkel)  | flow 10-14 registreren van DMS documenten |
-
+| 2.0 | 10 april 2026 | DRAFT | @mcginkel](https://github.com/mcginkel)  | flow 10-14 improvemenst |
 
 This repository is an initiative of the MBO Digitaal and NPuls en leveranciers
 

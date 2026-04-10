@@ -12,10 +12,11 @@ of
  flow 7 GET .../okd/v1/persons/{personId}/associations
 
 statussen:
-  - canceled
-  - denied
-  - associated
-  - finished
+  - canceled (Afgemeld)
+  - denied (Afgewezen)
+  - associated (Definitief, afgedrukt)
+  - finished (Beeindigd)
+  - pending (alle andere)
 
 ### Sequence diagram 
 ```mermaid
@@ -63,7 +64,7 @@ Accept: application/json
             "studentNumber": "1234567",
             "enrollmentStartDate": "2021-09-01",
             "enrollmentExpectedEndDate": "2025-07-31",
-            "enrollmentFinalEndDate": 2025-07-31,
+            "enrollmentFinalEndDate": "2025-07-31",
         }
     ],
     "person": "5ab399b8-c499-4da8-af6d-b55e66251f31",
