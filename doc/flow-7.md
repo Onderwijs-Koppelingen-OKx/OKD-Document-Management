@@ -9,6 +9,7 @@ Als flow 1 niet geimplementeerd wordt en er bijvoorbeeld alleen documenten via f
 - **`GET .../okd/v1/persons/{personId}`**
 - **`GET .../okd/v1/associations/{associationId}`**
 - **`GET .../okd/v1/persons?primaryCode={studentNummer}`**
+- **`GET .../okd/v1/persons/{personId}/associations` ** 
 
 ### Sequence Diagram
 
@@ -150,8 +151,8 @@ Response
             "teachingLanguage": "nld",
             "otherCodes": [
               {
-                "codeType": "opleidingsCode",
-                "code": "25480BOLMaardeschoolkanditzelfinvullen"
+                "codeType": "crohoCreboCode",
+                "code": "25480"
               }
             ],
             "modeOfStudy": "full-time",
@@ -188,6 +189,13 @@ Response
     }
 }
 ```
+
+de modeOfStudy van program kan de volgende waarde bevatten:
+  - full-time : BOL
+  - part-time : others
+  - dual training: BBL
+  - self-paced (not used)
+  - extraneous (not used)
 
 #### Voorbeeld 3:
 
@@ -231,6 +239,43 @@ Response
 }
 ```
 Note: Alleen de query parameter 'primaryCode' wordt ondersteund t.b.v. conversie en legacy 
+
+#### Voorbeeld 4:
+GET .../okd/v1/persons/{personId}/associations?associationType=programOffering
+
+Response
+```
+{
+    "pageSize": 10,
+    "pageNumber": 1,
+    "hasPreviousPage": false,
+    "hasNextPage": false,
+    "totalPages": 1,
+    "items": [
+        {
+            "associationId: "123e4567-e89b-12d3-a456-426614174000",
+            "associationType": "programOfferingAssociation",
+            "role": "student",
+            "state": "finished",
+            "primaryCode": {
+                "codeType": "opleidingsblad",
+                "code": "1.1"
+            }
+        },
+        {
+            "associationId: "752919a8-b2e1-4151-8dee-194379c0d38e",
+            "associationType": "programOfferingAssociation",
+            "role": "student",
+            "state": "associated",
+            "primaryCode": {
+                "codeType": "opleidingsblad",
+                "code": "1.2"
+            }
+        }
+    ]
+```
+
+Bij deze call wordt er zo min mogenlijk extra informatie meegegegeven, dus geen expanded persons of programs.
 
 ### OKD consumer
 Het ooapi uitbreidingsmechanisme van consumers word gebruikt voor extra informatie:
