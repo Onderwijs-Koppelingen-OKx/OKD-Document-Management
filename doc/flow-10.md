@@ -16,7 +16,7 @@ sequenceDiagram
     Module->>-DMS: documenttypes with subtypes
 
 ```
-#### endpoints voor deze flow bij DMS
+#### endpoints voor deze flow bij SIS
 - `GET .../okd/v1/documents/documenttypes`
 
 voorbeeld :
