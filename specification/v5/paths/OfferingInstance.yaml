@@ -3,10 +3,10 @@ post:
   summary: POST /offerings/{offeringId}
   operationId: postFileOnOfferingById
   description: |
-    POST an file on the offerings.
+    POST a file on the offerings.
 
         For the OKD: Add a document to zitting (offering). example the zittingsverslag.
-        Documenten speciaal voor een persoon (beoordeling etc) moeten op de associatie van deze persoon geplaats worden.
+        Documenten speciaal voor een persoon (beoordeling etc) moeten op de associatie van deze persoon geplaatst worden.
 
     note:
     - This endpoint should be implemented by the DMS component, so that the components can upload documents for a offering.

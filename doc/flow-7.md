@@ -1,6 +1,6 @@
 ## OKD - Flow 7 Extra student/inschrijving informatie ophalen
 
-Als flow 1 niet geimplementeerd wordt en er bijvoorbeeld alleen documenten via flow 2 en 3 aangeboden worden, heeft het DMS ook een mogelijkheid nodig om student- en inschrijvingsinformatie op te halen.
+Als flow 1 niet geïmplementeerd wordt en er bijvoorbeeld alleen documenten via flow 2 en 3 aangeboden worden, heeft het DMS ook een mogelijkheid nodig om student- en inschrijvingsinformatie op te halen.
 
 **Open vraag:** wat is de minimale info die nodig is voor de doelbinding met het DMS? Antwoord: zelfde informatie uit flow 1
 
@@ -275,13 +275,13 @@ Response
     ]
 ```
 
-Bij deze call wordt er zo min mogenlijk extra informatie meegegegeven, dus geen expanded persons of programs.
+Bij deze call wordt er zo min mogelijk extra informatie meegegeven, dus geen expanded persons of programs.
 
 ### OKD consumer
-Het ooapi uitbreidingsmechanisme van consumers word gebruikt voor extra informatie:
+Het ooapi uitbreidingsmechanisme van consumers wordt gebruikt voor extra informatie:
 * "consumerKey": dit moet hardcoded "nl-okd" zijn ter identificatie van de consumer,
 
-Specifiek voor inschrijven : 3 datums voor de inschrijving van deze student:
+Specifiek voor inschrijven: 3 datums voor de inschrijving van deze student:
 * "enrollmentStartDate": "2021-09-01", 
 * "enrollmentExpectedEndDate": "2025-07-31",
 * "enrollmentFinalEndDate": null

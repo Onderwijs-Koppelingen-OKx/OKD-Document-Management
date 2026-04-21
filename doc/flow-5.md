@@ -3,11 +3,11 @@ Notificeren dat een student zijn studie/verbintenis heeft beëindigd en de bewaa
 
 Vanuit component Uitschrijven naar het DMS
 
-Als de status na het uitschrijven weer verandert (actief word) word de API opnieuw aangeroepen met de nieuwe status. Hiermee is het mogenlijk dat een foutief, overhaast gesloten verbintenis weer actief wordt. Er worden alleen statussen verstuurd van studenten/verbintenissen waar ooit communicatie over geweest is.
+Als de status na het uitschrijven weer verandert (actief wordt) wordt de API opnieuw aangeroepen met de nieuwe status. Hiermee is het mogelijk dat een foutief, overhaast gesloten verbintenis weer actief wordt. Er worden alleen statussen verstuurd van studenten/verbintenissen waar ooit communicatie over geweest is.
 
 voorstel om te bespreken:
 of 
- Ook de status van een nieuwe verbintenis word actief gestuurd zodra er voor een eerdere verbintenis communicatie in de OKD context is geweest. Omdat de trigger wel een uitschrijving van de eerste verbintenis is blijft dit onder uitschrijven vallen.
+ Ook de status van een nieuwe verbintenis wordt actief gestuurd zodra er voor een eerdere verbintenis communicatie in de OKD context is geweest. Omdat de trigger wel een uitschrijving van de eerste verbintenis is blijft dit onder uitschrijven vallen.
 of 
  flow 7 GET .../okd/v1/persons/{personId}/associations
 
@@ -15,7 +15,7 @@ statussen:
   - canceled (Afgemeld)
   - denied (Afgewezen)
   - associated (Definitief, afgedrukt)
-  - finished (Beeindigd)
+  - finished (Beëindigd)
   - pending (alle andere)
 
 ### Sequence diagram 
@@ -81,7 +81,7 @@ Accept: application/json
         "role": "student",
         "state": "cancelled",
         person: personId or Person object
-        comsumers: nl-okd-assciation
+        consumers: nl-okd-association
     }
     class Person {
         "personId": "111-2222-33-4444-222",
@@ -113,7 +113,7 @@ Accept: application/json
         organization : organizationId or Organization object
     }
 
-    class `nl-okd-assciation` {
+    class `nl-okd-association` {
         consumerKey : string = "nl-okd"
         "enrollmentStartDate": "2021-09-01", 
         "enrollmentExpectedEndDate": "2025-07-31",
@@ -123,11 +123,11 @@ Accept: application/json
     programOfferingAssociation -- ProgramOffering
     programOfferingAssociation -- Person
 
-    programOfferingAssociation o-- `nl-okd-assciation`
+    programOfferingAssociation o-- `nl-okd-association`
 
 ```
 
 ## Authenticatie:
 scope die ook gebruikt is  **okd:alldocuments** en **okd:enrollmentderollment**
 
-Dit geeft een fijnmazige authorizatie mogelijkheid waarbij applicaties wel examen of BPV documenten mogen toevoegen, maar niet uitschrijven.
+Dit geeft een fijnmazige autorisatie mogelijkheid waarbij applicaties wel examen of BPV documenten mogen toevoegen, maar niet uitschrijven.

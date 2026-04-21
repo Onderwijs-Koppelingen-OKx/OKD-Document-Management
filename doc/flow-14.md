@@ -4,9 +4,9 @@
 Note: Deze flow zijn geen onderdeel van de 1.0 versie van de OKD. Ze zijn als voorstel toegevoegd aan de spec, maar zijn nog in ontwikkeling. de definitieve versie kan verschillen. Deze versie is niet opgebouwd met OOAPI taal of concepten. In de definitieve versie zal dat wel zo zijn.
 ```
 
-Als er documenten met betrekking op de diplomering van een student in het DMS gecreerd of opgeslagen worden die niet afkomstig zijn van de MORA diplomering module dan kan het DMS deze documenten aanmelden bij de module zodat deze getoond en opgevraagd kunnen worden. De inhoud van het document word niet uitgewisseld. 
+Als er documenten met betrekking op de diplomering van een student in het DMS gecreëerd of opgeslagen worden die niet afkomstig zijn van de MORA-diplomering module dan kan het DMS deze documenten aanmelden bij de module zodat deze getoond en opgevraagd kunnen worden. De inhoud van het document wordt niet uitgewisseld. 
 
-Het DMS bepaalt het documentID en stuurt deze, samen met genoeg meta informatie over student en inschrijving zodat de diplomering module het document goed kan registreren en tonen in de applicatie
+Het DMS bepaalt het documentID en stuurt deze, samen met genoeg meta-informatie over student en inschrijving zodat de diplomering module het document goed kan registreren en tonen in de applicatie
 
 Note: In het response zit wel het documentId van de component, die anders kan zijn dan die van het DMS. Bij het opvragen en verdere communicatie is het DMSDocumentId de identificatie
 
@@ -21,7 +21,7 @@ sequenceDiagram
     diplomering->>-DMS: nieuwe referentie (UUID)
 
 ```
-#### endpoints voor deze flow bij DMS
+#### Endpoints voor deze flow bij DMS
 - `POST .../okd/v1/documents/_registerdmsdocument`
 
 voorbeeld :
@@ -66,7 +66,7 @@ Response:
 ### Remarks
 - als identificatie van de student heeft "personId" de voorkeur. Indien deze niet beschikbaar is kan "studentnumber"
 - als identificatie van de juiste inschrijving heeft "associationId" de voorkeur. Indien deze niet beschikbaar is kan "sequenceCode" gebruikt worden
-- als het document niet aan de inschrijving gekoppelt hoeft te zijn (algemeen persoonlijk document, inschrijving overstijgend), dan is het weglaten van associationId en sequenceCode de indicatie dat het document aan de persoon toegevoegd word ipv inschrijving
+- als het document niet aan de inschrijving gekoppeld hoeft te zijn (algemeen persoonlijk document, inschrijving overstijgend), dan is het weglaten van associationId en sequenceCode de indicatie dat het document aan de persoon toegevoegd wordt ipv inschrijving
 - De inhoud van de documenten wordt niet aangeboden, alleen de registratie dat het document bestaat en aan het dossier van de student inschrijving toegevoegd kan worden
 
 

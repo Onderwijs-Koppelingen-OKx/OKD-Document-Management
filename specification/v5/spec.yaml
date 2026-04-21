@@ -73,7 +73,7 @@ components:
     oAuthFlows:
       type: oauth2
       description: |
-        This API uses oauth Cleint credentials for server to server #/components/schemas/EducationSpecification
+        This API uses oauth Client credentials for server to server #/components/schemas/EducationSpecification
       flows: 
         clientCredentials:
           tokenUrl: https://example.nl/oauth2/token
