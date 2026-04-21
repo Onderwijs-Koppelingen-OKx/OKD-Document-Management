@@ -6,7 +6,7 @@ Note: Deze flow zijn geen onderdeel van de 1.0 versie van de OKD. Ze zijn als vo
 
 Als er documenten met betrekking op de diplomering van een student in het DMS gecreerd of opgeslagen worden die niet afkomstig zijn van de MORA diplomering module dan kan het DMS deze documenten aanmelden bij de module zodat deze getoond en opgevraagd kunnen worden. De inhoud van het document word niet uitgewisseld. 
 
-Het DMS bepaalt het documentID en stuurt deze, samen met genoeg meta informatie over student en inschrijving zodat de bpv module het document goed kan registreren en tonen in de applicatie
+Het DMS bepaalt het documentID en stuurt deze, samen met genoeg meta informatie over student en inschrijving zodat de diplomering module het document goed kan registreren en tonen in de applicatie
 
 Note: In het response zit wel het documentId van de component, die anders kan zijn dan die van het DMS. Bij het opvragen en verdere communicatie is het DMSDocumentId de identificatie
 
