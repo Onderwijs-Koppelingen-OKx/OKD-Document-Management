@@ -69,6 +69,7 @@ Content-Type: application/json
             "documentSubtype" : "examendossier",
             "documentId": "dbd3e12a-ed8b-4488-ac34-26fd4f64f40b",
             "documentName": "verslag-100245.pdf",
+            "documentSize": 307200,
             "retentionPeriodSuggestion": "6M",
             "receivedDate": "2023-09-01",
             "registrationDate": "2023-09-01"
@@ -125,6 +126,7 @@ Content-Type: application/json
             "documentSubtype" : "examenbeoordeling",
             "documentId": "dbd3e12a-ed8b-4488-ac34-26fd4f64f40b",
             "documentName": "beoordeling-100245.pdf",
+            "documentSize": 153600,
             "retentionPeriodSuggestion": "3Y",
             "examDateTime": "2021-12-15T11:05:04Z",
             "examComponentOffering": "c9c3875b-0c6b-435a-a8a4-211bf66620b5",
@@ -165,6 +167,7 @@ Het OOAPI uitbreidingsmechanisme van consumers wordt gebruikt voor extra informa
 * "documentSubtype": subtype. Dit is door de school/component te definiëren
 * "documentId": id van het document zoals de component het kent
 * "documentName": naam van het toe te voegen document
+* "documentSize": optionele grootte van het document in bytes
 * "retentionPeriodSuggestion": suggestie van bewaartermijn zoals eventueel gedefinieerd door component. Is suggestie, DMS mag negeren vb: "3Y", "6M", "1321D"
 * "receivedDate": datum waarop het document ontvangen is door de component
 * "registrationDate": datum waarop het document geregistreerd is door de component

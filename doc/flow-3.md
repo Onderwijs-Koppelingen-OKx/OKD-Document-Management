@@ -39,6 +39,7 @@ Content-Type: application/json
             "documentSubtype": "bpv-overeenkomst",
             "documentId": "65f64c44-e3c4-4579-8e05-a729d4b89d06",
             "documentName": "praktijkovereenkomst.pdf",
+            "documentSize": 153600,
             "retentionPeriodSuggestion": "3Y",
             "enrollmentStartDate": "2021-09-01",
             "enrollmentExpectedEndDate": "2025-07-31",
@@ -94,6 +95,7 @@ Het OOAPI uitbreidingsmechanisme van consumers wordt gebruikt voor extra informa
 * "retentionPeriodSuggestion": suggestie van bewaartermijn zoals eventueel gedefinieerd door component. Is suggestie, DMS mag negeren vb: "3Y", "6M", "1321D"
 * "receivedDate": datum waarop het document ontvangen is door de component
 * "registrationDate": datum waarop het document geregistreerd is door de component
+* "documentSize": optionele grootte van het document in bytes
 
 Specifiek voor de student info: (kan het dms vast een student aanmaken als id onbekend is.)
 * "studentNumber": "1234567",

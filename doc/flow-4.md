@@ -49,6 +49,7 @@ Content-Type: application/json
             "documentSubtype": "diploma",
             "documentId": "65f64c44-e3c4-4579-8e05-a729d4b89d06",
             "documentName": "diploma-MBO.pdf",
+            "documentSize": 307200,
             "retentionPeriodSuggestion": "3Y",
             "enrollmentStartDate": "2021-09-01",
             "enrollmentExpectedEndDate": "2025-07-31",
@@ -101,6 +102,7 @@ Het OOAPI uitbreidingsmechanisme van consumers wordt gebruikt voor extra informa
 * "documentSubtype": subtype. dit is door de school/component te definiëren
 * "documentId": id van het document zoals de component het kent
 * "documentName": naam van het toe te voegen document
+* "documentSize": optionele grootte van het document in bytes
 * "retentionPeriodSuggestion": suggestie van bewaartermijn zoals eventueel gedefinieerd door component. Is suggestie, DMS mag negeren vb: "3Y", "6M", "1321D"
 * "receivedDate": datum waarop het document ontvangen is door de component
 * "registrationDate": datum waarop het document geregistreerd is door de component

@@ -1,5 +1,5 @@
 type: object
-description: nl-okd add-on attributes to the Document 
+description: nl-okd add-on attributes to the Document
 required:
  - consumerKey
 properties:
@@ -31,11 +31,16 @@ properties:
     description: |
       identifies the unique identifier of the document.
     example: "dbd3e12a-ed8b-4488-ac34-26fd4f64f40b"
-  documentName: 
+  documentName:
     type: string
     description: |
       identifies the name of the document.
     example: "inschrijving-100245.pdf"
+  documentSize:
+    type: integer
+    description: |
+      identifies the size of the document in bytes.
+    example: 204800
   retentionPeriodSuggestion:
     type: string
     description: |

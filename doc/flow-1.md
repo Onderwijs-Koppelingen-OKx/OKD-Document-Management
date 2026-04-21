@@ -232,6 +232,7 @@ Content-Type: application/json
       "documentSubtype": "DYS",
       "documentId": "123e4567-e89b-12d3-a456-426614174002",
       "documentName": "dyslexieverklaring-200085.pdf",
+      "documentSize": 153600,
       "retentionPeriodSuggestion": "3Y",
       "receivedDate": "2026-01-13",
       "registrationDate": "2026-01-16"
@@ -279,6 +280,7 @@ Het OOAPI uitbreidingsmechanisme van consumers wordt gebruikt voor extra informa
 * "documentSubtype": subtype. Dit is door de school/component te definiëren
 * "documentId": id van het document zoals de component het kent
 * "documentName": naam van het toe te voegen document
+* "documentSize": optionele grootte van het document in bytes
 * "retentionPeriodSuggestion": suggestie van bewaartermijn zoals eventueel gedefinieerd door component. Is suggestie, DMS mag negeren vb: "3Y", "6M", "1321D"
 * "receivedDate": datum waarop het document ontvangen is door de component
 * "registrationDate": datum waarop het document geregistreerd is door de component
