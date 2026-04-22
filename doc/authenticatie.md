@@ -1,6 +1,6 @@
 # Authentication en beveiliging
 
-Al het netwerk verkeer word standaard beviligd door minimaal TLS-1.3 encryptie.
+Al het netwerk verkeer wordt standaard beveiligd door minimaal TLS-1.3 encryptie.
 
 Voor authenticatie wordt gebruik gemaakt van oauth2 protocol met client-credentials grant. Dit is een industry standaard (See https://oauth.net/2/) waardoor er standaard ondersteuning is voor veel programmeer talen en frameworks.
 Standaarden als nl-gov en edustandaard zijn hier ook op gebaseerd.
@@ -18,8 +18,8 @@ sequenceDiagram
 ```
 
 ## scopes
-Each request will need a scope in the auth token. voor OKD zullen deze beginnen met "okd:".
-de verschillende flows zullen verschillende catagorie scopes krijgen, waardoor er fijnmazig toestemming geven kan worden op niveau een MORA referentie componenten.
+Each request will need a scope in the auth token. Voor OKD zullen deze beginnen met "okd:".
+De verschillende flows zullen verschillende categorie scopes krijgen, waardoor er fijnmazig toestemming geven kan worden op niveau een MORA referentie componenten.
 
 
 - flow 1,2,3,4,11,12,13,14: **okd:alldocuments**

@@ -134,12 +134,12 @@ patch:
   operationId: partialUpdateAssociationById
   description: |
     Update the status or result of an enrollment. Other elements of the association object COULD 
-    also be PATCHED. But are not likely and have therefor not been included in this endpoint.
+    also be PATCHED. But are not likely and have therefore not been included in this endpoint.
     Implementation of the PATCH activity is based on use PATCH with JSON Merge Patch standard, 
     a specialized media type `application/merge-patch+json` for partial resource representation 
     to update parts of resource objects.
 
-        Voor OKD: Update de status of het resultaat van een inschrijving. Eigenlijk word alleen het veld "state" verandert om aan te geven dat de verbintenis beëindigd is.
+        Voor OKD: Update de status of het resultaat van een inschrijving. Eigenlijk wordt alleen het veld "state" veranderd om aan te geven dat de verbintenis beëindigd is.
         hoewel de ooapi meer states kent gebruiken we alleen "associated", "finished".
 
     Note:
@@ -217,7 +217,7 @@ post:
   description: |
     POST a document with the association (inschrijving) metadata. 
 
-        For the OKD: Add a document to a association/verbintenis.
+        For the OKD: Add a document to an association/verbintenis.
 
     note:
     - This endpoint should be implemented by the DMS component, so that the components can upload documents for a association/verbintenis.

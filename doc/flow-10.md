@@ -4,7 +4,7 @@
 Note: Deze flow zijn geen onderdeel van de 1.0 versie van de OKD. Ze zijn als voorstel toegevoegd aan de spec, maar zijn nog in ontwikkeling. de definitieve versie kan verschillen. Deze versie is niet opgebouwd met OOAPI taal of concepten. In de definitieve versie zal dat wel zo zijn.
 ```
 
-Als er documenten van een student in het DMS gecreerd of opgeslagen worden die niet afkomstig zijn van de module dan kan het DMS deze documenten aanmelden bij de module zodat deze getoond en opgevraagd kunnen worden. hierbij moet er extra meta informatie megegeven worden. bij elk documentType kan een school zelf subtypes gedefinieerd hebben. Deze moeten door het dms opgevraagd kunen worden. 
+Als er documenten van een student in het DMS gecreëerd of opgeslagen worden die niet afkomstig zijn van de module dan kan het DMS deze documenten aanmelden bij de module zodat deze getoond en opgevraagd kunnen worden. hierbij moet er extra meta informatie meegegeven worden. bij elk documentType kan een school zelf subtypes gedefinieerd hebben. Deze moeten door het dms opgevraagd kunnen worden. 
 
 ### Sequence diagram 
 ```mermaid

@@ -6,7 +6,7 @@ NOTE: Onderstaande informatie is bijna definitief, maar er kunnen geen rechten a
 ## Doel van de koppeling
 Om de efficiëntie in het beheer van documenten in studenten- en examendossiers te verbeteren, kiezen steeds meer onderwijsinstellingen voor een centraal Document Management Systeem (DMS). Gezien de diversiteit aan applicaties die aangesloten moeten worden, is er behoefte aan een gestandaardiseerde gegevensuitwisseling.
 
-Het doel van de OKD-koppeling is om documenten (inclusief metadata) vanuit diverse applicaties en componenten over te brengen naar een DMS (Document Management Systeem). Documenten kunnen vanuit verschillende applicaties worden aangeleverd, zodat het DMS een compleet overzicht heeft van alle relevante documenten van een student. Tijdens deze overdracht wordt tevens de benodigde meta-data meegelevert, zodat het DMS in staat is de documenten correct te categoriseren en de juiste bewaartermijnen toe te passen. Verder biedt de koppeling de mogelijkheid om de overgedragen documenten opnieuw te bekijken, te bewerken en te verwijderen. Het DMS is verantwoordelijk voor het preserveren van documenten gedurende de gehele archieftermijn.
+Het doel van de OKD-koppeling is om documenten (inclusief metadata) vanuit diverse applicaties en componenten over te brengen naar een DMS (Document Management Systeem). Documenten kunnen vanuit verschillende applicaties worden aangeleverd, zodat het DMS een compleet overzicht heeft van alle relevante documenten van een student. Tijdens deze overdracht wordt tevens de benodigde meta-data meegeleverd, zodat het DMS in staat is de documenten correct te categoriseren en de juiste bewaartermijnen toe te passen. Verder biedt de koppeling de mogelijkheid om de overgedragen documenten opnieuw te bekijken, te bewerken en te verwijderen. Het DMS is verantwoordelijk voor het preserveren van documenten gedurende de gehele archieftermijn.
 
 
 ### Relatie met OKx
@@ -133,7 +133,7 @@ De flows worden in detail verder uitgewerkt, beschreven in de OOAPI structuur.
 
 ### Uitbreiding OKD versie 2.0: 
 
-Voor het registeren van documenten die hun oorsprong in het DMS hebben of daar gescanned of gemailed verzameld worden is de mogelijkheid om deze via de OKD te registeren bij de componenten
+Voor het registreren van documenten die hun oorsprong in het DMS hebben of daar gescand of gemailed verzameld worden is de mogelijkheid om deze via de OKD te registreren bij de componenten
 
 ```mermaid
 sequenceDiagram
@@ -152,17 +152,17 @@ sequenceDiagram
 ```
 
 - flow-10: [Ophalen van de beschikbare document types](./doc/flow-10.md)
-- flow-11: [registeren bij Inschrijvings dossier](./doc/flow-11.md)
-- flow-12: [registeren bij Examen dossier](./doc/flow-12.md)
-- flow-13: [registeren bij BPV dossier](./doc/flow-13.md)
-- flow-14: [registeren bij Diplomeren en Certificeren dossier](./doc/flow-14.md)
+- flow-11: [registreren bij Inschrijvings dossier](./doc/flow-11.md)
+- flow-12: [registreren bij Examen dossier](./doc/flow-12.md)
+- flow-13: [registreren bij BPV dossier](./doc/flow-13.md)
+- flow-14: [registreren bij Diplomeren en Certificeren dossier](./doc/flow-14.md)
 
 
 
 
 
 #### Ophalen van student en inschrijving informatie
-Als flow 1 niet geimplementeerd wordt en er bijvoorbeeld alleen documenten via flow 2 en 3 aangeboden worden, heeft het DMS ook een mogenlijkheid nodig om student en inschrijvings informatie op te halen.
+Als flow 1 niet geïmplementeerd wordt en er bijvoorbeeld alleen documenten via flow 2 en 3 aangeboden worden, heeft het DMS ook een mogelijkheid nodig om student en inschrijvings informatie op te halen.
 ```mermaid
 sequenceDiagram
     Participant Inschrijven
@@ -174,12 +174,12 @@ sequenceDiagram
     DMS->>BPV: Ok (200)
     deactivate DMS
 
-    DMS->>Inschrijven: geef student infomatie
+    DMS->>Inschrijven: geef student informatie
     activate Inschrijven
     Inschrijven->>DMS: student informatie
     deactivate Inschrijven
 
-    DMS->>Inschrijven: geef inschrijvings infomatie
+    DMS->>Inschrijven: geef inschrijving informatie
     activate Inschrijven
     Inschrijven->>DMS: inschrijvings informatie
     deactivate Inschrijven
@@ -200,7 +200,7 @@ Authenticatie volgt de OKx aanbeveling en nl-gov en edustandaard richtlijnen. zi
 | 0.5 |  29 jul 2025 | DRAFT | Tim Meijs  | flow z defined |
 | 0.6 | 7 aug 2025 | DRAFT | [@mcginkel](https://github.com/mcginkel)  | flow 1 details, flow 5 en 6 en authenticatie |
 | 0.7 | 25 feb 2026 | DRAFT | [@mcginkel](https://github.com/mcginkel)  | flow 10-14 registreren van DMS documenten |
-| 2.0 | 10 april 2026 | DRAFT | @mcginkel](https://github.com/mcginkel)  | flow 10-14 improvemenst |
+| 2.0 | 10 april 2026 | DRAFT | [@mcginkel](https://github.com/mcginkel)  | flow 10-14 improvements |
 
 This repository is an initiative of the MBO Digitaal and NPuls en leveranciers
 

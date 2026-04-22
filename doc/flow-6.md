@@ -1,9 +1,9 @@
-## Flow 6 Document vernietigt notificatie
+## Flow 6 Document vernietigd notificatie
 
 Nadat de bewaartermijn verstreken is, wordt het document vernietigd in DMS. DMS meldt dat vernietiging heeft plaatsgevonden en dat het document niet langer meer beschikbaar is.
 
 
-**Openvraag:** Is dit nodig of merkt de app het wel als er een document getoon moet worden (flow x)?
+**Openvraag:** Is dit nodig of merkt de app het wel als er een document getoond moet worden (flow x)?
 **Openvraag 2:** Komen we niet in conflict met de vraag of de component weet welke documentid gebruikt moet worden? Moeten we hier niet juist het documentid van de component gebruiken?  
 
 

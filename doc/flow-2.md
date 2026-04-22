@@ -59,7 +59,7 @@ Content-Type: application/json
     "description": [
         {
             "language": "nl-NL",
-            "value": "A beatiful description"
+            "value": "A beautiful description"
         }
     ],
     "consumers": [

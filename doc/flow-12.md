@@ -4,12 +4,12 @@
 Note: Deze flow zijn geen onderdeel van de 1.0 versie van de OKD. Ze zijn als voorstel toegevoegd aan de spec, maar zijn nog in ontwikkeling. de definitieve versie kan verschillen. Deze versie is niet opgebouwd met OOAPI taal of concepten. In de definitieve versie zal dat wel zo zijn.
 ```
 
-Als er documenten met betrekking op de examinering van een student in het DMS gecreerd of opgeslage worden die niet afkomstig zijn van de MORA examinering module dan kan het DMS deze documenten aanmelden bij de module zodat deze getoond en opgevraagd kunnen worden. De inhoud van het document word niet uitgewisseld. 
+Als er documenten met betrekking op de examinering van een student in het DMS gecreëerd of opgeslagen worden die niet afkomstig zijn van de MORA-examinering module dan kan het DMS deze documenten aanmelden bij de module zodat deze getoond en opgevraagd kunnen worden. De inhoud van het document wordt niet uitgewisseld. 
 
-Het DMS bepaalt het documentID en stuurt deze, samen met genoeg meta informatie over student en inschrijving zodat de inschrijf module het document goed kan registreren en tonen in de applicatie.
+Het DMS bepaalt het documentID en stuurt deze, samen met genoeg meta-informatie over student en inschrijving zodat de inschrijf module het document goed kan registreren en tonen in de applicatie.
 
 #### Opmerking: Hier kan een overlap met de OKE ontstaan.
-In de OKE kunnen documenten direct gelinkt worden aan het afname moment omdat die informatie al eerder in de OKE flows uitgewisselt is. Het scenarion in deze flow is dat er op een examen document op een manier het volledige toets code in barcode formaat staat. Hiermee kan het document aan het resultaat gekoppelt worden (is niet hetzelfde als aan de toets, ivm pogingen etc). De ontvangende module zal op basis van de code zijn best doen om het document te koppelen. lukt dit niet dan word het een algemeen document in het examendossier. 
+In de OKE kunnen documenten direct gelinkt worden aan het afnamemoment omdat die informatie al eerder in de OKE-flows uitgewisseld is. Het scenario in deze flow is dat er op een examen document op een manier het volledige toets code in barcode formaat staat. Hiermee kan het document aan het resultaat gekoppeld worden (is niet hetzelfde als aan de toets, ivm pogingen etc). De ontvangende module zal op basis van de code zijn best doen om het document te koppelen. lukt dit niet dan wordt het een algemeen document in het examendossier. 
 
 Note: In het response zit wel het documentId van de component, die anders kan zijn dan die van het DMS. Bij het opvragen en verdere communicatie is het DMSDocumentId de identificatie
 
@@ -70,11 +70,10 @@ Response:
 ### Remarks
 - als identificatie van de student heeft "personId" de voorkeur. Indien deze niet beschikbaar is kan "studentnumber"
 - als identificatie van de juiste inschrijving heeft "associationId" de voorkeur. Indien deze niet beschikbaar is kan "sequenceCode" gebruikt worden
-- als het document niet aan de inschrijving gekoppelt hoeft te zijn (algemeen persoonlijk document, inschrijving overstijgend), dan is het weglaten van associationId en sequenceCode de indicatie dat het document aan de persoon toegevoegd word ipv inschrijving
-- op basis van examCodePath en de recievedDate word geprobeerd het document op de juiste plek geregistreerd. Indien dit niet lukt word het geregistreerd aan de persoon of inschrijving
+- als het document niet aan de inschrijving gekoppeld hoeft te zijn (algemeen persoonlijk document, inschrijving overstijgend), dan is het weglaten van associationId en sequenceCode de indicatie dat het document aan de persoon toegevoegd wordt ipv inschrijving
+- op basis van examCodePath en de receivedDate wordt geprobeerd het document op de juiste plek geregistreerd. Indien dit niet lukt, wordt het geregistreerd aan de persoon of inschrijving
 - De inhoud van de documenten wordt niet aangeboden, alleen de registratie dat het document bestaat en aan het dossier van de student inschrijving toegevoegd kan worden
 
 ## Authenticatie:
-scope voor toevoegen van examen gerelateerde documenten: **okd:alldocuments** en **okd:examdocuments**.
- als een van deze 2 aanwezig is in het authenticatie token kan de actie uitgevoerd worden.
-
+Scope voor toevoegen van examen gerelateerde documenten: **okd:alldocuments** en **okd:examdocuments**.
+Als een van deze 2 aanwezig is in het authenticatie token kan de actie uitgevoerd worden.
