@@ -23,7 +23,7 @@ sequenceDiagram
     Examineren->>-DMS: nieuwe referentie (UUID)
 
 ```
-#### endpoints voor deze flow bij DMS
+#### endpoints voor deze flow bij SIS
 - `POST .../okd/v1/documents/_registerdmsdocument`
 
 voorbeeld :
