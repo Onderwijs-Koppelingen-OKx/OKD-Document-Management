@@ -38,6 +38,7 @@ properties:
     example: "inschrijving-100245.pdf"
   documentSize:
     type: integer
+    format: int64
     description: |
       identifies the size of the document in bytes.
     example: 204800
