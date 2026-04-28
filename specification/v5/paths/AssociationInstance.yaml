@@ -270,6 +270,7 @@ post:
                     documentSubtype: "inschrijfbewijs"
                     documentId: "dbd3e12a-ed8b-4488-ac34-26fd4f64f40b"
                     documentName: "inschrijving-100245.pdf"
+                    documentSize: 204800
                     retentionPeriodSuggestion: "3Y"
                     enrollmentStartDate: "2021-09-01"
                     enrollmentExpectedEndDate: "2025-07-31"
@@ -356,6 +357,7 @@ post:
                     documentSubtype: "examenbeoordeling"
                     documentId: "dbd3e12a-ed8b-4488-ac34-26fd4f64f40b"
                     documentName: "beoordeling-100245.pdf"
+                    documentSize: 153600
                     retentionPeriodSuggestion: "3Y"
                     receivedDate: "2023-09-01"
                     registrationDate: "2023-09-01"
@@ -379,6 +381,7 @@ post:
                     documentSubtype: "praktijkovereenkomst"
                     documentId: "65f64c44-e3c4-4579-8e05-a729d4b89d06"
                     documentName: "praktijkovereenkomst.pdf"
+                    documentSize: 512000
                     retentionPeriodSuggestion: "3Y"
                     enrollmentStartDate: "2021-09-01"
                     enrollmentExpectedEndDate: "2025-07-31"
@@ -402,6 +405,7 @@ post:
                     documentSubtype: "diploma"
                     documentId: "65f64c44-e3c4-4579-8e05-a729d4b89d06"
                     documentName: "diploma-MBO.pdf"
+                    documentSize: 307200
                     retentionPeriodSuggestion: "3Y"
                     enrollmentStartDate: "2021-09-01"
                     enrollmentExpectedEndDate: "2025-07-31"
