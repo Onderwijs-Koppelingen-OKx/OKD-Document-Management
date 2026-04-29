@@ -131,7 +131,7 @@ De flows worden in detail verder uitgewerkt, beschreven in de OOAPI structuur.
 - flow-z: [Verwijderen document (vanuit alle componenten naar DMS)](./doc/flow-z.md)
 
 
-### Uitbreiding OKD versie 2.0: 
+### Uitbreiding OKD versie 1.5: 
 
 Voor het registreren van documenten die hun oorsprong in het DMS hebben of daar gescand of gemailed verzameld worden is de mogelijkheid om deze via de OKD te registreren bij de componenten
 
@@ -200,7 +200,7 @@ Authenticatie volgt de OKx aanbeveling en nl-gov en edustandaard richtlijnen. zi
 | 0.5 |  29 jul 2025 | DRAFT | Tim Meijs  | flow z defined |
 | 0.6 | 7 aug 2025 | DRAFT | [@mcginkel](https://github.com/mcginkel)  | flow 1 details, flow 5 en 6 en authenticatie |
 | 0.7 | 25 feb 2026 | DRAFT | [@mcginkel](https://github.com/mcginkel)  | flow 10-14 registreren van DMS documenten |
-| 2.0 | 10 april 2026 | DRAFT | [@mcginkel](https://github.com/mcginkel)  | flow 10-14 improvements |
+| 1.5 | 10 april 2026 | DRAFT | [@mcginkel](https://github.com/mcginkel)  | flow 10-14 improvements |
 
 This repository is an initiative of the MBO Digitaal and NPuls en leveranciers
 

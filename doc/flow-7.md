@@ -9,7 +9,7 @@ Als flow 1 niet geïmplementeerd wordt en er bijvoorbeeld alleen documenten via 
 - **`GET .../okd/v1/persons/{personId}`**
 - **`GET .../okd/v1/associations/{associationId}`**
 - **`GET .../okd/v1/persons?primaryCode={studentNummer}`**
-- **`GET .../okd/v1/persons/{personId}/associations` ** 
+- **`GET .../okd/v1/persons/{personId}/associations`** 
 
 ### Sequence Diagram
 
@@ -30,6 +30,11 @@ sequenceDiagram
     DMS-->>Inschrijven: GET .../okd/v1/persons?primaryCode={studentNummer}
     activate Inschrijven
     Inschrijven-->>DMS: 200 persons
+    deactivate Inschrijven
+
+    DMS-->>Inschrijven: GET .../okd/v1/v1/persons/{personId}/associations?associationType=programOffering
+    activate Inschrijven
+    Inschrijven-->>DMS: 200 associations
     deactivate Inschrijven
 ```
 
@@ -241,6 +246,8 @@ Response
 Note: Alleen de query parameter 'primaryCode' wordt ondersteund t.b.v. conversie en legacy 
 
 #### Voorbeeld 4:
+ophalen van alleinschrijvingen van een student. Alleen programOfferingAssociations worden ondersteund door OKD spec, andere parameters zoals filters of sortering anders dan associationType=programOffering hoeven niet ondersteund te worden in OKD context.
+
 GET .../okd/v1/persons/{personId}/associations?associationType=programOffering
 
 Response
