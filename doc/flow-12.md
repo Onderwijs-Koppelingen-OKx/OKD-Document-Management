@@ -43,8 +43,8 @@ Accept: application/json
     
     "documentName": "Toets-4-20260102-100245.pdf",
     "format": "application/pdf",
-    "documentsize": 243857
-    "description": "Toets ingescanned "
+    "documentSize": 243857,
+    "description": "Toets ingescanned",
     "receivedDate": "2026-01-05",
     "registrationDate": "2026-01-02",
 
@@ -85,8 +85,8 @@ Accept: application/json
     
     "documentName": "Procesverbaal_toetsmoment_20260602.pdf",
     "format": "application/pdf",
-    "documentsize": 243857
-    "description": "Procesverbaal ingescanned "
+    "documentSize": 243857,
+    "description": "Procesverbaal ingescanned",
     "receivedDate": "2026-06-03",
     "registrationDate": "2026-06-04",
 
@@ -106,7 +106,7 @@ Response:
 ```
 
 ### Remarks
-- als identificatie van de student heeft "personId" de voorkeur. Indien deze niet beschikbaar is kan "studentnumber" gebruikt worden
+- als identificatie van de student heeft "personId" de voorkeur. Indien deze niet beschikbaar is kan "studentNumber" gebruikt worden
 - als identificatie van de juiste inschrijving heeft "associationId" de voorkeur. Indien deze niet beschikbaar is kan "sequenceCode" gebruikt worden
 - als het document niet aan de inschrijving gekoppeld hoeft te zijn (algemeen persoonlijk document, inschrijving overstijgend), dan is het weglaten van associationId en sequenceCode de indicatie dat het document aan de persoon toegevoegd wordt ipv inschrijving
 - op basis van examCode, examCodePath en de receivedDate wordt geprobeerd het document (resultaatbijlage) op de juiste plek te registreren. Indien dit niet lukt, wordt het geregistreerd aan de persoon of inschrijving
