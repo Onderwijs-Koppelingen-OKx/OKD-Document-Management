@@ -11,7 +11,7 @@ Het DMS bepaalt het documentID en stuurt deze, samen met genoeg meta-informatie 
 #### Opmerking: Hier kan een overlap met de OKE ontstaan.
 In de OKE kunnen documenten direct gelinkt worden aan het afnamemoment omdat die informatie al eerder in de OKE-flows uitgewisseld is. Het scenario in deze flow is dat er op een examen document op een manier het volledige toets code in barcode/QR formaat staat. Hiermee kan het document aan het resultaat gekoppeld worden (is niet hetzelfde als aan de toets, ivm pogingen etc). De ontvangende module zal op basis van de code zijn best doen om het document te koppelen. lukt dit niet dan wordt het een algemeen document in het examendossier van de student. 
 
-Documenten gerelateerd aan een toestmoment (procesverbaal, presentielijst) worden obv de toetsmoment uuid geregistreerd. Dit uuid kan in een barcode/QR formaat worden opgenomen waarna het DMS met deze informatie het document bij het juiste toetsmoment kan registreren.
+Documenten gerelateerd aan een toetsmoment (procesverbaal, presentielijst) worden obv de toetsmoment uuid geregistreerd. Dit uuid kan in een barcode/QR formaat worden opgenomen waarna het DMS met deze informatie het document bij het juiste toetsmoment kan registreren.
 
 Note: In het response zit wel het documentId van de component, die anders kan zijn dan die van het DMS. Bij het opvragen en verdere communicatie is het DMSDocumentId de identificatie
 
