@@ -57,7 +57,7 @@ Accept: application/json
     "associationId": "123e4567-e89b-12d3-a456-426614174000",
     "sequenceCode": "1.2",
 
-    "educationUnitCode": "NE-3F-N1",
+    "examCode": "NE-3F-N1",
     "examCodePath": "/EIND/SE/Toets1"
 }
 
@@ -109,7 +109,7 @@ Response:
 - als identificatie van de student heeft "personId" de voorkeur. Indien deze niet beschikbaar is kan "studentnumber" gebruikt worden
 - als identificatie van de juiste inschrijving heeft "associationId" de voorkeur. Indien deze niet beschikbaar is kan "sequenceCode" gebruikt worden
 - als het document niet aan de inschrijving gekoppeld hoeft te zijn (algemeen persoonlijk document, inschrijving overstijgend), dan is het weglaten van associationId en sequenceCode de indicatie dat het document aan de persoon toegevoegd wordt ipv inschrijving
-- op basis van educationUnitCode, examCodePath en de receivedDate wordt geprobeerd het document (resultaatbijlage) op de juiste plek te registreren. Indien dit niet lukt, wordt het geregistreerd aan de persoon of inschrijving
+- op basis van examCode, examCodePath en de receivedDate wordt geprobeerd het document (resultaatbijlage) op de juiste plek te registreren. Indien dit niet lukt, wordt het geregistreerd aan de persoon of inschrijving
 - voor het registreren van een document bij een toetsmoment moet alleen de examComponentOfferingId worden aangeboden. Als het toetsmoment gevonden kan worden obv dit uuid wordt het document bij dit toetsmoment geregistreerd. Als het toetsmoment niet gevonden kan worden wordt een foutmelding gegeven.
 - De inhoud van de documenten wordt niet aangeboden, alleen de registratie dat het document bestaat en aan het dossier van de student inschrijving toegevoegd kan worden
 
