@@ -82,9 +82,12 @@ post:
             sequenceCode:
               type: string
               description: Alternative enrollment identifier when associationId is not available.
+            examCode:
+              type: string
+              description: Code of the exam.             
             examCodePath:
               type: string
-              description: Path to the exam code
+              description: Path to the exam code.
               example: "/EIND/SE/Toets1"
 
           anyOf:
