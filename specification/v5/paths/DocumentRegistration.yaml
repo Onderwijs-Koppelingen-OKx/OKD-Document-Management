@@ -84,7 +84,8 @@ post:
               description: Alternative enrollment identifier when associationId is not available.
             examCode:
               type: string
-              description: Code of the exam.             
+              description: Code of the exam.
+              example: "NE-3F-N1"
             examCodePath:
               type: string
               description: Path to the exam code.
