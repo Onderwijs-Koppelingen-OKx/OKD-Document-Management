@@ -9,7 +9,9 @@ Als er documenten met betrekking op de examinering van een student in het DMS ge
 Het DMS bepaalt het documentID en stuurt deze, samen met genoeg meta-informatie over student en inschrijving zodat de inschrijf module het document goed kan registreren en tonen in de applicatie.
 
 #### Opmerking: Hier kan een overlap met de OKE ontstaan.
-In de OKE kunnen documenten direct gelinkt worden aan het afnamemoment omdat die informatie al eerder in de OKE-flows uitgewisseld is. Het scenario in deze flow is dat er op een examen document op een manier het volledige toets code in barcode formaat staat. Hiermee kan het document aan het resultaat gekoppeld worden (is niet hetzelfde als aan de toets, ivm pogingen etc). De ontvangende module zal op basis van de code zijn best doen om het document te koppelen. lukt dit niet dan wordt het een algemeen document in het examendossier. 
+In de OKE kunnen documenten direct gelinkt worden aan het afnamemoment omdat die informatie al eerder in de OKE-flows uitgewisseld is. Het scenario in deze flow is dat er op een examen document op een manier het volledige toets code in barcode/QR formaat staat. Hiermee kan het document aan het resultaat gekoppeld worden (is niet hetzelfde als aan de toets, ivm pogingen etc). De ontvangende module zal op basis van de code zijn best doen om het document te koppelen. lukt dit niet dan wordt het een algemeen document in het examendossier van de student. 
+
+Documenten gerelateerd aan een toestmoment (procesverbaal, presentielijst) worden obv de toetsmoment uuid geregistreerd. Dit uuid kan in een barcode/QR formaat worden opgenomen waarna het DMS met deze informatie het document bij het juiste toetsmoment kan registreren.
 
 Note: In het response zit wel het documentId van de component, die anders kan zijn dan die van het DMS. Bij het opvragen en verdere communicatie is het DMSDocumentId de identificatie
 
@@ -26,7 +28,7 @@ sequenceDiagram
 #### endpoints voor deze flow bij SIS
 - `POST .../okd/v1/documents/_registerdmsdocument`
 
-voorbeeld :
+voorbeeld (voor resultaatbijlage) :
 ```
 POST .../okd/v1/documents/_registerdmsdocument
 Host: api.yourdomain.com
@@ -68,11 +70,47 @@ Response:
 }
 ```
 
+voorbeeld (voor procesverbaal) :
+```
+POST .../okd/v1/documents/_registerdmsdocument
+Host: api.yourdomain.com
+Content-Type: application/json
+Content-Length: xxxxx
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+Accept: application/json
+
+
+{
+    "dmsDocumentId": "7bb8ba50-70a5-4dc0-9c78-d9cf3cddc40c",
+    
+    "documentName": "Procesverbaal_toetsmoment_20260602.pdf",
+    "format": "application/pdf",
+    "documentsize": 243857
+    "description": "Procesverbaal ingescanned "
+    "receivedDate": "2026-06-03",
+    "registrationDate": "2026-06-04",
+
+    "documentType": "examination",
+    "documentSubtype": "Toetsmoment",
+    
+    "examComponentOfferingId": "7742f703-08c2-426b-868a-1d548071a91e",
+}
+
+```
+
+Response:
+```
+{
+    "documentId": "9e7d2f85-5e9c-464c-8294-1c770a003956"
+}
+```
+
 ### Remarks
-- als identificatie van de student heeft "personId" de voorkeur. Indien deze niet beschikbaar is kan "studentnumber"
+- als identificatie van de student heeft "personId" de voorkeur. Indien deze niet beschikbaar is kan "studentnumber" gebruikt worden
 - als identificatie van de juiste inschrijving heeft "associationId" de voorkeur. Indien deze niet beschikbaar is kan "sequenceCode" gebruikt worden
 - als het document niet aan de inschrijving gekoppeld hoeft te zijn (algemeen persoonlijk document, inschrijving overstijgend), dan is het weglaten van associationId en sequenceCode de indicatie dat het document aan de persoon toegevoegd wordt ipv inschrijving
-- op basis van educationUnitCode, examCodePath en de receivedDate wordt geprobeerd het document op de juiste plek geregistreerd. Indien dit niet lukt, wordt het geregistreerd aan de persoon of inschrijving
+- op basis van educationUnitCode, examCodePath en de receivedDate wordt geprobeerd het document (resultaatbijlage) op de juiste plek te registreren. Indien dit niet lukt, wordt het geregistreerd aan de persoon of inschrijving
+- voor het registreren van een document bij een toetsmoment moet alleen de examComponentOfferingId worden aangeboden. Als het toetsmoment gevonden kan worden obv dit uuid wordt het document bij dit toetsmoment geregistreerd. Als het toetsmoment niet gevonden kan worden wordt een foutmelding gegeven.
 - De inhoud van de documenten wordt niet aangeboden, alleen de registratie dat het document bestaat en aan het dossier van de student inschrijving toegevoegd kan worden
 
 ## Authenticatie:
