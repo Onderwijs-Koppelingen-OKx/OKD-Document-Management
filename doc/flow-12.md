@@ -27,8 +27,44 @@ sequenceDiagram
 ```
 #### endpoints voor deze flow bij SIS
 - `POST .../okd/v1/documents/_registerdmsdocument`
+voorbeeld 1 (voor resultaatbijlage) :
+```
+POST .../okd/v1/documents/_registerdmsdocument
+Host: api.yourdomain.com
+Content-Type: application/json
+Content-Length: xxxxx
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+Accept: application/json
 
-voorbeeld (voor resultaatbijlage) :
+
+{
+    "dmsDocumentId": "e575f30d-25e6-4e7e-8f9c-b081413a99f3",
+    
+    "documentName": "Toets-4-20260102-100245.pdf",
+    "format": "application/pdf",
+    "documentSize": 243857,
+    "description": "Toets ingescanned",
+    "receivedDate": "2026-01-05",
+    "registrationDate": "2026-01-02",
+
+    "documentType": "examination",
+    "documentSubtype": "Toetsresultaat",
+
+    "personId": "5ab399b8-c499-4da8-af6d-b55e66251f31",
+    
+    "examComponentOfferingId": "7742f703-08c2-426b-868a-1d548071a91e"
+}
+
+```
+
+Response:
+```
+{
+    "documentId": "4e12169d-84b9-4d21-a987-f373bbbe4e6e"
+}
+```
+
+voorbeeld 2 (voor resultaatbijlage) :
 ```
 POST .../okd/v1/documents/_registerdmsdocument
 Host: api.yourdomain.com
@@ -52,10 +88,8 @@ Accept: application/json
     "documentSubtype": "Toetsresultaat",
 
     "personId": "5ab399b8-c499-4da8-af6d-b55e66251f31",
-    "studentNumber": "1234567",
     
     "associationId": "123e4567-e89b-12d3-a456-426614174000",
-    "sequenceCode": "1.2",
 
     "examCode": "NE-3F-N1",
     "examCodePath": "/EIND/SE/Toets1"
@@ -66,7 +100,7 @@ Accept: application/json
 Response:
 ```
 {
-    "documentId": "4e12169d-84b9-4d21-a987-f373bbbe4e6e"
+    "documentId": "b5779660-bd2a-4138-9a03-23b4b2703307"
 }
 ```
 
@@ -93,7 +127,7 @@ Accept: application/json
     "documentType": "examination",
     "documentSubtype": "Toetsmoment",
     
-    "examComponentOfferingId": "7742f703-08c2-426b-868a-1d548071a91e",
+    "examComponentOfferingId": "7742f703-08c2-426b-868a-1d548071a91e"
 }
 
 ```
@@ -109,8 +143,9 @@ Response:
 - als identificatie van de student heeft "personId" de voorkeur. Indien deze niet beschikbaar is kan "studentNumber" gebruikt worden
 - als identificatie van de juiste inschrijving heeft "associationId" de voorkeur. Indien deze niet beschikbaar is kan "sequenceCode" gebruikt worden
 - als het document niet aan de inschrijving gekoppeld hoeft te zijn (algemeen persoonlijk document, inschrijving overstijgend), dan is het weglaten van associationId en sequenceCode de indicatie dat het document aan de persoon toegevoegd wordt ipv inschrijving
-- op basis van examCode, examCodePath en de receivedDate wordt geprobeerd het document (resultaatbijlage) op de juiste plek te registreren. Indien dit niet lukt, wordt het geregistreerd aan de persoon of inschrijving
-- voor het registreren van een document bij een toetsmoment moet alleen de examComponentOfferingId worden aangeboden. Als het toetsmoment gevonden kan worden obv dit uuid wordt het document bij dit toetsmoment geregistreerd. Als het toetsmoment niet gevonden kan worden wordt een foutmelding gegeven.
+- Indien het toetsmoment bekend is waar het resultaat betrekking op heeft dan kan het document (resultaatbijlage) op de juiste plek geregistreerd worden met de examComponentOfferingId en de personId of studentNumber.Als het toetsmoment of de studuent niet gevonden kan worden wordt een foutmelding gegeven
+- Alternatief is om op basis van examCode, examCodePath en de receivedDate een document (resultaatbijlage) op de juiste plek te registreren. Indien dit niet lukt, wordt er een foutmelding gegeven. De poging wordt bepaald op basis van de receivedDate. Als dit niet te bepalen is wordt de laatste poging gebruikt
+- voor het registreren van een document bij een toetsmoment (bijv. procesverbaal of presentielijst) moet alleen de examComponentOfferingId worden aangeboden. Als het toetsmoment gevonden kan worden obv dit uuid wordt het document bij dit toetsmoment geregistreerd. Als het toetsmoment niet gevonden kan worden wordt een foutmelding gegeven
 - De inhoud van de documenten wordt niet aangeboden, alleen de registratie dat het document bestaat en aan het dossier van de student inschrijving toegevoegd kan worden
 
 ## Authenticatie:
