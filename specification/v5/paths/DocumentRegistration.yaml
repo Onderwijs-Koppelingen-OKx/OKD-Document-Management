@@ -82,16 +82,21 @@ post:
             sequenceCode:
               type: string
               description: Alternative enrollment identifier when associationId is not available.
+            examCode:
+              type: string
+              description: Code of the exam.
+              example: "NE-3F-N1"
             examCodePath:
               type: string
-              description: Path to the exam code
+              description: Path to the exam code.
               example: "/EIND/SE/Toets1"
-
+            examComponentOfferingId:
+              type: string
+              format: uuid
+              description: Identifier of the exam conponent offering.
           anyOf:
-            - required:
-                - personId
-            - required:
-                - studentNumber
+            - personId
+            - studentNumber
         example:
           dmsDocumentId: dbd3e12a-ed8b-4488-ac34-26fd4f64f40b
           documentName: dyslexieverklaring-100245.pdf
