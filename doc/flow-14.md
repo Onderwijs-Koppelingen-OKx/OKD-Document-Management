@@ -38,7 +38,7 @@ Accept: application/json
     
     "documentName": "getekendDiploma-PimVerboon.pdf",
     "format": "application/pdf",
-    "documentsize": 55857
+    "documentSize": 55857
     "description": "Bewijs van afgifte diploma"
     "receivedDate": "2023-09-01",
     "registrationDate": "2023-09-01",
