@@ -38,7 +38,7 @@ Accept: application/json
     
     "documentName": "dyslexieverklaring-100245.pdf",
     "format": "application/pdf",
-    "documentsize": 243857
+    "documentSize": 243857
     "description": "we kregen spontaan een handgeschreven aanvraag"
     "receivedDate": "2023-09-01",
     "registrationDate": "2023-09-01",
