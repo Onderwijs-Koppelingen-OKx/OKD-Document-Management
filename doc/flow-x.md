@@ -72,8 +72,8 @@ returns :
     "documentTempDownloadUrl": "https://aaa.djuma.nl/download/5ffc6127-debe-48ce-90ae-75ea80756475&tempaccess=#556633ga6dr53g3",
     "creationdate": "2025-09-30T14:48:00Z",
     "format": "application/pdf",
-    "documentname": "test.pdf",
-    "documentsize": 243857
+    "documentName": "test.pdf",
+    "documentSize": 243857
 }
 ```
 
