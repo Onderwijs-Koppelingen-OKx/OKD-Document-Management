@@ -1,6 +1,14 @@
 allOf:
   - $ref: '../schemas/AssociationProperties.yaml'
 properties:
+  otherCodes:
+    type: array
+    description: An array of additional human readable codes/identifiers for the entity being described.
+    items:
+      $ref: './IdentifierEntry.yaml'
+  primaryCode:
+    description: The primary human readable identifier for this association. This is often the source identifier as defined by the institution.
+    $ref: './IdentifierEntry.yaml'
   person:
     oneOf:
       - $ref: '../schemas/Identifier.yaml'
