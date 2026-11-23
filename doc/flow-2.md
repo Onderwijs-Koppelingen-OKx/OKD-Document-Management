@@ -131,6 +131,7 @@ Content-Type: application/json
             "examDateTime": "2021-12-15T11:05:04Z",
             "examComponentOffering": "c9c3875b-0c6b-435a-a8a4-211bf66620b5",
             "examCode": "MEDIAK3-W1",
+            "examCodePath": "/EIND/SE/T1",
             "examName": "Examen Mediabeheer K3-W1",
             "receivedDate": "2026-01-13",
             "registrationDate": "2026-01-16"
