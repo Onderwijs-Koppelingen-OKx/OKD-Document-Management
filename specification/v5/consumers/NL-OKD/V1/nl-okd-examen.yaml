@@ -26,7 +26,7 @@ properties:
   examCodePath:
     type: string
     description: Path to the exam code.
-    example: "/EIND/SE/Toets1"    
+    example: "/EIND/SE/T1"    
   studentNumber:
     type: string
     description: Identifies the student number of the person related to the document.
