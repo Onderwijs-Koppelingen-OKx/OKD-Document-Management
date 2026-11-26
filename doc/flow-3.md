@@ -17,7 +17,7 @@ sequenceDiagram
 
 voorbeeld:
 ```
-POST .../okd/v1/associations/123e4567-e89b-12d3-a456-426614174000
+POST .../okd/v1/associations/8b07fb58-8f98-415b-a883-0b2321eb89aa
 Host: api.yourdomain.com
 Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
 Content-Length: 2847
@@ -101,7 +101,7 @@ Specifiek voor de student info: (kan het dms vast een student aanmaken als id on
 * "studentNumber": "1234567",
 
 ## Verwerking in DMS
-Het DMS kan zelf bepalen hoe de documenten opgeslagen en verwerkt worden: of in een apart BPV-dossier of alles onder het student inschrijvingsdossier
+Het DMS kan zelf bepalen hoe de documenten opgeslagen en verwerkt worden: of in een apart BPV-dossier of alles onder het student inschrijvingsdossier. De associationId is het uuid van de bpv en kan gebruikt worden bij opslaan in BPV-dossier.
 
 ## Remarks
 - Berichten van maximaal 1 GB ondersteunen. Als we in de toekomst meer dan 1 GB willen ondersteunen, dan moet de metadata en het bestand apart gestuurd worden.
